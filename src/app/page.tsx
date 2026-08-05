@@ -2,28 +2,25 @@ import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { Logos } from "@/components/sections/Logos";
-import { Features } from "@/components/sections/Features";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { Pricing } from "@/components/sections/Pricing";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { FAQ } from "@/components/sections/FAQ";
-import { CTA } from "@/components/sections/CTA";
+import { Services } from "@/components/sections/Services";
+import { AboutUs } from "@/components/sections/AboutUs";
+import { Projects } from "@/components/sections/Projects";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-blue-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-stone-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans selection:bg-orange-500 selection:text-white">
+      {/* Dynamic Scroll Navbar */}
       <Navbar />
-      <main className="flex-1">
+
+      {/* Main Structural Content */}
+      <main className="flex-1 w-full">
         <Hero />
-        <Logos />
-        <Features />
-        <HowItWorks />
-        <Pricing />
-        <Testimonials />
-        <FAQ />
-        <CTA />
+        <Services />
+        <AboutUs />
+        <Projects />
       </main>
+
+      {/* Footer always fixed at bottom with uniform margin */}
       <Footer />
     </div>
   );
