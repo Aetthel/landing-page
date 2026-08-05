@@ -2,7 +2,7 @@ import React from "react";
 
 export const Hero: React.FC = () => {
   return (
-    <section id="hero" className="w-full pt-32 md:pt-40 pb-20 border-b border-neutral-300/70 dark:border-neutral-800">
+    <section id="hero" className="w-full min-h-dvh flex items-center pt-28 md:pt-32 pb-20 border-b border-neutral-300/70 dark:border-neutral-800">
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
         {/* Structural Tag */}
         <div className="mb-6 inline-block border border-neutral-300 dark:border-neutral-700 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 rounded">
@@ -14,28 +14,14 @@ export const Hero: React.FC = () => {
           {/* Main Content Column */}
           <div className="lg:col-span-8 space-y-6">
             <h1 className="text-4xl md:text-6xl font-serif tracking-tight text-neutral-900 dark:text-neutral-100 font-normal leading-tight">
-              Estructura Principal del Hero Header
+              El salto digital
+              <br />
+              al alcance de cualquier negocio
             </h1>
 
             <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 font-sans max-w-2xl leading-relaxed">
-              Bloque descriptivo del Hero. Define la propuesta de valor y el propósito del estudio o proyecto dentro del contenedor principal.
+              Webs, aplicaciones a medida y automatizaciones que resuelven lo que de verdad importa, que tu negocio funcione mejor, venda más y pierda menos tiempo.
             </p>
-
-            {/* Action Buttons Wireframe */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a
-                href="#proyectos"
-                className="px-6 py-3 border border-neutral-900 bg-neutral-900 text-white dark:border-neutral-100 dark:bg-neutral-100 dark:text-neutral-900 text-xs uppercase tracking-wider font-medium rounded-full hover:opacity-90 transition-opacity"
-              >
-                Ver Proyectos
-              </a>
-              <a
-                href="#contacto"
-                className="px-6 py-3 border border-neutral-400 dark:border-neutral-600 text-neutral-800 dark:text-neutral-200 text-xs uppercase tracking-wider font-medium rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-              >
-                Contactar Estudio
-              </a>
-            </div>
           </div>
 
           {/* Visual Showcase Wireframe Box */}

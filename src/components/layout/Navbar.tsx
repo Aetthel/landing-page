@@ -35,15 +35,15 @@ export const Navbar: React.FC = () => {
         {/* Desktop Navbar Layout */}
         <div className="hidden lg:block relative">
           {!scrolled ? (
-            /* TOP STATE: Left group | Centered Brand | Right group */
-            <div className="flex items-center justify-between min-h-[44px]">
-              {/* Left Principal Links */}
-              <nav className="flex items-center gap-2">
+            /* TOP STATE: Centered Brand | Principal links on the right */
+            <div className="flex items-center justify-end min-h-[44px]">
+              {/* Right Principal Links */}
+              <nav className="flex items-center gap-4">
                 {siteConfig.mainNavItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="px-4 py-1.5 rounded-full border border-neutral-400/60 dark:border-neutral-600 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-all flex items-center gap-1"
+                    className="px-4 py-1.5 rounded-md border border-neutral-400/60 dark:border-neutral-600 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-all flex items-center gap-1"
                   >
                     <span>{item.label}</span>
                     <ArrowUpRight className="w-3 h-3 opacity-70" />
@@ -56,19 +56,6 @@ export const Navbar: React.FC = () => {
                 <Link href="/">{siteConfig.name}</Link>
               </div>
 
-              {/* Right Secondary Links */}
-              <nav className="flex items-center gap-2">
-                {siteConfig.secondaryNavItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="px-4 py-1.5 rounded-full border border-neutral-400/60 dark:border-neutral-600 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-all flex items-center gap-1"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-70" />
-                  </Link>
-                ))}
-              </nav>
             </div>
           ) : (
             /* SCROLLED DOWN STATE: Brand on far Left | All Links on Right */
@@ -79,25 +66,12 @@ export const Navbar: React.FC = () => {
               </div>
 
               {/* Combined Navigation Links on the Right */}
-              <nav className="flex items-center gap-2 flex-wrap justify-end">
-                {/* Main links */}
+              <nav className="flex items-center gap-4 flex-wrap justify-end">
                 {siteConfig.mainNavItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="px-4 py-1.5 rounded-full border border-neutral-400/60 dark:border-neutral-600 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-all flex items-center gap-1"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-70" />
-                  </Link>
-                ))}
-
-                {/* Secondary links */}
-                {siteConfig.secondaryNavItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="px-4 py-1.5 rounded-full border border-neutral-400/60 dark:border-neutral-600 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-all flex items-center gap-1"
+                    className="px-4 py-1.5 rounded-md border border-neutral-400/60 dark:border-neutral-600 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-all flex items-center gap-1"
                   >
                     <span>{item.label}</span>
                     <ArrowUpRight className="w-3 h-3 opacity-70" />
@@ -127,43 +101,19 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-stone-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 px-6 py-6 space-y-6 shadow-lg">
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 block mb-3">
-              Principal
-            </span>
-            <div className="flex flex-col gap-2">
-              {siteConfig.mainNavItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-2 rounded-full border border-neutral-300 dark:border-neutral-700 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 flex items-center justify-between"
-                >
-                  <span>{item.label}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 block mb-3">
-              Secundarios
-            </span>
-            <div className="flex flex-col gap-2">
-              {siteConfig.secondaryNavItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="px-4 py-2 rounded-full border border-neutral-300 dark:border-neutral-700 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 flex items-center justify-between"
-                >
-                  <span>{item.label}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
-                </Link>
-              ))}
-            </div>
+        <div className="lg:hidden bg-stone-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 px-6 py-6 shadow-lg">
+          <div className="flex flex-col gap-2">
+            {siteConfig.mainNavItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-2 rounded-md border border-neutral-300 dark:border-neutral-700 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 flex items-center justify-between"
+              >
+                <span>{item.label}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
+              </Link>
+            ))}
           </div>
         </div>
       )}

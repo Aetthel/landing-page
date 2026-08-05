@@ -6,8 +6,8 @@ export const siteConfig: SiteConfig = {
   url: "https://aetthel.com",
   ogImage: "https://aetthel.com/og.png",
   mainNavItems: [
+    { label: "Aetthel Lab", href: "#aetthel-lab" },
     { label: "Servicios", href: "#servicios" },
-    { label: "Estudio", href: "#estudio" },
     { label: "Proyectos", href: "#proyectos" },
   ],
   secondaryNavItems: [

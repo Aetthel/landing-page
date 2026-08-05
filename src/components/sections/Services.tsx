@@ -14,53 +14,32 @@ export const Services: React.FC = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="border border-neutral-300 dark:border-neutral-800 p-6 rounded-lg">
-              <h3 className="font-mono text-sm uppercase text-neutral-800 dark:text-neutral-200 mb-2">01 / Consultoría Espacial</h3>
-              <p className="text-xs text-neutral-500">Estudio y viabilidad de proyectos arquitectónicos.</p>
+              <h3 className="font-mono text-sm uppercase text-neutral-800 dark:text-neutral-200 mb-3">01 — Landing Pages</h3>
+              <p className="text-sm text-neutral-700 dark:text-neutral-300 mb-3 leading-snug">
+                Convertir en segundos lo que eres, en por qué elegirte.
+              </p>
+              <p className="text-xs text-neutral-500 leading-relaxed">
+                Una página no vende por tenerla, sino por cómo comunica. Diseñamos landing pages claras y rápidas, pensadas para que quien llegue entienda de inmediato qué ofreces y por qué confiar en ti.
+              </p>
             </div>
             <div className="border border-neutral-300 dark:border-neutral-800 p-6 rounded-lg">
-              <h3 className="font-mono text-sm uppercase text-neutral-800 dark:text-neutral-200 mb-2">02 / Dirección Ejecutiva</h3>
-              <p className="text-xs text-neutral-500">Supervisión integral de obra y contratistas.</p>
+              <h3 className="font-mono text-sm uppercase text-neutral-800 dark:text-neutral-200 mb-3">02 — Apps a medida</h3>
+              <p className="text-sm text-neutral-700 dark:text-neutral-300 mb-3 leading-snug">
+                Construir la herramienta que tu negocio necesita, no la que ya existe.
+              </p>
+              <p className="text-xs text-neutral-500 leading-relaxed">
+                Cada negocio trabaja distinto, y las soluciones genéricas rara vez encajan del todo. Desarrollamos aplicaciones web a medida paneles internos, plataformas para clientes o herramientas específicas pensadas desde cómo trabajas realmente.
+              </p>
             </div>
             <div className="border border-neutral-300 dark:border-neutral-800 p-6 rounded-lg">
-              <h3 className="font-mono text-sm uppercase text-neutral-800 dark:text-neutral-200 mb-2">03 / Dirección Creativa</h3>
-              <p className="text-xs text-neutral-500">Concepto, dirección de arte e identidad.</p>
+              <h3 className="font-mono text-sm uppercase text-neutral-800 dark:text-neutral-200 mb-3">03 — Automatizaciones</h3>
+              <p className="text-sm text-neutral-700 dark:text-neutral-300 mb-3 leading-snug">
+                Que el trabajo repetitivo deje de ser trabajo.
+              </p>
+              <p className="text-xs text-neutral-500 leading-relaxed">
+                Conectamos tus procesos y herramientas para que la información fluya sola, reduciendo errores y liberando tiempo para lo que sí importa.
+              </p>
             </div>
-          </div>
-        </div>
-
-        {/* BRAND SPACES */}
-        <div id="brand-spaces" className="pt-8 border-t border-neutral-200 dark:border-neutral-800">
-          <div className="mb-6 inline-block border border-neutral-300 dark:border-neutral-700 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 rounded">
-            [ ESTRUCTURA: BRAND SPACES ]
-          </div>
-          <h2 className="text-3xl font-serif text-neutral-900 dark:text-neutral-100 mb-4">
-            Brand Spaces
-          </h2>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
-            Área dedicada al diseño de espacios de experiencia de marca, pop-ups, showrooms y entornos efímeros.
-          </p>
-        </div>
-
-        {/* BE NEXT & SHOP */}
-        <div id="be-next" className="pt-8 border-t border-neutral-200 dark:border-neutral-800 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <div className="mb-4 inline-block border border-neutral-300 dark:border-neutral-700 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 rounded">
-              [ ESTRUCTURA: BE NEXT ]
-            </div>
-            <h3 className="text-2xl font-serif text-neutral-900 dark:text-neutral-100 mb-2">Be Next</h3>
-            <p className="text-xs text-neutral-500 leading-relaxed">
-              Iniciativas de innovación, investigación de materiales y laboratorios creativos del futuro.
-            </p>
-          </div>
-
-          <div id="shop">
-            <div className="mb-4 inline-block border border-neutral-300 dark:border-neutral-700 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 rounded">
-              [ ESTRUCTURA: SHOP ]
-            </div>
-            <h3 className="text-2xl font-serif text-neutral-900 dark:text-neutral-100 mb-2">Shop</h3>
-            <p className="text-xs text-neutral-500 leading-relaxed">
-              Catálogo de piezas de edición limitada, publicaciones y objetos diseñados por el estudio.
-            </p>
           </div>
         </div>
       </div>
