@@ -17,11 +17,11 @@ const monoFont = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} - Landing Page en Next.js & Tailwind`,
+    default: `${siteConfig.name} - Estudio`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["Next.js", "React", "Tailwind CSS", "pnpm", "Landing Page", "SaaS", "Frontend"],
+  keywords: ["Aetthel", "Arquitectura", "Estudio", "Brand Spaces", "Diseño"],
   authors: [{ name: siteConfig.name }],
   openGraph: {
     type: "website",
@@ -57,7 +57,7 @@ export default function RootLayout({
       lang="es"
       className={`${sansFont.variable} ${monoFont.variable} scroll-smooth h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+      <body className="min-h-full flex flex-col bg-stone-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
         {children}
       </body>
     </html>

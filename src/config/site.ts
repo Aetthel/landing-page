@@ -1,10 +1,10 @@
 import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-  name: "BeNorth.Studio",
+  name: "Aetthel",
   description: "Estudio de arquitectura, espacios de marca y proyectos creativos.",
-  url: "https://benorth.studio",
-  ogImage: "https://benorth.studio/og.png",
+  url: "https://aetthel.com",
+  ogImage: "https://aetthel.com/og.png",
   mainNavItems: [
     { label: "Servicios", href: "#servicios" },
     { label: "Estudio", href: "#estudio" },

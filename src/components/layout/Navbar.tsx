@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { ArrowUpRight, Volume2, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Navbar: React.FC = () => {
@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
                 <Link href="/">{siteConfig.name}</Link>
               </div>
 
-              {/* Right Secondary Links & Utility controls */}
+              {/* Right Secondary Links */}
               <nav className="flex items-center gap-2">
                 {siteConfig.secondaryNavItems.map((item) => (
                   <Link
@@ -68,23 +68,6 @@ export const Navbar: React.FC = () => {
                     <ArrowUpRight className="w-3 h-3 opacity-70" />
                   </Link>
                 ))}
-
-                {/* Audio Button */}
-                <button
-                  type="button"
-                  aria-label="Audio toggle"
-                  className="w-8 h-8 rounded-full border border-neutral-400/60 dark:border-neutral-600 flex items-center justify-center text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-colors ml-1"
-                >
-                  <Volume2 className="w-3.5 h-3.5 opacity-70" />
-                </button>
-
-                {/* Language Switch */}
-                <div className="flex items-center bg-orange-600 text-white rounded-full px-2.5 py-1 text-xs font-bold gap-1.5 ml-1 select-none">
-                  <span className="w-4 h-4 rounded-full bg-white text-orange-600 flex items-center justify-center text-[9px] font-extrabold">
-                    ✓
-                  </span>
-                  <span>ES</span>
-                </div>
               </nav>
             </div>
           ) : (
@@ -120,23 +103,6 @@ export const Navbar: React.FC = () => {
                     <ArrowUpRight className="w-3 h-3 opacity-70" />
                   </Link>
                 ))}
-
-                {/* Audio Button */}
-                <button
-                  type="button"
-                  aria-label="Audio toggle"
-                  className="w-8 h-8 rounded-full border border-neutral-400/60 dark:border-neutral-600 flex items-center justify-center text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-colors ml-1"
-                >
-                  <Volume2 className="w-3.5 h-3.5 opacity-70" />
-                </button>
-
-                {/* Language Switch */}
-                <div className="flex items-center bg-orange-600 text-white rounded-full px-2.5 py-1 text-xs font-bold gap-1.5 ml-1 select-none">
-                  <span className="w-4 h-4 rounded-full bg-white text-orange-600 flex items-center justify-center text-[9px] font-extrabold">
-                    ✓
-                  </span>
-                  <span>ES</span>
-                </div>
               </nav>
             </div>
           )}
@@ -148,19 +114,14 @@ export const Navbar: React.FC = () => {
             {siteConfig.name}
           </Link>
 
-          <div className="flex items-center gap-2">
-            <div className="flex items-center bg-orange-600 text-white rounded-full px-2 py-0.5 text-xs font-bold gap-1 select-none">
-              <span>ES</span>
-            </div>
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200"
-              aria-label="Toggle Menu"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200"
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
