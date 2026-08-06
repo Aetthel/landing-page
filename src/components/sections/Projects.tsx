@@ -235,12 +235,12 @@ export const Projects: React.FC = () => {
   };
 
   return (
-    <section id="proyectos" className="w-full py-14 sm:py-20 border-b border-neutral-300/80 bg-[#FAF9F6] overflow-hidden">
+    <section id="proyectos" className="w-full pt-6 pb-4 sm:pt-8 sm:pb-6 bg-[#FAF9F6] overflow-hidden">
       <div className="w-full space-y-6">
         
         {/* Section Top Header */}
         <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="font-mono text-base sm:text-lg uppercase tracking-widest text-neutral-500 font-medium">
+          <div className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
             PROYECTOS DESTACADOS
           </div>
         </div>
@@ -263,6 +263,11 @@ export const Projects: React.FC = () => {
               {project.content}
             </div>
           ))}
+        </div>
+
+        {/* Container Aligned Section Divider Line */}
+        <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 pt-2">
+          <div className="border-b border-neutral-300/80" />
         </div>
 
       </div>

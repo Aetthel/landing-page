@@ -7,8 +7,8 @@ export const PromotionalVideo: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <section id="video" className="w-full py-12 sm:py-16 border-b border-neutral-300/80 bg-[#FAF9F6]">
-      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-4">
+    <section id="video" className="w-full pt-6 pb-4 sm:pt-8 sm:pb-6 bg-[#FAF9F6]">
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-6">
         
         {/* Reel Frame Box */}
         <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-neutral-300/80 bg-neutral-900 flex flex-col justify-between p-6 text-white group cursor-pointer" onClick={() => setIsPlaying(!isPlaying)}>
@@ -36,6 +36,9 @@ export const PromotionalVideo: React.FC = () => {
           </div>
 
         </div>
+
+        {/* Container Aligned Section Divider Line */}
+        <div className="border-b border-neutral-300/80 pt-2" />
 
       </div>
     </section>

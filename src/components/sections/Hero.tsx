@@ -4,11 +4,11 @@ import { ArrowDown } from "lucide-react";
 
 export const Hero: React.FC = () => {
   return (
-    <section id="hero" className="w-full min-h-[75vh] flex flex-col justify-between pt-28 pb-8 border-b border-neutral-300/80">
+    <section id="hero" className="w-full min-h-[70vh] flex flex-col justify-between pt-24 pb-4 sm:pt-28 sm:pb-6">
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center">
         
         {/* Large Monogram / Wordmark Tag */}
-        <div className="mb-4 inline-block font-mono text-xs sm:text-sm uppercase tracking-[0.18em] text-neutral-500 font-medium">
+        <div className="mb-4 inline-block font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
           AETTHEL STUDIO — BRAND & TECH ARCHITECTURE
         </div>
 
@@ -23,16 +23,21 @@ export const Hero: React.FC = () => {
 
       </div>
 
-      {/* Hero Bottom Meta Row */}
-      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 pt-8 flex items-center justify-between border-t border-neutral-200 text-xs font-mono text-neutral-500 uppercase tracking-wider">
-        <Link href="#aetthel-lab" className="hover:text-neutral-900 transition-colors flex items-center gap-2">
-          <span>Descubre cómo transformamos negocios</span>
-        </Link>
+      {/* Hero Bottom Meta Row & Divider Line */}
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-4 pt-6">
+        <div className="pt-6 flex items-center justify-between border-t border-neutral-200 text-xs font-mono text-neutral-500 uppercase tracking-wider">
+          <Link href="#aetthel-lab" className="hover:text-neutral-900 transition-colors flex items-center gap-2">
+            <span>Descubre cómo transformamos negocios</span>
+          </Link>
 
-        <div className="flex items-center gap-1 text-neutral-400">
-          <span>(SCROLL)</span>
-          <ArrowDown className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-1 text-neutral-400">
+            <span>(SCROLL)</span>
+            <ArrowDown className="w-3.5 h-3.5" />
+          </div>
         </div>
+
+        {/* Container Aligned Section Divider Line */}
+        <div className="border-b border-neutral-300/80" />
       </div>
     </section>
   );

@@ -54,12 +54,12 @@ export const Services: React.FC = () => {
   const currentService = servicesData.find((s) => s.id === activeService) || servicesData[0];
 
   return (
-    <section id="servicios" className="w-full py-14 sm:py-20 border-b border-neutral-300/80 bg-[#FAF9F6]">
-      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-10">
+    <section id="servicios" className="w-full pt-6 pb-4 sm:pt-8 sm:pb-6 bg-[#FAF9F6]">
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-6">
         
         {/* Section Label */}
-        <div className="font-mono text-base sm:text-lg uppercase tracking-widest text-neutral-500 font-medium">
-          Servicios
+        <div className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
+          SERVICIOS
         </div>
 
         {/* Split Layout Container */}
@@ -131,6 +131,9 @@ export const Services: React.FC = () => {
           </div>
 
         </div>
+
+        {/* Container Aligned Section Divider Line */}
+        <div className="w-full pt-2 border-b border-neutral-300/80" />
 
       </div>
     </section>

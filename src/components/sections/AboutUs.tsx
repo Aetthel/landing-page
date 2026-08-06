@@ -4,12 +4,12 @@ import { ArrowUpRight } from "lucide-react";
 
 export const AboutUs: React.FC = () => {
   return (
-    <section id="aetthel-lab" className="w-full py-14 sm:py-20 border-b border-neutral-300/80 bg-[#FAF9F6]">
-      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-start space-y-8">
+    <section id="aetthel-lab" className="w-full pt-6 pb-4 sm:pt-8 sm:pb-6 bg-[#FAF9F6]">
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-start space-y-6">
         
         {/* Section Label */}
-        <div className="font-mono text-base sm:text-lg uppercase tracking-widest text-neutral-500 font-medium">
-          Manifiesto Aetthel
+        <div className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
+          MANIFIESTO AETTHEL
         </div>
 
         {/* Large Statement Paragraph */}
@@ -29,6 +29,9 @@ export const AboutUs: React.FC = () => {
           <span>Conocer Aetthel Lab</span>
           <ArrowUpRight className="w-4 h-4" />
         </Link>
+
+        {/* Container Aligned Section Divider Line */}
+        <div className="w-full pt-2 border-b border-neutral-300/80" />
 
       </div>
     </section>
