@@ -57,7 +57,7 @@ export default function RootLayout({
       lang="es"
       className={`${sansFont.variable} ${monoFont.variable} scroll-smooth h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-stone-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
+      <body className="min-h-full flex flex-col bg-[#FAF9F6] text-slate-900 selection:bg-slate-900 selection:text-white">
         {children}
       </body>
     </html>

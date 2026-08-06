@@ -1,38 +1,37 @@
 import React from "react";
+import Link from "next/link";
+import { ArrowDown } from "lucide-react";
 
 export const Hero: React.FC = () => {
   return (
-    <section id="hero" className="w-full min-h-dvh flex items-center pt-28 md:pt-32 pb-20 border-b border-neutral-300/70 dark:border-neutral-800">
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Structural Tag */}
-        <div className="mb-6 inline-block border border-neutral-300 dark:border-neutral-700 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 rounded">
-          [ ESTRUCTURA: HERO ]
+    <section id="hero" className="w-full min-h-[90vh] flex flex-col justify-between pt-36 pb-12 border-b border-neutral-300/80">
+      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center">
+        
+        {/* Large Monogram / Wordmark Tag */}
+        <div className="mb-6 inline-block font-mono text-xs uppercase tracking-widest text-neutral-400">
+          Aetthel Studio — Brand & Tech Architecture
         </div>
 
-        {/* Structural Hero Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Main Content Column */}
-          <div className="lg:col-span-8 space-y-6">
-            <h1 className="text-4xl md:text-6xl font-serif tracking-tight text-neutral-900 dark:text-neutral-100 font-normal leading-tight">
-              El salto digital
-              <br />
-              al alcance de cualquier negocio
-            </h1>
+        {/* Main Headline Statement */}
+        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.05] text-neutral-950 max-w-5xl">
+          We build <em className="font-serif italic font-normal">bold digital products</em> for ambitious brands
+        </h1>
 
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 font-sans max-w-2xl leading-relaxed">
-              Webs, aplicaciones a medida y automatizaciones que resuelven lo que de verdad importa, que tu negocio funcione mejor, venda más y pierda menos tiempo.
-            </p>
-          </div>
+        <p className="mt-8 text-lg sm:text-xl text-neutral-600 font-sans max-w-2xl leading-relaxed">
+          Diseñamos webs de alto rendimiento, aplicaciones a medida y automatizaciones estratégicas que ayudan a las empresas a vender más y operar mejor.
+        </p>
 
-          {/* Visual Showcase Wireframe Box */}
-          <div className="lg:col-span-4 border border-dashed border-neutral-400 dark:border-neutral-700 rounded-lg p-6 min-h-[260px] flex flex-col justify-between bg-neutral-50/50 dark:bg-neutral-900/30">
-            <span className="font-mono text-xs text-neutral-400 uppercase">[ ÁREA VISUAL / MEDIA HERO ]</span>
-            <div className="space-y-2 text-xs text-neutral-500 font-mono">
-              <div>• Ancho: 100% Contenedor</div>
-              <div>• Proporción: Responsive</div>
-              <div>• Alineación: Derecha</div>
-            </div>
-          </div>
+      </div>
+
+      {/* Hero Bottom Meta Row */}
+      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 pt-12 flex items-center justify-between border-t border-neutral-200 text-xs font-mono text-neutral-500 uppercase tracking-wider">
+        <Link href="#aetthel-lab" className="hover:text-neutral-900 transition-colors flex items-center gap-2">
+          <span>Descubre cómo transformamos negocios</span>
+        </Link>
+
+        <div className="flex items-center gap-1 text-neutral-400">
+          <span>(SCROLL)</span>
+          <ArrowDown className="w-3.5 h-3.5" />
         </div>
       </div>
     </section>

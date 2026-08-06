@@ -15,9 +15,7 @@ export const Navbar: React.FC = () => {
       setScrolled(window.scrollY > 30);
     };
 
-    // Check initial scroll position
     handleScroll();
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -27,54 +25,76 @@ export const Navbar: React.FC = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-stone-50/90 dark:bg-neutral-900/90 backdrop-blur-md border-b border-stone-200 dark:border-neutral-800 py-3 shadow-xs"
+          ? "bg-[#FAF9F6]/90 backdrop-blur-md border-b border-neutral-200/80 py-3 shadow-2xs"
           : "bg-transparent py-5"
       )}
     >
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Desktop Navbar Layout */}
+        {/* Desktop Header */}
         <div className="hidden lg:block relative">
           {!scrolled ? (
-            /* TOP STATE: Centered Brand | Principal links on the right */
-            <div className="flex items-center justify-end min-h-[44px]">
-              {/* Right Principal Links */}
-              <nav className="flex items-center gap-4">
+            /* Top State: Left Pills | Center Coordinates | Right Pills + Lang */
+            <div className="flex items-center justify-between min-h-[44px]">
+              
+              {/* Left Principal Pills */}
+              <nav className="flex items-center gap-2">
                 {siteConfig.mainNavItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="px-4 py-1.5 rounded-md border border-neutral-400/60 dark:border-neutral-600 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-all flex items-center gap-1"
+                    className="px-4 py-1.5 rounded-full border border-neutral-300/80 bg-white/70 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 text-xs font-mono uppercase tracking-wider text-neutral-800 transition-all flex items-center gap-1"
                   >
                     <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-70" />
+                    <ArrowUpRight className="w-3 h-3 opacity-60" />
                   </Link>
                 ))}
               </nav>
 
-              {/* Centered Brand Title */}
-              <div className="absolute left-1/2 -translate-x-1/2 font-serif text-xl tracking-tight text-neutral-900 dark:text-neutral-100 font-normal">
-                <Link href="/">{siteConfig.name}</Link>
+              {/* Center Coordinates & Location Stamp */}
+              <div className="absolute left-1/2 -translate-x-1/2 text-center text-[11px] font-mono text-neutral-500 uppercase tracking-widest leading-tight">
+                40.416 N, 3.703 W<br />
+                <span className="text-neutral-400">EST. 2024 · MADRID</span>
               </div>
 
-            </div>
-          ) : (
-            /* SCROLLED DOWN STATE: Brand on far Left | All Links on Right */
-            <div className="flex items-center justify-between min-h-[44px] animate-fade-in">
-              {/* Brand Title on the Left */}
-              <div className="font-serif text-xl tracking-tight text-neutral-900 dark:text-neutral-100 font-normal">
-                <Link href="/">{siteConfig.name}</Link>
-              </div>
-
-              {/* Combined Navigation Links on the Right */}
-              <nav className="flex items-center gap-4 flex-wrap justify-end">
-                {siteConfig.mainNavItems.map((item) => (
+              {/* Right Secondary Pills & Contact */}
+              <nav className="flex items-center gap-2">
+                {siteConfig.secondaryNavItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="px-4 py-1.5 rounded-md border border-neutral-400/60 dark:border-neutral-600 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-all flex items-center gap-1"
+                    className="px-4 py-1.5 rounded-full border border-neutral-300/80 bg-white/70 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 text-xs font-mono uppercase tracking-wider text-neutral-800 transition-all flex items-center gap-1"
                   >
                     <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-70" />
+                    <ArrowUpRight className="w-3 h-3 opacity-60" />
+                  </Link>
+                ))}
+
+                {/* Language Switch */}
+                <button
+                  type="button"
+                  className="px-3 py-1.5 rounded-full border border-neutral-300 bg-neutral-100 hover:bg-neutral-200 text-[11px] font-mono uppercase tracking-wider text-neutral-800 transition-colors ml-2"
+                >
+                  ES
+                </button>
+              </nav>
+
+            </div>
+          ) : (
+            /* Scrolled Down State: Logo on Left | Combined Pills on Right */
+            <div className="flex items-center justify-between min-h-[44px] animate-fade-in">
+              <Link href="/" className="font-sans text-xl font-bold tracking-tight text-neutral-900">
+                {siteConfig.name}®
+              </Link>
+
+              <nav className="flex items-center gap-2">
+                {[...siteConfig.mainNavItems, ...siteConfig.secondaryNavItems].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="px-3.5 py-1.5 rounded-full border border-neutral-300/80 bg-white/80 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 text-[11px] font-mono uppercase tracking-wider text-neutral-800 transition-all flex items-center gap-1"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowUpRight className="w-3 h-3 opacity-60" />
                   </Link>
                 ))}
               </nav>
@@ -82,16 +102,16 @@ export const Navbar: React.FC = () => {
           )}
         </div>
 
-        {/* Mobile & Tablet Header Bar */}
+        {/* Mobile Header Bar */}
         <div className="lg:hidden flex items-center justify-between min-h-[44px]">
-          <Link href="/" className="font-serif text-lg tracking-tight font-normal text-neutral-900 dark:text-neutral-100">
-            {siteConfig.name}
+          <Link href="/" className="font-sans text-lg font-bold tracking-tight text-neutral-900">
+            {siteConfig.name}®
           </Link>
 
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200"
+            className="p-2 rounded-full border border-neutral-300 bg-white text-neutral-800"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -99,19 +119,19 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-stone-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 px-6 py-6 shadow-lg">
+        <div className="lg:hidden bg-[#FAF9F6] border-b border-neutral-200 px-6 py-6 shadow-lg animate-fade-in">
           <div className="flex flex-col gap-2">
-            {siteConfig.mainNavItems.map((item) => (
+            {[...siteConfig.mainNavItems, ...siteConfig.secondaryNavItems].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2 rounded-md border border-neutral-300 dark:border-neutral-700 text-xs font-medium uppercase tracking-wider text-neutral-800 dark:text-neutral-200 flex items-center justify-between"
+                className="px-4 py-3 rounded-lg border border-neutral-200 bg-white text-xs font-mono uppercase tracking-wider text-neutral-800 flex items-center justify-between"
               >
                 <span>{item.label}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
+                <ArrowUpRight className="w-4 h-4 opacity-70" />
               </Link>
             ))}
           </div>

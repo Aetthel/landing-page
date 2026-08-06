@@ -6,24 +6,27 @@ import { PromotionalVideo } from "@/components/sections/PromotionalVideo";
 import { Services } from "@/components/sections/Services";
 import { AboutUs } from "@/components/sections/AboutUs";
 import { Projects } from "@/components/sections/Projects";
+import { Clients } from "@/components/sections/Clients";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-stone-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 font-sans selection:bg-orange-500 selection:text-white">
-      {/* Dynamic Scroll Navbar */}
+    <div className="min-h-screen flex flex-col bg-[#FAF9F6] text-neutral-950 font-sans selection:bg-neutral-900 selection:text-white">
+      {/* Floating Navbar */}
       <Navbar />
 
-      {/* Main Structural Content */}
+      {/* Main Page Content */}
       <main className="flex-1 w-full">
         <Hero />
         <PromotionalVideo />
         <AboutUs />
         <Services />
         <Projects />
+        <Clients />
       </main>
 
-      {/* Footer always fixed at bottom with uniform margin */}
+      {/* Footer CTA */}
       <Footer />
     </div>
   );
 }
+

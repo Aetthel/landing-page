@@ -5,51 +5,51 @@ export const Projects: React.FC = () => {
   const projectList = [
     {
       id: "proj-1",
-      title: "Proyecto 01 — Espacio Residencial",
-      category: "Arquitectura / Interiorismo",
+      title: "Guídiñn — Espacio Residencial",
+      category: "Arquitectura & Interiorismo",
       year: "2025",
+      summary: "Diseño espacial residencial de líneas puras y máxima eficiencia lumínica.",
     },
     {
       id: "proj-2",
-      title: "Proyecto 02 — Headquarters Marca",
-      category: "Brand Spaces",
+      title: "Beldarrain — Headquarters Marca",
+      category: "Brand Spaces & Oficinas",
       year: "2025",
+      summary: "Sede corporativa integrada con tecnología y arquitectura biofílica.",
     },
     {
       id: "proj-3",
-      title: "Proyecto 03 — Pabellón Temporal",
-      category: "Instalación",
-      year: "2024",
+      title: "Copreci — Plataforma Analytics",
+      category: "SaaS & Web App",
+      year: "2025",
+      summary: "Aplicación web en tiempo real para análisis operativo y rendimiento.",
     },
     {
       id: "proj-4",
-      title: "Proyecto 04 — Flagship Store",
-      category: "Retail Space",
+      title: "Orbea — Flagship Digital Store",
+      category: "Retail Space & E-Commerce",
       year: "2024",
+      summary: "Espacio comercial insignia con integración omnicanal y experiencia digital.",
     },
   ];
 
   return (
-    <section id="proyectos" className="w-full py-20 border-b border-neutral-300/70 dark:border-neutral-800">
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Structural Tag */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="inline-block border border-neutral-300 dark:border-neutral-700 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 rounded">
-            [ ESTRUCTURA: PROYECTOS ]
-          </div>
-          <span className="font-mono text-xs text-neutral-400">Total: {projectList.length} Items</span>
-        </div>
-
-        {/* Section Title */}
-        <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <section id="proyectos" className="w-full py-28 sm:py-36 border-b border-neutral-300/80 bg-[#FAF9F6]">
+      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
+        
+        {/* Section Head */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-neutral-900 dark:text-neutral-100 font-normal">
-              Selección de Proyectos
+            <div className="font-mono text-xs uppercase tracking-widest text-neutral-400 mb-2">
+              Proyectos Destacados
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-normal tracking-tight text-neutral-950">
+              Selección de Trabajos
             </h2>
-            <p className="text-sm text-neutral-500 mt-1 font-sans">
-              Rejilla estructural de trabajos destacados y publicaciones.
-            </p>
           </div>
+          <span className="font-mono text-xs text-neutral-500 uppercase tracking-wider">
+            Total: {projectList.length} Casos
+          </span>
         </div>
 
         {/* Projects Grid */}
@@ -57,36 +57,40 @@ export const Projects: React.FC = () => {
           {projectList.map((project) => (
             <div
               key={project.id}
-              className="border border-neutral-300 dark:border-neutral-800 rounded-lg p-6 flex flex-col justify-between hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors group cursor-pointer"
+              className="p-8 rounded-3xl bg-white border border-neutral-300/80 flex flex-col justify-between hover:border-neutral-950 transition-all duration-300 group cursor-pointer space-y-8"
             >
-              {/* Media Skeleton */}
-              <div className="w-full aspect-video border border-dashed border-neutral-300 dark:border-neutral-700 rounded bg-neutral-100/50 dark:bg-neutral-900/40 flex items-center justify-center mb-6">
-                <span className="font-mono text-xs text-neutral-400 uppercase">
-                  [ MEDIA PLACEHOLDER: {project.id} ]
+              {/* Top Row: Category & Year */}
+              <div className="flex items-center justify-between font-mono text-xs uppercase tracking-wider text-neutral-500">
+                <span className="px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200">
+                  {project.category}
                 </span>
+                <span>{project.year}</span>
               </div>
 
-              {/* Info Row */}
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <div className="flex items-center gap-3 text-xs font-mono text-neutral-500 mb-1">
-                    <span>{project.category}</span>
-                    <span>•</span>
-                    <span>{project.year}</span>
-                  </div>
-                  <h3 className="text-lg font-serif text-neutral-900 dark:text-neutral-100 group-hover:underline">
-                    {project.title}
-                  </h3>
-                </div>
+              {/* Title & Summary */}
+              <div className="space-y-2">
+                <h3 className="text-2xl font-normal tracking-tight text-neutral-950 group-hover:underline">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-neutral-600 font-sans leading-relaxed">
+                  {project.summary}
+                </p>
+              </div>
 
-                <div className="p-2 rounded-full border border-neutral-300 dark:border-neutral-700 group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-neutral-900 transition-colors">
+              {/* Bottom Action Trigger */}
+              <div className="pt-4 border-t border-neutral-100 flex items-center justify-between font-mono text-xs uppercase tracking-wider text-neutral-800">
+                <span>Ver Caso de Estudio</span>
+                <div className="p-2 rounded-full border border-neutral-300 group-hover:bg-neutral-950 group-hover:text-white group-hover:border-neutral-950 transition-all">
                   <ArrowUpRight className="w-4 h-4" />
                 </div>
               </div>
+
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
 };
+
