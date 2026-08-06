@@ -7,44 +7,46 @@ export const Footer: React.FC = () => {
     <footer id="contacto" className="w-full bg-[#0E0F11] text-white pt-20 pb-12 border-t border-neutral-900">
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
         
-        {/* Main Grid: Headline & Action Left / Address & Seal Right */}
+        {/* Main Grid: Headline & Action Left / Address & Contacts Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Headline & Orange Pill CTA Button */}
           <div className="lg:col-span-8 space-y-10">
             <h2 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.05] text-white max-w-3xl">
-              To grow a brand can be complicated,{" "}
-              <span className="text-neutral-200">let’s make it simple.</span>
+              Hacer crecer una marca puede ser complejo,{" "}
+              <span className="text-neutral-200">hagámoslo simple.</span>
             </h2>
 
             <div className="pt-2">
-              <Link
-                href="mailto:hello@aetthel.com"
+              <a
+                href="mailto:aetthel@gmail.com"
                 className="inline-flex items-center gap-3 px-7 py-3 rounded-full border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-neutral-950 font-mono text-xs uppercase tracking-widest transition-all group"
               >
-                <span>START YOUR PROJECT</span>
+                <span>INICIAR TU PROYECTO</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2]" />
-              </Link>
+              </a>
             </div>
           </div>
 
-          {/* Right Column: Address, Phone & Certified Badge */}
+          {/* Right Column: Address & Direct Phone/Email Info */}
           <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-12 lg:text-right">
             
             {/* Location & Contact Info */}
             <div className="space-y-4 font-mono text-xs text-neutral-400 uppercase tracking-widest leading-relaxed">
               <div>
-                TORRE AETTHEL STUDIO, 2B<br />
-                28001 MADRID<br />
+                BARCELONA, CATALUNYA<br />
                 ESPAÑA
               </div>
               
-              <div className="pt-2">
-                <a href="tel:+34910000000" className="hover:text-white transition-colors block">
-                  +34 910 000 000
+              <div className="pt-2 space-y-1">
+                <a href="tel:+34696352940" className="hover:text-white transition-colors block">
+                  +34 696 35 29 40
                 </a>
-                <a href="mailto:hello@aetthel.com" className="hover:text-white transition-colors block">
-                  hello@aetthel.com
+                <a href="tel:+34639971393" className="hover:text-white transition-colors block">
+                  +34 639 97 13 93
+                </a>
+                <a href="mailto:aetthel@gmail.com" className="hover:text-white transition-colors block text-neutral-300 font-semibold">
+                  aetthel@gmail.com
                 </a>
               </div>
             </div>
@@ -66,12 +68,12 @@ export const Footer: React.FC = () => {
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
           </div>
 
-          {/* Right Legal Links */}
+          {/* Right Legal Links & Copyright */}
           <div className="flex flex-wrap items-center gap-6 text-neutral-500">
-            <Link href="#" className="hover:text-neutral-400 transition-colors">Terms & Conditions</Link>
-            <Link href="#" className="hover:text-neutral-400 transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-neutral-400 transition-colors">Política de cookies</Link>
-            <span>©2026 Aetthel.Studio</span>
+            <Link href="#" className="hover:text-neutral-400 transition-colors">Términos y Condiciones</Link>
+            <Link href="#" className="hover:text-neutral-400 transition-colors">Política de Privacidad</Link>
+            <Link href="#" className="hover:text-neutral-400 transition-colors">Política de Cookies</Link>
+            <span>©2026 Aetthel Lab S.L.</span>
           </div>
 
         </div>

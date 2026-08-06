@@ -52,8 +52,8 @@ export const Navbar: React.FC = () => {
 
               {/* Center Coordinates & Location Stamp */}
               <div className="absolute left-1/2 -translate-x-1/2 text-center text-[11px] font-mono text-neutral-500 uppercase tracking-widest leading-tight">
-                40.416 N, 3.703 W<br />
-                <span className="text-neutral-400">EST. 2024 · MADRID</span>
+                41.387 N, 2.168 E<br />
+                <span className="text-neutral-400">EST. 2024 · BARCELONA</span>
               </div>
 
               {/* Right Secondary Pills & Contact */}
