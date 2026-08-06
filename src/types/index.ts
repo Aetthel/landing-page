@@ -14,6 +14,5 @@ export interface SiteConfig {
   url: string;
   ogImage: string;
   mainNavItems: NavItem[];
-  secondaryNavItems: NavItem[];
   socials: SocialLink[];
 }

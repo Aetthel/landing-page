@@ -20,7 +20,7 @@ export const Clients: React.FC = () => {
   ];
 
   return (
-    <section id="clientes" className="w-full py-20 sm:py-28 border-b border-neutral-300/80 bg-[#FAF9F6]">
+    <section id="clientes" className="w-full py-20 sm:py-28 border-b border-neutral-300/80 bg-canvas">
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 space-y-8">
         
         {/* Section Label */}

@@ -7,7 +7,7 @@ export const PromotionalVideo: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <section id="video" className="w-full py-20 border-b border-neutral-300/80 bg-[#FAF9F6]">
+    <section id="video" className="w-full py-20 border-b border-neutral-300/80 bg-canvas">
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 space-y-4">
         
         {/* Reel Frame Box */}

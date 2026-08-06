@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export const AboutUs: React.FC = () => {
   return (
-    <section id="aetthel-lab" className="w-full py-28 sm:py-36 border-b border-neutral-300/80 bg-[#FAF9F6]">
+    <section id="aetthel-lab" className="w-full py-28 sm:py-36 border-b border-neutral-300/80 bg-canvas">
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-start space-y-12">
         
         {/* Section Label */}

@@ -34,7 +34,7 @@ export const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="proyectos" className="w-full py-28 sm:py-36 border-b border-neutral-300/80 bg-[#FAF9F6]">
+    <section id="proyectos" className="w-full py-28 sm:py-36 border-b border-neutral-300/80 bg-canvas">
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
         
         {/* Section Head */}

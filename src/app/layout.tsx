@@ -1,16 +1,28 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
-const sansFont = Plus_Jakarta_Sans({
-  variable: "--font-sans",
+/* Titulares — neogrotesca moderna, limpia y geométrica */
+const displayFont = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
+/* Cuerpo de texto / UI */
+const bodyFont = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
 const monoFont = JetBrains_Mono({
-  variable: "--font-mono",
+  variable: "--font-jetbrains",
   subsets: ["latin"],
   display: "swap",
 });
@@ -55,9 +67,9 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${sansFont.variable} ${monoFont.variable} scroll-smooth h-full antialiased`}
+      className={`${bodyFont.variable} ${displayFont.variable} ${monoFont.variable} scroll-smooth h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#FAF9F6] text-slate-900 selection:bg-slate-900 selection:text-white">
+      <body className="min-h-full flex flex-col bg-canvas text-ink">
         {children}
       </body>
     </html>

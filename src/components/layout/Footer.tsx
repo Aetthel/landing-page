@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export const Footer: React.FC = () => {
   return (
-    <footer id="contacto" className="w-full bg-[#FAF9F6] border-t border-neutral-300/80 text-neutral-900 pt-24 pb-12">
+    <footer id="contacto" className="w-full bg-canvas border-t border-neutral-300/80 text-neutral-900 pt-24 pb-12">
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
         
         {/* Top Footer Section: Large Claim + Contact Block */}
