@@ -4,11 +4,11 @@ import { ArrowUpRight } from "lucide-react";
 
 export const AboutUs: React.FC = () => {
   return (
-    <section id="aetthel-lab" className="w-full py-28 sm:py-36 border-b border-neutral-300/80 bg-[#FAF9F6]">
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-start space-y-12">
+    <section id="aetthel-lab" className="w-full py-14 sm:py-20 border-b border-neutral-300/80 bg-[#FAF9F6]">
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-start space-y-8">
         
         {/* Section Label */}
-        <div className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+        <div className="font-mono text-base sm:text-lg uppercase tracking-widest text-neutral-500 font-medium">
           Manifiesto Aetthel
         </div>
 

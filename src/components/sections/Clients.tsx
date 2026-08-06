@@ -1,46 +1,59 @@
 import React from "react";
 
 export const Clients: React.FC = () => {
-  const clientList = [
-    "Addi",
-    "Agile TV",
-    "Angulas Aguinaga",
-    "Bultz",
-    "Copreci",
-    "Danobat",
-    "Dikar",
-    "Eroski",
-    "Erreka",
-    "Fagor Electrónica",
-    "Guidinn",
-    "Orbea",
-    "Salto Systems",
-    "Tekniker",
-    "Ternua",
+  const clients = [
+    { name: "Fagor Professional", highlighted: true },
+    { name: "Guidinn", highlighted: false },
+    { name: "Onnera Group", highlighted: false },
+    { name: "Ternua", highlighted: false },
+    { name: "Bultz", highlighted: false },
+    { name: "Tekniker", highlighted: false },
+    { name: "Dikar", highlighted: false },
+    { name: "Angulas Aguinaga", highlighted: false },
+    { name: "Orbea", highlighted: false },
+    { name: "Adi Revolution", highlighted: false },
+    { name: "Fagor Electrónica", highlighted: false },
+    { name: "Danobat", highlighted: false },
+    { name: "Eroski", highlighted: false },
+    { name: "Agile TV", highlighted: false },
+    { name: "Grupo GTM", highlighted: false },
+    { name: "Copreci", highlighted: false },
+    { name: "Inzu Group", highlighted: false },
+    { name: "Erreka", highlighted: false },
+    { name: "Lacer", highlighted: false },
+    { name: "Addi", highlighted: false },
+    { name: "Salto...", highlighted: false },
   ];
 
   return (
-    <section id="clientes" className="w-full py-20 sm:py-28 border-b border-neutral-300/80 bg-[#FAF9F6]">
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 space-y-8">
+    <section id="clientes" className="w-full py-16 sm:py-24 border-b border-neutral-300/80 bg-[#FAF9F6]">
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-8">
         
         {/* Section Label */}
-        <div className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+        <div className="font-mono text-base sm:text-lg uppercase tracking-widest text-neutral-500 font-medium">
           Nuestros Clientes & Colaboradores
         </div>
 
-        {/* Clients Minimalist Grid / Marquee Tag List */}
-        <div className="flex flex-wrap items-center gap-3">
-          {clientList.map((client) => (
-            <span
-              key={client}
-              className="px-5 py-2.5 rounded-full bg-white border border-neutral-300/80 text-sm font-sans font-medium text-neutral-800 hover:bg-neutral-950 hover:text-white hover:border-neutral-950 transition-all cursor-default"
-            >
-              {client}
-            </span>
+        {/* Fluid Text Paragraph List matching screenshot */}
+        <p className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-neutral-900 leading-[1.25] font-sans">
+          {clients.map((client, index) => (
+            <React.Fragment key={client.name}>
+              <span
+                className={`transition-colors duration-200 cursor-pointer ${
+                  client.highlighted
+                    ? "text-orange-500 font-normal hover:underline"
+                    : "hover:text-orange-500"
+                }`}
+              >
+                {client.name}
+              </span>
+              {index < clients.length - 1 ? ", " : ""}
+            </React.Fragment>
           ))}
-        </div>
+        </p>
 
       </div>
     </section>
   );
 };
+

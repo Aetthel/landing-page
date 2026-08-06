@@ -26,10 +26,10 @@ export const Navbar: React.FC = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
           ? "bg-[#FAF9F6]/90 backdrop-blur-md border-b border-neutral-200/80 py-3 shadow-2xs"
-          : "bg-transparent py-5"
+          : "bg-transparent py-4"
       )}
     >
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         {/* Desktop Header */}
         <div className="hidden lg:block relative">
           {!scrolled ? (
