@@ -25,7 +25,8 @@ export const Services: React.FC = () => {
       id: "02",
       number: "02",
       title: "Apps a Medida",
-      headline: "Construir la herramienta que tu negocio necesita, no la que ya existe.",
+      headline:
+        "Construir la herramienta que tu negocio necesita, no la que ya existe.",
       description:
         "Cada empresa trabaja distinto y las herramientas genéricas rara vez encajan del todo. Desarrollamos aplicaciones web a medida, paneles administrativos internos y plataformas de clientes adaptadas a tu flujo operativo real.",
       tags: [
@@ -51,76 +52,92 @@ export const Services: React.FC = () => {
     },
   ];
 
-  const currentService = servicesData.find((s) => s.id === activeService) || servicesData[0];
+  const currentService =
+    servicesData.find((s) => s.id === activeService) || servicesData[0];
 
   return (
-    <section id="servicios" className="w-full py-28 sm:py-36 border-b border-neutral-300/80 bg-canvas">
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
-        
-        {/* Section Tag */}
-        <div className="font-mono text-xs uppercase tracking-widest text-neutral-400">
-          Servicios
+    <section
+      id="servicios"
+      className="w-full pt-6 pb-4 sm:pt-8 sm:pb-6 bg-[#FAF9F6]"
+    >
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-6">
+        {/* Section Label */}
+        <div className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
+          SERVICIOS
         </div>
 
         {/* Split Layout Container */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* Left Column: Interactive Numbered List */}
-          <div className="lg:col-span-5 space-y-4">
+          {/* Left Column: List with Mouse Hover (onMouseEnter & onMouseMove) */}
+          <div className="lg:col-span-6 space-y-8">
             {servicesData.map((service) => {
               const isActive = activeService === service.id;
               return (
                 <div
                   key={service.id}
-                  onClick={() => setActiveService(service.id)}
-                  className={`p-6 rounded-2xl border transition-all cursor-pointer flex items-center justify-between group ${
-                    isActive
-                      ? "bg-neutral-950 text-white border-neutral-950 shadow-md"
-                      : "bg-white text-neutral-900 border-neutral-300/80 hover:border-neutral-900"
-                  }`}
+                  onMouseEnter={() => setActiveService(service.id)}
+                  onMouseMove={() => {
+                    if (activeService !== service.id)
+                      setActiveService(service.id);
+                  }}
+                  className="cursor-pointer transition-all duration-300 select-none group py-2"
                 >
-                  <div className="flex items-center gap-6">
-                    <span className={`font-mono text-xs uppercase tracking-wider ${isActive ? "text-neutral-400" : "text-neutral-400"}`}>
-                      {service.number}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-normal tracking-tight">
-                      {service.title}
-                    </h3>
-                  </div>
+                  {isActive ? (
+                    /* ACTIVE SERVICE ITEM */
+                    <div className="space-y-2 border-b-2 border-orange-500 pb-4 animate-fade-in">
+                      <span className="font-mono text-xs font-bold text-orange-500 block">
+                        {service.number}
+                      </span>
 
-                  <ArrowUpRight className={`w-5 h-5 transition-transform ${isActive ? "text-white translate-x-0.5 -translate-y-0.5" : "text-neutral-400 group-hover:text-neutral-900"}`} />
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-4xl sm:text-6xl font-normal tracking-tight text-neutral-950">
+                          {service.title}
+                        </h3>
+                        <ArrowUpRight className="w-7 h-7 text-orange-500 stroke-[1.75]" />
+                      </div>
+                    </div>
+                  ) : (
+                    /* INACTIVE SERVICE ITEM */
+                    <div className="py-2 border-b border-transparent hover:border-neutral-200 transition-colors">
+                      <h3 className="text-4xl sm:text-6xl font-light tracking-tight text-neutral-300 group-hover:text-neutral-500 transition-colors">
+                        {service.title}
+                      </h3>
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
 
-          {/* Right Column: Active Service Detail */}
-          <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-3xl border border-neutral-300/80 shadow-2xs space-y-6">
-            <h4 className="text-2xl sm:text-3xl font-normal tracking-tight text-neutral-950 leading-tight">
-              {currentService.headline}
-            </h4>
+          {/* Right Column: Dynamic Content updated on hover */}
+          <div className="lg:col-span-6 space-y-8 pt-4 lg:pt-8 min-h-[320px] flex flex-col justify-between">
+            <div className="space-y-6">
+              <h4 className="text-2xl sm:text-4xl font-semibold tracking-tight text-neutral-950 leading-snug">
+                {currentService.headline}
+              </h4>
 
-            <p className="text-base text-neutral-600 leading-relaxed font-sans">
-              {currentService.description}
-            </p>
+              <p className="text-base sm:text-lg text-neutral-700 font-sans font-light leading-relaxed">
+                {currentService.description}
+              </p>
+            </div>
 
-            {/* Pill Tags Grid */}
-            <div className="pt-4 border-t border-neutral-200 flex flex-wrap gap-2">
+            {/* Pill Tags Grid with Orange Accent Borders */}
+            <div className="pt-6 flex flex-wrap gap-2.5">
               {currentService.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3.5 py-1.5 rounded-full border border-neutral-300 bg-neutral-100 text-xs font-mono uppercase tracking-wider text-neutral-800"
+                  className="px-4 py-2 rounded-full border border-orange-500/80 text-xs font-mono uppercase tracking-wider text-orange-600 bg-transparent hover:bg-orange-500/10 transition-colors"
                 >
                   {tag}
                 </span>
               ))}
             </div>
           </div>
-
         </div>
 
+        {/* Container Aligned Section Divider Line */}
+        <div className="w-full pt-2 border-b border-neutral-300/80" />
       </div>
     </section>
   );
 };
-

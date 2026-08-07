@@ -27,17 +27,16 @@ export const Navbar: React.FC = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-canvas/90 backdrop-blur-md border-b border-neutral-200/80 py-3 shadow-2xs"
-          : "bg-transparent py-5"
+          ? "bg-[#FAF9F6]/90 backdrop-blur-md border-b border-neutral-200/80 py-3 shadow-2xs"
+          : "bg-transparent py-4",
       )}
     >
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         {/* Desktop Header */}
         <div className="hidden lg:block relative">
           {!scrolled ? (
             /* Top State: Centered Isotype | Right Principal Pills */
             <div className="flex items-center justify-end min-h-[44px]">
-
               {/* Centered Isotype */}
               <Link
                 href="/"
@@ -65,11 +64,42 @@ export const Navbar: React.FC = () => {
                 ))}
               </nav>
 
+              {/* Center Coordinates & Location Stamp */}
+              <div className="absolute left-1/2 -translate-x-1/2 text-center text-[11px] font-mono text-neutral-500 uppercase tracking-widest leading-tight">
+                41.387 N, 2.168 E<br />
+                <span className="text-neutral-400">EST. 2024 · BARCELONA</span>
+              </div>
+
+              {/* Right Secondary Pills & Contact */}
+              <nav className="flex items-center gap-2">
+                {siteConfig.secondaryNavItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="px-4 py-1.5 rounded-full border border-neutral-300/80 bg-white/70 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 text-xs font-mono uppercase tracking-wider text-neutral-800 transition-all flex items-center gap-1"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowUpRight className="w-3 h-3 opacity-60" />
+                  </Link>
+                ))}
+
+                {/* Language Switch */}
+                <button
+                  type="button"
+                  className="px-3 py-1.5 rounded-full border border-neutral-300 bg-neutral-100 hover:bg-neutral-200 text-[11px] font-mono uppercase tracking-wider text-neutral-800 transition-colors ml-2"
+                >
+                  ES
+                </button>
+              </nav>
             </div>
           ) : (
             /* Scrolled Down State: Full Wordmark on Left | Pills on Right */
             <div className="flex items-center justify-between min-h-[44px] animate-fade-in">
-              <Link href="/" aria-label={siteConfig.name} className="flex items-center">
+              <Link
+                href="/"
+                aria-label={siteConfig.name}
+                className="flex items-center"
+              >
                 <Image
                   src="/logos/aetthel-wordmark.png"
                   alt={siteConfig.name}
@@ -96,7 +126,11 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Header Bar */}
         <div className="lg:hidden flex items-center justify-between min-h-[44px]">
-          <Link href="/" aria-label={siteConfig.name} className="flex items-center">
+          <Link
+            href="/"
+            aria-label={siteConfig.name}
+            className="flex items-center"
+          >
             <Image
               src="/logos/aetthel-wordmark.png"
               alt={siteConfig.name}
@@ -113,7 +147,11 @@ export const Navbar: React.FC = () => {
             className="p-2 rounded-full border border-neutral-300 bg-white text-neutral-800"
             aria-label="Toggle Menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </button>
         </div>
       </div>
