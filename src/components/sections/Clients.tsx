@@ -2,27 +2,27 @@ import React from "react";
 
 export const Clients: React.FC = () => {
   const clients = [
-    { name: "Fagor Professional", highlighted: true },
-    { name: "Guidinn", highlighted: false },
-    { name: "Onnera Group", highlighted: false },
-    { name: "Ternua", highlighted: false },
-    { name: "Bultz", highlighted: false },
-    { name: "Tekniker", highlighted: false },
-    { name: "Dikar", highlighted: false },
-    { name: "Angulas Aguinaga", highlighted: false },
-    { name: "Orbea", highlighted: false },
-    { name: "Adi Revolution", highlighted: false },
-    { name: "Fagor Electrónica", highlighted: false },
-    { name: "Danobat", highlighted: false },
-    { name: "Eroski", highlighted: false },
-    { name: "Agile TV", highlighted: false },
-    { name: "Grupo GTM", highlighted: false },
-    { name: "Copreci", highlighted: false },
-    { name: "Inzu Group", highlighted: false },
-    { name: "Erreka", highlighted: false },
-    { name: "Lacer", highlighted: false },
-    { name: "Addi", highlighted: false },
-    { name: "Salto...", highlighted: false },
+    { name: "Fagor Professional" },
+    { name: "Guidinn" },
+    { name: "Onnera Group" },
+    { name: "Ternua" },
+    { name: "Bultz" },
+    { name: "Tekniker" },
+    { name: "Dikar" },
+    { name: "Angulas Aguinaga" },
+    { name: "Orbea" },
+    { name: "Adi Revolution" },
+    { name: "Fagor Electrónica" },
+    { name: "Danobat" },
+    { name: "Eroski" },
+    { name: "Agile TV" },
+    { name: "Grupo GTM" },
+    { name: "Copreci" },
+    { name: "Inzu Group" },
+    { name: "Erreka" },
+    { name: "Lacer" },
+    { name: "Addi" },
+    { name: "Salto..." },
   ];
 
   return (
@@ -40,13 +40,7 @@ export const Clients: React.FC = () => {
         <p className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-neutral-900 leading-[1.25] font-sans">
           {clients.map((client, index) => (
             <React.Fragment key={client.name}>
-              <span
-                className={`transition-colors duration-200 cursor-pointer ${
-                  client.highlighted
-                    ? "text-orange-500 font-normal hover:underline"
-                    : "hover:text-orange-500"
-                }`}
-              >
+              <span className="transition-colors duration-200 cursor-pointer hover:text-brand">
                 {client.name}
               </span>
               {index < clients.length - 1 ? ", " : ""}

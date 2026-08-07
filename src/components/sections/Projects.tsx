@@ -67,7 +67,7 @@ export const Projects: React.FC = () => {
                 Innovación y cuidado por las personas y el entorno.
               </p>
             </div>
-            <div className="h-2 w-16 bg-orange-500" />
+            <div className="h-2 w-16 bg-brand-soft" />
           </div>
 
           <div className="pt-4 border-t border-neutral-900 flex items-center justify-between font-mono text-xs text-neutral-400">

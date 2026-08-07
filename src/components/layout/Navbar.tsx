@@ -64,11 +64,6 @@ export const Navbar: React.FC = () => {
                 ))}
               </nav>
 
-              {/* Center Coordinates & Location Stamp */}
-              <div className="absolute left-1/2 -translate-x-1/2 text-center text-[11px] font-mono text-neutral-500 uppercase tracking-widest leading-tight">
-                41.387 N, 2.168 E<br />
-                <span className="text-neutral-400">EST. 2024 · BARCELONA</span>
-              </div>
 
               {/* Right Secondary Pills & Contact */}
               <nav className="flex items-center gap-2">
@@ -83,13 +78,6 @@ export const Navbar: React.FC = () => {
                   </Link>
                 ))}
 
-                {/* Language Switch */}
-                <button
-                  type="button"
-                  className="px-3 py-1.5 rounded-full border border-neutral-300 bg-neutral-100 hover:bg-neutral-200 text-[11px] font-mono uppercase tracking-wider text-neutral-800 transition-colors ml-2"
-                >
-                  ES
-                </button>
               </nav>
             </div>
           ) : (

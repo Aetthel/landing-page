@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
             <div className="pt-2">
               <a
                 href="mailto:aetthel@gmail.com"
-                className="inline-flex items-center gap-3 px-7 py-3 rounded-full border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-neutral-950 font-mono text-xs uppercase tracking-widest transition-all group"
+                className="inline-flex items-center gap-3 px-7 py-3 rounded-full border border-brand-soft text-brand-soft hover:bg-brand-soft hover:text-canvas font-mono text-xs uppercase tracking-widest transition-all group"
               >
                 <span>INICIAR TU PROYECTO</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2]" />

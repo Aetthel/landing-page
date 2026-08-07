@@ -84,8 +84,8 @@ export const Services: React.FC = () => {
                 >
                   {isActive ? (
                     /* ACTIVE SERVICE ITEM */
-                    <div className="space-y-2 border-b-2 border-orange-500 pb-4 animate-fade-in">
-                      <span className="font-mono text-xs font-bold text-orange-500 block">
+                    <div className="space-y-2 border-b-2 border-brand pb-4 animate-fade-in">
+                      <span className="font-mono text-xs font-bold text-brand block">
                         {service.number}
                       </span>
 
@@ -93,7 +93,7 @@ export const Services: React.FC = () => {
                         <h3 className="text-4xl sm:text-6xl font-normal tracking-tight text-neutral-950">
                           {service.title}
                         </h3>
-                        <ArrowUpRight className="w-7 h-7 text-orange-500 stroke-[1.75]" />
+                        <ArrowUpRight className="w-7 h-7 text-brand stroke-[1.75]" />
                       </div>
                     </div>
                   ) : (
@@ -121,12 +121,12 @@ export const Services: React.FC = () => {
               </p>
             </div>
 
-            {/* Pill Tags Grid with Orange Accent Borders */}
+            {/* Pill Tags Grid with Brand Accent Borders */}
             <div className="pt-6 flex flex-wrap gap-2.5">
               {currentService.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-4 py-2 rounded-full border border-orange-500/80 text-xs font-mono uppercase tracking-wider text-orange-600 bg-transparent hover:bg-orange-500/10 transition-colors"
+                  className="px-4 py-2 rounded-full border border-brand/40 text-xs font-mono uppercase tracking-wider text-brand bg-transparent hover:bg-brand/10 transition-colors"
                 >
                   {tag}
                 </span>
