@@ -18,7 +18,7 @@ export const PromotionalVideo: React.FC = () => {
           onClick={() => setIsPlaying(!isPlaying)}
         >
           {/* Top Tag & Year Row */}
-          <div className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-neutral-300 z-10">
+          <div className="flex items-center justify-between font-sans font-medium text-xs uppercase tracking-widest text-neutral-300 z-10">
             <span className="px-3 py-1 rounded-full bg-neutral-800/80 backdrop-blur-sm border border-neutral-700">
               AETTHEL® — Showreel
             </span>
@@ -35,7 +35,7 @@ export const PromotionalVideo: React.FC = () => {
           </div>
 
           {/* Bottom Title inside Video */}
-          <div className="z-10 font-mono text-xs uppercase tracking-widest text-neutral-400">
+          <div className="z-10 font-sans font-medium text-xs uppercase tracking-widest text-neutral-400">
             [ REEL VIDEO DEMOSTRATIVO ]
           </div>
         </div>

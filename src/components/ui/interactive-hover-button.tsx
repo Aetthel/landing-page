@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
    El efecto: el texto base se desplaza y se desvanece mientras un punto de
    marca crece hasta cubrir la píldora y revela el texto + flecha en negativo. */
 const shellStyles =
-  "group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full border border-line bg-white/70 px-6 py-2 text-center font-mono text-xs uppercase tracking-wider text-ink transition-colors";
+  "group relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-full border border-line bg-white/70 px-6 py-2 text-center font-sans font-medium text-xs uppercase tracking-wider text-ink transition-colors";
 
 const labelStyles =
   "relative z-20 inline-block transition-all duration-300 group-hover:translate-x-8 group-hover:opacity-0";

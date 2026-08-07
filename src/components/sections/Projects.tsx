@@ -20,7 +20,7 @@ export const Projects: React.FC = () => {
       width: "min-w-[300px] sm:min-w-[380px] lg:min-w-[440px]",
       content: (
         <div className="relative w-full h-full bg-neutral-900 flex flex-col justify-between p-8 text-white">
-          <div className="flex items-center justify-between font-mono text-xs text-neutral-400 uppercase tracking-widest">
+          <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
             <span>01 / 05</span>
             <span>Copreci®</span>
           </div>
@@ -28,11 +28,11 @@ export const Projects: React.FC = () => {
             <h3 className="text-4xl font-bold tracking-tight text-white font-sans">
               Copreci
             </h3>
-            <p className="text-xs text-neutral-300 font-mono uppercase tracking-wider">
+            <p className="text-xs text-neutral-300 font-sans font-medium uppercase tracking-wider">
               Plataforma Analytics & Control
             </p>
           </div>
-          <div className="pt-4 border-t border-neutral-800 flex items-center justify-between font-mono text-xs text-neutral-400">
+          <div className="pt-4 border-t border-neutral-800 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
             <span>SaaS Industrial</span>
             <span className="flex items-center gap-1 text-white">
               VER <ArrowUpRight className="w-3.5 h-3.5" />
@@ -51,7 +51,7 @@ export const Projects: React.FC = () => {
       width: "min-w-[320px] sm:min-w-[420px] lg:min-w-[480px]",
       content: (
         <div className="relative w-full h-full bg-neutral-950 flex flex-col justify-between p-8 text-white border border-neutral-800">
-          <div className="flex items-center justify-between font-mono text-xs text-neutral-400 uppercase tracking-widest">
+          <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
             <span>02 / 05</span>
             <span>Beldarrain®</span>
           </div>
@@ -70,7 +70,7 @@ export const Projects: React.FC = () => {
             <div className="h-2 w-16 bg-brand-soft" />
           </div>
 
-          <div className="pt-4 border-t border-neutral-900 flex items-center justify-between font-mono text-xs text-neutral-400">
+          <div className="pt-4 border-t border-neutral-900 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
             <span>Brand & Mobile</span>
             <span className="flex items-center gap-1 text-white">
               VER <ArrowUpRight className="w-3.5 h-3.5" />
@@ -89,7 +89,7 @@ export const Projects: React.FC = () => {
       width: "min-w-[300px] sm:min-w-[380px] lg:min-w-[440px]",
       content: (
         <div className="relative w-full h-full bg-[#E8E6E1] flex flex-col justify-between p-8 text-neutral-900">
-          <div className="flex items-center justify-between font-mono text-xs text-neutral-500 uppercase tracking-widest">
+          <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-500 uppercase tracking-widest">
             <span>03 / 05</span>
             <span>Guidinn®</span>
           </div>
@@ -101,13 +101,13 @@ export const Projects: React.FC = () => {
               <h3 className="text-3xl font-normal tracking-tight text-neutral-950 font-sans">
                 Guidinn Espacio
               </h3>
-              <p className="text-xs text-neutral-600 font-mono uppercase tracking-wider">
+              <p className="text-xs text-neutral-600 font-sans font-medium uppercase tracking-wider">
                 Arquitectura Residencial
               </p>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-neutral-300/80 flex items-center justify-between font-mono text-xs text-neutral-600">
+          <div className="pt-4 border-t border-neutral-300/80 flex items-center justify-between font-sans font-medium text-xs text-neutral-600">
             <span>Interiorismo</span>
             <span className="flex items-center gap-1 text-neutral-950 font-bold">
               VER <ArrowUpRight className="w-3.5 h-3.5" />
@@ -126,7 +126,7 @@ export const Projects: React.FC = () => {
       width: "min-w-[320px] sm:min-w-[420px] lg:min-w-[480px]",
       content: (
         <div className="relative w-full h-full bg-neutral-900 flex flex-col justify-between p-8 text-white">
-          <div className="flex items-center justify-between font-mono text-xs text-neutral-400 uppercase tracking-widest">
+          <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
             <span>04 / 05</span>
             <span>Orbea®</span>
           </div>
@@ -140,7 +140,7 @@ export const Projects: React.FC = () => {
             </p>
           </div>
 
-          <div className="pt-4 border-t border-neutral-800 flex items-center justify-between font-mono text-xs text-neutral-400">
+          <div className="pt-4 border-t border-neutral-800 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
             <span>Retail & Digital</span>
             <span className="flex items-center gap-1 text-white">
               VER <ArrowUpRight className="w-3.5 h-3.5" />
@@ -159,7 +159,7 @@ export const Projects: React.FC = () => {
       width: "min-w-[300px] sm:min-w-[380px] lg:min-w-[440px]",
       content: (
         <div className="relative w-full h-full bg-neutral-100 flex flex-col justify-between p-8 text-neutral-900 border border-neutral-200">
-          <div className="flex items-center justify-between font-mono text-xs text-neutral-500 uppercase tracking-widest">
+          <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-500 uppercase tracking-widest">
             <span>05 / 05</span>
             <span>Danobat®</span>
           </div>
@@ -168,12 +168,12 @@ export const Projects: React.FC = () => {
             <h3 className="text-3xl font-bold text-neutral-950 font-sans">
               Danobat Group
             </h3>
-            <p className="text-xs text-neutral-600 font-mono uppercase tracking-wider">
+            <p className="text-xs text-neutral-600 font-sans font-medium uppercase tracking-wider">
               Control System & IoT
             </p>
           </div>
 
-          <div className="pt-4 border-t border-neutral-300 flex items-center justify-between font-mono text-xs text-neutral-600">
+          <div className="pt-4 border-t border-neutral-300 flex items-center justify-between font-sans font-medium text-xs text-neutral-600">
             <span>Software Industrial</span>
             <span className="flex items-center gap-1 text-neutral-950 font-bold">
               VER <ArrowUpRight className="w-3.5 h-3.5" />

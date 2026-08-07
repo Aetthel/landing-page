@@ -89,7 +89,7 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="px-4 py-1.5 rounded-full border border-neutral-300/80 bg-white/70 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 text-xs font-mono uppercase tracking-wider text-neutral-800 transition-all flex items-center gap-1"
+                    className="px-4 py-1.5 rounded-full border border-neutral-300/80 bg-white/70 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 text-xs font-sans font-medium uppercase tracking-wider text-neutral-800 transition-all flex items-center gap-1"
                   >
                     <span>{item.label}</span>
                     <ArrowUpRight className="w-3 h-3 opacity-60" />
@@ -170,7 +170,7 @@ export const Navbar: React.FC = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 rounded-lg border border-line bg-white hover:bg-brand hover:text-canvas hover:border-brand text-xs font-mono uppercase tracking-wider text-ink transition-all flex items-center justify-between"
+                className="px-4 py-3 rounded-lg border border-line bg-white hover:bg-brand hover:text-canvas hover:border-brand text-xs font-sans font-medium uppercase tracking-wider text-ink transition-all flex items-center justify-between"
               >
                 <span>{item.label}</span>
                 <ArrowUpRight className="w-4 h-4 opacity-70" />

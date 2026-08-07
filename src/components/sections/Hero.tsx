@@ -18,7 +18,7 @@ export const Hero: React.FC = () => {
           <span className="block">El salto digital</span>
           <RotatingText
             words={["Páginas web", "Aplicaciones", "Automatizaciones"]}
-            className="font-serif italic text-brand"
+            className="text-brand"
           />
           <span className="block">al alcance de tu negocio.</span>
         </h1>
@@ -26,7 +26,7 @@ export const Hero: React.FC = () => {
 
       {/* Hero Bottom Meta Row & Divider Line */}
       <div className="relative z-10 w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-4 pt-6">
-        <div className="animate-rise-in rise-delay-3 pt-6 flex items-center justify-between border-t border-neutral-200/80 text-xs font-mono text-neutral-500 uppercase tracking-wider">
+        <div className="animate-rise-in rise-delay-3 pt-6 flex items-center justify-between border-t border-neutral-200/80 text-xs font-sans text-neutral-500 uppercase tracking-wider font-medium">
           <Link
             href="#aetthel-lab"
             className="hover:text-neutral-900 transition-colors flex items-center gap-2"

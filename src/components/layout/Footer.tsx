@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
             <div className="pt-2">
               <a
                 href="mailto:aetthel@gmail.com"
-                className="inline-flex items-center gap-3 px-7 py-3 rounded-full border border-brand-soft text-brand-soft hover:bg-brand-soft hover:text-canvas font-mono text-xs uppercase tracking-widest transition-all group"
+                className="inline-flex items-center gap-3 px-7 py-3 rounded-full border border-brand-soft text-brand-soft hover:bg-brand-soft hover:text-canvas font-sans font-medium text-xs uppercase tracking-widest transition-all group"
               >
                 <span>INICIAR TU PROYECTO</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2]" />
@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
           {/* Right Column: Address & Direct Phone/Email Info */}
           <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-12 lg:text-right">
             {/* Location & Contact Info */}
-            <div className="space-y-4 font-mono text-xs text-neutral-400 uppercase tracking-widest leading-relaxed">
+            <div className="space-y-4 font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest leading-relaxed">
               <div>
                 BARCELONA, CATALUNYA
                 <br />
@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Navigation & Legal Links Row */}
-        <div className="pt-8 border-t border-neutral-900 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-xs font-mono text-neutral-400">
+        <div className="pt-8 border-t border-neutral-900 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-xs font-sans font-medium text-neutral-400">
           {/* Left Navigation Links */}
           <div className="flex flex-wrap items-center gap-6">
             <Link

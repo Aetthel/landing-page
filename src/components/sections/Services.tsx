@@ -85,7 +85,7 @@ export const Services: React.FC = () => {
                   {isActive ? (
                     /* ACTIVE SERVICE ITEM */
                     <div className="space-y-2 border-b-2 border-brand pb-4 animate-fade-in">
-                      <span className="font-mono text-xs font-bold text-brand block">
+                      <span className="font-sans text-xs font-bold text-brand block">
                         {service.number}
                       </span>
 
@@ -126,7 +126,7 @@ export const Services: React.FC = () => {
               {currentService.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-4 py-2 rounded-full border border-brand/40 text-xs font-mono uppercase tracking-wider text-brand bg-transparent hover:bg-brand/10 transition-colors"
+                  className="px-4 py-2 rounded-full border border-brand/40 text-xs font-sans font-medium uppercase tracking-wider text-brand bg-transparent hover:bg-brand/10 transition-colors"
                 >
                   {tag}
                 </span>
