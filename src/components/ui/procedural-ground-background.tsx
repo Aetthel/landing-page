@@ -56,11 +56,11 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
         // --- Interacción con el cursor -----------------------------------
         // Halo radial centrado en el puntero: 1 encima, 0 en el borde.
         vec2 toMouse = uv - u_mouse;
-        float halo = smoothstep(0.6, 0.0, length(toMouse)) * u_mouseStrength;
+        float halo = smoothstep(0.78, 0.0, length(toMouse)) * u_mouseStrength;
 
         // Lente: el espacio se dilata alrededor del puntero. Al escalar el
         // propio vector radial no hay singularidad en el centro.
-        vec2 warpedUv = uv + toMouse * halo * 0.55;
+        vec2 warpedUv = uv + toMouse * halo * 0.62;
 
         // Ground Perspective Simulation
         float depth = 1.0 / (warpedUv.y + 1.15);
@@ -71,8 +71,13 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
         float ripples = sin(gridUv.y * 18.0 + n * 8.0 + u_time * 0.5);
 
         // Topographic Lines — el trazo engorda bajo el cursor
-        float lineWidth = 0.05 + halo * 0.05;
+        float lineWidth = 0.085 + halo * 0.09;
         float topoLine = smoothstep(lineWidth, 0.0, abs(ripples));
+
+        // Segunda familia de curvas, más apretada y fina: densifica el mapa
+        // topográfico sin robar protagonismo al trazo principal.
+        float fineRipples = sin(gridUv.y * 33.0 + n * 5.0 + u_time * 0.32);
+        float fineLine = smoothstep(lineWidth * 0.5, 0.0, abs(fineRipples));
 
         // Color Palette (tokens de marca)
         vec3 baseColor  = vec3(0.9804, 0.9765, 0.9647); // #FAF9F6 — canvas
@@ -80,12 +85,13 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
         vec3 brandSoft  = vec3(0.271, 0.522, 0.471); // #458578 — primario suave
 
         // Composite: se oscurece desde el lienzo claro hacia el verde de marca
-        vec3 finalColor = mix(baseColor, brandSoft, n * (0.3 + halo * 0.12));
-        finalColor = mix(finalColor, brandColor, clamp(topoLine * depth * (0.8 + halo * 0.45), 0.0, 1.0));
+        vec3 finalColor = mix(baseColor, brandSoft, n * (0.42 + halo * 0.26));
+        finalColor = mix(finalColor, brandSoft, clamp(fineLine * depth * (0.34 + halo * 0.4), 0.0, 1.0));
+        finalColor = mix(finalColor, brandColor, clamp(topoLine * depth * (1.15 + halo * 0.8), 0.0, 1.0));
 
         // Horizon Fog / Fade — se desvanece hacia el lienzo, no hacia el negro
         float fade = smoothstep(0.1, -1.0, uv.y);
-        float falloff = clamp((1.0 - length(uv) * 0.45) * (1.0 - fade), 0.0, 1.0);
+        float falloff = clamp((1.0 - length(uv) * 0.3) * (1.0 - fade), 0.0, 1.0);
         finalColor = mix(baseColor, finalColor, falloff);
 
         gl_FragColor = vec4(finalColor, 1.0);

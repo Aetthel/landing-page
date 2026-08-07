@@ -86,14 +86,11 @@ export const Navbar: React.FC = () => {
               {/* Right Secondary Pills & Contact */}
               <nav className="flex items-center gap-2">
                 {siteConfig.secondaryNavItems?.map((item) => (
-                  <Link
+                  <InteractiveHoverLink
                     key={item.href}
                     href={item.href}
-                    className="px-4 py-1.5 rounded-full border border-neutral-300/80 bg-white/70 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 text-xs font-sans font-medium uppercase tracking-wider text-neutral-800 transition-all flex items-center gap-1"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-60" />
-                  </Link>
+                    text={item.label}
+                  />
                 ))}
               </nav>
             </div>
