@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { InteractiveHoverLink } from "@/components/ui/interactive-hover-button";
 import { cn } from "@/lib/utils";
 
 export const Navbar: React.FC = () => {
@@ -56,14 +57,11 @@ export const Navbar: React.FC = () => {
               {/* Right Principal Pills */}
               <nav className="flex items-center gap-2">
                 {siteConfig.mainNavItems.map((item) => (
-                  <Link
+                  <InteractiveHoverLink
                     key={item.href}
                     href={item.href}
-                    className="px-4 py-1.5 rounded-full border border-line bg-white/70 hover:bg-brand hover:text-canvas hover:border-brand text-xs font-mono uppercase tracking-wider text-ink transition-all flex items-center gap-1"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-60" />
-                  </Link>
+                    text={item.label}
+                  />
                 ))}
               </nav>
 
@@ -84,14 +82,12 @@ export const Navbar: React.FC = () => {
 
               <nav className="flex items-center gap-2">
                 {siteConfig.mainNavItems.map((item) => (
-                  <Link
+                  <InteractiveHoverLink
                     key={item.href}
                     href={item.href}
-                    className="px-3.5 py-1.5 rounded-full border border-line bg-white/80 hover:bg-brand hover:text-canvas hover:border-brand text-[11px] font-mono uppercase tracking-wider text-ink transition-all flex items-center gap-1"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-60" />
-                  </Link>
+                    text={item.label}
+                    className="px-5 py-1.5 text-[11px] bg-white/80"
+                  />
                 ))}
               </nav>
             </div>

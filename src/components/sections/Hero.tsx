@@ -1,32 +1,42 @@
 import React from "react";
-import { ArrowDown } from "lucide-react";
 import { ProceduralGroundBackground } from "@/components/ui/procedural-ground-background";
+import { RotatingText } from "@/components/ui/rotating-text";
 
 export const Hero: React.FC = () => {
   return (
-    <section id="hero" className="relative isolate w-full min-h-dvh flex flex-col justify-between pt-36 pb-12 border-b border-neutral-300/80 overflow-hidden">
+    <section id="hero" className="relative isolate w-full min-h-dvh flex flex-col justify-center pt-36 pb-16 border-b border-neutral-300/80 overflow-hidden">
       {/* Background */}
       <ProceduralGroundBackground className="-z-10" />
 
-      <div className="relative w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center">
-        
+      <div className="relative w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center items-center text-center">
+
         {/* Main Headline Statement */}
-        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.05] text-neutral-950 max-w-5xl text-balance">
-          El <em className="font-serif italic font-normal text-brand">salto digital</em>, al alcance de cualquier negocio.
+        <h1 className="animate-rise-in rise-delay-1 text-[clamp(2.625rem,6vw,6rem)] font-normal tracking-tight leading-[1.05] text-neutral-950">
+          <span className="block">El salto digital</span>
+          <RotatingText
+            words={["Páginas web", "Aplicaciones", "Automatizaciones"]}
+            className="font-serif italic text-brand"
+          />
+          <span className="block">al alcance de tu negocio.</span>
         </h1>
 
-        <p className="mt-8 text-lg sm:text-xl text-neutral-600 font-sans max-w-2xl leading-relaxed text-balance">
-          Diseñamos webs de alto rendimiento, aplicaciones a medida y automatizaciones estratégicas que ayudan a las empresas a vender más y operar mejor.
+        <p className="animate-rise-in rise-delay-2 mt-8 mx-auto text-lg sm:text-xl text-neutral-700 font-sans max-w-xl leading-relaxed text-balance">
+          Diseño y desarrollo a medida para empresas que quieren vender más y operar mejor.
         </p>
 
-      </div>
+        {/* Indicador de scroll — lleva a la siguiente sección */}
+        <a
+          href="#video"
+          className="animate-rise-in rise-delay-3 group mt-14 inline-flex flex-col items-center gap-3 text-neutral-500 transition-colors hover:text-brand"
+        >
+          <span className="animate-scroll-hop flex h-9 w-5.5 justify-center rounded-full border border-current pt-1.5 opacity-70 transition-opacity group-hover:opacity-100">
+            <span className="animate-scroll-wheel h-1.5 w-1 rounded-full bg-current" />
+          </span>
+          <span className="font-mono text-xs uppercase tracking-[0.2em]">
+            Descubrir
+          </span>
+        </a>
 
-      {/* Hero Bottom Meta Row */}
-      <div className="relative w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 pt-12 flex items-center justify-end text-xs font-mono text-neutral-500 uppercase tracking-wider">
-        <div className="flex items-center gap-1 text-neutral-400">
-          <span>(SCROLL)</span>
-          <ArrowDown className="w-3.5 h-3.5" />
-        </div>
       </div>
     </section>
   );

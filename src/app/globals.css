@@ -205,3 +205,123 @@ html {
 .animate-fade-in {
   animation: fadeIn 0.4s ease-out forwards;
 }
+
+/* --------------------------------------------------------------------------
+   Entrada de contenido — fade + ascenso suave, con escalonado editorial.
+   `both` mantiene el estado inicial durante el delay, así no hay parpadeo.
+   -------------------------------------------------------------------------- */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise-in {
+  animation: riseIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rise-delay-1 {
+  animation-delay: 0.15s;
+}
+
+.rise-delay-2 {
+  animation-delay: 0.35s;
+}
+
+.rise-delay-3 {
+  animation-delay: 0.55s;
+}
+
+/* --------------------------------------------------------------------------
+   Tipografía cinética — palabra rotativa con revelado vertical.
+   En reposo cada palabra espera bajo la máscara; la activa ocupa el centro y
+   la anterior sale por arriba. Curva lenta al final para que no se sienta
+   mecánico.
+   -------------------------------------------------------------------------- */
+.kinetic-word {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(105%);
+  transition:
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease-out;
+}
+
+.kinetic-word.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kinetic-word.is-leaving {
+  opacity: 0;
+  transform: translateY(-105%);
+}
+
+/* --------------------------------------------------------------------------
+   Indicador de scroll — rueda del ratón cayendo y flotación suave del cuerpo.
+   -------------------------------------------------------------------------- */
+@keyframes scrollWheel {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(0.75rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0.75rem);
+    opacity: 0;
+  }
+}
+
+.animate-scroll-wheel {
+  animation: scrollWheel 1.9s cubic-bezier(0.45, 0, 0.35, 1) infinite;
+}
+
+@keyframes scrollHop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-scroll-hop {
+  animation: scrollHop 1.9s ease-in-out infinite;
+}
+
+/* Accesibilidad: sin desplazamiento para quien reduce el movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-wheel,
+  .animate-scroll-hop {
+    animation: none;
+  }
+
+  .animate-fade-in,
+  .animate-rise-in {
+    animation: fadeIn 0.01s linear both;
+  }
+
+  .kinetic-word,
+  .kinetic-word.is-active,
+  .kinetic-word.is-leaving {
+    transform: none;
+    transition: opacity 0.3s ease;
+  }
+}
