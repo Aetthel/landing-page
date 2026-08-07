@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import { ArrowDown } from "lucide-react";
 import { ProceduralGroundBackground } from "@/components/ui/procedural-ground-background";
 import { RotatingText } from "@/components/ui/rotating-text";
 

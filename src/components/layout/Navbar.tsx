@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
 
               {/* Right Secondary Pills & Contact */}
               <nav className="flex items-center gap-2">
-                {siteConfig.secondaryNavItems.map((item) => (
+                {siteConfig.secondaryNavItems?.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}

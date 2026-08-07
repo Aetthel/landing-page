@@ -10,6 +10,9 @@ export const siteConfig: SiteConfig = {
     { label: "Servicios", href: "#servicios" },
     { label: "Proyectos", href: "#proyectos" },
   ],
+  secondaryNavItems: [
+    { label: "Contacto", href: "#contacto" },
+  ],
   socials: [
     { platform: "Instagram", href: "https://instagram.com" },
     { platform: "LinkedIn", href: "https://linkedin.com" },
