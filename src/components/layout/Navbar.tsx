@@ -10,11 +10,29 @@ import { cn } from "@/lib/utils";
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 30) {
+        setScrolled(true);
+        // Hide when scrolling down, reveal when scrolling up
+        if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 5) {
+          setVisible(false);
+        } else if (lastScrollY - currentScrollY > 5) {
+          setVisible(true);
+        }
+      } else {
+        setScrolled(false);
+        setVisible(true);
+      }
+
+      lastScrollY = currentScrollY;
     };
 
     handleScroll();
@@ -25,7 +43,8 @@ export const Navbar: React.FC = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform",
+        visible || mobileMenuOpen ? "translate-y-0" : "-translate-y-full",
         scrolled
           ? "bg-[#FAF9F6]/90 backdrop-blur-md border-b border-neutral-200/80 py-3 shadow-2xs"
           : "bg-transparent py-4",
