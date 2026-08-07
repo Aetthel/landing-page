@@ -237,6 +237,26 @@ html {
 }
 
 /* --------------------------------------------------------------------------
+   Revelado por scroll — el bloque asciende y aparece al entrar en pantalla.
+   Lo activa el componente <Reveal> añadiendo `.is-visible`.
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  /* Liberamos la capa de composición una vez terminada la entrada. */
+  will-change: auto;
+}
+
+/* --------------------------------------------------------------------------
    Tipografía cinética — palabra rotativa con revelado vertical.
    En reposo cada palabra espera bajo la máscara; la activa ocupa el centro y
    la anterior sale por arriba. Curva lenta al final para que no se sienta
@@ -315,6 +335,12 @@ html {
   .animate-fade-in,
   .animate-rise-in {
     animation: fadeIn 0.01s linear both;
+  }
+
+  /* El contenido aparece, pero sin desplazamiento. */
+  .reveal {
+    transform: none;
+    transition: opacity 0.3s ease;
   }
 
   .kinetic-word,

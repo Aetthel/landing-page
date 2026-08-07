@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Play } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 export const PromotionalVideo: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -11,9 +12,9 @@ export const PromotionalVideo: React.FC = () => {
       id="video"
       className="w-full py-16 sm:py-24 lg:py-28 bg-[#FAF9F6]"
     >
-      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-10 sm:space-y-12">
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         {/* Reel Frame Box */}
-        <div
+        <Reveal
           className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-neutral-300/80 bg-neutral-900 flex flex-col justify-between p-6 text-white group cursor-pointer"
           onClick={() => setIsPlaying(!isPlaying)}
         >
@@ -38,10 +39,7 @@ export const PromotionalVideo: React.FC = () => {
           <div className="z-10 font-sans font-medium text-xs uppercase tracking-widest text-neutral-400">
             [ REEL VIDEO DEMOSTRATIVO ]
           </div>
-        </div>
-
-        {/* Container Aligned Section Divider Line */}
-        <div className="border-b border-neutral-300/80 pt-2" />
+        </Reveal>
       </div>
     </section>
   );

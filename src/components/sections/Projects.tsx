@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 export const Projects: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -244,30 +245,32 @@ export const Projects: React.FC = () => {
       <div className="w-full space-y-8 sm:space-y-12">
         {/* Section Top Header */}
         <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
+          <Reveal className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
             PROYECTOS DESTACADOS
-          </div>
+          </Reveal>
         </div>
 
         {/* Infinite Horizontal Scroll / Drag Strip (No Radius, No Shadows, Margin 0) */}
-        <div
-          ref={scrollRef}
-          onScroll={handleScrollLoop}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-          className="flex gap-6 sm:gap-8 overflow-x-auto scrollbar-none snap-x snap-mandatory px-6 sm:px-8 lg:px-12 py-2 cursor-grab active:cursor-grabbing select-none w-full"
-        >
-          {infiniteProjectList.map((project) => (
-            <div
-              key={project.uniqueKey}
-              className={`snap-start ${project.width} ${project.aspect} rounded-none shadow-none transition-all duration-300 flex-shrink-0 group`}
-            >
-              {project.content}
-            </div>
-          ))}
-        </div>
+        <Reveal delay={120}>
+          <div
+            ref={scrollRef}
+            onScroll={handleScrollLoop}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            className="flex gap-6 sm:gap-8 overflow-x-auto scrollbar-none snap-x snap-mandatory px-6 sm:px-8 lg:px-12 py-2 cursor-grab active:cursor-grabbing select-none w-full"
+          >
+            {infiniteProjectList.map((project) => (
+              <div
+                key={project.uniqueKey}
+                className={`snap-start ${project.width} ${project.aspect} rounded-none shadow-none transition-all duration-300 flex-shrink-0 group`}
+              >
+                {project.content}
+              </div>
+            ))}
+          </div>
+        </Reveal>
 
         {/* Container Aligned Section Divider Line */}
         <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 pt-2">

@@ -64,6 +64,10 @@ export default function RootLayout({
       className={`${bodyFont.variable} ${displayFont.variable} scroll-smooth h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink">
+        {/* Sin JS no hay observer que revele nada: el contenido se ve de entrada. */}
+        <noscript>
+          <style>{`.reveal { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
         {children}
       </body>
     </html>

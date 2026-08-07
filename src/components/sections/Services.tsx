@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 export const Services: React.FC = () => {
   const [activeService, setActiveService] = useState("01");
@@ -62,12 +63,15 @@ export const Services: React.FC = () => {
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-8 sm:space-y-12">
         {/* Section Label */}
-        <div className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
+        <Reveal className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
           SERVICIOS
-        </div>
+        </Reveal>
 
         {/* Split Layout Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <Reveal
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
+          delay={120}
+        >
           {/* Left Column: List with Mouse Hover (onMouseEnter & onMouseMove) */}
           <div className="lg:col-span-6 space-y-8">
             {servicesData.map((service) => {
@@ -133,7 +137,7 @@ export const Services: React.FC = () => {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Container Aligned Section Divider Line */}
         <div className="w-full pt-2 border-b border-neutral-300/80" />
