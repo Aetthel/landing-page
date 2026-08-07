@@ -7,19 +7,14 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative isolate w-full min-h-[70vh] flex flex-col justify-between pt-28 pb-6 overflow-hidden"
+      className="relative isolate w-full min-h-screen min-h-dvh flex flex-col justify-between pt-32 pb-8 sm:pt-36 sm:pb-12 lg:pt-40 lg:pb-14 overflow-hidden bg-[#FAF9F6]"
     >
       {/* Background WebGL Procedural Ground Animation */}
       <ProceduralGroundBackground className="-z-10" />
 
-      <div className="relative z-10 w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center">
-        {/* Large Monogram / Wordmark Tag */}
-        <div className="animate-rise-in mb-4 inline-block font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
-          AETTHEL STUDIO — BRAND & TECH ARCHITECTURE
-        </div>
-
+      <div className="relative z-10 w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center items-center text-center">
         {/* Main Headline Statement */}
-        <h1 className="animate-rise-in rise-delay-1 text-[clamp(2.625rem,6vw,6rem)] font-normal tracking-tight leading-[1.05] text-neutral-950">
+        <h1 className="animate-rise-in rise-delay-1 text-[clamp(3.25rem,7.5vw,7.5rem)] font-normal tracking-tight leading-[1.05] text-neutral-950 text-center">
           <span className="block">El salto digital</span>
           <RotatingText
             words={["Páginas web", "Aplicaciones", "Automatizaciones"]}

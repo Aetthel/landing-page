@@ -75,7 +75,7 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
         float topoLine = smoothstep(lineWidth, 0.0, abs(ripples));
 
         // Color Palette (tokens de marca)
-        vec3 baseColor  = vec3(0.973, 0.976, 0.973); // #F8F9F8 — canvas
+        vec3 baseColor  = vec3(0.9804, 0.9765, 0.9647); // #FAF9F6 — canvas
         vec3 brandColor = vec3(0.102, 0.263, 0.259); // #1A4342 — primario
         vec3 brandSoft  = vec3(0.271, 0.522, 0.471); // #458578 — primario suave
 
@@ -221,7 +221,6 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
       <canvas
         ref={canvasRef}
         className="w-full h-full block touch-none"
-        style={{ filter: "contrast(1.05)" }}
       />
     </div>
   );

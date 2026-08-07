@@ -239,9 +239,9 @@ export const Projects: React.FC = () => {
   return (
     <section
       id="proyectos"
-      className="w-full pt-6 pb-4 sm:pt-8 sm:pb-6 bg-[#FAF9F6] overflow-hidden"
+      className="w-full py-16 sm:py-24 lg:py-28 bg-[#FAF9F6] overflow-hidden"
     >
-      <div className="w-full space-y-6">
+      <div className="w-full space-y-8 sm:space-y-12">
         {/* Section Top Header */}
         <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
           <div className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">

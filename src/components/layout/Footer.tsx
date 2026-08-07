@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
   return (
     <footer
       id="contacto"
-      className="w-full bg-[#0E0F11] text-white pt-20 pb-12 border-t border-neutral-900"
+      className="w-full bg-[#0E0F11] text-white py-20 sm:py-28 lg:py-32 border-t border-neutral-900"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
         {/* Main Grid: Headline & Action Left / Address & Contacts Right */}

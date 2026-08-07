@@ -35,25 +35,9 @@ export const Navbar: React.FC = () => {
         {/* Desktop Header */}
         <div className="hidden lg:block relative">
           {!scrolled ? (
-            /* Top State: Centered Isotype | Right Principal Pills */
-            <div className="flex items-center justify-end min-h-[44px]">
-              {/* Centered Isotype */}
-              <Link
-                href="/"
-                aria-label={siteConfig.name}
-                className="absolute left-1/2 -translate-x-1/2 flex items-center"
-              >
-                <Image
-                  src="/logos/aetthel-isotipo.png"
-                  alt={siteConfig.name}
-                  width={45}
-                  height={36}
-                  priority
-                  className="h-9 w-auto"
-                />
-              </Link>
-
-              {/* Right Principal Pills */}
+            /* Top State: Left Main Pills | Centered Isotype | Right Contact Pill */
+            <div className="flex items-center justify-between min-h-[44px]">
+              {/* Left Main Pills */}
               <nav className="flex items-center gap-2">
                 {siteConfig.mainNavItems.map((item) => (
                   <InteractiveHoverLink
@@ -64,6 +48,21 @@ export const Navbar: React.FC = () => {
                 ))}
               </nav>
 
+              {/* Centered Isotype */}
+              <Link
+                href="/"
+                aria-label={siteConfig.name}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center pointer-events-auto"
+              >
+                <Image
+                  src="/logos/aetthel-isotipo.png"
+                  alt={siteConfig.name}
+                  width={45}
+                  height={36}
+                  priority
+                  className="h-9 w-auto"
+                />
+              </Link>
 
               {/* Right Secondary Pills & Contact */}
               <nav className="flex items-center gap-2">
@@ -77,7 +76,6 @@ export const Navbar: React.FC = () => {
                     <ArrowUpRight className="w-3 h-3 opacity-60" />
                   </Link>
                 ))}
-
               </nav>
             </div>
           ) : (

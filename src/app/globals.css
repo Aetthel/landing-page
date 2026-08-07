@@ -20,7 +20,7 @@
 
   /* --- Neutros: fondos, superficies y textos --------------------------- */
   /* Lienzo base de la web */
-  --color-canvas: #f8f9f8;
+  --color-canvas: #faf9f6;
   /* Superficie secundaria: cards, módulos alternos, estados hover */
   --color-surface: #eef2f1;
   /* Divisores, bordes de cards, marcos de inputs */

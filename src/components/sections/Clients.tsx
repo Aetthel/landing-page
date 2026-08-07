@@ -28,9 +28,9 @@ export const Clients: React.FC = () => {
   return (
     <section
       id="clientes"
-      className="w-full pt-6 pb-12 sm:pt-8 sm:pb-16 bg-[#FAF9F6]"
+      className="w-full py-16 sm:py-24 lg:py-28 bg-[#FAF9F6]"
     >
-      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-8">
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-8 sm:space-y-12">
         {/* Section Label */}
         <div className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
           NUESTROS CLIENTES & COLABORADORES
