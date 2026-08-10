@@ -53,20 +53,16 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
       void main() {
         vec2 uv = (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution.x, u_resolution.y);
 
-        // --- Interacción con el cursor -----------------------------------
-        // Halo radial centrado en el puntero: 1 encima, 0 en el borde.
+        // Cursor halo & lens distortion
         vec2 toMouse = uv - u_mouse;
         float halo = smoothstep(0.78, 0.0, length(toMouse)) * u_mouseStrength;
-
-        // Lente: el espacio se dilata alrededor del puntero. Al escalar el
-        // propio vector radial no hay singularidad en el centro.
         vec2 warpedUv = uv + toMouse * halo * 0.62;
 
-        // Ground Perspective Simulation
+        // Ground Perspective Simulation (3D terrain movement)
         float depth = 1.0 / (warpedUv.y + 1.15);
-        vec2 gridUv = vec2(warpedUv.x * depth, depth + u_time * 0.15);
+        vec2 gridUv = vec2(warpedUv.x * depth, depth + u_time * 0.18);
 
-        // Layered Procedural Noise for Terrain
+        // Layered Procedural Noise for Terrain Ripples
         float n = noise(gridUv * 3.5);
         float ripples = sin(gridUv.y * 18.0 + n * 8.0 + u_time * 0.5);
 
@@ -74,25 +70,35 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
         float lineWidth = 0.085 + halo * 0.09;
         float topoLine = smoothstep(lineWidth, 0.0, abs(ripples));
 
-        // Segunda familia de curvas, más apretada y fina: densifica el mapa
-        // topográfico sin robar protagonismo al trazo principal.
+        // Segunda familia de curvas, más apretada y fina
         float fineRipples = sin(gridUv.y * 33.0 + n * 5.0 + u_time * 0.32);
         float fineLine = smoothstep(lineWidth * 0.5, 0.0, abs(fineRipples));
 
-        // Color Palette (tokens de marca)
-        vec3 baseColor  = vec3(0.9804, 0.9765, 0.9647); // #FAF9F6 — canvas
-        vec3 brandColor = vec3(0.102, 0.263, 0.259); // #1A4342 — primario
-        vec3 brandSoft  = vec3(0.271, 0.522, 0.471); // #458578 — primario suave
+        // Orbia Colors
+        vec3 cCanvas = vec3(0.957, 0.957, 0.965); // #F4F4F6 porcelana
+        vec3 cDark   = vec3(0.102, 0.102, 0.118); // #1A1A1E Deep Graphite
+        vec3 cLime   = vec3(0.722, 0.980, 0.306); // #B8FA4E Growth Lime
+        vec3 cBlue   = vec3(0.188, 0.361, 1.000); // #305CFF Electric Blue
 
-        // Composite: se oscurece desde el lienzo claro hacia el verde de marca
-        vec3 finalColor = mix(baseColor, brandSoft, n * (0.42 + halo * 0.26));
-        finalColor = mix(finalColor, brandSoft, clamp(fineLine * depth * (0.34 + halo * 0.4), 0.0, 1.0));
-        finalColor = mix(finalColor, brandColor, clamp(topoLine * depth * (1.15 + halo * 0.8), 0.0, 1.0));
+        // Base color
+        vec3 finalColor = cCanvas;
 
-        // Horizon Fog / Fade — se desvanece hacia el lienzo, no hacia el negro
-        float fade = smoothstep(0.1, -1.0, uv.y);
+        // Blend fine terrain lines in soft Electric Blue
+        finalColor = mix(finalColor, cBlue, clamp(fineLine * depth * (0.35 + halo * 0.4), 0.0, 1.0) * 0.25);
+
+        // Blend main topographic lines in Deep Graphite (with Growth Lime glow under mouse)
+        vec3 lineColor = mix(cDark, cLime, halo * 0.85);
+        finalColor = mix(finalColor, lineColor, clamp(topoLine * depth * (1.15 + halo * 0.8), 0.0, 0.85));
+
+        // Horizon Fade
+        float fade = smoothstep(0.15, -1.0, uv.y);
         float falloff = clamp((1.0 - length(uv) * 0.3) * (1.0 - fade), 0.0, 1.0);
-        finalColor = mix(baseColor, finalColor, falloff);
+        finalColor = mix(cCanvas, finalColor, falloff);
+
+        // Fine film grain / noise overlay
+        float tSeed = fract(u_time * 0.01);
+        float grain = (hash(gl_FragCoord.xy + vec2(tSeed, tSeed)) - 0.5) * 0.025;
+        finalColor += grain;
 
         gl_FragColor = vec4(finalColor, 1.0);
       }
@@ -106,6 +112,9 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
       const shader = gl.createShader(type)!;
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error("Shader compilation error:", gl.getShaderInfoLog(shader));
+      }
       return shader;
     };
 
@@ -220,7 +229,7 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
     <div
       aria-hidden
       className={cn(
-        "absolute inset-0 w-full h-full overflow-hidden bg-canvas pointer-events-none",
+        "absolute inset-0 w-full h-full overflow-hidden bg-transparent pointer-events-none",
         className
       )}
     >

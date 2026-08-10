@@ -46,7 +46,7 @@ export const Navbar: React.FC = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform",
         visible || mobileMenuOpen ? "translate-y-0" : "-translate-y-full",
         scrolled
-          ? "bg-[#FAF9F6]/90 backdrop-blur-md border-b border-neutral-200/80 py-3 shadow-2xs"
+          ? "bg-canvas/90 backdrop-blur-md border-b border-neutral-200/80 py-3 shadow-2xs"
           : "bg-transparent py-4",
       )}
     >
@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
                   width={45}
                   height={36}
                   priority
-                  className="h-9 w-auto"
+                  className="h-9 w-auto brightness-0"
                 />
               </Link>
 
@@ -108,7 +108,7 @@ export const Navbar: React.FC = () => {
                   width={96}
                   height={24}
                   priority
-                  className="h-6 w-auto"
+                  className="h-6 w-auto brightness-0"
                 />
               </Link>
 
@@ -139,7 +139,7 @@ export const Navbar: React.FC = () => {
               width={88}
               height={22}
               priority
-              className="h-5.5 w-auto"
+              className="h-5.5 w-auto brightness-0"
             />
           </Link>
 
@@ -167,7 +167,7 @@ export const Navbar: React.FC = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 rounded-lg border border-line bg-white hover:bg-brand hover:text-canvas hover:border-brand text-xs font-sans font-medium uppercase tracking-wider text-ink transition-all flex items-center justify-between"
+                className="px-4 py-3 rounded-lg border border-line bg-white hover:bg-ink hover:text-white hover:border-ink text-xs font-sans font-medium uppercase tracking-wider text-ink transition-all flex items-center justify-between"
               >
                 <span>{item.label}</span>
                 <ArrowUpRight className="w-4 h-4 opacity-70" />

@@ -89,28 +89,28 @@ export const Projects: React.FC = () => {
       aspect: "aspect-[4/5]",
       width: "min-w-[300px] sm:min-w-[380px] lg:min-w-[440px]",
       content: (
-        <div className="relative w-full h-full bg-[#E8E6E1] flex flex-col justify-between p-8 text-neutral-900">
-          <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-500 uppercase tracking-widest">
+        <div className="relative w-full h-full bg-surface-muted flex flex-col justify-between p-8 text-ink">
+          <div className="flex items-center justify-between font-sans font-medium text-xs text-ink-muted uppercase tracking-widest">
             <span>03 / 05</span>
             <span>Guidinn®</span>
           </div>
 
           {/* Minimalist Stair & Rail Graphic */}
           <div className="my-auto space-y-4">
-            <div className="h-1.5 w-full bg-blue-600 transform -rotate-12" />
+            <div className="h-1.5 w-full bg-accent transform -rotate-12" />
             <div className="space-y-1">
-              <h3 className="text-3xl font-normal tracking-tight text-neutral-950 font-sans">
+              <h3 className="text-3xl font-normal tracking-tight text-ink font-sans">
                 Guidinn Espacio
               </h3>
-              <p className="text-xs text-neutral-600 font-sans font-medium uppercase tracking-wider">
+              <p className="text-xs text-ink-muted font-sans font-medium uppercase tracking-wider">
                 Arquitectura Residencial
               </p>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-neutral-300/80 flex items-center justify-between font-sans font-medium text-xs text-neutral-600">
+          <div className="pt-4 border-t border-line flex items-center justify-between font-sans font-medium text-xs text-ink-muted">
             <span>Interiorismo</span>
-            <span className="flex items-center gap-1 text-neutral-950 font-bold">
+            <span className="flex items-center gap-1 text-ink font-bold">
               VER <ArrowUpRight className="w-3.5 h-3.5" />
             </span>
           </div>
@@ -159,24 +159,24 @@ export const Projects: React.FC = () => {
       aspect: "aspect-[4/5]",
       width: "min-w-[300px] sm:min-w-[380px] lg:min-w-[440px]",
       content: (
-        <div className="relative w-full h-full bg-neutral-100 flex flex-col justify-between p-8 text-neutral-900 border border-neutral-200">
-          <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-500 uppercase tracking-widest">
+        <div className="relative w-full h-full bg-surface-muted flex flex-col justify-between p-8 text-ink border border-line">
+          <div className="flex items-center justify-between font-sans font-medium text-xs text-ink-muted uppercase tracking-widest">
             <span>05 / 05</span>
             <span>Danobat®</span>
           </div>
 
           <div className="my-auto space-y-2">
-            <h3 className="text-3xl font-bold text-neutral-950 font-sans">
+            <h3 className="text-3xl font-bold text-ink font-sans">
               Danobat Group
             </h3>
-            <p className="text-xs text-neutral-600 font-sans font-medium uppercase tracking-wider">
+            <p className="text-xs text-ink-muted font-sans font-medium uppercase tracking-wider">
               Control System & IoT
             </p>
           </div>
 
-          <div className="pt-4 border-t border-neutral-300 flex items-center justify-between font-sans font-medium text-xs text-neutral-600">
+          <div className="pt-4 border-t border-line flex items-center justify-between font-sans font-medium text-xs text-ink-muted">
             <span>Software Industrial</span>
-            <span className="flex items-center gap-1 text-neutral-950 font-bold">
+            <span className="flex items-center gap-1 text-ink font-bold">
               VER <ArrowUpRight className="w-3.5 h-3.5" />
             </span>
           </div>
@@ -240,12 +240,12 @@ export const Projects: React.FC = () => {
   return (
     <section
       id="proyectos"
-      className="w-full py-16 sm:py-24 lg:py-28 bg-[#FAF9F6] overflow-hidden"
+      className="w-full py-16 sm:py-24 lg:py-28 bg-canvas overflow-hidden"
     >
       <div className="w-full space-y-8 sm:space-y-12">
         {/* Section Top Header */}
         <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-          <Reveal className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
+          <Reveal className="font-sans text-base sm:text-lg uppercase tracking-wider text-ink-muted font-medium">
             PROYECTOS DESTACADOS
           </Reveal>
         </div>

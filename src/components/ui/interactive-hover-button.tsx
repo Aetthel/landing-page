@@ -13,7 +13,7 @@ const labelStyles =
   "relative z-20 inline-block transition-all duration-300 group-hover:translate-x-8 group-hover:opacity-0";
 
 const revealStyles =
-  "absolute inset-0 z-20 flex translate-x-8 items-center justify-center gap-1.5 text-canvas opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100";
+  "absolute inset-0 z-20 flex translate-x-8 items-center justify-center gap-1.5 text-ink opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100";
 
 /* El punto arranca oculto en el centro (para no pisar el texto en reposo) y
    crece hasta cubrir la píldora al hacer hover. */

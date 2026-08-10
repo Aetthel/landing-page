@@ -9,8 +9,8 @@ export const PromotionalVideo: React.FC = () => {
 
   return (
     <section
-      id="video"
-      className="w-full py-16 sm:py-24 lg:py-28 bg-[#FAF9F6]"
+      id="video-promocional"
+      className="w-full py-16 sm:py-24 lg:py-28 bg-canvas"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         {/* Reel Frame Box */}
@@ -30,7 +30,7 @@ export const PromotionalVideo: React.FC = () => {
 
           {/* Center Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 rounded-full bg-white/90 text-neutral-950 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+            <div className="w-20 h-20 rounded-full bg-brand text-neutral-950 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
               <Play className="w-8 h-8 fill-current ml-1" />
             </div>
           </div>

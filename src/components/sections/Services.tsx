@@ -59,11 +59,11 @@ export const Services: React.FC = () => {
   return (
     <section
       id="servicios"
-      className="w-full py-16 sm:py-24 lg:py-28 bg-[#FAF9F6]"
+      className="w-full py-16 sm:py-24 lg:py-28 bg-canvas"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-8 sm:space-y-12">
         {/* Section Label */}
-        <Reveal className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
+        <Reveal className="font-sans text-base sm:text-lg uppercase tracking-wider text-ink-muted font-medium">
           SERVICIOS
         </Reveal>
 
@@ -88,22 +88,22 @@ export const Services: React.FC = () => {
                 >
                   {isActive ? (
                     /* ACTIVE SERVICE ITEM */
-                    <div className="space-y-2 border-b-2 border-brand pb-4 animate-fade-in">
-                      <span className="font-sans text-xs font-bold text-brand block">
+                    <div className="space-y-2 border-b-2 border-accent pb-4 animate-fade-in">
+                      <span className="font-sans text-xs font-bold text-accent block">
                         {service.number}
                       </span>
 
                       <div className="flex items-center justify-between">
-                        <h3 className="text-4xl sm:text-6xl font-normal tracking-tight text-neutral-950">
+                        <h3 className="text-4xl sm:text-6xl font-normal tracking-tight text-ink">
                           {service.title}
                         </h3>
-                        <ArrowUpRight className="w-7 h-7 text-brand stroke-[1.75]" />
+                        <ArrowUpRight className="w-7 h-7 text-accent stroke-[1.75]" />
                       </div>
                     </div>
                   ) : (
                     /* INACTIVE SERVICE ITEM */
-                    <div className="py-2 border-b border-transparent hover:border-neutral-200 transition-colors">
-                      <h3 className="text-4xl sm:text-6xl font-light tracking-tight text-neutral-300 group-hover:text-neutral-500 transition-colors">
+                    <div className="py-2 border-b border-transparent hover:border-line transition-colors">
+                      <h3 className="text-4xl sm:text-6xl font-light tracking-tight text-ink-muted/50 group-hover:text-ink-muted transition-colors">
                         {service.title}
                       </h3>
                     </div>
@@ -116,21 +116,21 @@ export const Services: React.FC = () => {
           {/* Right Column: Dynamic Content updated on hover */}
           <div className="lg:col-span-6 space-y-8 pt-4 lg:pt-8 min-h-[320px] flex flex-col justify-between">
             <div className="space-y-6">
-              <h4 className="text-2xl sm:text-4xl font-semibold tracking-tight text-neutral-950 leading-snug">
+              <h4 className="text-2xl sm:text-4xl font-semibold tracking-tight text-ink leading-snug">
                 {currentService.headline}
               </h4>
 
-              <p className="text-base sm:text-lg text-neutral-700 font-sans font-light leading-relaxed">
+              <p className="text-base sm:text-lg text-ink-muted font-sans font-light leading-relaxed">
                 {currentService.description}
               </p>
             </div>
 
-            {/* Pill Tags Grid with Brand Accent Borders */}
+            {/* Pill Tags Grid with Accent Borders */}
             <div className="pt-6 flex flex-wrap gap-2.5">
               {currentService.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-4 py-2 rounded-full border border-brand/40 text-xs font-sans font-medium uppercase tracking-wider text-brand bg-transparent hover:bg-brand/10 transition-colors"
+                  className="px-4 py-2 rounded-full border border-accent/40 text-xs font-sans font-medium uppercase tracking-wider text-accent bg-transparent hover:bg-accent/10 transition-colors"
                 >
                   {tag}
                 </span>

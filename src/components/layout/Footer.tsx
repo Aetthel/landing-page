@@ -6,22 +6,22 @@ export const Footer: React.FC = () => {
   return (
     <footer
       id="contacto"
-      className="w-full bg-[#0E0F11] text-white py-20 sm:py-28 lg:py-32 border-t border-neutral-900"
+      className="w-full bg-dark text-white py-20 sm:py-28 lg:py-32 border-t border-neutral-800"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
         {/* Main Grid: Headline & Action Left / Address & Contacts Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Headline & Orange Pill CTA Button */}
+          {/* Left Column: Headline & Action CTA Button */}
           <div className="lg:col-span-8 space-y-10">
             <h2 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.05] text-white max-w-3xl">
               Hacer crecer una marca puede ser complejo,{" "}
-              <span className="text-neutral-200">hagámoslo simple.</span>
+              <span className="text-neutral-400">hagámoslo simple.</span>
             </h2>
 
             <div className="pt-2">
               <a
                 href="mailto:aetthel@gmail.com"
-                className="inline-flex items-center gap-3 px-7 py-3 rounded-full border border-brand-soft text-brand-soft hover:bg-brand-soft hover:text-canvas font-sans font-medium text-xs uppercase tracking-widest transition-all group"
+                className="inline-flex items-center gap-3 px-7 py-3 rounded-full bg-brand text-neutral-950 hover:bg-white font-sans font-semibold text-xs uppercase tracking-widest transition-all group"
               >
                 <span>INICIAR TU PROYECTO</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2]" />

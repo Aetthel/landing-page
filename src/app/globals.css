@@ -6,32 +6,36 @@
    ========================================================================== */
 
 @theme {
-  /* --- Color primario (focal / marca) ---------------------------------- */
-  /* Verde profundo / petróleo: logotipo, H1-H2, bloques de alto contraste, footer */
-  --color-brand: #1a4342;
-  /* Variante suave del primario, para iconografía monocromática */
-  --color-brand-soft: #458578;
+  /* --- Color primario (Growth Lime) ------------------------------------ */
+  /* Verde lima eléctrico / focal para CTAs, badges y acentos vibrantes */
+  --color-brand: #B8FA4E;
+  --color-brand-soft: #9ee633;
 
-  /* --- Color secundario (acentos / CTAs) ------------------------------- */
-  /* Verde esmeralda fresco: CTAs primarios, enlaces activos, iconos destacados, estados */
-  --color-accent: #419274;
-  /* Acento cálido (opcional): badges, promociones, notificaciones puntuales */
-  --color-coral: #e27d60;
+  /* --- Colores secundarios (Electric Blue & Sky Blue) ------------------ */
+  /* Azul eléctrico vibrante */
+  --color-accent: #305CFF;
+  /* Azul cielo / suave */
+  --color-accent-soft: #84A6FF;
+  --color-coral: #84A6FF;
 
   /* --- Neutros: fondos, superficies y textos --------------------------- */
-  /* Lienzo base de la web */
-  --color-canvas: #faf9f6;
-  /* Superficie secundaria: cards, módulos alternos, estados hover */
-  --color-surface: #eef2f1;
-  /* Divisores, bordes de cards, marcos de inputs */
-  --color-line: #d5e0dd;
-  /* Texto principal (el primario de marca hace de tinta) */
-  --color-ink: #1a4342;
-  /* Subtítulos, metadatos, textos secundarios, leyendas, estados desactivados */
-  --color-ink-muted: #5b706c;
+  /* Lienzo base (porcelana / off-white luminoso) */
+  --color-canvas: #F4F4F6;
+  /* Superficie secundaria: tarjetas blancas puras */
+  --color-surface: #FFFFFF;
+  /* Superficie atenuada */
+  --color-surface-muted: #EBEBEF;
+  /* Fondo oscuro (Deep Graphite para footer / bloques de alto contraste) */
+  --color-dark: #1A1A1E;
+  /* Divisores y bordes finos */
+  --color-line: #E2E2E8;
+  /* Texto principal (Deep Graphite #1A1A1E) */
+  --color-ink: #1A1A1E;
+  /* Subtítulos y textos secundarios */
+  --color-ink-muted: #62626E;
 
   /* --- Tipografías ------------------------------------------------------ */
-  /* Titulares: neogrotesca moderna, limpia y geométrica */
+  /* Manteniendo las tipografías propias del proyecto */
   --font-display:
     var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
   --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
@@ -42,12 +46,19 @@
     font-family: var(--font-sans);
     font-weight: 400;
     background-color: var(--color-canvas);
+    background-image:
+      radial-gradient(at 85% 10%, rgba(132, 166, 255, 0.15) 0px, transparent 55%),
+      radial-gradient(at 85% 75%, rgba(184, 250, 78, 0.18) 0px, transparent 60%),
+      radial-gradient(at 15% 30%, rgba(48, 92, 255, 0.08) 0px, transparent 70%),
+      radial-gradient(at 75% 50%, rgba(132, 166, 255, 0.12) 0px, transparent 55%);
+    background-attachment: fixed;
+    background-size: cover;
     color: var(--color-ink);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Titulares en la tipografía principal, pesos Regular / Medium */
+  /* Titulares en Deep Graphite #1A1A1E */
   h1,
   h2,
   h3,
@@ -57,7 +68,7 @@
     font-family: var(--font-display);
     font-weight: 500;
     letter-spacing: -0.03em;
-    color: var(--color-brand);
+    color: var(--color-ink);
   }
 
   /* Bordes de Tailwind por defecto al color de línea de marca */
@@ -136,26 +147,26 @@ html {
 }
 
 .nav-pill:hover {
-  border-color: var(--color-brand);
-  background: var(--color-brand);
-  color: var(--color-canvas);
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: #ffffff;
 }
 
-/* CTA primario — verde esmeralda */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
-  background: var(--color-accent);
-  color: #ffffff;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
+  background: var(--color-brand);
+  color: #1A1A1E;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: var(--color-brand);
+  background: #a4eb34;
+  color: #1A1A1E;
 }
 
 /* CTA secundario — contorno sobre el lienzo */
@@ -166,15 +177,16 @@ html {
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
   border: 1px solid var(--color-line);
-  background: transparent;
-  color: var(--color-brand);
+  background: #1A1A1E;
+  color: #FFFFFF;
   font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .btn-secondary:hover {
-  background: var(--color-surface);
-  border-color: var(--color-brand);
+  background: #305CFF;
+  border-color: #305CFF;
+  color: #FFFFFF;
 }
 
 /* Tarjeta / contenedor de información */

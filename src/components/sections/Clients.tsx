@@ -29,20 +29,20 @@ export const Clients: React.FC = () => {
   return (
     <section
       id="clientes"
-      className="w-full py-16 sm:py-24 lg:py-28 bg-[#FAF9F6]"
+      className="w-full py-16 sm:py-24 lg:py-28 bg-canvas"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-8 sm:space-y-12">
         {/* Section Label */}
-        <Reveal className="font-sans text-base sm:text-lg uppercase tracking-wider text-neutral-600 font-medium">
+        <Reveal className="font-sans text-base sm:text-lg uppercase tracking-wider text-ink-muted font-medium">
           NUESTROS CLIENTES & COLABORADORES
         </Reveal>
 
         {/* Fluid Text Paragraph List matching screenshot */}
         <Reveal delay={120}>
-          <p className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-neutral-900 leading-[1.25] font-sans">
+          <p className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-ink leading-[1.25] font-sans">
             {clients.map((client, index) => (
               <React.Fragment key={client.name}>
-                <span className="transition-colors duration-200 cursor-pointer hover:text-brand">
+                <span className="transition-colors duration-200 cursor-pointer hover:text-accent">
                   {client.name}
                 </span>
                 {index < clients.length - 1 ? ", " : ""}
