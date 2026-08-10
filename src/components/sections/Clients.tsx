@@ -42,7 +42,7 @@ export const Clients: React.FC = () => {
           <p className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-ink leading-[1.25] font-sans">
             {clients.map((client, index) => (
               <React.Fragment key={client.name}>
-                <span className="transition-colors duration-200 cursor-pointer hover:text-accent">
+                <span className="transition-all duration-200 cursor-pointer hover:underline decoration-brand decoration-4 underline-offset-4">
                   {client.name}
                 </span>
                 {index < clients.length - 1 ? ", " : ""}

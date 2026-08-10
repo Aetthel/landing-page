@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
           <span className="block">El salto digital</span>
           <RotatingText
             words={["Páginas web", "Aplicaciones", "Automatizaciones"]}
-            className="text-accent"
+            className="bg-brand text-ink px-4 py-1 rounded-full font-medium shadow-2xs inline-flex items-center justify-center align-middle my-1"
           />
           <span className="block">al alcance de tu negocio.</span>
         </h1>

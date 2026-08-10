@@ -9,22 +9,22 @@
   /* --- Color primario (Growth Lime) ------------------------------------ */
   /* Verde lima eléctrico / focal para CTAs, badges y acentos vibrantes */
   --color-brand: #B8FA4E;
-  --color-brand-soft: #9ee633;
+  --color-brand-soft: #D7FC8E;
 
-  /* --- Colores secundarios (Electric Blue & Sky Blue) ------------------ */
-  /* Azul eléctrico vibrante */
-  --color-accent: #305CFF;
-  /* Azul cielo / suave */
-  --color-accent-soft: #84A6FF;
-  --color-coral: #84A6FF;
+  /* --- Variaciones tonales de Lima (sin verdes oscuros) ---------------- */
+  /* Lima tonal saturado para contrastes y acentos secundarios */
+  --color-accent: #84C226;
+  /* Pastel lima / resplandor suave */
+  --color-accent-soft: #ECFDD0;
+  --color-coral: #D7FC8E;
 
   /* --- Neutros: fondos, superficies y textos --------------------------- */
   /* Lienzo base (porcelana / off-white luminoso) */
   --color-canvas: #F4F4F6;
   /* Superficie secundaria: tarjetas blancas puras */
   --color-surface: #FFFFFF;
-  /* Superficie atenuada */
-  --color-surface-muted: #EBEBEF;
+  /* Superficie atenuada con toque lima sutil */
+  --color-surface-muted: #F0F7E6;
   /* Fondo oscuro (Deep Graphite para footer / bloques de alto contraste) */
   --color-dark: #1A1A1E;
   /* Divisores y bordes finos */
@@ -35,7 +35,6 @@
   --color-ink-muted: #62626E;
 
   /* --- Tipografías ------------------------------------------------------ */
-  /* Manteniendo las tipografías propias del proyecto */
   --font-display:
     var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
   --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
@@ -47,10 +46,10 @@
     font-weight: 400;
     background-color: var(--color-canvas);
     background-image:
-      radial-gradient(at 85% 10%, rgba(132, 166, 255, 0.15) 0px, transparent 55%),
-      radial-gradient(at 85% 75%, rgba(184, 250, 78, 0.18) 0px, transparent 60%),
-      radial-gradient(at 15% 30%, rgba(48, 92, 255, 0.08) 0px, transparent 70%),
-      radial-gradient(at 75% 50%, rgba(132, 166, 255, 0.12) 0px, transparent 55%);
+      radial-gradient(at 85% 10%, rgba(184, 250, 78, 0.18) 0px, transparent 55%),
+      radial-gradient(at 85% 75%, rgba(215, 252, 142, 0.22) 0px, transparent 60%),
+      radial-gradient(at 15% 30%, rgba(236, 253, 208, 0.35) 0px, transparent 70%),
+      radial-gradient(at 75% 50%, rgba(184, 250, 78, 0.15) 0px, transparent 55%);
     background-attachment: fixed;
     background-size: cover;
     color: var(--color-ink);
@@ -184,9 +183,9 @@ html {
 }
 
 .btn-secondary:hover {
-  background: #305CFF;
-  border-color: #305CFF;
-  color: #FFFFFF;
+  background: #B8FA4E;
+  border-color: #B8FA4E;
+  color: #1A1A1E;
 }
 
 /* Tarjeta / contenedor de información */
