@@ -6,12 +6,11 @@ export const siteConfig: SiteConfig = {
   url: "https://aetthel.com",
   ogImage: "https://aetthel.com/og.png",
   mainNavItems: [
-    { label: "Aetthel Lab", href: "#aetthel-lab" },
-    { label: "Servicios", href: "#servicios" },
-    { label: "Proyectos", href: "#proyectos" },
+    { label: "Aetthel Lab", href: "/estudio" },
+    { label: "Servicios", href: "/servicios" },
   ],
   secondaryNavItems: [
-    { label: "Contacto", href: "#contacto" },
+    { label: "Contacto", href: "/contacto" },
   ],
   socials: [
     { platform: "Instagram", href: "https://instagram.com" },

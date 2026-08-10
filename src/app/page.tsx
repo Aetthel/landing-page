@@ -5,8 +5,6 @@ import { Hero } from "@/components/sections/Hero";
 import { PromotionalVideo } from "@/components/sections/PromotionalVideo";
 import { Services } from "@/components/sections/Services";
 import { AboutUs } from "@/components/sections/AboutUs";
-import { Projects } from "@/components/sections/Projects";
-import { Clients } from "@/components/sections/Clients";
 
 export default function Home() {
   return (
@@ -20,8 +18,6 @@ export default function Home() {
         <PromotionalVideo />
         <AboutUs />
         <Services />
-        <Projects />
-        <Clients />
       </main>
 
       {/* Footer CTA */}
