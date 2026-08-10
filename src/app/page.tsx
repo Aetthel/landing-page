@@ -10,7 +10,7 @@ import { Clients } from "@/components/sections/Clients";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-canvas text-ink font-sans selection:bg-accent selection:text-canvas">
+    <div className="relative min-h-screen flex flex-col bg-canvas text-ink font-sans selection:bg-dark selection:text-white">
       {/* Floating Navbar */}
       <Navbar />
 

@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { IntroSequence } from "@/components/ui/intro-sequence";
 import { INTRO_SESSION_KEY } from "@/lib/boot";
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import "./globals.css";
 
 /**
@@ -75,7 +76,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${bodyFont.variable} ${displayFont.variable} scroll-smooth h-full antialiased is-booting`}
+      className={`${bodyFont.variable} ${displayFont.variable} h-full antialiased is-booting`}
       /* El script de arranque de abajo toca la clase y el `data-intro` de este
          mismo <html> antes de que React hidrate — tiene que ser así para que no
          haya fogonazo. La discrepancia con el HTML servido es intencionada. */
@@ -99,7 +100,7 @@ export default function RootLayout({
         {/* Entrada de marca: logo a fotogramas sobre negro antes de la web */}
         <IntroSequence />
 
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
