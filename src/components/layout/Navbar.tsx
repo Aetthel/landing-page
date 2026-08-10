@@ -50,7 +50,9 @@ export const Navbar: React.FC = () => {
           : "bg-transparent py-4",
       )}
     >
-      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
+      {/* La animación va aquí dentro y no en el <header>: ese transform lo usa
+          el ocultado por scroll y una animación con `both` lo dejaría fijado. */}
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 animate-rise-in rise-delay-3">
         {/* Desktop Header */}
         <div className="hidden lg:block relative">
           {!scrolled ? (

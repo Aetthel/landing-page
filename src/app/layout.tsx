@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { siteConfig } from "@/config/site";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { IntroSequence } from "@/components/ui/intro-sequence";
+import { INTRO_SESSION_KEY } from "@/lib/boot";
 import "./globals.css";
+
+/**
+ * Corre antes de que se pinte nada: decide si esta visita ve la cortina de
+ * entrada. Si no toca (ya se vio en esta pestaña, o el usuario pide menos
+ * movimiento), suelta el freno ahí mismo y marca el <html> para que la cortina
+ * ni se dibuje — así no hay fogonazo negro esperando a la hidratación.
+ * Si algo falla, suelta el freno igualmente: la web nunca se queda congelada.
+ */
+const bootScript = `(function(){var d=document.documentElement;try{
+var skip=sessionStorage.getItem(${JSON.stringify(INTRO_SESSION_KEY)})==="1"||
+matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(skip){d.dataset.intro="skip";d.classList.remove("is-booting");}
+else{sessionStorage.setItem(${JSON.stringify(INTRO_SESSION_KEY)},"1");}
+}catch(e){d.dataset.intro="skip";d.classList.remove("is-booting");}})();`;
 
 /* Titulares — neogrotesca moderna, limpia y geométrica */
 const displayFont = Plus_Jakarta_Sans({
@@ -61,13 +75,30 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${bodyFont.variable} ${displayFont.variable} scroll-smooth h-full antialiased`}
+      className={`${bodyFont.variable} ${displayFont.variable} scroll-smooth h-full antialiased is-booting`}
+      /* El script de arranque de abajo toca la clase y el `data-intro` de este
+         mismo <html> antes de que React hidrate — tiene que ser así para que no
+         haya fogonazo. La discrepancia con el HTML servido es intencionada. */
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink">
-        {/* Sin JS no hay observer que revele nada: el contenido se ve de entrada. */}
+        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+
+        {/* Sin JS no hay observer que revele nada ni cortina que se levante:
+            el contenido se ve de entrada y sin freno. */}
         <noscript>
-          <style>{`.reveal { opacity: 1 !important; transform: none !important; }`}</style>
+          <style>{`.reveal { opacity: 1 !important; transform: none !important; }
+.intro { display: none !important; }
+.is-booting .animate-rise-in,
+.is-booting .animate-fade-in,
+.is-booting .animate-scroll-wheel,
+.is-booting .animate-scroll-hop { animation-play-state: running !important; }
+.marker { animation: none !important; clip-path: none !important; }`}</style>
         </noscript>
+
+        {/* Entrada de marca: logo a fotogramas sobre negro antes de la web */}
+        <IntroSequence />
+
         {children}
       </body>
     </html>

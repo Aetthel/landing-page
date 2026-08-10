@@ -7,7 +7,6 @@ import { Services } from "@/components/sections/Services";
 import { AboutUs } from "@/components/sections/AboutUs";
 import { Projects } from "@/components/sections/Projects";
 import { Clients } from "@/components/sections/Clients";
-import { ProceduralGroundBackground } from "@/components/ui/procedural-ground-background";
 
 export default function Home() {
   return (

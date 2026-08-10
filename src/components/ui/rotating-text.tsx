@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { onBooted } from "@/lib/boot";
 
 interface RotatingTextProps {
   words: string[];
@@ -28,16 +29,23 @@ export const RotatingText: React.FC<RotatingTextProps> = ({
   useEffect(() => {
     if (words.length < 2) return;
 
+    let kickoff: ReturnType<typeof setTimeout> | undefined;
     let cycle: ReturnType<typeof setInterval> | undefined;
-    const kickoff = setTimeout(() => {
-      cycle = setInterval(
-        () => setIndex((current) => (current + 1) % words.length),
-        interval
-      );
-    }, startDelay);
+
+    // El contador no corre detrás de la cortina de entrada: si hay entrada de
+    // marca, la primera palabra se ve entera al levantarse.
+    const unsubscribe = onBooted(() => {
+      kickoff = setTimeout(() => {
+        cycle = setInterval(
+          () => setIndex((current) => (current + 1) % words.length),
+          interval
+        );
+      }, startDelay);
+    });
 
     return () => {
-      clearTimeout(kickoff);
+      unsubscribe();
+      if (kickoff) clearTimeout(kickoff);
       if (cycle) clearInterval(cycle);
     };
   }, [words.length, interval, startDelay]);

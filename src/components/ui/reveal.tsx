@@ -31,10 +31,11 @@ export const Reveal: React.FC<RevealProps> = ({
     const node = ref.current;
     if (!node) return;
 
-    // Sin soporte de observer, el contenido se muestra sin más: nunca se queda oculto.
+    // Sin soporte de observer, el contenido se muestra sin más: nunca se queda
+    // oculto. Se aplaza al siguiente frame para no encadenar renders.
     if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
+      const frame = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(frame);
     }
 
     const observer = new IntersectionObserver(
