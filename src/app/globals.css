@@ -137,6 +137,22 @@ html.lenis body {
   color: #ffffff;
 }
 
+/* Ocultar cursor nativo en ordenadores para dar paso al CustomCursor */
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [role="button"],
+  .cursor-pointer {
+    cursor: none !important;
+  }
+
+  input,
+  textarea {
+    cursor: text;
+  }
+}
+
 /* --------------------------------------------------------------------------
    Componentes / utilidades de marca
    -------------------------------------------------------------------------- */

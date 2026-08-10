@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { IntroSequence } from "@/components/ui/intro-sequence";
 import { INTRO_SESSION_KEY } from "@/lib/boot";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import "./globals.css";
 
@@ -99,6 +100,9 @@ export default function RootLayout({
 
         {/* Entrada de marca: logo a fotogramas sobre negro antes de la web */}
         <IntroSequence />
+
+        {/* Cursor personalizado de alta resolución */}
+        <CustomCursor />
 
         <SmoothScroll>{children}</SmoothScroll>
       </body>
