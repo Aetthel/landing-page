@@ -81,7 +81,7 @@ export const Navbar: React.FC = () => {
                   width={45}
                   height={36}
                   priority
-                  className="h-9 w-auto brightness-0"
+                  className="h-9 w-auto brightness-0 invert"
                 />
               </Link>
 
@@ -141,7 +141,7 @@ export const Navbar: React.FC = () => {
               width={88}
               height={22}
               priority
-              className="h-5.5 w-auto brightness-0"
+              className={cn("h-5.5 w-auto transition-all", scrolled ? "brightness-0" : "brightness-0 invert")}
             />
           </Link>
 

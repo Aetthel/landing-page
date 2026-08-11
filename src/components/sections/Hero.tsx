@@ -1,34 +1,37 @@
 import React from "react";
 import { MarkerHighlight } from "@/components/ui/marker-highlight";
-// Fondo WebGL descartado de momento — se recupera descomentando esto y el
-// <ProceduralGroundBackground /> de abajo.
-// import { ProceduralGroundBackground } from "@/components/ui/procedural-ground-background";
 import { RotatingText } from "@/components/ui/rotating-text";
 
 export const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative isolate w-full min-h-screen min-h-dvh flex flex-col justify-center py-32 sm:py-36 lg:py-40 overflow-hidden bg-canvas"
+      className="relative isolate w-full min-h-screen min-h-dvh flex flex-col justify-start pt-28 sm:pt-36 lg:pt-40 pb-20 overflow-hidden bg-dark text-white"
     >
-      {/* Background WebGL Procedural Ground Animation — en pausa */}
-      {/* <ProceduralGroundBackground className="absolute inset-0 -z-10" /> */}
+      {/* Background Video claramente visible detrás del Hero */}
+      <video
+        src="/videos/showreel.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover -z-20 opacity-90 brightness-95"
+      />
 
-      <div className="relative z-10 w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center items-center text-center">
+      {/* Degradado negro posicionado abajo */}
+      <div className="absolute inset-x-0 bottom-0 h-1/4 -z-10 bg-gradient-to-b from-transparent via-dark/40 to-dark pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-center text-center mt-4 sm:mt-8">
         {/* Main Headline Statement */}
-        {/* La frase no entra de golpe: se construye línea a línea en la estela
-            de la cortina, y el subrayado se traza al final (ver `.marker`). */}
-        <h1 className="text-[clamp(3.25rem,7.5vw,7.5rem)] font-normal tracking-tight leading-[1.05] text-ink text-center">
+        <h1 className="text-[clamp(3.25rem,7.5vw,7.5rem)] font-normal tracking-tight leading-[1.05] text-white text-center drop-shadow-md">
           <span className="block animate-rise-in rise-delay-1">
             El salto digital
           </span>
-          {/* El trazo de rotulador vive fuera del texto: la palabra rotativa
-              recorta su propio contenido y se llevaría por delante el subrayado */}
           <span className="relative inline-flex items-center justify-center align-middle my-1 animate-rise-in rise-delay-2">
             <MarkerHighlight />
             <RotatingText
               words={["Páginas web", "Aplicaciones", "Automatizaciones"]}
-              className="text-ink font-medium"
+              className="text-white font-medium"
             />
           </span>
           <span className="block animate-rise-in rise-delay-3">
