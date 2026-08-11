@@ -20,7 +20,10 @@ export const Projects: React.FC = () => {
       aspect: "aspect-[4/5]",
       width: "min-w-[300px] sm:min-w-[380px] lg:min-w-[440px]",
       content: (
-        <div className="relative w-full h-full bg-neutral-900 flex flex-col justify-between p-8 text-white">
+        <div
+          data-cursor-surface="dark"
+          className="relative w-full h-full bg-neutral-900 flex flex-col justify-between p-8 text-white"
+        >
           <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
             <span>01 / 05</span>
             <span>Copreci®</span>
@@ -51,7 +54,10 @@ export const Projects: React.FC = () => {
       aspect: "aspect-[4/5]",
       width: "min-w-[320px] sm:min-w-[420px] lg:min-w-[480px]",
       content: (
-        <div className="relative w-full h-full bg-neutral-950 flex flex-col justify-between p-8 text-white border border-neutral-800">
+        <div
+          data-cursor-surface="dark"
+          className="relative w-full h-full bg-neutral-950 flex flex-col justify-between p-8 text-white border border-neutral-800"
+        >
           <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
             <span>02 / 05</span>
             <span>Beldarrain®</span>
@@ -126,7 +132,10 @@ export const Projects: React.FC = () => {
       aspect: "aspect-[4/5]",
       width: "min-w-[320px] sm:min-w-[420px] lg:min-w-[480px]",
       content: (
-        <div className="relative w-full h-full bg-neutral-900 flex flex-col justify-between p-8 text-white">
+        <div
+          data-cursor-surface="dark"
+          className="relative w-full h-full bg-neutral-900 flex flex-col justify-between p-8 text-white"
+        >
           <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
             <span>04 / 05</span>
             <span>Orbea®</span>

@@ -15,6 +15,7 @@ export const PromotionalVideo: React.FC = () => {
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         {/* Reel Frame Box */}
         <Reveal
+          data-cursor-surface="dark"
           className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-neutral-300/80 bg-neutral-900 flex flex-col justify-between p-6 text-white group cursor-pointer"
           onClick={() => setIsPlaying(!isPlaying)}
         >
@@ -30,7 +31,11 @@ export const PromotionalVideo: React.FC = () => {
 
           {/* Center Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 rounded-full bg-brand text-neutral-950 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+            {/* Isla clara dentro del reel oscuro: el cursor vuelve a tinta */}
+            <div
+              data-cursor-surface="light"
+              className="w-20 h-20 rounded-full bg-brand text-neutral-950 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform"
+            >
               <Play className="w-8 h-8 fill-current ml-1" />
             </div>
           </div>

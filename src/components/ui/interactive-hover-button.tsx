@@ -23,19 +23,26 @@ const blobStyles =
 interface InteractiveHoverContentProps {
   text: string;
   icon?: React.ReactNode;
+  /* El punto y el texto en negativo van en lima sobre tinta, que es lo que
+     pide el fondo claro. Sobre una píldora ya lima —el CTA del footer— hay que
+     poder invertirlos o el efecto sería invisible. */
+  blobClassName?: string;
+  revealClassName?: string;
 }
 
 const InteractiveHoverContent: React.FC<InteractiveHoverContentProps> = ({
   text,
   icon,
+  blobClassName,
+  revealClassName,
 }) => (
   <>
     <span className={labelStyles}>{text}</span>
-    <div className={revealStyles} aria-hidden="true">
+    <div className={cn(revealStyles, revealClassName)} aria-hidden="true">
       <span>{text}</span>
       {icon ?? <ArrowUpRight className="h-3 w-3" />}
     </div>
-    <div className={blobStyles} aria-hidden="true" />
+    <div className={cn(blobStyles, blobClassName)} aria-hidden="true" />
   </>
 );
 
@@ -43,18 +50,30 @@ interface InteractiveHoverButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   icon?: React.ReactNode;
+  blobClassName?: string;
+  revealClassName?: string;
 }
 
 const InteractiveHoverButton = React.forwardRef<
   HTMLButtonElement,
   InteractiveHoverButtonProps
->(({ text = "Button", icon, className, ...props }, ref) => {
-  return (
-    <button ref={ref} className={cn(shellStyles, className)} {...props}>
-      <InteractiveHoverContent text={text} icon={icon} />
-    </button>
-  );
-});
+>(
+  (
+    { text = "Button", icon, blobClassName, revealClassName, className, ...props },
+    ref
+  ) => {
+    return (
+      <button ref={ref} className={cn(shellStyles, className)} {...props}>
+        <InteractiveHoverContent
+          text={text}
+          icon={icon}
+          blobClassName={blobClassName}
+          revealClassName={revealClassName}
+        />
+      </button>
+    );
+  }
+);
 
 InteractiveHoverButton.displayName = "InteractiveHoverButton";
 
@@ -62,15 +81,22 @@ interface InteractiveHoverLinkProps
   extends Omit<React.ComponentPropsWithoutRef<typeof Link>, "children"> {
   text: string;
   icon?: React.ReactNode;
+  blobClassName?: string;
+  revealClassName?: string;
 }
 
 const InteractiveHoverLink = React.forwardRef<
   HTMLAnchorElement,
   InteractiveHoverLinkProps
->(({ text, icon, className, ...props }, ref) => {
+>(({ text, icon, blobClassName, revealClassName, className, ...props }, ref) => {
   return (
     <Link ref={ref} className={cn(shellStyles, className)} {...props}>
-      <InteractiveHoverContent text={text} icon={icon} />
+      <InteractiveHoverContent
+        text={text}
+        icon={icon}
+        blobClassName={blobClassName}
+        revealClassName={revealClassName}
+      />
     </Link>
   );
 });

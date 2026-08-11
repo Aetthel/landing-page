@@ -648,8 +648,55 @@ html.lenis body {
   display: none;
 }
 
+/* --------------------------------------------------------------------------
+   Servicios — entrada y salida del panel de texto.
+   El titular y la descripción se animan por separado, nunca el contenedor: ese
+   lleva su propio `transform` para colocarse a la altura del servicio activo, y
+   tocarlo desde aquí desbarataría la posición. El desplazamiento de entrada
+   resuelve en `translateY(0)`, así que la posición en reposo no cambia.
+   -------------------------------------------------------------------------- */
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes panelOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.panel-reveal {
+  animation: panelIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* La descripción entra justo detrás del titular: se lee en orden */
+.panel-reveal-late {
+  animation: panelIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.09s both;
+}
+
+.panel-fade-out {
+  animation: panelOut 0.35s ease-in both;
+}
+
 /* Accesibilidad: sin desplazamiento para quien reduce el movimiento */
 @media (prefers-reduced-motion: reduce) {
+  /* Aparece y desaparece, pero sin desplazamiento: `panelOut` al revés es
+     justo un fundido de entrada, sin el `translateY` de `panelIn`. */
+  .panel-reveal,
+  .panel-reveal-late {
+    animation: panelOut 0.25s linear reverse both;
+  }
+
   /* Nada de cortina ni de freno de arranque: la web se ve y punto */
   .intro {
     display: none;
