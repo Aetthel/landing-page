@@ -1,0 +1,13 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: landing-page:latest
+    container_name: landing_page_app
+    restart: always
+    ports:
+      - "${APP_PORT:-3003}:3000"
+    environment:
+      - NODE_ENV=production
+      - HOSTNAME=0.0.0.0

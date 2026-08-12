@@ -1,0 +1,26 @@
+# Node dependencies & build artifacts
+node_modules
+.next
+out
+build
+dist
+
+# Environment variables
+.env
+.env*.local
+
+# Version control & OS files
+.git
+.gitignore
+.gitattributes
+.DS_Store
+*.pem
+*.log
+
+# OpenSpec & agent files
+openspec
+.agent
+.agents
+.claude
+.gemini
+skills-lock.json
