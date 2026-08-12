@@ -4,6 +4,7 @@ import { useEffect, ReactNode } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { setLenis } from "@/lib/lenis";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -47,6 +48,10 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       autoRaf: false,
     });
 
+    // Disponible para quien tenga que mover la página desde fuera (la barra de
+    // scroll de marca la usa para arrastrar).
+    setLenis(lenis);
+
     const onScroll = () => ScrollTrigger.update();
     lenis.on("scroll", onScroll);
 
@@ -64,6 +69,7 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       gsap.ticker.lagSmoothing(500, 33);
       lenis.off("scroll", onScroll);
       lenis.destroy();
+      setLenis(null);
     };
   }, []);
 

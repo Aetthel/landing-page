@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { siteConfig } from "@/config/site";
 import { InteractiveHoverLink } from "@/components/ui/interactive-hover-button";
 
 export const Footer: React.FC = () => {
@@ -84,31 +85,21 @@ export const Footer: React.FC = () => {
         {/* Bottom Navigation & Legal Links Row */}
         <div className="pt-8 border-t border-neutral-900 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-xs font-sans font-medium text-neutral-400">
           {/* Left Navigation Links */}
+          {/* Mismas rutas que la Navbar: se leen de `siteConfig` para que el
+              pie y la cabecera no puedan desincronizarse. */}
           <div className="flex flex-wrap items-center gap-6">
-            <Link
-              href="#proyectos"
-              className="hover:text-white transition-colors"
-            >
-              Proyectos
-            </Link>
-            <Link
-              href="#servicios"
-              className="hover:text-white transition-colors"
-            >
-              Servicios
-            </Link>
-            <Link
-              href="#aetthel-lab"
-              className="hover:text-white transition-colors"
-            >
-              Estudio
-            </Link>
-            <Link
-              href="#clientes"
-              className="hover:text-white transition-colors"
-            >
-              Clientes
-            </Link>
+            {[
+              ...siteConfig.mainNavItems,
+              ...(siteConfig.secondaryNavItems ?? []),
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="hover:text-white transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
             <a
               href="https://linkedin.com"
               target="_blank"

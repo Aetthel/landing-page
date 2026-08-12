@@ -4,6 +4,7 @@ import { siteConfig } from "@/config/site";
 import { IntroSequence } from "@/components/ui/intro-sequence";
 import { INTRO_SESSION_KEY } from "@/lib/boot";
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { ScrollRail } from "@/components/ui/scroll-rail";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import "./globals.css";
 
@@ -103,6 +104,9 @@ export default function RootLayout({
 
         {/* Cursor personalizado de alta resolución */}
         <CustomCursor />
+
+        {/* Barra de scroll de marca en sustitución de la del navegador */}
+        <ScrollRail />
 
         <SmoothScroll>{children}</SmoothScroll>
       </body>
