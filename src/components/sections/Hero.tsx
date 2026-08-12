@@ -1,6 +1,7 @@
 import React from "react";
 import { MarkerHighlight } from "@/components/ui/marker-highlight";
 import { RotatingText } from "@/components/ui/rotating-text";
+import { AmbientVideo } from "@/components/ui/ambient-video";
 
 export const Hero: React.FC = () => {
   return (
@@ -8,13 +9,11 @@ export const Hero: React.FC = () => {
       id="hero"
       className="relative isolate w-full min-h-screen min-h-dvh flex flex-col justify-start pt-28 sm:pt-36 lg:pt-40 pb-20 overflow-hidden bg-dark text-white"
     >
-      {/* Background Video claramente visible detrás del Hero */}
-      <video
+      {/* Background Video claramente visible detrás del Hero.
+          Se pausa solo al salir de pantalla: si no, seguiría decodificando a
+          la vez que el reel de más abajo y el scroll se resentiría. */}
+      <AmbientVideo
         src="/videos/showreel.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
         className="absolute inset-0 w-full h-full object-cover -z-20 opacity-90 brightness-95"
       />
 
