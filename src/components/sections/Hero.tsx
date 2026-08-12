@@ -1,53 +1,42 @@
 import React from "react";
+import { MarkerHighlight } from "@/components/ui/marker-highlight";
+import { RotatingText } from "@/components/ui/rotating-text";
+import { AmbientVideo } from "@/components/ui/ambient-video";
 
 export const Hero: React.FC = () => {
   return (
-    <section id="hero" className="w-full pt-32 md:pt-40 pb-20 border-b border-neutral-300/70 dark:border-neutral-800">
-      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Structural Tag */}
-        <div className="mb-6 inline-block border border-neutral-300 dark:border-neutral-700 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-neutral-500 rounded">
-          [ ESTRUCTURA: HERO ]
-        </div>
+    <section
+      id="hero"
+      className="relative isolate w-full min-h-screen min-h-dvh flex flex-col justify-start pt-28 sm:pt-36 lg:pt-40 pb-20 overflow-hidden bg-dark text-white"
+    >
+      {/* Background Video claramente visible detrás del Hero.
+          Se pausa solo al salir de pantalla: si no, seguiría decodificando a
+          la vez que el reel de más abajo y el scroll se resentiría. */}
+      <AmbientVideo
+        src="/videos/showreel.mp4"
+        className="absolute inset-0 w-full h-full object-cover -z-20 opacity-90 brightness-95"
+      />
 
-        {/* Structural Hero Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Main Content Column */}
-          <div className="lg:col-span-8 space-y-6">
-            <h1 className="text-4xl md:text-6xl font-serif tracking-tight text-neutral-900 dark:text-neutral-100 font-normal leading-tight">
-              Estructura Principal del Hero Header
-            </h1>
+      {/* Degradado negro posicionado abajo */}
+      <div className="absolute inset-x-0 bottom-0 h-1/4 -z-10 bg-gradient-to-b from-transparent via-dark/40 to-dark pointer-events-none" />
 
-            <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-400 font-sans max-w-2xl leading-relaxed">
-              Bloque descriptivo del Hero. Define la propuesta de valor y el propósito del estudio o proyecto dentro del contenedor principal.
-            </p>
-
-            {/* Action Buttons Wireframe */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a
-                href="#proyectos"
-                className="px-6 py-3 border border-neutral-900 bg-neutral-900 text-white dark:border-neutral-100 dark:bg-neutral-100 dark:text-neutral-900 text-xs uppercase tracking-wider font-medium rounded-full hover:opacity-90 transition-opacity"
-              >
-                Ver Proyectos
-              </a>
-              <a
-                href="#contacto"
-                className="px-6 py-3 border border-neutral-400 dark:border-neutral-600 text-neutral-800 dark:text-neutral-200 text-xs uppercase tracking-wider font-medium rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-              >
-                Contactar Estudio
-              </a>
-            </div>
-          </div>
-
-          {/* Visual Showcase Wireframe Box */}
-          <div className="lg:col-span-4 border border-dashed border-neutral-400 dark:border-neutral-700 rounded-lg p-6 min-h-[260px] flex flex-col justify-between bg-neutral-50/50 dark:bg-neutral-900/30">
-            <span className="font-mono text-xs text-neutral-400 uppercase">[ ÁREA VISUAL / MEDIA HERO ]</span>
-            <div className="space-y-2 text-xs text-neutral-500 font-mono">
-              <div>• Ancho: 100% Contenedor</div>
-              <div>• Proporción: Responsive</div>
-              <div>• Alineación: Derecha</div>
-            </div>
-          </div>
-        </div>
+      <div className="relative z-10 w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-center text-center mt-4 sm:mt-8">
+        {/* Main Headline Statement */}
+        <h1 className="text-[clamp(3.25rem,7.5vw,7.5rem)] font-normal tracking-tight leading-[1.05] text-white text-center drop-shadow-md">
+          <span className="block animate-rise-in rise-delay-1">
+            El salto digital
+          </span>
+          <span className="relative inline-flex items-center justify-center align-middle my-1 animate-rise-in rise-delay-2">
+            <MarkerHighlight />
+            <RotatingText
+              words={["Páginas web", "Aplicaciones", "Automatizaciones"]}
+              className="text-white font-medium"
+            />
+          </span>
+          <span className="block animate-rise-in rise-delay-3">
+            al alcance de tu negocio.
+          </span>
+        </h1>
       </div>
     </section>
   );

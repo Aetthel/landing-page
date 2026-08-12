@@ -1,26 +1,239 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Aetthel — Sistema visual
+   Tokens de marca expuestos como utilidades de Tailwind v4 vía @theme.
+   ========================================================================== */
+
+@theme {
+  /* --- Color primario (Growth Lime) ------------------------------------ */
+  /* Verde lima eléctrico / focal para CTAs, badges y acentos vibrantes */
+  --color-brand: #B8FA4E;
+  --color-brand-soft: #D7FC8E;
+
+  /* --- Variaciones tonales de Lima (sin verdes oscuros) ---------------- */
+  /* Lima tonal saturado para contrastes y acentos secundarios */
+  --color-accent: #84C226;
+  /* Pastel lima / resplandor suave */
+  --color-accent-soft: #ECFDD0;
+  --color-coral: #D7FC8E;
+
+  /* --- Neutros: fondos, superficies y textos --------------------------- */
+  /* Lienzo base (porcelana / off-white luminoso) */
+  --color-canvas: #F4F4F6;
+  /* Superficie secundaria: tarjetas blancas puras */
+  --color-surface: #FFFFFF;
+  /* Superficie atenuada con toque lima sutil */
+  --color-surface-muted: #F0F7E6;
+  /* Fondo oscuro (Deep Graphite para footer / bloques de alto contraste) */
+  --color-dark: #1A1A1E;
+  /* Divisores y bordes finos */
+  --color-line: #E2E2E8;
+  /* Texto principal (Deep Graphite #1A1A1E) */
+  --color-ink: #1A1A1E;
+  /* Subtítulos y textos secundarios */
+  --color-ink-muted: #62626E;
+
+  /* --- Tipografías ------------------------------------------------------ */
+  --font-display:
+    var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+}
+
 @layer base {
   body {
-    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    background-color: var(--color-canvas);
+    background-image:
+      radial-gradient(at 85% 10%, rgba(184, 250, 78, 0.18) 0px, transparent 55%),
+      radial-gradient(at 85% 75%, rgba(215, 252, 142, 0.22) 0px, transparent 60%),
+      radial-gradient(at 15% 30%, rgba(236, 253, 208, 0.35) 0px, transparent 70%),
+      radial-gradient(at 75% 50%, rgba(184, 250, 78, 0.15) 0px, transparent 55%);
+    background-attachment: fixed;
+    background-size: cover;
+    color: var(--color-ink);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Titulares en Deep Graphite #1A1A1E */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+  }
+
+  /* Bordes de Tailwind por defecto al color de línea de marca */
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-line);
+  }
+
+  /* Campos de formulario */
+  input,
+  textarea,
+  select {
+    border: 1px solid var(--color-line);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-ink-muted);
+  }
+
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+    border-color: var(--color-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Iconografía: outline de línea fina con remates redondeados.
+     Aplica a Lucide / Tabler / Heroicons (outline). */
+  .lucide,
+  svg[stroke="currentColor"] {
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 }
 
-/* Custom smooth animations & scrollbar */
-html {
-  scroll-behavior: smooth;
+/* Lenis smooth scrolling integration & custom selection */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 ::selection {
-  background-color: #2563eb;
+  background-color: var(--color-dark);
   color: #ffffff;
 }
 
-/* Smooth keyframes */
+/* Ocultar cursor nativo en ordenadores para dar paso al CustomCursor */
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [role="button"],
+  .cursor-pointer {
+    cursor: none !important;
+  }
+
+  input,
+  textarea {
+    cursor: text;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Componentes / utilidades de marca
+   -------------------------------------------------------------------------- */
+
+/* Pills de navegación */
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink);
+  transition: all 0.2s ease;
+  background: color-mix(in srgb, var(--color-canvas) 70%, transparent);
+}
+
+.nav-pill:hover {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: #ffffff;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: var(--color-brand);
+  color: #1A1A1E;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #a4eb34;
+  color: #1A1A1E;
+}
+
+/* CTA secundario — contorno sobre el lienzo */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  background: #1A1A1E;
+  color: #FFFFFF;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #B8FA4E;
+  border-color: #B8FA4E;
+  color: #1A1A1E;
+}
+
+/* Tarjeta / contenedor de información */
+.surface-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+}
+
+/* Enlace activo */
+.link-active {
+  color: var(--color-accent);
+}
+
+/* Smooth fade-in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -30,4 +243,500 @@ html {
 
 .animate-fade-in {
   animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* --------------------------------------------------------------------------
+   Entrada de contenido — fade + ascenso suave, con escalonado editorial.
+   `both` mantiene el estado inicial durante el delay, así no hay parpadeo.
+   -------------------------------------------------------------------------- */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise-in {
+  animation: riseIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rise-delay-1 {
+  animation-delay: 0.15s;
+}
+
+.rise-delay-2 {
+  animation-delay: 0.35s;
+}
+
+.rise-delay-3 {
+  animation-delay: 0.55s;
+}
+
+/* --------------------------------------------------------------------------
+   Revelado por scroll — el bloque asciende y aparece al entrar en pantalla.
+   Lo activa el componente <Reveal> añadiendo `.is-visible`.
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  /* Liberamos la capa de composición una vez terminada la entrada. */
+  will-change: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Tipografía cinética — palabra rotativa con revelado vertical.
+   En reposo cada palabra espera bajo la máscara; la activa ocupa el centro y
+   la anterior sale por arriba. Curva lenta al final para que no se sienta
+   mecánico.
+   -------------------------------------------------------------------------- */
+.kinetic-word {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(105%);
+  transition:
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease-out;
+}
+
+.kinetic-word.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kinetic-word.is-leaving {
+  opacity: 0;
+  transform: translateY(-105%);
+}
+
+/* --------------------------------------------------------------------------
+   Subrayado a rotulador — el trazo plano de un subrayador de bisel.
+
+   Cuerpo recto que cubre toda la palabra, con extremos romos (radio muy por
+   debajo de la mitad del alto, para que nunca lea como píldora) y la colita
+   del bisel arrancando arriba a la izquierda. La turbulencia muerde el
+   contorno y el multiply hace que se comporte como tinta translúcida sobre el
+   fondo en vez de como una forma opaca.
+   -------------------------------------------------------------------------- */
+.marker {
+  position: absolute;
+  /* El trazo se pasa de largo por los lados, como cuando subrayas deprisa */
+  inset: 0 -0.42em 0 -0.34em;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  filter: url(#marker-rough);
+  /* Al arrancar la web el subrayado se traza, no aparece: es el mismo gesto de
+     izquierda a derecha con el que el cursor escribió el logo en la entrada. */
+  animation: markerDraw 0.6s cubic-bezier(0.3, 0.85, 0.35, 1) 0.95s both;
+}
+
+/* El corte va después del filtro, así el borde que avanza es limpio y recto:
+   el canto del rotulador empujando la tinta. */
+@keyframes markerDraw {
+  from {
+    clip-path: inset(0 101% 0 0);
+  }
+  to {
+    clip-path: inset(0 -3% 0 0);
+  }
+}
+
+.marker__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.marker__pass {
+  position: absolute;
+  display: block;
+}
+
+/* Primera pasada: cruza la palabra entera de lado a lado y de arriba abajo,
+   ligeramente inclinada. Las esquinas se redondean poco y con radios distintos
+   en cada una: extremo romo de subrayador, no cápsula. La tinta se acumula
+   abajo (el bisel apoya ahí) y aclara donde el trazo corre seco. */
+.marker__pass--base {
+  inset: 0;
+  transform: rotate(-0.7deg);
+  border-radius: 0.34em 0.42em 0.3em 0.46em;
+  background:
+    linear-gradient(
+      to top,
+      rgba(132, 194, 38, 0.28),
+      rgba(132, 194, 38, 0) 58%
+    ),
+    linear-gradient(
+      100deg,
+      rgba(184, 250, 78, 0.82) 0%,
+      rgba(184, 250, 78, 0.97) 14%,
+      rgba(184, 250, 78, 0.74) 41%,
+      rgba(184, 250, 78, 0.95) 63%,
+      rgba(184, 250, 78, 0.8) 88%,
+      rgba(184, 250, 78, 0.62) 100%
+    );
+}
+
+/* La colita del bisel: al apoyar el rotulador la punta entra de canto y deja
+   un rabillo fino que se sale por arriba a la izquierda. */
+.marker__pass--base::before {
+  content: "";
+  position: absolute;
+  left: -0.14em;
+  top: -0.3em;
+  width: 2.2em;
+  height: 0.58em;
+  border-radius: 0.22em 0.3em 0.12em 0.18em;
+  background: rgba(184, 250, 78, 0.88);
+  transform: rotate(-5deg) skewX(-18deg);
+}
+
+/* Segunda pasada: más corta, más baja y desalineada respecto a la primera.
+   Donde se solapan, la tinta se acumula y oscurece. */
+.marker__pass--over {
+  inset: 36% 9% 2% 5%;
+  transform: rotate(0.6deg);
+  border-radius: 0.26em 0.34em 0.22em 0.3em;
+  background: linear-gradient(
+    95deg,
+    rgba(132, 194, 38, 0.32),
+    rgba(132, 194, 38, 0.08) 55%,
+    rgba(132, 194, 38, 0.26)
+  );
+  filter: blur(0.5px);
+}
+
+/* --------------------------------------------------------------------------
+   Indicador de scroll — rueda del ratón cayendo y flotación suave del cuerpo.
+   -------------------------------------------------------------------------- */
+@keyframes scrollWheel {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(0.75rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0.75rem);
+    opacity: 0;
+  }
+}
+
+.animate-scroll-wheel {
+  animation: scrollWheel 1.9s cubic-bezier(0.45, 0, 0.35, 1) infinite;
+}
+
+@keyframes scrollHop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-scroll-hop {
+  animation: scrollHop 1.9s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Cortina de entrada — el logotipo escribiéndose sobre negro y, al subir, la web.
+
+   El revelado es continuo: una curva con salida suave y frenada larga, la
+   cadencia de un trazo hecho de una pasada. El PNG del logotipo es verde
+   oscuro, así que no se pinta: se usa como máscara y el color lo pone el fondo
+   del elemento — de ahí que salga en lima sobre el negro.
+   -------------------------------------------------------------------------- */
+.intro {
+  /* Compás de la entrada. Si cambias estos dos, sube `INTRO_HOLD` en boot.ts
+     al menos a la suma de ambos más el respiro final. */
+  --intro-wait: 0.45s;
+  --intro-write: 1.5s;
+  /* La misma curva para el trazo y para el cursor: van pegados */
+  --intro-ease: cubic-bezier(0.45, 0.05, 0.3, 1);
+
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: #0b0b0d;
+  transform: translateY(0);
+  transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+/* La cortina sube y descubre la web ya en marcha */
+.intro.is-lifting {
+  transform: translateY(-101%);
+}
+
+/* El canto de la cortina lleva la lima del logotipo: al subir, barre la
+   pantalla de abajo arriba y deja la web ya en movimiento detrás. */
+.intro::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-brand);
+  box-shadow: 0 0 1.4rem rgba(184, 250, 78, 0.6);
+  opacity: 0;
+  transition: opacity 0.12s linear;
+}
+
+.intro.is-lifting::after {
+  opacity: 1;
+}
+
+.intro.is-lifting .intro__stage {
+  opacity: 0;
+  transition: opacity 0.28s ease-out;
+}
+
+.intro__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.intro__mark {
+  grid-area: 1 / 1;
+  display: block;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.intro__mark--wordmark {
+  width: clamp(11rem, 24vw, 18rem);
+  aspect-ratio: 431 / 108;
+  background: var(--color-brand);
+  -webkit-mask-image: url("/logos/aetthel-wordmark.png");
+  mask-image: url("/logos/aetthel-wordmark.png");
+  /* En reposo, sin escribir: el primer trazo no aparece hasta la salida */
+  clip-path: inset(0 100% 0 0);
+}
+
+.intro.is-running .intro__mark--wordmark {
+  animation: introWrite var(--intro-write) var(--intro-ease) var(--intro-wait)
+    both;
+}
+
+/* La palabra se descubre de izquierda a derecha, de una pasada continua */
+@keyframes introWrite {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* El cursor que escribe: espera latiendo, avanza con la palabra y se va.
+   Ocupa todo el ancho del logotipo y solo pinta su canto izquierdo, así puede
+   recorrerlo con `translateX(100%)` —un transform, que va por el compositor—
+   en vez de con `left`, que recalcularía layout en cada fotograma. */
+.intro__cursor {
+  position: absolute;
+  top: 4%;
+  right: 0;
+  bottom: 4%;
+  left: 0;
+  opacity: 0;
+  will-change: transform;
+}
+
+.intro__cursor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0.14rem;
+  border-radius: 999px;
+  background: var(--color-brand);
+  box-shadow: 0 0 0.9rem rgba(184, 250, 78, 0.7);
+}
+
+.intro.is-running .intro__cursor {
+  animation:
+    introCaretBlink calc(var(--intro-wait) / 2) ease-in-out 0s 2 both,
+    introCaret var(--intro-write) var(--intro-ease) var(--intro-wait) both,
+    introCaretOut 0.4s ease-out calc(var(--intro-wait) + var(--intro-write))
+      both;
+}
+
+@keyframes introCaret {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes introCaretBlink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes introCaretOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Freno de arranque — mientras la cortina está puesta, la web de debajo no
+   gasta sus animaciones de entrada. Al quitar `is-booting` arrancan enteras.
+   -------------------------------------------------------------------------- */
+.is-booting .animate-rise-in,
+.is-booting .animate-fade-in,
+.is-booting .animate-scroll-wheel,
+.is-booting .animate-scroll-hop,
+.is-booting .marker {
+  animation-play-state: paused;
+}
+
+/* Un bloque que entre en pantalla durante la entrada espera su turno */
+.is-booting .reveal.is-visible {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* Visita repetida o movimiento reducido: no hay cortina que dibujar */
+[data-intro="skip"] .intro {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Servicios — entrada y salida del panel de texto.
+   El titular y la descripción se animan por separado, nunca el contenedor: ese
+   lleva su propio `transform` para colocarse a la altura del servicio activo, y
+   tocarlo desde aquí desbarataría la posición. El desplazamiento de entrada
+   resuelve en `translateY(0)`, así que la posición en reposo no cambia.
+   -------------------------------------------------------------------------- */
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes panelOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.panel-reveal {
+  animation: panelIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* La descripción entra justo detrás del titular: se lee en orden */
+.panel-reveal-late {
+  animation: panelIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.09s both;
+}
+
+.panel-fade-out {
+  animation: panelOut 0.35s ease-in both;
+}
+
+/* Accesibilidad: sin desplazamiento para quien reduce el movimiento */
+@media (prefers-reduced-motion: reduce) {
+  /* Aparece y desaparece, pero sin desplazamiento: `panelOut` al revés es
+     justo un fundido de entrada, sin el `translateY` de `panelIn`. */
+  .panel-reveal,
+  .panel-reveal-late {
+    animation: panelOut 0.25s linear reverse both;
+  }
+
+  /* Nada de cortina ni de freno de arranque: la web se ve y punto */
+  .intro {
+    display: none;
+  }
+
+  .is-booting .animate-rise-in,
+  .is-booting .animate-fade-in,
+  .is-booting .reveal.is-visible {
+    animation-play-state: running;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* El subrayado ya está puesto, sin trazarse */
+  .marker,
+  .is-booting .marker {
+    animation: none;
+    clip-path: none;
+  }
+
+  .animate-scroll-wheel,
+  .animate-scroll-hop {
+    animation: none;
+  }
+
+  .animate-fade-in,
+  .animate-rise-in {
+    animation: fadeIn 0.01s linear both;
+  }
+
+  /* El contenido aparece, pero sin desplazamiento. */
+  .reveal {
+    transform: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .kinetic-word,
+  .kinetic-word.is-active,
+  .kinetic-word.is-leaving {
+    transform: none;
+    transition: opacity 0.3s ease;
+  }
 }
