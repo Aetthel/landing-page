@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
     <footer
       id="contacto"
       data-cursor-surface="dark"
-      className="w-full bg-dark text-white py-20 sm:py-28 lg:py-32 border-t border-neutral-800"
+      className="w-full bg-dark text-white py-20 sm:py-28 lg:py-32 border-t border-white/10"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
         {/* Main Grid: Headline & Action Left / Address & Contacts Right */}
@@ -83,7 +83,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Navigation & Legal Links Row */}
-        <div className="pt-8 border-t border-neutral-900 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-xs font-sans font-medium text-neutral-400">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-xs font-sans font-medium text-neutral-400">
           {/* Left Navigation Links */}
           {/* Mismas rutas que la Navbar: se leen de `siteConfig` para que el
               pie y la cabecera no puedan desincronizarse. */}

@@ -22,7 +22,7 @@ export const Projects: React.FC = () => {
       content: (
         <div
           data-cursor-surface="dark"
-          className="relative w-full h-full bg-neutral-900 flex flex-col justify-between p-8 text-white"
+          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white"
         >
           <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
             <span>01 / 05</span>
@@ -36,7 +36,7 @@ export const Projects: React.FC = () => {
               Plataforma Analytics & Control
             </p>
           </div>
-          <div className="pt-4 border-t border-neutral-800 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
+          <div className="pt-4 border-t border-white/10 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
             <span>SaaS Industrial</span>
             <span className="flex items-center gap-1 text-white">
               VER <ArrowUpRight className="w-3.5 h-3.5" />
@@ -56,7 +56,7 @@ export const Projects: React.FC = () => {
       content: (
         <div
           data-cursor-surface="dark"
-          className="relative w-full h-full bg-neutral-950 flex flex-col justify-between p-8 text-white border border-neutral-800"
+          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white border border-white/10"
         >
           <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
             <span>02 / 05</span>
@@ -64,8 +64,8 @@ export const Projects: React.FC = () => {
           </div>
 
           {/* Mobile Phone Visual Mockup Frame (rounded-none, shadow-none) */}
-          <div className="my-auto mx-auto w-full max-w-[240px] aspect-[9/16] bg-neutral-900 border-2 border-neutral-800 p-5 flex flex-col justify-between">
-            <div className="w-12 h-1 bg-neutral-700 mx-auto mb-2" />
+          <div className="my-auto mx-auto w-full max-w-[240px] aspect-[9/16] bg-dark/80 border-2 border-white/10 p-5 flex flex-col justify-between">
+            <div className="w-12 h-1 bg-white/20 mx-auto mb-2" />
             <div className="space-y-2 text-left">
               <span className="font-bold text-lg text-white font-sans">
                 beldarrain
@@ -77,7 +77,7 @@ export const Projects: React.FC = () => {
             <div className="h-2 w-16 bg-brand-soft" />
           </div>
 
-          <div className="pt-4 border-t border-neutral-900 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
+          <div className="pt-4 border-t border-white/10 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
             <span>Brand & Mobile</span>
             <span className="flex items-center gap-1 text-white">
               VER <ArrowUpRight className="w-3.5 h-3.5" />
@@ -134,7 +134,7 @@ export const Projects: React.FC = () => {
       content: (
         <div
           data-cursor-surface="dark"
-          className="relative w-full h-full bg-neutral-900 flex flex-col justify-between p-8 text-white"
+          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white"
         >
           <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
             <span>04 / 05</span>
@@ -150,7 +150,7 @@ export const Projects: React.FC = () => {
             </p>
           </div>
 
-          <div className="pt-4 border-t border-neutral-800 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
+          <div className="pt-4 border-t border-white/10 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
             <span>Retail & Digital</span>
             <span className="flex items-center gap-1 text-white">
               VER <ArrowUpRight className="w-3.5 h-3.5" />

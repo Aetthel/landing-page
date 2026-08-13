@@ -76,7 +76,7 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
 
         // Neutral Palette
         vec3 cCanvas = vec3(0.957, 0.957, 0.965); // #F4F4F6 porcelana
-        vec3 cDark   = vec3(0.102, 0.102, 0.118); // #1A1A1E Deep Graphite
+        vec3 cDark   = vec3(0.071, 0.071, 0.071); // #121212 Dark Background
         vec3 cSoft   = vec3(0.850, 0.850, 0.880); // Subtle neutral line tint
 
         // Base color

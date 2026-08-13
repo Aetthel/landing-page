@@ -25,8 +25,8 @@
   --color-surface: #FFFFFF;
   /* Superficie atenuada con toque lima sutil */
   --color-surface-muted: #F0F7E6;
-  /* Fondo oscuro (Deep Graphite para footer / bloques de alto contraste) */
-  --color-dark: #1A1A1E;
+  /* Fondo oscuro (Alto contraste para hero, footer y secciones oscuras) */
+  --color-dark: #121212;
   /* Divisores y bordes finos */
   --color-line: #E2E2E8;
   /* Texto principal (Deep Graphite #1A1A1E) */
@@ -305,7 +305,7 @@ html.lenis body {
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
   border: 1px solid var(--color-line);
-  background: #1A1A1E;
+  background: var(--color-dark);
   color: #FFFFFF;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -584,7 +584,7 @@ html.lenis body {
   z-index: 100;
   display: grid;
   place-items: center;
-  background: #0b0b0d;
+  background: var(--color-dark);
   transform: translateY(0);
   transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
   will-change: transform;
@@ -637,10 +637,10 @@ html.lenis body {
 
 .intro__mark--wordmark {
   width: clamp(11rem, 24vw, 18rem);
-  aspect-ratio: 431 / 108;
+  aspect-ratio: 790 / 165;
   background: var(--color-brand);
-  -webkit-mask-image: url("/logos/aetthel-wordmark.png");
-  mask-image: url("/logos/aetthel-wordmark.png");
+  -webkit-mask-image: url("/logos/aetthel-logo.svg");
+  mask-image: url("/logos/aetthel-logo.svg");
   /* En reposo, sin escribir: el primer trazo no aparece hasta la salida */
   clip-path: inset(0 100% 0 0);
 }
