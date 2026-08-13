@@ -23,10 +23,9 @@ interface WordProps {
   range: [number, number];
 }
 
-/* Cuántas palabras se están pintando a la vez. Con 1 el efecto es un contador:
-   una palabra entra, termina, entra la siguiente. Solapando los tramos, el
-   trazo avanza como una ola y el ojo deja de ver los escalones. */
-const WORDS_IN_FLIGHT = 3;
+/* Cuántas palabras se están pintando a la vez. Con 1 el efecto es estricto:
+   una palabra entra y se subraya de principio a fin antes de pasar a la siguiente. */
+const WORDS_IN_FLIGHT = 1;
 
 /**
  * Una palabra en tinta sólida con un trazo lima que se pinta por detrás.

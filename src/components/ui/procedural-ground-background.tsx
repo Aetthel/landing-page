@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * ProceduralGroundBackground
- * A WebGL 2D background featuring topographic neon lines and sand-ripple movement.
+ * A WebGL 2D background featuring topographic lines and sand-ripple movement.
  * Optimized for performance using fragment shaders.
  *
  * Se dibuja sobre el contenedor padre (que debe ser `relative`), no sobre el viewport.
@@ -74,20 +74,19 @@ export const ProceduralGroundBackground: React.FC<{ className?: string }> = ({
         float fineRipples = sin(gridUv.y * 33.0 + n * 5.0 + u_time * 0.32);
         float fineLine = smoothstep(lineWidth * 0.5, 0.0, abs(fineRipples));
 
-        // Orbia Lime Palette (Lime & variations only)
+        // Neutral Palette
         vec3 cCanvas = vec3(0.957, 0.957, 0.965); // #F4F4F6 porcelana
         vec3 cDark   = vec3(0.102, 0.102, 0.118); // #1A1A1E Deep Graphite
-        vec3 cLime   = vec3(0.722, 0.980, 0.306); // #B8FA4E Growth Lime
-        vec3 cSoft   = vec3(0.843, 0.988, 0.557); // #D7FC8E Light Lime Tint
+        vec3 cSoft   = vec3(0.850, 0.850, 0.880); // Subtle neutral line tint
 
         // Base color
         vec3 finalColor = cCanvas;
 
-        // Blend fine terrain lines in soft Lime Tint
+        // Blend fine terrain lines in soft neutral tint
         finalColor = mix(finalColor, cSoft, clamp(fineLine * depth * (0.35 + halo * 0.4), 0.0, 1.0) * 0.30);
 
-        // Blend main topographic lines in Deep Graphite (with Growth Lime glow under mouse)
-        vec3 lineColor = mix(cDark, cLime, halo * 0.88);
+        // Blend main topographic lines in Deep Graphite
+        vec3 lineColor = cDark;
         finalColor = mix(finalColor, lineColor, clamp(topoLine * depth * (1.15 + halo * 0.8), 0.0, 0.85));
 
         // Horizon Fade
