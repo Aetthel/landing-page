@@ -6,10 +6,14 @@ import { Reveal } from "@/components/ui/reveal";
    El proyecto entero, paso a paso.
 
    La página de contacto cuenta los tres primeros movimientos, hasta la primera
-   reunión. Aquí va el recorrido completo, y con una columna que casi nadie
+   conversación. Aquí va el recorrido completo, y con una columna que casi nadie
    publica: lo que se espera del cliente en cada paso. Contratar desarrollo da
    miedo por el tiempo que uno va a tener que poner y nadie le sabe decir
    cuánto; esa columna responde justo eso.
+
+   La columna que antes daba plazos ahora da entregables. Los plazos reales
+   dependen del nivel contratado y salen en el presupuesto: publicar aquí una
+   horquilla genérica sería inventarse un dato que después no se sostiene.
 
    La numeración se imprime porque el orden es información: no se puede
    construir antes de validar el diseño, ni validar antes de cerrar el alcance.
@@ -23,16 +27,16 @@ export const ServicesProcess: React.FC = () => {
             Cómo va un proyecto, de la primera línea a la entrega.
           </h2>
           <p className="mt-6 max-w-xl font-sans text-base sm:text-lg font-light leading-relaxed text-ink-muted">
-            Seis pasos, siempre los mismos. Los plazos son los reales de un
-            proyecto medio: si el tuyo se sale, lo sabrás en la propuesta y no
-            sobre la marcha.
+            Los mismos pasos para una landing que para una app, cambia lo que
+            dura cada uno. De cada paso sale algo por escrito, y el calendario
+            de tu proyecto va en el presupuesto antes de empezar.
           </p>
         </Reveal>
 
         <Reveal className="mt-14 lg:mt-20">
           <div className="hidden lg:grid grid-cols-12 gap-x-6 pb-4 border-b border-ink/15 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted">
             <span className="col-span-1">Paso</span>
-            <span className="col-span-3">Momento</span>
+            <span className="col-span-3">Fase</span>
             <span className="col-span-4">Lo que hacemos nosotros</span>
             <span className="col-span-4">Lo que necesitamos de ti</span>
           </div>
@@ -51,10 +55,11 @@ export const ServicesProcess: React.FC = () => {
                   <h3 className="text-xl sm:text-2xl font-normal tracking-tight text-ink">
                     {item.title}
                   </h3>
-                  {/* El plazo lleva el filete lima: es el dato que la gente
-                      viene a buscar en esta tabla. */}
+                  {/* Lo que queda por escrito al cerrar el paso lleva el filete
+                      lima: es el dato que la gente viene a buscar en esta tabla
+                      —qué tengo yo en la mano cuando esto termina—. */}
                   <span className="inline-block border-b-2 border-brand pb-0.5 font-sans text-xs font-medium tracking-wide text-ink">
-                    {item.when}
+                    {item.output}
                   </span>
                 </div>
 

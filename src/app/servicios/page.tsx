@@ -1,11 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { InteractiveHoverLink } from "@/components/ui/interactive-hover-button";
 import { ServiceSheet } from "@/components/sections/ServiceSheet";
-import { ServicesProcess } from "@/components/sections/ServicesProcess";
 import { ServicesAftercare } from "@/components/sections/ServicesAftercare";
 import { ServicesFaq } from "@/components/sections/ServicesFaq";
 import { services } from "@/config/services";
@@ -13,30 +10,42 @@ import { services } from "@/config/services";
 /* ==========================================================================
    /servicios — contrato de dirección
 
-   TESIS: la página es el pliego abierto. Un estudio sin cartera que enseñar
-   solo tiene una prueba que dar: decir de antemano lo que tarda, lo que llega
-   el día de la entrega y —sobre todo— lo que no entra. Rechaza la parrilla de
-   tres tarjetas iguales con icono, titular y "consúltanos". El precio es lo
-   único que se calla, porque todavía no está cerrado: se dice en la FAQ con
-   todas las letras en lugar de insinuarlo con una cifra provisional.
+   TESIS: la página es el pliego abierto. Un estudio joven y sin cartera que
+   enseñar solo tiene una prueba que dar: decir de antemano qué hace, en qué
+   niveles se contrata, qué llega el día de la entrega y —sobre todo— lo que no
+   entra. Rechaza la parrilla de tres tarjetas iguales con icono, titular y
+   "consúltanos". El precio es lo único que se calla, porque todavía no está
+   cerrado: se dice en la FAQ con todas las letras en lugar de insinuarlo con
+   una cifra provisional. Ninguna sección publica cifras —ni tarifas, ni
+   horquillas de semanas—; lo que sí se publica es el modelo de contratación de
+   cada servicio, que sí está decidido.
 
    MUNDO PROPIO: el del sistema ya establecido —lienzo porcelana, bloque
    grafito, lima de marca, Jakarta de titular sobre Inter de texto— llevado a
-   la gramática de un pliego: tablas regladas con hairlines, cifras tabulares,
-   rótulos versalita a 11px, y el filete lima trazándose de izquierda a derecha
-   como único gesto vivo. Cero tarjetas, cero sombras decorativas.
+   la gramática de un pliego: tablas regladas con hairlines, rótulos versalita a
+   11px, y el filete lima como único gesto vivo. Cero tarjetas, cero sombras
+   decorativas. La escalera de niveles se dibuja con un medidor de tres tramos:
+   la progresión se ve sin necesidad de escribir un número.
 
-   RELATO: llegas con una idea a medias o un proceso que te quema horas → cada
-   ficha te enseña qué se entrega y qué no → el proceso te dice cuánto tiempo
-   tendrás que poner tú → el cierre te quita el miedo a quedarte atado →
-   escribes. Sin sumario ni comparador previo: la página no se lee para elegir
-   entre tres opciones, se lee entera hasta reconocerse en una.
+   RELATO: la elección ya viene hecha de casa. A esta página se entra desde la
+   lista de servicios de la home, que enlaza a la ficha concreta por su ancla,
+   así que aquí no hay que volver a elegir: aterrizas en tu capítulo y lees sus
+   niveles, qué incluye y qué no → el cierre te quita el miedo a quedarte atado
+   → las dudas sueltas caen en la FAQ → escribes. Cada ficha lleva su propio
+   botón: la decisión puede llegar en cualquier punto y no obliga a volver
+   arriba.
+
+   Cómo trabaja el estudio —el proceso paso a paso— no vive aquí: esta página
+   responde qué se contrata, no cómo somos por dentro. Eso es materia de
+   Aetthel Lab.
 
    PRIMER PANTALLAZO: bloque grafito a pantalla completa, sin más contenido que
-   el titular a tres líneas con el cierre en lima y, a la derecha, la entradilla
-   y el CTA. La cabecera habla en persona —una idea, un problema, alguien que
-   escucha— y no adelanta ningún dato. Ni rótulo sobre el titular ni banda de
-   datos al pie.
+   el titular a tres líneas con el cierre en lima y, a la derecha, la entradilla:
+   de dónde salen los proyectos —una nota del móvil, algo que se repite— y qué
+   nos gusta de ellos. Ni botón, ni datos, ni una palabra sobre dinero: la
+   cabecera pone la voz y habla de lo que trae el cliente. Solo la ve entera
+   quien llega sin ancla; el que viene señalando un servicio cae directamente en
+   su ficha.
 
    FORMA: hoja de especificación / pliego abierto. Candidata 3 de la lista
    ordenada por resonancia; semilla ad4ca1db.
@@ -45,7 +54,7 @@ import { services } from "@/config/services";
 export const metadata: Metadata = {
   title: "Servicios",
   description:
-    "Landing pages, aplicaciones web a medida y automatización de procesos. Qué se entrega en cada servicio, qué no entra y cómo trabajamos, explicado antes de empezar.",
+    "Landing pages, web apps a medida y automatización de procesos. Los niveles de cada servicio, qué incluye, qué no entra y cómo trabajamos, explicado antes de empezar. Presupuesto a medida.",
 };
 
 export default function ServiciosPage() {
@@ -58,6 +67,11 @@ export default function ServiciosPage() {
             Encabezado sobre grafito, igual que la página de contacto: abre con
             contraste y mantiene legible el logotipo en negativo de la Navbar
             antes del primer scroll.
+
+            El titular habla en persona —una idea, un problema, alguien que
+            escucha— y no adelanta ningún dato. El qué hacemos lo dice el
+            sumario que va justo debajo, y lo dice con nombres y modelo de
+            contratación: la cabecera pone la voz, la banda pone la información.
             ------------------------------------------------------------------ */}
         <section
           data-cursor-surface="dark"
@@ -70,11 +84,13 @@ export default function ServiciosPage() {
 
           <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end">
-              {/* El cuerpo lo manda la línea más larga —la del cierre—: ocupa
-                  ocho columnas y el tamaño se topa donde esa línea todavía cabe
-                  entera. Las tres líneas son un solo golpe de voz y partir la
-                  última rompería el compás. */}
-              <h1 className="lg:col-span-8 text-[clamp(2.25rem,4.4vw,4.5rem)] font-normal tracking-tight leading-[1.03] text-white">
+              {/* El cuerpo lo manda la línea más larga —la del cierre—: cabe en
+                  algo menos de seis columnas al tamaño máximo, así que se le
+                  reservan siete. Con las ocho de antes sobraba media columna de
+                  aire que empujaba la entradilla contra el margen derecho y
+                  rompía la pareja. Las tres líneas son un solo golpe de voz y
+                  partir la última rompería el compás. */}
+              <h1 className="lg:col-span-7 text-[clamp(2.25rem,4.4vw,4.5rem)] font-normal tracking-tight leading-[1.03] text-white">
                 <span className="block animate-rise-in rise-delay-1">
                   Si tienes una idea
                 </span>
@@ -89,30 +105,26 @@ export default function ServiciosPage() {
                 </span>
               </h1>
 
-              <div className="lg:col-span-4 lg:col-start-9 space-y-8 animate-rise-in rise-delay-3">
-                <p className="max-w-md font-sans text-base sm:text-lg font-light leading-relaxed text-neutral-400">
-                  Casi todo lo que construimos empieza igual: alguien cansado de
-                  repetir la misma tarea cada semana, o alguien con un proyecto
-                  en la cabeza y ninguna idea de por dónde se abre. Escuchamos,
-                  preguntamos lo que nadie pregunta y te lo devolvemos
-                  convertido en algo que se puede abrir y usar.
-                </p>
-
-                <InteractiveHoverLink
-                  href="/contacto"
-                  text="Hablemos de tu idea"
-                  data-cursor-surface="light"
-                  icon={<ArrowUpRight className="h-4 w-4" />}
-                  className="border-brand bg-brand px-7 py-3 text-neutral-950 tracking-widest"
-                  blobClassName="bg-white"
-                  revealClassName="text-neutral-950"
-                />
-              </div>
+              {/* Sin botón en la cabecera: cada ficha lleva el suyo, y el
+                  sumario que viene justo debajo es la salida natural desde
+                  aquí. Un CTA en el primer pantallazo pediría decidir antes de
+                  haber leído qué se ofrece. */}
+              <p className="lg:col-span-5 lg:col-start-8 max-w-md font-sans text-base sm:text-lg font-light leading-relaxed text-neutral-400 animate-rise-in rise-delay-3">
+                Casi todo lo que construimos empieza en una nota del móvil o en
+                una conversación a medias: una idea que llevas tiempo dando
+                vueltas, algo que se repite cada semana y te come el día. Nos
+                gusta esa parte —preguntar hasta entenderla del todo— tanto como
+                la de sentarnos a construirla.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Las fichas alternan lienzo y grafito: tres capítulos seguidos sobre
+        {/* Sin sumario: a esta página se llega desde la lista de servicios de
+            la home, y se llega ya apuntando a una ficha concreta por su ancla.
+            Repetir aquí esa misma lista sería hacer elegir dos veces lo mismo.
+
+            Las fichas alternan lienzo y grafito: tres capítulos seguidos sobre
             el mismo fondo se leerían como una única parrafada. */}
         {services.map((service, index) => (
           <ServiceSheet
@@ -122,7 +134,10 @@ export default function ServiciosPage() {
           />
         ))}
 
-        <ServicesProcess />
+        {/* La tabla del proceso —cómo va un proyecto paso a paso— vive ahora en
+            Aetthel Lab: cuenta cómo trabaja el estudio, no qué se contrata. Lo
+            que de ella importaba aquí, el tiempo que tiene que poner el cliente,
+            lo responde la FAQ. */}
         <ServicesAftercare />
         <ServicesFaq />
       </main>

@@ -9,9 +9,10 @@ import { Reveal } from "@/components/ui/reveal";
 /* --------------------------------------------------------------------------
    Dudas sueltas.
 
-   Acordeón de una sola respuesta abierta: son preguntas independientes y tener
-   seis desplegadas a la vez devuelve el muro de texto que el acordeón venía a
-   evitar. La primera arranca abierta para que se vea que esto se abre.
+   Acordeón de una sola respuesta abierta: son preguntas independientes y
+   tenerlas todas desplegadas a la vez devuelve el muro de texto que el acordeón
+   venía a evitar. La primera arranca abierta para que se vea que esto se abre,
+   y es la del precio: es la que trae a la gente hasta aquí.
 
    La apertura se anima con `grid-template-rows` de `0fr` a `1fr`: es la única
    forma de interpolar hasta el alto real del contenido sin medirlo en
@@ -36,7 +37,7 @@ export const ServicesFaq: React.FC = () => {
               >
                 escríbenos
               </Link>{" "}
-              y te respondemos en menos de 24 horas.
+              y te respondemos con lo que sea que necesites saber.
             </p>
           </Reveal>
 

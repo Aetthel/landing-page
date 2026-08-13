@@ -16,6 +16,27 @@ export interface ServiceDeliverable {
   detail: string;
 }
 
+/* Un nivel dentro de un servicio: paquete de landing, complejidad de app o
+   dificultad de automatización. No lleva precio —ninguno está cerrado— y por
+   eso el nivel se reconoce por su alcance y por a quién le encaja, que es lo
+   que de verdad ayuda a alguien a situarse antes de escribir. */
+export interface ServiceTier {
+  /** Rótulo del nivel: Básico, Estándar, Premium… */
+  name: string;
+  /** Para quién encaja este nivel, en una línea. */
+  fit: string;
+  /** Qué lo distingue de los anteriores. */
+  scope: string[];
+}
+
+/* Bloque de contratación complementaria: el soporte mensual de las landings o
+   la doble vía —pago único o mensualidad— de las apps. */
+export interface ServiceSupport {
+  title: string;
+  copy: string;
+  items: string[];
+}
+
 export interface Service {
   /** Ancla del documento: el sumario enlaza aquí. */
   id: string;
@@ -24,13 +45,22 @@ export interface Service {
   name: string;
   headline: string;
   summary: string;
+  /** Para quién es. Filtra antes de que nadie pierda una reunión. */
   audience: string;
-  timeline: string;
-  delivery: string;
-  deliverables: ServiceDeliverable[];
+  /** Cómo se contrata. Sin cifras: el modelo sí está cerrado, el precio no. */
+  billing: string;
+  /** Rótulo del bloque de niveles: cada servicio los ordena por otra cosa. */
+  tiersLabel: string;
+  tiersIntro: string;
+  tiers: ServiceTier[];
+  /** Lo que va en todos los niveles, sin tener que pedirlo. */
+  includes: ServiceDeliverable[];
+  support?: ServiceSupport;
   /** Lo que queda fuera. Se imprime igual de grande que lo que entra. */
   excludes: string[];
   stack: string[];
+  /** Texto del botón de la ficha. */
+  cta: string;
   /** Qué lámina ilustrativa acompaña a la ficha. */
   diagram: "landing" | "app" | "automation";
 }

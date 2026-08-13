@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 
@@ -39,15 +40,21 @@ export const Services: React.FC = () => {
   /* Escalonado: el bloque de texto baja hasta quedar a la altura del servicio
      activo. Se mide la posición real en vez de aplicar márgenes fijos. */
   const listRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const itemRefs = useRef<(HTMLElement | null)[]>([]);
   const panelRef = useRef<HTMLDivElement>(null);
   const panelCellRef = useRef<HTMLDivElement>(null);
 
+  /* `slug` es el ancla de la ficha correspondiente en /servicios —los ids
+     viven en `config/services.ts`—. Esta lista es la única puerta de entrada a
+     cada servicio: la página de servicios ya no lleva sumario propio, así que
+     el recorrido es este de aquí y el enlace tiene que caer en la ficha
+     concreta, no en lo alto de la página. */
   const servicesData = [
     {
       id: "01",
       number: "01",
       title: "Landing Pages",
+      slug: "landing-pages",
       headline: "Convertir en segundos lo que eres",
       description:
         "Diseñamos landing pages claras, rápidas y optimizadas, pensadas para que cualquiera que las visite entienda de inmediato tu propuesta de valor y por qué elegirte a ti.",
@@ -55,7 +62,8 @@ export const Services: React.FC = () => {
     {
       id: "02",
       number: "02",
-      title: "Apps a Medida",
+      title: "Web Apps",
+      slug: "web-apps",
       headline: "El programa que se adapta a ti.",
       description:
         "Construimos la app que tu equipo necesita. Desarrollamos aplicaciones web a medida, paneles administrativos internos y plataformas de clientes adaptadas a tu flujo operativo real.",
@@ -64,6 +72,7 @@ export const Services: React.FC = () => {
       id: "03",
       number: "03",
       title: "Automatizaciones",
+      slug: "automatizaciones",
       /* El `\n` fuerza el corte de línea: lo respeta `whitespace-pre-line` en
          el titular. Los demás servicios no lo llevan y parten solos. */
       headline: "Que el trabajo repetitivo\ndeje de ser trabajo.",
@@ -127,8 +136,9 @@ export const Services: React.FC = () => {
             {servicesData.map((service, index) => {
               const isActive = activeService === service.id;
               return (
-                <div
+                <Link
                   key={service.id}
+                  href={`/servicios#${service.slug}`}
                   ref={(node) => {
                     itemRefs.current[index] = node;
                   }}
@@ -136,7 +146,7 @@ export const Services: React.FC = () => {
                   onMouseMove={() => {
                     if (activeService !== service.id) wake(service.id);
                   }}
-                  className="cursor-pointer select-none group py-2"
+                  className="block cursor-pointer select-none group py-2"
                 >
                   <div className="space-y-2 pb-4">
                     <span
@@ -172,7 +182,7 @@ export const Services: React.FC = () => {
                       isActive ? "scale-x-100" : "scale-x-0"
                     }`}
                   />
-                </div>
+                </Link>
               );
             })}
           </div>
