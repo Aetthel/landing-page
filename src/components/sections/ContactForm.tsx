@@ -543,9 +543,6 @@ export const ContactForm: React.FC = () => {
                         blobClassName="bg-ink"
                         revealClassName="text-white"
                       />
-                      <p className="font-sans text-xs text-ink-muted">
-                        Respondemos en menos de 24 h. Sin listas de correo.
-                      </p>
                     </div>
 
                     {status === "error" && (
