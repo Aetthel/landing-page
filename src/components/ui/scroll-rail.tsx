@@ -27,7 +27,6 @@ export function ScrollRail() {
   const railRef = useRef<HTMLDivElement>(null);
   const thumbRef = useRef<HTMLSpanElement>(null);
   const fillRef = useRef<HTMLSpanElement>(null);
-  const countRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) return;
@@ -35,13 +34,11 @@ export function ScrollRail() {
     const rail = railRef.current;
     const thumb = thumbRef.current;
     const fill = fillRef.current;
-    const count = countRef.current;
-    if (!rail || !thumb || !fill || !count) return;
+    if (!rail || !thumb || !fill) return;
 
     let railHeight = 0;
     let thumbHeight = 0;
     let maxScroll = 0;
-    let lastPercent = -1;
     let frame = 0;
 
     /* --- Pintado ------------------------------------------------------- */
@@ -57,12 +54,6 @@ export function ScrollRail() {
       fill.style.transform = `scaleY(${
         railHeight > 0 ? (progress * travel) / railHeight : 0
       })`;
-
-      const percent = Math.round(progress * 100);
-      if (percent !== lastPercent) {
-        lastPercent = percent;
-        count.textContent = `${percent}`;
-      }
     };
 
     const measure = () => {
@@ -186,11 +177,7 @@ export function ScrollRail() {
     <div ref={railRef} className="scroll-rail" aria-hidden="true">
       <span className="scroll-rail__track" />
       <span ref={fillRef} className="scroll-rail__fill" />
-      <span ref={thumbRef} className="scroll-rail__thumb">
-        <span ref={countRef} className="scroll-rail__count">
-          0
-        </span>
-      </span>
+      <span ref={thumbRef} className="scroll-rail__thumb" />
     </div>
   );
 }

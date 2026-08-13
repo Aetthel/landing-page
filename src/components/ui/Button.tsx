@@ -28,7 +28,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         "border border-slate-300 bg-transparent text-slate-800 hover:bg-slate-100 focus:ring-slate-400 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800",
       ghost:
         "bg-transparent text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 focus:ring-slate-400",
-      glow: "bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white hover:opacity-95 shadow-indigo-500/25 hover:shadow-indigo-500/40 focus:ring-indigo-500",
+      glow: "bg-slate-900 text-white hover:bg-slate-800 focus:ring-slate-700",
     };
 
     return (
