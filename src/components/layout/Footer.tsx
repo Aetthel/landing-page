@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
                   píldora ya es lima, así que el punto que crece va en blanco
                   —conservando el `hover:bg-white` que tenía este CTA. */}
               <InteractiveHoverLink
-                href="mailto:aetthel@gmail.com"
+                href="/contacto"
                 text="Iniciar tu proyecto"
                 data-cursor-surface="light"
                 icon={<ArrowUpRight className="h-4 w-4" />}
