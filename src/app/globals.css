@@ -137,6 +137,165 @@ html.lenis body {
   color: #ffffff;
 }
 
+/* --------------------------------------------------------------------------
+   Barra de scroll de marca — raíl fino a la derecha con el recorrido en lima.
+
+   La nativa solo se esconde donde <ScrollRail> se monta, es decir con puntero
+   fino: en táctil la del sistema es efímera, no molesta, y quitarla dejaría al
+   usuario sin ninguna referencia de posición.
+
+   El pulgar solo se mueve con `translate3d` y el relleno solo con `scaleY`
+   —ambos los pone el componente—, así que el scroll no repinta nada. Lo que sí
+   cambia de tamaño es el grosor al pasar por encima, y eso pasa una vez por
+   gesto, no por fotograma.
+   -------------------------------------------------------------------------- */
+@media (pointer: fine) {
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.scroll-rail {
+  position: fixed;
+  top: 6.5rem;
+  right: 0.75rem;
+  bottom: 6.5rem;
+  z-index: 60;
+  /* Ancho de agarre. El dibujo es mucho más fino: lo que sobra es zona
+     clicable, que si no habría que apuntar a un raíl de 2px. */
+  width: 14px;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  /* El raíl gestiona su propio arrastre; sin esto el navegador intentaría
+     además desplazar la página con el mismo gesto. */
+  touch-action: none;
+}
+
+/* Aparece cuando el componente ya ha medido, no antes: si no, el primer
+   fotograma mostraría el pulgar arriba y a tamaño equivocado. */
+.scroll-rail.is-ready {
+  opacity: 1;
+}
+
+/* Página que cabe entera en pantalla: no hay recorrido que enseñar */
+.scroll-rail.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-rail__track,
+.scroll-rail__fill,
+.scroll-rail__thumb {
+  position: absolute;
+  left: 50%;
+  border-radius: 999px;
+  /* Los eventos los recibe el raíl entero, que es quien sabe medir */
+  pointer-events: none;
+  /* Centrado por margen y no por `translateX`: el pulgar usa su `transform`
+     para viajar y el relleno para escalar, así que ahí no cabe nada más. */
+  width: var(--rail-w);
+  margin-left: calc(var(--rail-w) / -2);
+  transition:
+    width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    margin-left 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-rail__track {
+  --rail-w: 2px;
+  top: 0;
+  bottom: 0;
+  /* Gris neutro a baja opacidad: el mismo raíl vale sobre el lienzo claro y
+     sobre los bloques oscuros sin tener que cambiar de color. */
+  background: rgba(120, 122, 130, 0.22);
+}
+
+/* El camino ya recorrido. Se escala desde arriba y muere justo en el canto
+   superior del pulgar, así que lima y pulgar se leen como una sola pieza. */
+.scroll-rail__fill {
+  --rail-w: 2px;
+  top: 0;
+  bottom: 0;
+  transform-origin: top center;
+  transform: scaleY(0);
+  background: linear-gradient(
+    to bottom,
+    rgba(184, 250, 78, 0.12),
+    rgba(184, 250, 78, 0.65)
+  );
+}
+
+.scroll-rail__thumb {
+  --rail-w: 4px;
+  top: 0;
+  height: 56px;
+  background: var(--color-brand);
+  box-shadow: 0 0 0.85rem rgba(184, 250, 78, 0.55);
+  will-change: transform;
+}
+
+/* Al acercarse el puntero el raíl engorda y se declara agarrable */
+.scroll-rail:hover .scroll-rail__thumb,
+.scroll-rail.is-dragging .scroll-rail__thumb {
+  --rail-w: 8px;
+}
+
+.scroll-rail:hover .scroll-rail__track,
+.scroll-rail.is-dragging .scroll-rail__track,
+.scroll-rail:hover .scroll-rail__fill,
+.scroll-rail.is-dragging .scroll-rail__fill {
+  --rail-w: 4px;
+}
+
+.scroll-rail.is-dragging .scroll-rail__thumb {
+  box-shadow: 0 0 1.4rem rgba(184, 250, 78, 0.8);
+}
+
+/* Porcentaje recorrido, pegado al pulgar. Solo al interactuar: en reposo la
+   cifra sería ruido sobre el contenido. Va en píldora oscura porque el lima
+   sobre el lienzo claro no tiene contraste suficiente para texto. */
+.scroll-rail__count {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 0.6rem);
+  transform: translateY(-50%);
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  background: var(--color-dark);
+  color: var(--color-brand);
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.scroll-rail__count::after {
+  content: "%";
+  opacity: 0.6;
+}
+
+.scroll-rail:hover .scroll-rail__count,
+.scroll-rail.is-dragging .scroll-rail__count {
+  opacity: 1;
+}
+
+/* La declaración de visibilidad va al final para ganarle al `display: none` de
+   arriba, que es el estado por defecto en táctil. */
+@media (pointer: fine) {
+  .scroll-rail {
+    display: block;
+  }
+}
+
 /* Ocultar cursor nativo en ordenadores para dar paso al CustomCursor */
 @media (pointer: fine) {
   body,

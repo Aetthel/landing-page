@@ -20,6 +20,11 @@ interface ScrollVideoRevealProps {
 const INSET_START = "inset(17.5% 10%)";
 const INSET_END = "inset(0% 0%)";
 
+/* Escala de la ventana al asomar por abajo. La fase de aproximación la lleva
+   de aquí a 1 justo cuando la sección toca el borde superior, que es donde
+   arranca la apertura: el movimiento nunca se corta. */
+const APPROACH_SCALE = 0.94;
+
 /**
  * ScrollVideoReveal
  *
@@ -31,6 +36,19 @@ const INSET_END = "inset(0% 0%)";
  * textura del vídeo en cada fotograma del scroll, que es justo la combinación
  * que atasca el hilo principal. Con `clip-path` el vídeo se monta una sola vez
  * a tamaño completo y lo único que cambia es cuánto se ve de él.
+ *
+ * El efecto son dos fases encadenadas, no una:
+ *
+ *  1. Aproximación (`top bottom` → `top top`, sin pin): mientras la sección
+ *     sube a pantalla, la ventana crece de {@link APPROACH_SCALE} a 1.
+ *  2. Apertura (`top top`, con pin): la ventana se abre a sangre.
+ *
+ * Sin la primera, al llegar la sección la página se para en seco con la ventana
+ * quieta y el corte se nota como un salto. Con ella, la ventana ya viene en
+ * movimiento cuando el pin entra, y la fase 2 empieza y acaba con `power1.inOut`
+ * —velocidad cero en ambos extremos—, así que ni al fijar ni al soltar hay
+ * cambio brusco de ritmo. Las dos fases usan propiedades distintas (`transform`
+ * y `clip-path`) para que sus tweens no se pisen en el punto de relevo.
  */
 export function ScrollVideoReveal({
   videoSrc = "/videos/showreel.mp4",
@@ -44,28 +62,59 @@ export function ScrollVideoReveal({
       typeof window === "undefined" ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
+      // Sin animación no hay fase de aproximación que deshaga el encogido
+      // inicial: la ventana se queda en su tamaño de reposo.
+      if (frameRef.current) frameRef.current.style.transform = "none";
       return;
     }
 
+    // En móvil, mostrar u ocultar la barra del navegador cambia la altura del
+    // viewport; sin esto ScrollTrigger recalcularía a media apertura y la
+    // sección daría un tirón en mitad del gesto.
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
     const ctx = gsap.context(() => {
+      // Fase 1 — aproximación. Termina exactamente donde empieza el pin, así
+      // que en el relevo la escala ya vale 1 y no hay salto de tamaño.
+      gsap.fromTo(
+        frameRef.current,
+        { scale: APPROACH_SCALE },
+        {
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "top top",
+            scrub: true,
+          },
+        }
+      );
+
+      // Fase 2 — apertura con la sección fijada.
       gsap.fromTo(
         frameRef.current,
         { clipPath: INSET_START },
         {
           clipPath: INSET_END,
-          ease: "none",
+          // Arranca y frena con velocidad cero: el pin engancha y suelta sin
+          // que la apertura cambie de ritmo de golpe.
+          ease: "power1.inOut",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
-            end: "+=120%",
+            // Recorrido algo más largo que antes: el ease concentra velocidad
+            // en el tramo central y con 120% la apertura se sentía apurada.
+            end: "+=140%",
             pin: true,
             // Lenis ya suaviza el scroll. Un `scrub` numérico añadiría una
             // segunda inercia encima y el vídeo llegaría siempre tarde al
             // gesto: se siente gomoso, no fluido.
             scrub: true,
-            // Prepara el pin un poco antes para que un scroll rápido no
-            // provoque el salto de un fotograma al fijar la sección.
-            anticipatePin: 1,
+            // Sin `anticipatePin`: adelanta el pin en función de la velocidad,
+            // y con el scroll de Lenis ese adelanto es justo lo que se percibe
+            // como el tirón al entrar en la sección.
+            invalidateOnRefresh: true,
           },
         }
       );
@@ -83,7 +132,14 @@ export function ScrollVideoReveal({
       <div
         ref={frameRef}
         className="absolute inset-0 flex items-center justify-center bg-dark text-white group cursor-pointer"
-        style={{ clipPath: INSET_START }}
+        // El estado inicial va en línea para que la ventana ya salga recortada
+        // en el primer pintado, antes de que GSAP tome el control. `willChange`
+        // declara de antemano las dos propiedades que anima el scroll.
+        style={{
+          clipPath: INSET_START,
+          transform: `scale(${APPROACH_SCALE})`,
+          willChange: "clip-path, transform",
+        }}
       >
         <AmbientVideo
           src={videoSrc}

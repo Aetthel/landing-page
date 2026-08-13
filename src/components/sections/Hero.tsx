@@ -28,9 +28,11 @@ export const Hero: React.FC = () => {
           </span>
           <span className="relative inline-flex items-center justify-center align-middle my-1 animate-rise-in rise-delay-2">
             <MarkerHighlight />
+            {/* Tinta sobre el subrayado lima: en negro el trazo de marcador
+                hace de fondo y la palabra gana contraste sobre el vídeo. */}
             <RotatingText
               words={["Páginas web", "Aplicaciones", "Automatizaciones"]}
-              className="text-white font-medium"
+              className="text-ink font-medium"
             />
           </span>
           <span className="block animate-rise-in rise-delay-3">
