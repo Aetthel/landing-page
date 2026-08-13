@@ -6,6 +6,7 @@ import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { InteractiveHoverLink } from "@/components/ui/interactive-hover-button";
+import { IsotipoIcon } from "@/components/ui/logo-isotipo";
 import { cn } from "@/lib/utils";
 
 export const Navbar: React.FC = () => {
@@ -57,7 +58,7 @@ export const Navbar: React.FC = () => {
         <div className="hidden lg:block relative">
           {!scrolled ? (
             /* Top State: Left Main Pills | Centered Isotype | Right Contact Pill */
-            <div className="flex items-center justify-between min-h-[44px]">
+            <div className="flex items-center justify-between min-h-[44px] relative">
               {/* Left Main Pills */}
               <nav className="flex items-center gap-2">
                 {siteConfig.mainNavItems.map((item) => (
@@ -73,15 +74,15 @@ export const Navbar: React.FC = () => {
               <Link
                 href="/"
                 aria-label={siteConfig.name}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center pointer-events-auto"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto shrink-0"
               >
                 <Image
-                  src="/logos/aetthel-isotipo.png"
+                  src="/logos/aetthel-isotipo-claro.svg"
                   alt={siteConfig.name}
-                  width={45}
-                  height={36}
+                  width={40}
+                  height={40}
                   priority
-                  className="h-9 w-auto brightness-0 invert"
+                  className="h-9 sm:h-10 md:h-11 w-auto shrink-0"
                 />
               </Link>
 
@@ -105,12 +106,12 @@ export const Navbar: React.FC = () => {
                 className="flex items-center"
               >
                 <Image
-                  src="/logos/aetthel-wordmark.png"
+                  src="/logos/aetthel-logo-oscuro.svg"
                   alt={siteConfig.name}
-                  width={96}
-                  height={24}
+                  width={144}
+                  height={30}
                   priority
-                  className="h-6 w-auto brightness-0"
+                  className="h-7 sm:h-8 w-auto"
                 />
               </Link>
 
@@ -136,12 +137,12 @@ export const Navbar: React.FC = () => {
             className="flex items-center"
           >
             <Image
-              src="/logos/aetthel-wordmark.png"
+              src={scrolled ? "/logos/aetthel-logo-oscuro.svg" : "/logos/aetthel-logo-claro.svg"}
               alt={siteConfig.name}
-              width={88}
-              height={22}
+              width={134}
+              height={28}
               priority
-              className={cn("h-5.5 w-auto transition-all", scrolled ? "brightness-0" : "brightness-0 invert")}
+              className="h-6.5 sm:h-7.5 w-auto transition-all"
             />
           </Link>
 
