@@ -8,6 +8,7 @@ export const siteConfig: SiteConfig = {
   mainNavItems: [
     { label: "Aetthel Lab", href: "/estudio" },
     { label: "Servicios", href: "/servicios" },
+    { label: "Tienda", href: "#" },
   ],
   secondaryNavItems: [
     { label: "Contacto", href: "/contacto" },

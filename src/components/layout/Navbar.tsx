@@ -75,7 +75,7 @@ export const Navbar: React.FC = () => {
               <Link
                 href="/"
                 aria-label={siteConfig.name}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto shrink-0 text-neutral-100 hover:text-brand transition-colors"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto shrink-0 text-ink hover:text-brand transition-colors"
               >
                 <IsotipoIcon className="h-11 sm:h-12 md:h-14 w-auto shrink-0" />
               </Link>
@@ -92,7 +92,7 @@ export const Navbar: React.FC = () => {
               </nav>
             </div>
           ) : (
-            /* Scrolled Down State: Full Wordmark on Left | Pills on Right */
+            /* Scrolled Down State: Full Wordmark on Left | All Pills in Order on Right */
             <div className="flex items-center justify-between min-h-[44px] animate-fade-in">
               <Link
                 href="/"
@@ -103,12 +103,14 @@ export const Navbar: React.FC = () => {
               </Link>
 
               <nav className="flex items-center gap-2">
-                {siteConfig.mainNavItems.map((item) => (
+                {[
+                  ...siteConfig.mainNavItems,
+                  ...(siteConfig.secondaryNavItems ?? []),
+                ].map((item) => (
                   <InteractiveHoverLink
-                    key={item.href}
+                    key={item.label}
                     href={item.href}
                     text={item.label}
-                    className="px-5 py-1.5 text-[11px] bg-white/80"
                   />
                 ))}
               </nav>
@@ -145,11 +147,17 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-canvas border-b border-neutral-200 px-6 py-6 shadow-lg animate-fade-in">
           <div className="flex flex-col gap-2">
-            {siteConfig.mainNavItems.map((item) => (
+            {[
+              ...siteConfig.mainNavItems,
+              ...(siteConfig.secondaryNavItems ?? []),
+            ].map((item) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  if (item.href === "#") e.preventDefault();
+                  setMobileMenuOpen(false);
+                }}
                 className="px-4 py-3 rounded-lg border border-line bg-white hover:bg-ink hover:text-white hover:border-ink text-xs font-sans font-medium uppercase tracking-wider text-ink transition-all flex items-center justify-between"
               >
                 <span>{item.label}</span>

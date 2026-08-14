@@ -123,7 +123,7 @@ export const Services: React.FC = () => {
   return (
     <section
       id="servicios"
-      className="w-full pt-24 pb-40 sm:pt-32 sm:pb-56 lg:pt-40 lg:pb-80 bg-canvas"
+      className="w-full pt-24 pb-40 sm:pt-32 sm:pb-56 lg:pt-40 lg:pb-80 bg-transparent"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         {/* Split Layout Container */}

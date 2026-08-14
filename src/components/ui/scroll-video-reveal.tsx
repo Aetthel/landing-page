@@ -127,7 +127,7 @@ export function ScrollVideoReveal({
     <section
       ref={containerRef}
       data-cursor-surface="dark"
-      className="relative w-full h-screen bg-dark overflow-hidden"
+      className="relative w-full h-screen bg-transparent overflow-hidden"
     >
       <div
         ref={frameRef}

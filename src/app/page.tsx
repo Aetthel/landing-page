@@ -8,7 +8,7 @@ import { AboutUs } from "@/components/sections/AboutUs";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-canvas text-ink font-sans selection:bg-dark selection:text-white">
+    <div className="relative min-h-screen flex flex-col bg-transparent text-ink font-sans selection:bg-dark selection:text-white">
       {/* Floating Navbar */}
       <Navbar />
 

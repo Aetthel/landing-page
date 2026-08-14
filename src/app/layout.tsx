@@ -6,6 +6,7 @@ import { INTRO_SESSION_KEY } from "@/lib/boot";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { ScrollRail } from "@/components/ui/scroll-rail";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import { AnimatedGridBackground } from "@/components/ui/animated-grid-background";
 import "./globals.css";
 
 /**
@@ -89,8 +90,11 @@ export default function RootLayout({
          haya fogonazo. La discrepancia con el HTML servido es intencionada. */
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-canvas text-ink">
+      <body className="min-h-full flex flex-col bg-canvas text-ink relative">
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+
+        {/* Fondo animado de rejilla + partículas en toda la landing */}
+        <AnimatedGridBackground />
 
         {/* Sin JS no hay observer que revele nada ni cortina que se levante:
             el contenido se ve de entrada y sin freno. */}
