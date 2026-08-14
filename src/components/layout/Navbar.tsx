@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/site";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { InteractiveHoverLink } from "@/components/ui/interactive-hover-button";
 import { IsotipoIcon } from "@/components/ui/logo-isotipo";
+import { LogoWordmark } from "@/components/ui/logo-wordmark";
 import { cn } from "@/lib/utils";
 
 export const Navbar: React.FC = () => {
@@ -74,16 +75,9 @@ export const Navbar: React.FC = () => {
               <Link
                 href="/"
                 aria-label={siteConfig.name}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto shrink-0"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto shrink-0 text-neutral-100 hover:text-brand transition-colors"
               >
-                <Image
-                  src="/logos/aetthel-isotipo-claro.svg"
-                  alt={siteConfig.name}
-                  width={40}
-                  height={40}
-                  priority
-                  className="h-9 sm:h-10 md:h-11 w-auto shrink-0"
-                />
+                <IsotipoIcon className="h-11 sm:h-12 md:h-14 w-auto shrink-0" />
               </Link>
 
               {/* Right Secondary Pills & Contact */}
@@ -103,16 +97,9 @@ export const Navbar: React.FC = () => {
               <Link
                 href="/"
                 aria-label={siteConfig.name}
-                className="flex items-center"
+                className="flex items-center text-ink hover:opacity-80 transition-opacity"
               >
-                <Image
-                  src="/logos/aetthel-logo-oscuro.svg"
-                  alt={siteConfig.name}
-                  width={144}
-                  height={30}
-                  priority
-                  className="h-7 sm:h-8 w-auto"
-                />
+                <LogoWordmark className="h-9 sm:h-10 w-auto" />
               </Link>
 
               <nav className="flex items-center gap-2">
@@ -134,16 +121,9 @@ export const Navbar: React.FC = () => {
           <Link
             href="/"
             aria-label={siteConfig.name}
-            className="flex items-center"
+            className="flex items-center text-ink hover:opacity-80 transition-opacity"
           >
-            <Image
-              src={scrolled ? "/logos/aetthel-logo-oscuro.svg" : "/logos/aetthel-logo-claro.svg"}
-              alt={siteConfig.name}
-              width={134}
-              height={28}
-              priority
-              className="h-6.5 sm:h-7.5 w-auto transition-all"
-            />
+            <LogoWordmark className="h-8 sm:h-9 w-auto" />
           </Link>
 
           <button
