@@ -24,9 +24,19 @@ export interface ServiceTier {
   /** Rótulo del nivel: Básico, Estándar, Premium… */
   name: string;
   /** Para quién encaja este nivel, en una línea. */
-  fit: string;
+  /** A quién le encaja este nivel. Opcional: algunos servicios lo omiten
+      cuando el nombre y el alcance ya bastan para reconocerse en él. */
+  fit?: string;
   /** Qué lo distingue de los anteriores. */
   scope: string[];
+}
+
+/* Una línea del bloque de contratación complementaria. El detalle es
+   opcional: "Mantenimiento y actualizaciones técnicas." se basta solo, pero
+   "Pago único" necesita la frase de debajo para decir a quién encaja. */
+export interface ServiceSupportItem {
+  title: string;
+  detail?: string;
 }
 
 /* Bloque de contratación complementaria: el soporte mensual de las landings o
@@ -34,7 +44,7 @@ export interface ServiceTier {
 export interface ServiceSupport {
   title: string;
   copy: string;
-  items: string[];
+  items: ServiceSupportItem[];
 }
 
 export interface Service {
@@ -56,6 +66,10 @@ export interface Service {
   /** Lo que va en todos los niveles, sin tener que pedirlo. */
   includes: ServiceDeliverable[];
   support?: ServiceSupport;
+  /** Bloque desplegable suelto, para algo que un servicio ofrece y no encaja
+      en los niveles, el soporte ni "va en todos". Opcional y de uso puntual:
+      no todos los servicios necesitan uno. */
+  extra?: { title: string; copy: string };
   /** Lo que queda fuera. Se imprime igual de grande que lo que entra. */
   excludes: string[];
   stack: string[];

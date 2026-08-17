@@ -22,42 +22,36 @@ export const services: Service[] = [
     headline:
       "Capturamos la esencia de tu negocio y lo que quieres transmitir.",
     summary:
-      "El sitio al que mandas el tráfico que ya estás pagando: anuncios, redes, la tarjeta que repartes en una feria. Una página escrita y diseñada para que quien entra entienda tu propuesta en diez segundos y sepa qué hacer con ella. Se contrata por paquetes, y cada paquete es un salto de alcance, no una versión recortada del anterior.",
+      "Si sientes que tu negocio no tiene la presencia que merece en internet, este es el servicio que necesitas. En Aetthel diseñamos tu página web con un estilo propio, pensado para representar lo que eres y lo que quieres transmitir a tus clientes.",
     audience:
       "Negocios que ya tienen algo que vender y no tienen dónde mandar a la gente. También si tu web actual recibe visitas y no las convierte en nada.",
-    billing: "Pago único, con soporte opcional",
+    billing: "Pago único con soporte mensual opcional",
     tiersLabel: "Paquetes",
     tiersIntro:
-      "Tres niveles según hasta dónde quieras llegar. Si no sabes en cuál encajas, nos lo cuentas y te lo decimos nosotros: no vendemos hacia arriba.",
+      "Disponemos de tres niveles según las características específicas. Si no sabes en cuál encajaría mejor tu proyecto, nosotros te ayudamos en la primera reunión.",
     tiers: [
       {
         name: "Básico",
-        fit: "Necesitas existir en internet ya, y que lo poco que haya esté bien hecho.",
         scope: [
           "Página única con las secciones imprescindibles.",
-          "Diseño adaptado a tu marca sobre una base nuestra.",
           "Formulario de contacto que llega a tu correo.",
           "Publicada en tu dominio y lista para recibir visitas.",
         ],
       },
       {
         name: "Estándar",
-        fit: "Ya mandas gente a tu web y quieres que esas visitas se conviertan en algo.",
         scope: [
-          "Varias secciones o páginas, con su propio recorrido de lectura.",
-          "Diseño propio desde cero, sin plantilla de partida.",
-          "Textos redactados por nosotros a partir de una entrevista contigo.",
-          "Analítica y eventos configurados, para saber qué pasa de verdad.",
-          "SEO técnico de base y velocidad cuidada.",
+          "Varias secciones y páginas con su propio recorrido de lectura.",
+          "Textos redactados por nosotros adaptados a tu idea de negocio.",
+          "Analítica y eventos configurados.",
+          "Funciones multilenguaje adaptado a cualquier idioma.",
         ],
       },
       {
         name: "Premium",
-        fit: "La web es tu escaparate principal y tiene que notarse al entrar.",
         scope: [
-          "Dirección de arte propia, con animación y piezas hechas para ti.",
-          "Blog, catálogo o casos que puedas actualizar tú.",
-          "Varios idiomas, si tu público no está solo aquí.",
+          "Funcionalidades para que puedas actualizar tú mismo sin necesidad de código.",
+          "Base de datos propia integrada, para guardar y gestionar la información que genera tu web.",
           "Integrada con lo que ya uses: CRM, reservas, correo o pagos.",
           "Acompañamiento durante el lanzamiento y los primeros ajustes.",
         ],
@@ -67,12 +61,12 @@ export const services: Service[] = [
       {
         title: "Pensada en móvil",
         detail:
-          "Se prueba en teléfono desde el primer día, no como revisión final.",
+          "Todas las webs que realizamos están adaptadas al móvil desde el primer día.",
       },
       {
         title: "Todo a tu nombre",
         detail:
-          "Dominio, certificado, accesos y código quedan en tus cuentas, no en las nuestras.",
+          "Dominio, certificado, accesos y código quedan en tus cuentas.",
       },
       {
         title: "Los mensajes te llegan",
@@ -82,17 +76,26 @@ export const services: Service[] = [
       {
         title: "Preparada para que te encuentren",
         detail:
-          "Metadatos, sitemap y carga rápida en todos los paquetes, también en el básico.",
+          "Metadatos, sitemap y carga rápida en todos los paquetes.",
+      },
+      {
+        title: "SEO técnico de base y velocidad cuidada",
+        detail:
+          "SEO técnico y test de velocidad en todos los paquetes disponibles.",
+      },
+      {
+        title: "Diseño personalizado a tu negocio",
+        detail: "Diseñamos tu web adaptada a tu marca desde cero.",
       },
     ],
     support: {
-      title: "Soporte mensual, si lo quieres",
-      copy: "Aparte del pago único, puedes dejar la página a nuestro cargo. Se contrata al mes, se presupuesta por separado y se cancela cuando quieras.",
+      title: "Soporte Mensual",
+      copy: "Puedes dejar tu página a nuestro cargo: ofrecemos un soporte mensual por separado, con un mes gratis y cancelación en cualquier momento.",
       items: [
-        "Mantenimiento y actualizaciones técnicas.",
-        "Copias de seguridad y vigilancia del servicio.",
-        "Gestión de caídas e incidencias cuando algo se rompe.",
-        "Cambios pequeños de contenido sin abrir un proyecto nuevo.",
+        { title: "Mantenimiento y actualizaciones técnicas." },
+        { title: "Copias de seguridad y vigilancia del servicio." },
+        { title: "Gestión de caídas e incidencias." },
+        { title: "Cambios pequeños de contenido." },
       ],
     },
     excludes: [
@@ -117,17 +120,16 @@ export const services: Service[] = [
     name: "Web apps",
     headline: "El programa que se adapta a tu forma de trabajar, no al revés.",
     summary:
-      "Cuando la operativa vive en hojas de cálculo, grupos de WhatsApp y correos reenviados, el problema deja de ser el orden y pasa a ser el tiempo. Construimos la aplicación que necesitas, con tu vocabulario y tus reglas. Aquí no hay paquetes cerrados: hay complejidad, y de ella depende también cómo se paga.",
+      "Cuando la operativa de tu empresa vive en hojas de cálculo, grupos de WhatsApp o correos reenviados, el problema deja de ser el orden y pasa a ser el tiempo. Construimos la aplicación personalizada que necesitas, con tu vocabulario y tus reglas adaptada a tu forma de trabajar y a la de tu equipo.",
     audience:
       "Equipos con un proceso propio que ningún programa de catálogo respeta del todo, y gente con un producto en la cabeza que necesita una primera versión real para enseñarla.",
     billing: "Pago único o mensualidad",
-    tiersLabel: "Complejidad",
+    tiersLabel: "Paquetes",
     tiersIntro:
       "El proyecto se sitúa en uno de estos tres escalones en la primera conversación. Ese escalón es lo que decide el alcance, el calendario y si conviene cerrarlo en un pago o llevarlo por mensualidad.",
     tiers: [
       {
         name: "MVP simple",
-        fit: "Quieres validar una idea con algo real en las manos, no con una presentación.",
         scope: [
           "Un flujo principal y las pantallas que lo sostienen.",
           "Acceso privado por usuario.",
@@ -137,7 +139,6 @@ export const services: Service[] = [
       },
       {
         name: "Media",
-        fit: "La operativa ya existe y hoy se sostiene a base de hojas de cálculo y memoria.",
         scope: [
           "Varios roles, cada uno viendo lo suyo.",
           "Panel de administración para el día a día, sin depender de nosotros.",
@@ -148,7 +149,6 @@ export const services: Service[] = [
       },
       {
         name: "Avanzada",
-        fit: "La aplicación es el negocio, no una herramienta interna de apoyo.",
         scope: [
           "Reglas de negocio propias y lógica que no cabe en un catálogo.",
           "Pagos, suscripciones o facturación dentro del producto.",
@@ -159,12 +159,12 @@ export const services: Service[] = [
     ],
     includes: [
       {
-        title: "El flujo, mapeado antes de programar",
+        title: "Construimos vuestro flujo de trabajo",
         detail:
-          "Dibujamos cómo trabajáis hoy de verdad. Ese mapa es el primer entregable, y es tuyo aunque el proyecto se pare ahí.",
+          "Dibujamos cómo trabajáis y realizamos un mapa que será el primer entregable, con vuestro flujo de trabajo para la app.",
       },
       {
-        title: "Tus datos, tuyos",
+        title: "Tus datos, son tuyos",
         detail:
           "Base de datos a tu nombre, con copias automáticas y exportación completa cuando la pidas.",
       },
@@ -174,18 +174,33 @@ export const services: Service[] = [
           "El código se entrega en tu cuenta. Si mañana sigues con otro equipo, te lo llevas entero.",
       },
       {
-        title: "Formación y manual",
+        title: "Manual de Formación",
         detail:
-          "Una sesión con quien la va a usar y un manual corto, escrito en vuestro vocabulario.",
+          "Ofrecemos de forma gratuita un manual de formación personalizado a tu app, para ti o para tus empleados.",
       },
     ],
     support: {
-      title: "Cómo se paga",
-      copy: "Las dos vías existen y se eligen por el tipo de proyecto, no por lo que nos convenga a nosotros. Se decide antes de empezar y queda por escrito en la propuesta.",
+      title: "Método de Pago",
+      // El `\n` es un salto de línea deliberado, no un párrafo: lo respeta
+      // `whitespace-pre-line` en ServiceSheet y ningún otro navegador lo
+      // reordena por su cuenta.
+      copy: "Existen dos métodos de pago adaptados según el tipo de proyecto o por pura\ncomodidad del cliente. Se decide antes de empezar y queda por escrito en la propuesta.",
       items: [
-        "Pago único: alcance cerrado, entrega y punto final. Encaja en un MVP o en una herramienta acotada.",
-        "Mensualidad: cuota mientras dura el desarrollo y sigue después como evolución continua. Encaja en producto que va a seguir creciendo.",
+        {
+          title: "Pago único",
+          detail:
+            "App con un alcance cerrado, entrega y punto final. Encaja en un MVP o una herramienta acotada.",
+        },
+        {
+          title: "Mensualidad",
+          detail:
+            "Cuota mientras dura el desarrollo y como evolución continua. Encaja en un producto que va a seguir creciendo.",
+        },
       ],
+    },
+    extra: {
+      title: "Exposición de Formación",
+      copy: "Servicio adicional de pago, aparte del manual: una sesión de formación en directo con vuestro equipo, donde presentamos la aplicación, explicamos cómo funciona paso a paso y resolvemos las dudas que surjan en el momento.",
     },
     excludes: [
       "Apps nativas publicadas en App Store o Google Play: trabajamos web instalable.",
@@ -209,27 +224,24 @@ export const services: Service[] = [
     name: "Automatizaciones",
     headline: "Que el trabajo repetitivo deje de ser trabajo.",
     summary:
-      "Si alguien de tu equipo dedica su semana a mover datos de un sitio a otro a mano, eso no es trabajo: es una factura invisible. Montamos el proceso para que ocurra solo. Cada automatización se clasifica por dificultad —cuántos pasos tiene, con cuántas herramientas habla y cuánta lógica hay que decidir por el camino—, y de ahí sale el presupuesto.",
+      "Si tú y tu equipo pasáis parte del día haciendo tareas repetitivas, ese es tiempo que le estáis robando a lo que realmente importa. En Aetthel automatizamos ese trabajo para que dejéis de perder horas en él y podáis centraros en lo que de verdad aporta valor.",
     audience:
       "Cualquier negocio con algo que se repite: presupuestos, altas de cliente, pedidos, informes, avisos. Es la puerta de entrada más sencilla para ver cómo trabajamos.",
     billing: "Pago único por proceso",
-    tiersLabel: "Dificultad",
+    tiersLabel: "Paquetes",
     tiersIntro:
-      "No se cobra por lo bonito que quede, sino por lo que hay dentro: pasos encadenados, integraciones distintas y decisiones que el flujo tiene que tomar solo.",
+      "Cada automatización se clasifica por dificultad: cuántos pasos tiene, con cuántas herramientas habla y cuánta lógica hay que aplicar, de ahí sale el presupuesto final.",
     tiers: [
       {
         name: "Simple",
-        fit: "Una tarea concreta que se repite siempre igual, sin excepciones.",
         scope: [
           "Pocos pasos y un disparador claro.",
           "Un par de herramientas hablándose entre sí.",
-          "Sin condiciones: entra un dato, sale otro.",
           "Aviso por correo al terminar.",
         ],
       },
       {
         name: "Intermedia",
-        fit: "El proceso cambia según lo que llegue y hoy alguien decide a mano.",
         scope: [
           "Cadena larga de pasos y varias integraciones.",
           "Condiciones y ramas: según el caso, el flujo va por un lado o por otro.",
@@ -239,7 +251,6 @@ export const services: Service[] = [
       },
       {
         name: "Avanzada",
-        fit: "El proceso es parte del negocio y el día que se cae, se nota.",
         scope: [
           "Flujos extensos, con muchos nodos y bifurcaciones.",
           "Integraciones con APIs propias o servicios sin conector hecho.",
@@ -252,24 +263,30 @@ export const services: Service[] = [
       {
         title: "Auditoría del proceso",
         detail:
-          "Dónde se va el tiempo, dónde se rompe y qué está costando. Antes de tocar nada.",
+          "Te informamos de todo el proceso con nuestras posibles soluciones y métodos de trabajo.",
       },
       {
         title: "Funcionando en producción",
         detail:
-          "Conectado entre tus herramientas y trabajando de verdad, no en una demostración.",
+          "Conectamos el flujo con tus herramientas de trabajo funcionando.",
       },
       {
         title: "Avisos cuando algo falla",
         detail:
-          "Un proceso automático que se cae en silencio es peor que no tenerlo. Este avisa.",
+          "Aviso recurrente cuando el proceso automático se cae o deja de funcionar.",
       },
       {
         title: "Documentado y explicado",
         detail:
-          "Qué hace, cada cuánto, cómo se para y cómo se vuelve a arrancar. En una página, sin jerga.",
+          "Entrega de un manual de funcionamiento de la automatización al completo para tu equipo.",
       },
     ],
+    /* Mismo servicio adicional que en Web apps, aquí sobre el flujo: el manual
+       entra en todos los paquetes y la sesión en directo se contrata aparte. */
+    extra: {
+      title: "Exposición de Formación",
+      copy: "Servicio adicional de pago, aparte del manual: una sesión de formación en directo con vuestro equipo, donde presentamos la automatización, explicamos paso a paso cómo funciona y resolvemos las dudas que surjan en el momento.",
+    },
     excludes: [
       "Licencias de las herramientas de terceros que use el flujo.",
       "Procesos que dependan de programas sin forma de acceder a sus datos.",
@@ -352,19 +369,19 @@ export const processSteps = [
 export const afterDelivery = [
   {
     title: "El código es tuyo",
-    copy: "Se entrega en un repositorio a tu nombre. Si mañana quieres seguir con otro equipo, te lo llevas entero.",
+    copy: "El código se entrega en un repositorio a tu nombre. Si mañana quieres seguir con otro equipo, te lo llevas entero.",
   },
   {
     title: "Garantía sobre lo entregado",
-    copy: "Los errores de lo que hemos construido se arreglan sin coste durante el periodo de garantía que fijamos en la propuesta.",
+    copy: "Los errores propios de lo que hemos construido se arreglan sin coste durante el periodo de garantía que fijamos en la propuesta.",
   },
   {
-    title: "Soporte mensual, si lo quieres",
+    title: "Soporte mensual",
     copy: "Mantenimiento, copias, gestión de incidencias y cambios pequeños con una cuota mensual. Se presupuesta aparte y se cancela cuando quieras.",
   },
   {
     title: "Sin ataduras",
-    copy: "Dominio, servidor, base de datos y cuentas van a tu nombre desde el principio. Nunca somos el intermediario que te bloquea.",
+    copy: "Dominio, servidor, base de datos y cuentas van a tu nombre desde el principio. La gestión o mejora de los siguientes entra en el presupuesto del soporte mensual.",
   },
 ] as const;
 
@@ -372,17 +389,17 @@ export const faqs = [
   {
     question: "¿Cuánto cuesta un proyecto?",
     answer:
-      "Depende del nivel y del alcance, y por eso no publicamos tarifas: preferimos mirar tu caso antes de decir un número. El presupuesto sale de la primera conversación, se cierra por escrito y no se mueve salvo que amplíes el proyecto tú.",
+      "Depende del nivel y del alcance del mismo y por eso no publicamos tarifas, preferimos estudiar primero tu caso y tus necesidades. El presupuesto sale de la primera conversación, se cierra por escrito y no se mueve salvo que amplíes tú el proyecto.",
   },
   {
-    question: "¿Cómo sé en qué nivel encaja lo mío?",
+    question: "¿Cómo sé en qué paquete encaja mi proyecto?",
     answer:
-      "No hace falta que lo sepas. Nos cuentas qué necesitas, lo situamos nosotros y te explicamos por qué. Si con el nivel más sencillo te vale, te lo decimos: no tenemos ningún interés en venderte de más.",
+      "No hace falta que lo sepas. Nos cuentas qué necesitas, y nosotros nos encargamos de situarlo y te explicamos por qué.",
   },
   {
     question: "¿Qué diferencia hay entre pago único y mensualidad?",
     answer:
-      "El pago único es para un alcance cerrado: se define, se construye y se entrega. La mensualidad es para producto que va a seguir creciendo, con desarrollo continuo. Las landings van siempre a pago único, con soporte mensual aparte si lo quieres; en las web apps se elige según la complejidad.",
+      "El pago único es para un alcance cerrado: se define, se construye y se entrega. La mensualidad es para producto que va a seguir creciendo, con desarrollo continuo.",
   },
   {
     question: "¿El soporte mensual es obligatorio?",
@@ -392,17 +409,17 @@ export const faqs = [
   {
     question: "¿Quién va a trabajar en mi proyecto?",
     answer:
-      "Nosotros. Somos un equipo joven y pequeño: hablas directamente con quien programa, sin gestores de cuenta por medio. Lo que no sabemos lo decimos, y lo que aceptamos lo entregamos.",
+      "Nosotros. Somos un equipo joven y pequeño, hablas directamente con quien programa, sin gestores de cuenta de por medio.",
   },
   {
     question: "¿De quién es el código cuando terminamos?",
     answer:
-      "Tuyo. Repositorio, base de datos, dominio y servidor van a tu nombre desde el primer día, no al final como premio.",
+      "Tuyo. Repositorio, base de datos, dominio y servidor van a tu nombre desde el primer día.",
   },
   {
     question: "¿Cuánto tiempo tengo que dedicarle yo?",
     answer:
-      "Una conversación inicial, un vistazo rápido a cada entrega y los accesos a las herramientas que ya uses. El resto lo llevamos nosotros.",
+      "Una conversación inicial y un vistazo rápido a cada entrega del desarrollo de tu producto. El resto lo llevamos nosotros.",
   },
   {
     question: "¿Trabajáis fuera de Barcelona?",
@@ -417,6 +434,6 @@ export const faqs = [
   {
     question: "¿Qué pasa si mi proyecto no os encaja?",
     answer:
-      "Te lo decimos en la primera conversación, no tres semanas después. Y si conocemos a alguien que lo hará mejor que nosotros, también te lo decimos.",
+      "Te lo decimos en la primera conversación, nuestro objetivo es ayudarte: si creemos que no podemos alcanzar el resultado esperado, no te haremos perder el tiempo.",
   },
 ] as const;
