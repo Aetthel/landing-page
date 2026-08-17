@@ -8,20 +8,22 @@ import { AboutUs } from "@/components/sections/AboutUs";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-transparent text-ink font-sans selection:bg-dark selection:text-white">
-      {/* Floating Navbar */}
-      <Navbar />
+    <div className="relative min-h-screen flex flex-col bg-dark text-ink font-sans selection:bg-dark selection:text-white pt-2 sm:pt-3">
+      <div className="relative min-h-screen w-full bg-canvas text-ink rounded-t-[2.5rem] sm:rounded-t-[3.5rem] overflow-hidden border-t border-line/60 shadow-2xl flex flex-col flex-1">
+        {/* Floating Navbar */}
+        <Navbar />
 
-      {/* Main Page Content */}
-      <main className="flex-1 w-full">
-        <Hero />
-        <PromotionalVideo />
-        <AboutUs />
-        <Services />
-      </main>
+        {/* Main Page Content */}
+        <main className="flex-1 w-full">
+          <Hero />
+          <PromotionalVideo />
+          <AboutUs />
+          <Services />
+        </main>
 
-      {/* Footer CTA */}
-      <Footer />
+        {/* Footer CTA */}
+        <Footer />
+      </div>
     </div>
   );
 }

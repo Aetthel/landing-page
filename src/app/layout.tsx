@@ -9,13 +9,6 @@ import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { AnimatedGridBackground } from "@/components/ui/animated-grid-background";
 import "./globals.css";
 
-/**
- * Corre antes de que se pinte nada: decide si esta visita ve la cortina de
- * entrada. Si no toca (ya se vio en esta pestaña, o el usuario pide menos
- * movimiento), suelta el freno ahí mismo y marca el <html> para que la cortina
- * ni se dibuje — así no hay fogonazo negro esperando a la hidratación.
- * Si algo falla, suelta el freno igualmente: la web nunca se queda congelada.
- */
 const bootScript = `(function(){var d=document.documentElement;try{
 var skip=sessionStorage.getItem(${JSON.stringify(INTRO_SESSION_KEY)})==="1"||
 matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -23,7 +16,6 @@ if(skip){d.dataset.intro="skip";d.classList.remove("is-booting");}
 else{sessionStorage.setItem(${JSON.stringify(INTRO_SESSION_KEY)},"1");}
 }catch(e){d.dataset.intro="skip";d.classList.remove("is-booting");}})();`;
 
-/* Titulares — neogrotesca moderna, limpia y geométrica */
 const displayFont = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
@@ -31,7 +23,6 @@ const displayFont = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-/* Cuerpo de texto / UI */
 const bodyFont = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -85,9 +76,6 @@ export default function RootLayout({
     <html
       lang="es"
       className={`${bodyFont.variable} ${displayFont.variable} h-full antialiased is-booting`}
-      /* El script de arranque de abajo toca la clase y el `data-intro` de este
-         mismo <html> antes de que React hidrate — tiene que ser así para que no
-         haya fogonazo. La discrepancia con el HTML servido es intencionada. */
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink relative">
@@ -96,25 +84,13 @@ export default function RootLayout({
         {/* Fondo animado de rejilla + partículas en toda la landing */}
         <AnimatedGridBackground />
 
-        {/* Sin JS no hay observer que revele nada ni cortina que se levante:
-            el contenido se ve de entrada y sin freno. */}
-        <noscript>
-          <style>{`.reveal { opacity: 1 !important; transform: none !important; }
-.intro { display: none !important; }
-.is-booting .animate-rise-in,
-.is-booting .animate-fade-in,
-.is-booting .animate-scroll-wheel,
-.is-booting .animate-scroll-hop { animation-play-state: running !important; }
-.marker { animation: none !important; clip-path: none !important; }`}</style>
-        </noscript>
-
-        {/* Entrada de marca: logo a fotogramas sobre negro antes de la web */}
+        {/* Entrada de marca */}
         <IntroSequence />
 
-        {/* Cursor personalizado de alta resolución */}
+        {/* Cursor personalizado */}
         <CustomCursor />
 
-        {/* Barra de scroll de marca en sustitución de la del navegador */}
+        {/* Barra de scroll de marca */}
         <ScrollRail />
 
         <SmoothScroll>{children}</SmoothScroll>

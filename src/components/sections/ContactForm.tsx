@@ -243,7 +243,7 @@ export const ContactForm: React.FC = () => {
   const sending = status === "sending";
 
   return (
-    <section className="w-full bg-canvas pt-20 pb-32 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-56">
+    <section className="relative z-20 w-full bg-canvas rounded-t-[3.5rem] sm:rounded-t-[4.5rem] overflow-hidden border-t border-line/80 pt-20 pb-32 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-56 shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-start">
           {/* ------------------------------------------------------------------
