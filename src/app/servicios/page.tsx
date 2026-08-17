@@ -110,11 +110,12 @@ export default function ServiciosPage() {
                   aquí. Un CTA en el primer pantallazo pediría decidir antes de
                   haber leído qué se ofrece. */}
               <p className="lg:col-span-5 lg:col-start-8 max-w-md font-sans text-base sm:text-lg font-light leading-relaxed text-neutral-400 animate-rise-in rise-delay-3">
-                Casi todo lo que construimos empieza en una nota del móvil o en
-                una conversación a medias: una idea que llevas tiempo dando
-                vueltas, algo que se repite cada semana y te come el día. Nos
-                gusta esa parte —preguntar hasta entenderla del todo— tanto como
-                la de sentarnos a construirla.
+                Casi todas las ideas que tenemos nacen de una nota en el móvil,
+                de un anuncio en la televisión o de una simple conversación pero
+                que nunca llega a concretarse por falta de tiempo o miedo a
+                enfrentarse a las adversidades, en Aetthel construimos todas
+                esas ideas que nacen de ti y las convertimos en un producto de
+                valor para tu trabajo.
               </p>
             </div>
           </div>

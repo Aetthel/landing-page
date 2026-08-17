@@ -636,13 +636,19 @@ html.lenis body {
 }
 
 .intro__mark--wordmark {
-  width: clamp(11rem, 24vw, 18rem);
-  aspect-ratio: 790 / 165;
+  width: clamp(15rem, 34vw, 28rem);
+  /* El encuadre real del SVG: `viewBox="240 140 900 360"`, o sea 5/2. Tiene que
+     coincidir: `mask-size: contain` encaja el logotipo dentro de la caja sin
+     deformarlo, así que con una caja más ancha de la cuenta el logotipo se
+     queda pequeño y centrado, con aire muerto a los lados —y el cursor, que
+     recorre la caja entera, deja de ir pegado al trazo. */
+  aspect-ratio: 5 / 2;
   background: var(--color-brand);
   -webkit-mask-image: url("/logos/aetthel-logo.svg");
   mask-image: url("/logos/aetthel-logo.svg");
   /* En reposo, sin escribir: el primer trazo no aparece hasta la salida */
   clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
 }
 
 .intro.is-running .intro__mark--wordmark {
@@ -666,9 +672,13 @@ html.lenis body {
    en vez de con `left`, que recalcularía layout en cada fotograma. */
 .intro__cursor {
   position: absolute;
-  top: 4%;
+  /* Los insets son proporción de la caja del logotipo, y esa caja ahora es
+     bastante más alta que antes (5/2 en vez de 790/165): con el 4% de antes el
+     cursor sería un pilar. Sangrado para que quede a la altura de la palabra,
+     no del recuadro. */
+  top: 14%;
   right: 0;
-  bottom: 4%;
+  bottom: 14%;
   left: 0;
   opacity: 0;
   will-change: transform;
@@ -680,7 +690,7 @@ html.lenis body {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 0.14rem;
+  width: 0.18rem;
   border-radius: 999px;
   background: var(--color-brand);
 }

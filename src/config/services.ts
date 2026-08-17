@@ -22,7 +22,7 @@ export const services: Service[] = [
     headline:
       "Capturamos la esencia de tu negocio y lo que quieres transmitir.",
     summary:
-      "El sitio al que mandas el tráfico que ya estás pagando: anuncios, redes, la tarjeta que repartes en una feria. Una página escrita y diseñada para que quien entra entienda tu propuesta en diez segundos y sepa qué hacer con ella. Se contrata por paquetes, y cada paquete es un salto de alcance, no una versión recortada del anterior.",
+      "Si sientes que tu negocio no tiene la presencia que merece en internet, este es el servicio que necesitas. En Aetthel diseñamos tu página web con un estilo propio, pensado para representar lo que eres y lo que quieres transmitir a tus clientes.",
     audience:
       "Negocios que ya tienen algo que vender y no tienen dónde mandar a la gente. También si tu web actual recibe visitas y no las convierte en nada.",
     billing: "Pago único con soporte mensual opcional",
@@ -94,8 +94,8 @@ export const services: Service[] = [
       items: [
         { title: "Mantenimiento y actualizaciones técnicas." },
         { title: "Copias de seguridad y vigilancia del servicio." },
-        { title: "Gestión de caídas e incidencias cuando algo se rompe." },
-        { title: "Cambios pequeños de contenido sin abrir un proyecto nuevo." },
+        { title: "Gestión de caídas e incidencias." },
+        { title: "Cambios pequeños de contenido." },
       ],
     },
     excludes: [
@@ -120,7 +120,7 @@ export const services: Service[] = [
     name: "Web apps",
     headline: "El programa que se adapta a tu forma de trabajar, no al revés.",
     summary:
-      "Cuando la operativa vive en hojas de cálculo, grupos de WhatsApp y correos reenviados, el problema deja de ser el orden y pasa a ser el tiempo. Construimos la aplicación que necesitas, con tu vocabulario y tus reglas. El paquete que te toca depende de la complejidad del proyecto, y de ella depende también cómo se paga.",
+      "Cuando la operativa de tu empresa vive en hojas de cálculo, grupos de WhatsApp o correos reenviados, el problema deja de ser el orden y pasa a ser el tiempo. Construimos la aplicación personalizada que necesitas, con tu vocabulario y tus reglas adaptada a tu forma de trabajar y a la de tu equipo.",
     audience:
       "Equipos con un proceso propio que ningún programa de catálogo respeta del todo, y gente con un producto en la cabeza que necesita una primera versión real para enseñarla.",
     billing: "Pago único o mensualidad",
@@ -224,13 +224,13 @@ export const services: Service[] = [
     name: "Automatizaciones",
     headline: "Que el trabajo repetitivo deje de ser trabajo.",
     summary:
-      "Si alguien de tu equipo dedica su semana a mover datos de un sitio a otro a mano, eso no es trabajo: es una factura invisible. Montamos el proceso para que ocurra solo. Cada automatización se clasifica por dificultad —cuántos pasos tiene, con cuántas herramientas habla y cuánta lógica hay que decidir por el camino—, y de ahí sale el presupuesto.",
+      "Si tú y tu equipo pasáis parte del día haciendo tareas repetitivas, ese es tiempo que le estáis robando a lo que realmente importa. En Aetthel automatizamos ese trabajo para que dejéis de perder horas en él y podáis centraros en lo que de verdad aporta valor.",
     audience:
       "Cualquier negocio con algo que se repite: presupuestos, altas de cliente, pedidos, informes, avisos. Es la puerta de entrada más sencilla para ver cómo trabajamos.",
     billing: "Pago único por proceso",
     tiersLabel: "Paquetes",
     tiersIntro:
-      "No se cobra por lo bonito que quede, sino por lo que hay dentro: pasos encadenados, integraciones distintas y decisiones que el flujo tiene que tomar solo.",
+      "Cada automatización se clasifica por dificultad: cuántos pasos tiene, con cuántas herramientas habla y cuánta lógica hay que aplicar, de ahí sale el presupuesto final.",
     tiers: [
       {
         name: "Simple",
@@ -263,24 +263,30 @@ export const services: Service[] = [
       {
         title: "Auditoría del proceso",
         detail:
-          "Dónde se va el tiempo, dónde se rompe y qué está costando. Antes de tocar nada.",
+          "Te informamos de todo el proceso con nuestras posibles soluciones y métodos de trabajo.",
       },
       {
         title: "Funcionando en producción",
         detail:
-          "Conectado entre tus herramientas y trabajando de verdad, no en una demostración.",
+          "Conectamos el flujo con tus herramientas de trabajo funcionando.",
       },
       {
         title: "Avisos cuando algo falla",
         detail:
-          "Un proceso automático que se cae en silencio es peor que no tenerlo. Este avisa.",
+          "Aviso recurrente cuando el proceso automático se cae o deja de funcionar.",
       },
       {
         title: "Documentado y explicado",
         detail:
-          "Qué hace, cada cuánto, cómo se para y cómo se vuelve a arrancar. En una página, sin jerga.",
+          "Entrega de un manual de funcionamiento de la automatización al completo para tu equipo.",
       },
     ],
+    /* Mismo servicio adicional que en Web apps, aquí sobre el flujo: el manual
+       entra en todos los paquetes y la sesión en directo se contrata aparte. */
+    extra: {
+      title: "Exposición de Formación",
+      copy: "Servicio adicional de pago, aparte del manual: una sesión de formación en directo con vuestro equipo, donde presentamos la automatización, explicamos paso a paso cómo funciona y resolvemos las dudas que surjan en el momento.",
+    },
     excludes: [
       "Licencias de las herramientas de terceros que use el flujo.",
       "Procesos que dependan de programas sin forma de acceder a sus datos.",
@@ -363,19 +369,19 @@ export const processSteps = [
 export const afterDelivery = [
   {
     title: "El código es tuyo",
-    copy: "Se entrega en un repositorio a tu nombre. Si mañana quieres seguir con otro equipo, te lo llevas entero.",
+    copy: "El código se entrega en un repositorio a tu nombre. Si mañana quieres seguir con otro equipo, te lo llevas entero.",
   },
   {
     title: "Garantía sobre lo entregado",
-    copy: "Los errores de lo que hemos construido se arreglan sin coste durante el periodo de garantía que fijamos en la propuesta.",
+    copy: "Los errores propios de lo que hemos construido se arreglan sin coste durante el periodo de garantía que fijamos en la propuesta.",
   },
   {
-    title: "Soporte mensual, si lo quieres",
+    title: "Soporte mensual",
     copy: "Mantenimiento, copias, gestión de incidencias y cambios pequeños con una cuota mensual. Se presupuesta aparte y se cancela cuando quieras.",
   },
   {
     title: "Sin ataduras",
-    copy: "Dominio, servidor, base de datos y cuentas van a tu nombre desde el principio. Nunca somos el intermediario que te bloquea.",
+    copy: "Dominio, servidor, base de datos y cuentas van a tu nombre desde el principio. La gestión o mejora de los siguientes entra en el presupuesto del soporte mensual.",
   },
 ] as const;
 
@@ -383,17 +389,17 @@ export const faqs = [
   {
     question: "¿Cuánto cuesta un proyecto?",
     answer:
-      "Depende del nivel y del alcance, y por eso no publicamos tarifas: preferimos mirar tu caso antes de decir un número. El presupuesto sale de la primera conversación, se cierra por escrito y no se mueve salvo que amplíes el proyecto tú.",
+      "Depende del nivel y del alcance del mismo y por eso no publicamos tarifas, preferimos estudiar primero tu caso y tus necesidades. El presupuesto sale de la primera conversación, se cierra por escrito y no se mueve salvo que amplíes tú el proyecto.",
   },
   {
-    question: "¿Cómo sé en qué nivel encaja lo mío?",
+    question: "¿Cómo sé en qué paquete encaja mi proyecto?",
     answer:
-      "No hace falta que lo sepas. Nos cuentas qué necesitas, lo situamos nosotros y te explicamos por qué. Si con el nivel más sencillo te vale, te lo decimos: no tenemos ningún interés en venderte de más.",
+      "No hace falta que lo sepas. Nos cuentas qué necesitas, y nosotros nos encargamos de situarlo y te explicamos por qué.",
   },
   {
     question: "¿Qué diferencia hay entre pago único y mensualidad?",
     answer:
-      "El pago único es para un alcance cerrado: se define, se construye y se entrega. La mensualidad es para producto que va a seguir creciendo, con desarrollo continuo. Las landings van siempre a pago único, con soporte mensual aparte si lo quieres; en las web apps se elige según la complejidad.",
+      "El pago único es para un alcance cerrado: se define, se construye y se entrega. La mensualidad es para producto que va a seguir creciendo, con desarrollo continuo.",
   },
   {
     question: "¿El soporte mensual es obligatorio?",
@@ -403,17 +409,17 @@ export const faqs = [
   {
     question: "¿Quién va a trabajar en mi proyecto?",
     answer:
-      "Nosotros. Somos un equipo joven y pequeño: hablas directamente con quien programa, sin gestores de cuenta por medio. Lo que no sabemos lo decimos, y lo que aceptamos lo entregamos.",
+      "Nosotros. Somos un equipo joven y pequeño, hablas directamente con quien programa, sin gestores de cuenta de por medio.",
   },
   {
     question: "¿De quién es el código cuando terminamos?",
     answer:
-      "Tuyo. Repositorio, base de datos, dominio y servidor van a tu nombre desde el primer día, no al final como premio.",
+      "Tuyo. Repositorio, base de datos, dominio y servidor van a tu nombre desde el primer día.",
   },
   {
     question: "¿Cuánto tiempo tengo que dedicarle yo?",
     answer:
-      "Una conversación inicial, un vistazo rápido a cada entrega y los accesos a las herramientas que ya uses. El resto lo llevamos nosotros.",
+      "Una conversación inicial y un vistazo rápido a cada entrega del desarrollo de tu producto. El resto lo llevamos nosotros.",
   },
   {
     question: "¿Trabajáis fuera de Barcelona?",
@@ -428,6 +434,6 @@ export const faqs = [
   {
     question: "¿Qué pasa si mi proyecto no os encaja?",
     answer:
-      "Te lo decimos en la primera conversación, no tres semanas después. Y si conocemos a alguien que lo hará mejor que nosotros, también te lo decimos.",
+      "Te lo decimos en la primera conversación, nuestro objetivo es ayudarte: si creemos que no podemos alcanzar el resultado esperado, no te haremos perder el tiempo.",
   },
 ] as const;

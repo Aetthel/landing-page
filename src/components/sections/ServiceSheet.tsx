@@ -287,16 +287,11 @@ export const ServiceSheet: React.FC<ServiceSheetProps> = ({
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         <Reveal>
-          {/* El ordinal es el mismo que numera la lista de servicios de la
-              home: quien llega desde allí reconoce al instante que ha
-              aterrizado en la ficha que había señalado. */}
-          <span className={cn("block tabular-nums", LABEL, t.accent)}>
-            {service.index}
-          </span>
-
+          {/* Sin ordinal delante del titular: el capítulo abre directamente con
+              el nombre del servicio. */}
           <h2
             className={cn(
-              "mt-4 text-[clamp(2.5rem,6vw,5rem)] font-normal tracking-tight leading-[1.02]",
+              "text-[clamp(2.5rem,6vw,5rem)] font-normal tracking-tight leading-[1.02]",
               t.title
             )}
           >
