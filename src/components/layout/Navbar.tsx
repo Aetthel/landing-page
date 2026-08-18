@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/site";
 import { Menu, X } from "lucide-react";
 import { IsotipoIcon } from "@/components/ui/logo-isotipo";
 import { LogoWordmark } from "@/components/ui/logo-wordmark";
+import { SlideTabs } from "@/components/ui/slide-tabs";
 import { cn } from "@/lib/utils";
 
 export const Navbar: React.FC = () => {
@@ -62,25 +63,9 @@ export const Navbar: React.FC = () => {
           <LogoWordmark className="h-6 sm:h-7 md:h-8 w-auto shrink-0" />
         </Link>
 
-        {/* BOTONES MAS CUADRADOS, SIN FONDO (SOLO HOVER EN CLARO) */}
-        <nav className="hidden lg:flex items-center gap-1.5">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "px-4 py-2 rounded-xl type-body font-semibold uppercase tracking-wider transition-all duration-200",
-                  "bg-transparent text-ink hover:bg-neutral-200/50",
-                  isActive && "bg-neutral-200/60 font-bold"
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+        {/* Un único selector que se desplaza entre enlaces, en vez de un fondo
+            que se enciende y se apaga en cada uno */}
+        <SlideTabs items={navItems} className="hidden lg:flex" />
 
         {/* MOBILE MENU TOGGLE */}
         <div className="lg:hidden flex items-center">
@@ -113,7 +98,9 @@ export const Navbar: React.FC = () => {
                   className={cn(
                     "px-4 py-3 rounded-xl type-body font-semibold uppercase tracking-wider transition-colors",
                     "bg-transparent text-ink hover:bg-neutral-100",
-                    isActive && "bg-neutral-100 font-bold"
+                    /* Mismo blanco que la pastilla de escritorio: el activo se
+                       señala igual en los dos menús */
+                    isActive && "bg-white font-bold text-ink shadow-sm border border-neutral-200/80"
                   )}
                 >
                   {item.label}

@@ -1,9 +1,6 @@
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: landing-page:latest
+    image: ghcr.io/${DOCKER_REPO:-aetthel/landing-page}:latest
     container_name: landing_page_app
     restart: always
     ports:

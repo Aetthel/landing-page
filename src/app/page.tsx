@@ -1,5 +1,4 @@
 import React from "react";
-import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { PromotionalVideo } from "@/components/sections/PromotionalVideo";
@@ -10,8 +9,8 @@ export default function Home() {
   return (
     <div className="relative min-h-screen flex flex-col bg-dark text-ink font-sans selection:bg-dark selection:text-white pt-2 sm:pt-3">
       <div className="relative min-h-screen w-full bg-canvas text-ink rounded-t-[2.5rem] sm:rounded-t-[3.5rem] overflow-hidden border-t border-line/60 shadow-2xl flex flex-col flex-1">
-        {/* Floating Navbar */}
-        <Navbar />
+        {/* La Navbar la monta el layout, para que sobreviva a los cambios de
+            ruta y su selector pueda desplazarse */}
 
         {/* Main Page Content */}
         <main className="flex-1 w-full">
