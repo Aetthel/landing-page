@@ -10,8 +10,6 @@ export interface TeamMember {
   name: string;
   /** Iniciales del monograma, en mayúsculas. */
   initials: string;
-  /** Ruta opcional a la foto de perfil en /public (ej: '/team/marti.jpg'). */
-  avatar?: string;
   role: string;
   bio: string;
   skills: string[];

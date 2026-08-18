@@ -36,65 +36,54 @@ export const StudioTeam: React.FC = () => {
           </p>
         </Reveal>
 
-        {/* --- Las dos fichas (Diseño Abierto Sin Tarjetas) ------------------ */}
-        <div className="mt-14 lg:mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
+        {/* --- Las dos fichas ------------------------------------------------ */}
+        <div className="mt-14 lg:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {team.map((member, i) => (
             <Reveal key={member.name} delay={i * 120} className="h-full">
-              <article className="group relative h-full border-t border-line/80 pt-8 flex flex-col justify-between">
-                {/* Filete lima trazándose por el canto superior al hacer hover */}
+              <article className="group relative h-full overflow-hidden rounded-3xl border border-line bg-surface p-8 sm:p-10 transition duration-500 ease-out hover:-translate-y-1.5 hover:border-ink/25 hover:shadow-[0_24px_60px_rgba(26,26,30,0.10)] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                {/* Filete lima trazándose por el canto superior: el mismo gesto
+                    de izquierda a derecha del subrayado del hero y del foco de
+                    los campos del formulario. */}
                 <span
                   aria-hidden="true"
                   className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-brand transition-transform duration-500 ease-out group-hover:scale-x-100 motion-reduce:transition-none"
                 />
 
-                <div>
-                  {/* Foto de perfil limpia o monograma */}
-                  <div className="relative mb-8 h-64 sm:h-72 w-full overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-800/40 flex flex-col items-center justify-center group/photo">
-                    {member.avatar ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
-                        src={member.avatar}
-                        alt={member.name}
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/photo:scale-105"
-                      />
-                    ) : (
-                      <div className="flex flex-col items-center justify-center gap-3 p-6 text-center">
-                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-line bg-canvas font-display text-2xl font-medium tracking-tight text-ink shadow-sm transition-colors duration-500 group-hover:border-brand group-hover:bg-brand">
-                          {member.initials}
-                        </div>
-                        <span className="font-sans text-xs font-medium text-ink-muted">
-                          Foto: <code className="text-[11px] font-mono text-ink bg-canvas px-2 py-0.5 rounded border border-line">/public/team/{member.name.toLowerCase().split(' ')[0]}.jpg</code>
-                        </span>
-                      </div>
-                    )}
+                <div className="flex items-start gap-5">
+                  {/* Monograma. En reposo es lienzo con filete; al pasar por
+                      encima se enciende en lima y la tinta se mantiene, que es
+                      la única combinación de marca que aguanta el contraste. */}
+                  <span
+                    aria-hidden="true"
+                    className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-line bg-canvas font-display text-xl font-medium tracking-tight text-ink transition-colors duration-500 ease-out group-hover:border-brand group-hover:bg-brand motion-reduce:transition-none"
+                  >
+                    {member.initials}
+                  </span>
+
+                  <div className="min-w-0 space-y-1">
+                    <h3 className="type-title text-ink">{member.name}</h3>
+                    <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted">
+                      {member.role}
+                    </span>
                   </div>
-
-                  <div className="flex items-start justify-between">
-                    <div className="min-w-0 space-y-1">
-                      <h3 className="type-title text-2xl sm:text-3xl text-ink">{member.name}</h3>
-                      <span className="block font-sans text-xs font-medium uppercase tracking-[0.18em] text-brand">
-                        {member.role}
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="mt-4 font-sans text-base font-light leading-relaxed text-ink-muted">
-                    {member.bio}
-                  </p>
-
-                  <ul className="mt-6 flex flex-wrap gap-2">
-                    {member.skills.map((skill) => (
-                      <li
-                        key={skill}
-                        className="rounded-full border border-line/70 bg-canvas px-3 py-1 font-sans text-xs font-medium text-ink-muted"
-                      >
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
-                <div className="mt-8 flex items-center gap-6 border-t border-line/50 pt-6">
+                <p className="mt-6 font-sans text-sm sm:text-base font-light leading-relaxed text-ink-muted">
+                  {member.bio}
+                </p>
+
+                <ul className="mt-7 flex flex-wrap gap-2">
+                  {member.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full border border-line bg-canvas px-3 py-1 font-sans text-xs font-medium text-ink-muted transition-colors duration-300 group-hover:border-ink/20 group-hover:text-ink"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-8 flex items-center gap-6 border-t border-line/70 pt-6">
                   {[
                     { label: "GitHub", href: member.github },
                     { label: "LinkedIn", href: member.linkedin },
@@ -108,6 +97,8 @@ export const StudioTeam: React.FC = () => {
                       className="group/link inline-flex items-center gap-1 font-sans text-xs font-medium text-ink-muted transition-colors hover:text-ink"
                     >
                       {link.label}
+                      {/* La flecha sale del sitio solo al apuntar al enlace, no
+                          al pasar por la ficha entera: marca cuál de los dos. */}
                       <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 motion-reduce:transition-none" />
                     </a>
                   ))}
