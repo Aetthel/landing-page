@@ -7,6 +7,8 @@ import { CustomCursor } from "@/components/ui/custom-cursor";
 import { ScrollRail } from "@/components/ui/scroll-rail";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { AnimatedGridBackground } from "@/components/ui/animated-grid-background";
+import { AuroraGlow } from "@/components/ui/aurora-background";
+import { Navbar } from "@/components/layout/Navbar";
 import "./globals.css";
 
 const bootScript = `(function(){var d=document.documentElement;try{
@@ -84,6 +86,9 @@ export default function RootLayout({
         {/* Fondo animado de rejilla + partículas en toda la landing */}
         <AnimatedGridBackground />
 
+        {/* Auroras lima fijas: la misma capa en todas las páginas y secciones */}
+        <AuroraGlow />
+
         {/* Entrada de marca */}
         <IntroSequence />
 
@@ -92,6 +97,12 @@ export default function RootLayout({
 
         {/* Barra de scroll de marca */}
         <ScrollRail />
+
+        {/* La Navbar vive aquí y no dentro de cada página a propósito: montada
+            por página, React la destruiría en cada navegación y el selector
+            deslizante no llegaría a recorrer nada —se vería un salto—. Montada
+            una sola vez, sobrevive al cambio de ruta y la pastilla viaja. */}
+        <Navbar />
 
         <SmoothScroll>{children}</SmoothScroll>
       </body>

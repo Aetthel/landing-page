@@ -242,8 +242,11 @@ export const ContactForm: React.FC = () => {
 
   const sending = status === "sending";
 
+  /* `overflow-clip` y no `overflow-hidden` en la sección: recorta igual las
+     esquinas redondeadas, pero sin convertirla en marco de scroll —que es lo que
+     dejaría clavada la columna `sticky` de la izquierda—. */
   return (
-    <section className="relative z-20 w-full bg-canvas rounded-t-[3.5rem] sm:rounded-t-[4.5rem] overflow-hidden border-t border-line/80 pt-20 pb-32 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-56 shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
+    <section className="relative z-20 w-full bg-canvas rounded-t-[3.5rem] sm:rounded-t-[4.5rem] overflow-clip border-t border-line/80 pt-20 pb-32 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-56 shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-start">
           {/* ------------------------------------------------------------------

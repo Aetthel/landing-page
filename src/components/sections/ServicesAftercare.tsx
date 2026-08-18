@@ -14,7 +14,10 @@ export const ServicesAftercare: React.FC = () => {
   return (
     <section
       data-cursor-surface="dark"
-      className="relative isolate w-full overflow-hidden bg-dark py-24 sm:py-32 lg:py-40"
+      /* `overflow-clip` en vez de `hidden`: contiene igual el resplandor que se
+         sale por la esquina, pero sin hacer de esta sección un marco de scroll
+         —que dejaría clavada la columna `sticky` del titular—. */
+      className="relative isolate w-full overflow-clip bg-dark py-24 sm:py-32 lg:py-40"
     >
       {/* El mismo resplandor lima que abre la página, ahora al otro lado: cierra
           el bloque oscuro sin repetir la composición del encabezado. */}

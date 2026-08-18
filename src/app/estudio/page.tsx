@@ -1,6 +1,5 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Reveal } from "@/components/ui/reveal";
 import { InteractiveHoverLink } from "@/components/ui/interactive-hover-button";
@@ -72,8 +71,6 @@ const values = [
 export default function EstudioPage() {
   return (
     <div className="relative min-h-screen flex flex-col bg-dark text-white font-sans selection:bg-dark selection:text-white">
-      <Navbar />
-
       <main className="flex-1 w-full">
         {/* HERO CABECERA EN NEGRO SIN DEGRADADO */}
         <section
@@ -81,8 +78,11 @@ export default function EstudioPage() {
           className="relative isolate w-full min-h-screen min-h-dvh flex flex-col justify-center overflow-hidden bg-dark text-white pt-32 pb-32 sm:pt-36 sm:pb-36"
         >
           <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end">
-              <div className="lg:col-span-8">
+            {/* `items-start` + `.hero-lead`: la entradilla cuelga del titular a
+                una altura fija, en vez de alinearse por abajo y moverse según
+                el largo del texto —que es lo que hacía distinta a cada página—. */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+              <div className="lg:col-span-7">
                 <span className="block type-eyebrow text-brand animate-rise-in rise-delay-1">
                   Estudio
                 </span>
@@ -97,7 +97,7 @@ export default function EstudioPage() {
                 </h1>
               </div>
 
-              <p className="lg:col-span-4 max-w-md type-body text-neutral-400 animate-rise-in rise-delay-3">
+              <p className="lg:col-span-5 max-w-xl type-lead hero-lead text-neutral-400 animate-rise-in rise-delay-3">
                 Creemos que la tecnología moderna no debe ser un lujo reservado a grandes corporaciones. Existimos para dotar a pequeños y medianos negocios de herramientas digitales sólidas, webs de alto impacto y automatizaciones que ahorran horas de trabajo.
               </p>
             </div>

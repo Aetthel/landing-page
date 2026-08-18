@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* El equivalente en Tailwind v4 de `darkMode: "class"`. Sin esto, `dark:` se
+   resuelve por `prefers-color-scheme` y la web —que es clara por diseño— se
+   vería distinta en un sistema en modo oscuro sin que nadie lo haya pedido. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ==========================================================================
    Aetthel — Sistema visual
    Tokens de marca expuestos como utilidades de Tailwind v4 vía @theme.
@@ -38,6 +43,48 @@
   --font-display:
     var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
   --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+
+  /* --- Animaciones ------------------------------------------------------ */
+  /* Deriva de las auroras del hero. En Tailwind v4 un token `--animate-*` es
+     lo que genera la utilidad: de aquí sale `animate-aurora`. */
+  --animate-aurora: aurora 60s linear infinite;
+
+  @keyframes aurora {
+    from {
+      background-position:
+        50% 50%,
+        50% 50%;
+    }
+    to {
+      background-position:
+        350% 50%,
+        350% 50%;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Auroras — el fondo animado de la web.
+
+   Un único color, la lima de marca, y nada más: lo que cambia entre parada y
+   parada del degradado es la opacidad, nunca el tono. Así el efecto no puede
+   virar a verde apagado ni a blanco lechoso, y se lee igual de lima sobre el
+   lienzo claro que sobre los bloques negros.
+
+   El original de 21st componía dos degradados —una celosía blanca sobre la
+   aurora— y los invertía. Ese invertido es lo que lo hacía desvanecerse sobre
+   fondo claro, así que aquí la celosía se hace con transparencia: las vetas son
+   los tramos con lima y los huecos son huecos de verdad, no blanco.
+   -------------------------------------------------------------------------- */
+:root {
+  --transparent: transparent;
+
+  /* Cambia este color y cambia el efecto entero */
+  --aurora: #b8fa4e;
+
+  --aurora-strong: rgb(184 250 78 / 0.95);
+  --aurora-mid: rgb(184 250 78 / 0.5);
+  --aurora-faint: rgb(184 250 78 / 0.18);
 }
 
 @layer base {
@@ -109,7 +156,7 @@
 
 @layer utilities {
   /* ==========================================================================
-     AETTHEL — SISTEMA TIPOGRÁFICO DE 3 ESCALAS (ESTRICTO)
+     AETTHEL — SISTEMA TIPOGRÁFICO DE 4 ESCALAS (ESTRICTO)
      ========================================================================== */
 
   /* NIVEL 1: DISPLAY / TITULARES (Hero, h1, h2) — 40px a 88px fluido */
@@ -119,6 +166,25 @@
     font-weight: 400;
     letter-spacing: -0.035em;
     line-height: 1.04;
+  }
+
+  /* NIVEL 1B: ENTRADILLA (el párrafo que acompaña a un titular de hero)
+     — 16px a 22px fluido.
+
+     Existe porque el cuerpo a 14px, puesto al lado de un display de 88px, no
+     lee como la segunda voz de la cabecera: lee como una nota al pie. Este
+     nivel cierra ese salto sin llegar a competir con el titular —la distancia
+     sigue siendo de cuatro veces— y mantiene el peso ligero, que es lo que
+     evita que dos bloques grandes se estorben.
+
+     Solo para entradillas de cabecera. El texto corrido de las secciones sigue
+     siendo `type-body`: aquí la medida es corta y el párrafo es uno. */
+  .type-lead {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.1vw, 1.375rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.55;
   }
 
   /* NIVEL 2: DESTACADO / SUBTÍTULOS (Tarjetas, h3, h4, items dock) — 20px (1.25rem) */
@@ -145,6 +211,27 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.2em;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Entradilla de cabecera — la posición, que no el tamaño.
+
+   Las cabeceras de /estudio, /servicios y /contacto reparten titular y
+   entradilla en dos columnas. Alineadas por abajo, la entradilla sube o baja
+   según cuántas líneas tenga: con titulares de dos líneas acababa arrancando
+   por encima del titular, y cada página quedaba distinta. Alineadas por arriba
+   y con este desplazamiento, la entradilla entra siempre a la misma altura —a
+   la altura de la segunda línea del titular—, tenga el texto que tenga.
+
+   El desplazamiento escala con la misma `vw` que el display, así que la
+   relación se mantiene en todos los anchos en vez de descuadrarse al crecer el
+   titular. Solo a partir de `lg`: por debajo las columnas se apilan y la
+   entradilla va justo detrás del titular, sin hueco que reservar.
+   -------------------------------------------------------------------------- */
+@media (min-width: 64rem) {
+  .hero-lead {
+    margin-top: clamp(6rem, 12vw, 11rem);
   }
 }
 
