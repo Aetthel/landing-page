@@ -1,0 +1,73 @@
+name: CI/CD - Build, Push & Portainer Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build Docker Image & Deploy via Portainer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Iniciar sesión en Registry (Docker Hub o GHCR por defecto)
+      - name: Log in to Docker Hub
+        if: ${{ secrets.DOCKER_USERNAME != '' }}
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Log in to GitHub Container Registry (GHCR)
+        if: ${{ secrets.DOCKER_USERNAME == '' }}
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Generar etiquetas (tags) para la imagen Docker
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ secrets.DOCKER_IMAGE_NAME || format('ghcr.io/{0}/landing-page', github.repository_owner) }}
+          tags: |
+            type=raw,value=latest,enable=true
+            type=sha,prefix=,format=short
+
+      # Construir y subir imagen a Docker Registry
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Notificar a Portainer vía Webhook para actualizar el servicio/stack
+      - name: Trigger Portainer Webhook
+        if: ${{ secrets.PORTAINER_WEBHOOK_URL != '' }}
+        run: |
+          echo "Disparando webhook de Portainer para auto-despliegue..."
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "${{ secrets.PORTAINER_WEBHOOK_URL }}")
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -n 1)
+          echo "Respuesta de Portainer: HTTP $HTTP_STATUS"
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "¡Despliegue activado correctamente en Portainer!"
+          else
+            echo "Error al notificar a Portainer. Revisa la URL del Webhook."
+            exit 1
+          fi
