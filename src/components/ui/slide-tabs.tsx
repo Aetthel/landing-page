@@ -144,7 +144,7 @@ export const SlideTabs: React.FC<SlideTabsProps> = ({ items, className }) => {
       <motion.li
         aria-hidden="true"
         style={{ left, width, opacity }}
-        className="pointer-events-none absolute inset-y-0 z-0 rounded-full bg-brand"
+        className="pointer-events-none absolute inset-y-0 z-0 rounded-xl bg-white shadow-sm border border-neutral-200/80"
       />
 
       {items.map((item, i) => {
@@ -167,7 +167,7 @@ export const SlideTabs: React.FC<SlideTabsProps> = ({ items, className }) => {
               href={item.href}
               aria-current={isSelected ? "page" : undefined}
               className={cn(
-                "block cursor-pointer rounded-full px-4 py-2 type-body uppercase tracking-wider text-ink transition-[font-weight] duration-200",
+                "block cursor-pointer rounded-xl px-4 py-2 type-body uppercase tracking-wider text-ink transition-[font-weight] duration-200",
                 isSelected ? "font-bold" : "font-semibold"
               )}
             >

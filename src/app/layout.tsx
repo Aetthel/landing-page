@@ -7,7 +7,6 @@ import { CustomCursor } from "@/components/ui/custom-cursor";
 import { ScrollRail } from "@/components/ui/scroll-rail";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { AnimatedGridBackground } from "@/components/ui/animated-grid-background";
-import { AuroraGlow } from "@/components/ui/aurora-background";
 import { Navbar } from "@/components/layout/Navbar";
 import "./globals.css";
 
@@ -85,9 +84,6 @@ export default function RootLayout({
 
         {/* Fondo animado de rejilla + partículas en toda la landing */}
         <AnimatedGridBackground />
-
-        {/* Auroras lima fijas: la misma capa en todas las páginas y secciones */}
-        <AuroraGlow />
 
         {/* Entrada de marca */}
         <IntroSequence />

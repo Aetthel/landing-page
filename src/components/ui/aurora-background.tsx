@@ -44,7 +44,7 @@ interface AuroraLayerProps {
  * La celosía va con `transparent`, no con blanco: los huecos tienen que ser
  * huecos de verdad para que la capa funcione igual sobre claro que sobre negro.
  */
-const AuroraLayer = ({ showRadialGradient = true }: AuroraLayerProps) => (
+export const AuroraLayer = ({ showRadialGradient = true }: AuroraLayerProps) => (
   <div
     className={cn(
       `
@@ -55,7 +55,7 @@ const AuroraLayer = ({ showRadialGradient = true }: AuroraLayerProps) => (
       filter blur-[10px]
       after:content-[""] after:absolute after:inset-0 after:[background-image:var(--ribbons)]
       after:[background-size:200%,_100%]
-      after:animate-aurora after:[background-attachment:fixed] after:mix-blend-plus-lighter
+      after:animate-aurora after:mix-blend-plus-lighter
       pointer-events-none
       absolute -inset-[10px] will-change-transform`,
 
@@ -136,7 +136,7 @@ interface AuroraGlowProps {
  * scroll (z-60) y de la cortina de entrada (z-100), con `pointer-events-none`
  * para no interceptar ni un clic.
  */
-export const AuroraGlow = ({
+export const HeroGlow = ({
   className,
   showRadialGradient = true,
 }: AuroraGlowProps) => (
@@ -163,4 +163,36 @@ export const AuroraGlow = ({
       <AuroraLayer showRadialGradient={showRadialGradient} />
     </div>
   </>
+);
+
+interface HeroGradientProps {
+  tone?: "light" | "dark";
+  className?: string;
+}
+
+/**
+ * HeroGradient — degradado estático para las cabeceras/hero de las páginas.
+ * Permanece estático al principio de la sección y se adapta al tono de fondo (claro u oscuro).
+ */
+export const HeroGradient = ({
+  tone = "light",
+  className,
+}: HeroGradientProps) => (
+  <div
+    aria-hidden="true"
+    className={cn(
+      "pointer-events-none absolute inset-0 z-0 overflow-hidden",
+      className
+    )}
+  >
+    {tone === "dark" ? (
+      <div className="absolute inset-0 opacity-25">
+        <AuroraLayer showRadialGradient={true} />
+      </div>
+    ) : (
+      <div className="absolute inset-0 opacity-40 mix-blend-multiply">
+        <AuroraLayer showRadialGradient={true} />
+      </div>
+    )}
+  </div>
 );

@@ -98,9 +98,9 @@ export const Navbar: React.FC = () => {
                   className={cn(
                     "px-4 py-3 rounded-xl type-body font-semibold uppercase tracking-wider transition-colors",
                     "bg-transparent text-ink hover:bg-neutral-100",
-                    /* Mismo lima que la pastilla de escritorio: el activo se
+                    /* Mismo blanco que la pastilla de escritorio: el activo se
                        señala igual en los dos menús */
-                    isActive && "bg-brand font-bold hover:bg-brand"
+                    isActive && "bg-white font-bold text-ink shadow-sm border border-neutral-200/80"
                   )}
                 >
                   {item.label}
