@@ -17,8 +17,10 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let frame = 0;
 
-    const handleScroll = () => {
+    const read = () => {
+      frame = 0;
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > 40) {
@@ -34,8 +36,19 @@ export const Navbar: React.FC = () => {
       lastScrollY = currentScrollY;
     };
 
+    /* Un vistazo por fotograma como mucho. El scroll nativo de un móvil dispara
+       muchos más eventos que fotogramas hay, y cada uno leía `scrollY` —que
+       fuerza al navegador a resolver el layout pendiente— antes de decidir. */
+    const handleScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(read);
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const navItems = [
@@ -52,8 +65,16 @@ export const Navbar: React.FC = () => {
           : "-translate-y-24 opacity-0"
       )}
     >
-      {/* DOCK BAR CON EFECTO CRISTAL ESMERILADO DE ALTO BLUR (BG-WHITE/75 BACKDROP-BLUR-XL) */}
-      <div className="pointer-events-auto flex items-center justify-between gap-4 sm:gap-8 px-6 sm:px-8 py-3.5 rounded-[2rem] border border-neutral-300/80 bg-white/75 backdrop-blur-xl backdrop-saturate-150 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 w-full text-ink">
+      {/* DOCK BAR CON EFECTO CRISTAL ESMERILADO DE ALTO BLUR (BG-WHITE/75 BACKDROP-BLUR-XL)
+
+          El cristal esmerilado es solo de `lg` para arriba. Un `backdrop-filter`
+          sobre una barra fija obliga al navegador a volver a desenfocar todo lo
+          que pasa por detrás en cada fotograma de scroll —es de las operaciones
+          más caras que hay en móvil, y ahí se traduce en tirones justo al
+          empezar a bajar—. Por debajo, el mismo blanco un punto más opaco: sin
+          desenfoque que calcular, la barra se lee igual sobre el lienzo claro y
+          sobre el reel oscuro. */}
+      <div className="pointer-events-auto flex items-center justify-between gap-4 sm:gap-8 px-6 sm:px-8 py-3.5 rounded-[2rem] border border-neutral-300/80 bg-white/90 lg:bg-white/75 lg:backdrop-blur-xl lg:backdrop-saturate-150 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 w-full text-ink">
         {/* LOGO VECTORIAL OFICIAL DE MARCA (PUBLIC/LOGOS/AETTHEL-LOGO.SVG) EN EL EXTREMO IZQUIERDO */}
         <Link
           href="/"

@@ -235,6 +235,33 @@
   }
 }
 
+/* --------------------------------------------------------------------------
+   Auroras en móvil — la misma imagen, sin el coste por fotograma.
+
+   La capa es enorme (inset negativo sobre todo el viewport), va desenfocada y
+   se funde con lo que tiene debajo (`multiply` / `plus-lighter`). Animarle la
+   posición del degradado obliga al navegador a repintarla y a rehacer el
+   desenfoque y la fusión en cada fotograma, y en un teléfono ese repintado
+   compite justo con el scroll. Aquí la deriva se congela —60 s de ciclo a
+   opacidad 0,15 no se ven venir en una pantalla de mano— y el desenfoque baja
+   a la mitad, que a este tamaño de pantalla da la misma difuminación.
+
+   Solo por debajo de `lg`: en escritorio la capa se queda exactamente como
+   estaba, animada y con sus 10px de blur.
+   -------------------------------------------------------------------------- */
+@media (max-width: 63.99rem) {
+  .aurora-layer {
+    filter: blur(5px);
+    /* Sin nada que animar no hay capa que promocionar: reservarla solo gasta
+       memoria de vídeo, que en móvil es justo lo que escasea. */
+    will-change: auto;
+  }
+
+  .aurora-layer::after {
+    animation: none;
+  }
+}
+
 /* Lenis smooth scrolling integration & custom selection */
 html.lenis,
 html.lenis body {

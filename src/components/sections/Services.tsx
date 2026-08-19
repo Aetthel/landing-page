@@ -131,7 +131,7 @@ export const Services: React.FC = () => {
           {/* Left Column: List with Mouse Hover */}
           <div
             ref={listRef}
-            className="lg:col-span-6 space-y-12 lg:space-y-20"
+            className="lg:col-span-6 space-y-16 lg:space-y-20"
           >
             {servicesData.map((service, index) => {
               const isActive = activeService === service.id;
@@ -153,7 +153,7 @@ export const Services: React.FC = () => {
                       className={`block font-sans text-xs font-medium text-ink transition-all duration-300 ease-out ${
                         isActive
                           ? "opacity-100 translate-y-0"
-                          : "opacity-0 -translate-y-1"
+                          : "opacity-100 translate-y-0 lg:opacity-0 lg:-translate-y-1"
                       }`}
                     >
                       {service.number}
@@ -162,7 +162,7 @@ export const Services: React.FC = () => {
                     <div className="flex items-center justify-between gap-4">
                       <h3
                         className={`text-4xl sm:text-6xl font-normal tracking-tight transition-colors duration-500 ease-out ${
-                          isActive ? "text-ink" : "text-ink-muted/50"
+                          isActive ? "text-ink" : "text-ink lg:text-ink-muted/50"
                         }`}
                       >
                         {service.title}
@@ -171,7 +171,7 @@ export const Services: React.FC = () => {
                         className={`w-7 h-7 shrink-0 text-ink stroke-[1.75] transition-all duration-300 ease-out ${
                           isActive
                             ? "opacity-100 translate-x-0"
-                            : "opacity-0 -translate-x-2"
+                            : "opacity-100 translate-x-0 lg:opacity-0 lg:-translate-x-2"
                         }`}
                       />
                     </div>
@@ -179,18 +179,38 @@ export const Services: React.FC = () => {
 
                   <span
                     className={`block h-0.5 origin-left bg-brand transition-transform duration-500 ease-out motion-reduce:transition-none ${
-                      isActive ? "scale-x-100" : "scale-x-0"
+                      isActive ? "scale-x-100" : "scale-x-100 lg:scale-x-0"
                     }`}
                   />
+
+                  {/* Versión móvil de la ficha: sin puntero no hay hover, así que
+                      el texto del panel derecho no llegaría nunca a leerse. Aquí
+                      cada servicio lleva su propio titular y descripción siempre
+                      visibles, y el enlace sigue llevando a su ficha en
+                      /servicios. Es `lg:hidden`: en escritorio manda el panel. */}
+                  <div className="lg:hidden pt-5 space-y-3">
+                    <h4 className="text-xl sm:text-2xl font-semibold tracking-tight text-ink leading-snug whitespace-pre-line">
+                      {service.headline}
+                    </h4>
+                    <p className="text-base text-ink-muted font-sans font-light leading-relaxed">
+                      {service.description}
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 font-sans text-xs font-medium uppercase tracking-[0.14em] text-ink">
+                      Ver servicio
+                      <ArrowUpRight className="w-4 h-4 stroke-[1.75]" />
+                    </span>
+                  </div>
                 </Link>
               );
             })}
           </div>
 
-          {/* Right Column: Dynamic Content permanently showing last hovered service */}
+          {/* Right Column: Dynamic Content permanently showing last hovered service.
+              Oculta por debajo de `lg`: ahí el texto ya va dentro de cada
+              servicio de la lista y este panel solo repetiría uno de los tres. */}
           <div
             ref={panelCellRef}
-            className="lg:col-span-6 pt-4 lg:pt-8 min-h-[320px] text-center"
+            className="hidden lg:block lg:col-span-6 pt-4 lg:pt-8 min-h-[320px] text-center"
           >
             <div
               ref={panelRef}

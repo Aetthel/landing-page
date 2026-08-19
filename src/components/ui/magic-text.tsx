@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   easeInOut,
   motion,
@@ -81,6 +81,20 @@ export const MagicText: React.FC<MagicTextProps> = ({ text, className }) => {
     restDelta: 0.0005,
   });
 
+  /* En táctil el muelle sobra y estorba. El dedo entrega un scroll continuo
+     —no los saltos discretos de la rueda que el muelle venía a limar—, así que
+     lo único que aporta es un retardo: el trazo llega siempre un poco después
+     del gesto y se percibe como pesadez. Con el progreso en crudo, el rotulador
+     va pegado al dedo. Se resuelve tras el montaje para que el HTML del
+     servidor y el de la hidratación sigan siendo el mismo. */
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  const progress = isTouch ? scrollYProgress : smoothProgress;
+
   const words = text.split(" ");
 
   /* Cada palabra dura `span` y todas arrancan repartidas por lo que queda, de
@@ -101,7 +115,7 @@ export const MagicText: React.FC<MagicTextProps> = ({ text, className }) => {
         return (
           <Word
             key={`${word}-${index}`}
-            progress={smoothProgress}
+            progress={progress}
             range={[start, start + span]}
           >
             {word}
