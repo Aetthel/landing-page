@@ -47,6 +47,12 @@ interface AuroraLayerProps {
 export const AuroraLayer = ({ showRadialGradient = true }: AuroraLayerProps) => (
   <div
     className={cn(
+      /* `aurora-layer` no pinta nada por sí sola: es el asidero desde el que
+         `globals.css` congela la deriva y aligera el desenfoque en móvil. Una
+         capa a sangre, desenfocada y con fusión encima, repintándose sin parar
+         es de lo más caro que puede hacer una GPU de teléfono, y con un ciclo
+         de 60 s a opacidad 0,15 el movimiento allí no se percibe. */
+      "aurora-layer",
       `
       [--ribbons:repeating-linear-gradient(100deg,var(--aurora-strong)_0%,var(--aurora-mid)_5%,var(--transparent)_9%,var(--transparent)_15%,var(--aurora-faint)_18%,var(--aurora-strong)_24%)]
       [background-image:var(--ribbons)]

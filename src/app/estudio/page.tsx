@@ -3,32 +3,45 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Reveal } from "@/components/ui/reveal";
 import { InteractiveHoverLink } from "@/components/ui/interactive-hover-button";
+import { ShotFigure } from "@/components/ui/shot-figure";
+import { StudioSpace } from "@/components/sections/StudioSpace";
+import { StudioApproach } from "@/components/sections/StudioApproach";
 import { StudioTeam } from "@/components/sections/StudioTeam";
 import { StudioValues } from "@/components/sections/StudioValues";
 import { ServicesProcess } from "@/components/sections/ServicesProcess";
+import { HeroGradient } from "@/components/ui/aurora-background";
+import { workspaceWide } from "@/config/studio";
 
 /* ==========================================================================
    /estudio — Aetthel Lab
 
-   La página no vende servicios: los servicios ya tienen la suya. Esta responde
-   a la pregunta que se hace quien está a punto de encargarnos algo y no nos
-   conoce de nada —¿quiénes son y cómo va a ser trabajar con ellos?—, y la
-   responde en ese orden:
+   TESIS. La página no vende servicios —los servicios ya tienen la suya—:
+   responde a lo que se pregunta quien está a punto de encargarnos algo y no
+   nos conoce de nada, y lo responde enseñando antes que afirmando. Rechaza el
+   «sobre nosotros» de misión-visión-valores y la parrilla de tarjetas con
+   foto y cargo.
 
-     el equipo (con nombre y cara) → cómo va un proyecto, paso a paso → en qué
-     no cedemos → hablemos.
+   MUNDO. El de siempre: cabecera a pantalla completa sobre grafito y, encima,
+   una hoja de lienzo con las esquinas redondeadas. Lima solo en filetes y
+   marcas, nunca en texto sobre claro. Jakarta para titulares, Inter para todo
+   lo demás.
 
-   Misma gramática que /servicios y /contacto: cabecera a pantalla completa
-   sobre grafito y, a partir de ahí, una hoja de lienzo con esquinas redondeadas
-   que monta encima. Dentro de la hoja, el bloque de valores vuelve al grafito
-   para partir la lectura antes del cierre.
+   RECORRIDO. El sitio donde trabajamos → cómo es el trato → quiénes somos →
+   una lámina de respiro → el proyecto paso a paso → en qué no cedemos →
+   hablemos. Se abre por el taller a propósito: un espacio recogido es la
+   prueba visible de lo que las secciones de abajo explican con palabras.
 
-   La tabla del proceso es <ServicesProcess>, que llevaba tiempo escrita
-   esperando esta página: cuenta cómo trabaja el estudio, no qué se contrata, y
-   por eso salió de /servicios.
+   MOMENTO. El reparto. Dos nombres a tamaño de cartel, apagados, que al pasar
+   por encima se corren a la derecha para dejar salir la ficha y el retrato.
+   Es la única pieza de la web que se comporta así, y es la que la página
+   entera sostiene.
+
+   IMÁGENES. Los retratos y las fotos del taller todavía no existen: cada
+   hueco lleva una lámina de reserva compuesta que se retira sola en cuanto
+   los archivos aparezcan en `public/team` y `public/workspace`. Los pies de
+   foto de `config/studio.ts` son de relleno y hay que reescribirlos con las
+   fotos reales.
    ========================================================================== */
-
-import { HeroGradient } from "@/components/ui/aurora-background";
 
 export const metadata: Metadata = {
   title: "Aetthel Lab | Aetthel",
@@ -58,16 +71,19 @@ export default function EstudioPage() {
 
                 <h1 className="mt-6 type-display text-white">
                   <span className="block animate-rise-in rise-delay-1">
-                    El salto digital,
+                    Un estudio de dos,
                   </span>
                   <span className="block text-brand animate-rise-in rise-delay-2">
-                    al alcance de tu negocio.
+                    con la puerta abierta.
                   </span>
                 </h1>
               </div>
 
               <p className="lg:col-span-5 max-w-xl type-lead hero-lead text-neutral-400 animate-rise-in rise-delay-3">
-                Creemos que la tecnología moderna no debe ser un lujo reservado a grandes corporaciones. Existimos para dotar a pequeños y medianos negocios de herramientas digitales sólidas, webs de alto impacto y automatizaciones que ahorran horas de trabajo.
+                Ni comerciales, ni gestores de cuenta, ni un equipo distinto que
+                ejecute después lo que tú contaste al principio. Somos Martí y
+                Alex, y esta página está para que sepas con quién vas a
+                trabajar antes de escribirnos.
               </p>
             </div>
           </div>
@@ -75,38 +91,68 @@ export default function EstudioPage() {
 
         {/* La hoja de lienzo monta sobre el grafito, igual que en /servicios */}
         <div className="relative z-20 rounded-t-[3.5rem] sm:rounded-t-[4.5rem] bg-canvas border-t border-line/80 overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
+          {/* Primero el sitio: se enseña antes de explicarse. */}
+          <StudioSpace />
+
+          {/* Cómo es el trato, con las tres promesas que lo sostienen. */}
+          <StudioApproach />
+
+          {/* El reparto. El momento de la página. */}
           <StudioTeam />
 
-          {/* Cómo trabajamos, paso a paso y con la columna que casi nadie
+          {/* Respiro. Una lámina ancha entre el bloque más ruidoso de la
+              página y el más denso: sin ella, los nombres a tamaño de cartel
+              desembocan directamente en una tabla de cinco columnas. */}
+          <section className="w-full bg-canvas pb-24 sm:pb-32 lg:pb-40">
+            <Reveal className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
+              <ShotFigure shot={workspaceWide} />
+            </Reveal>
+          </section>
+
+          {/* Cómo va un proyecto, paso a paso y con la columna que casi nadie
               publica: qué se espera del cliente en cada fase. */}
           <ServicesProcess />
 
           <StudioValues />
 
-          {/* CIERRE */}
+          {/* CIERRE. Primero la frase que resume la página entera, y solo
+              después la llamada: pedir la reunión antes de haber cerrado la
+              idea es lo que convierte un cierre en un banner. */}
           <section className="w-full bg-canvas py-24 sm:py-32 lg:py-40">
             <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-              <Reveal className="max-w-3xl">
-                <span className="block type-eyebrow text-ink-muted">
-                  Empieza aquí
-                </span>
-                <h2 className="mt-5 text-[clamp(2.25rem,5vw,4rem)] font-normal tracking-tight leading-[1.05] text-ink text-balance">
-                  Cuéntanos qué necesita tu negocio.
+              <Reveal>
+                <h2 className="max-w-4xl text-[clamp(2rem,4.6vw,3.75rem)] font-light tracking-tight leading-[1.08] text-ink text-balance">
+                  Al final, esto va de entenderse.
                 </h2>
-                <p className="mt-6 max-w-xl font-sans text-base sm:text-lg font-light leading-relaxed text-ink-muted">
-                  La primera reunión no compromete a nada: escuchamos el caso, te
-                  decimos si lo vemos y te proponemos una solución con
-                  presupuesto cerrado. Si creemos que no somos el equipo
-                  adecuado, también te lo decimos ahí.
+                <p className="mt-7 max-w-2xl font-sans text-base sm:text-lg font-light leading-relaxed text-ink-muted">
+                  De que entiendas qué se está construyendo y por qué, y de que
+                  nosotros entendamos cómo funciona tu negocio de verdad. Todo
+                  lo demás —el código, el servidor, el diseño— viene después de
+                  eso, y sale bien o mal según lo bien que salga eso.
                 </p>
               </Reveal>
 
-              <Reveal delay={120} className="mt-10">
-                <InteractiveHoverLink
-                  href="/contacto"
-                  text="Iniciar proyecto"
-                  className="px-7 py-3 tracking-widest"
-                />
+              <Reveal delay={120}>
+                <div className="mt-16 lg:mt-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 border-t border-ink/15 pt-12 lg:pt-16 items-start">
+                  <h3 className="lg:col-span-6 text-[clamp(1.5rem,2.8vw,2.4rem)] font-normal tracking-tight leading-[1.12] text-ink text-balance">
+                    Cuéntanos qué necesita tu negocio.
+                  </h3>
+
+                  <div className="lg:col-span-5 lg:col-start-8">
+                    <p className="max-w-xl font-sans text-base font-light leading-relaxed text-ink-muted">
+                      La primera reunión no compromete a nada: escuchamos el
+                      caso, te decimos si lo vemos y te proponemos una solución
+                      con presupuesto cerrado. Si creemos que no somos el equipo
+                      adecuado, también te lo decimos ahí.
+                    </p>
+
+                    <InteractiveHoverLink
+                      href="/contacto"
+                      text="Iniciar proyecto"
+                      className="mt-8 px-7 py-3 tracking-widest"
+                    />
+                  </div>
+                </div>
               </Reveal>
             </div>
           </section>

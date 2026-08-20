@@ -27,11 +27,26 @@ interface SmoothScrollProps {
  * La solución no es tocar la animación sino el orden: un único ticker (el de
  * GSAP) que avanza Lenis, y una actualización de ScrollTrigger disparada por
  * el propio Lenis cuando ya ha movido la página.
+ *
+ * En táctil no se monta. Ahí el scroll nativo lo lleva el compositor del
+ * navegador —fuera del hilo principal, con la inercia del sistema ya afinada
+ * para el dedo—, mientras que Lenis lo devuelve al hilo principal: cada
+ * fotograma pasa por JS y compite con GSAP, los observers y React. En un móvil
+ * eso se nota como un scroll pastoso y con enganchones, justo lo contrario de
+ * lo que el efecto busca. En escritorio sí compensa, porque ahí el scroll
+ * nativo llega a saltos discretos de rueda y es Lenis quien los suaviza.
  */
 export function SmoothScroll({ children }: SmoothScrollProps) {
   useEffect(() => {
     // Si el usuario prefiere movimiento reducido, respetamos la preferencia del SO
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    // Táctil: manda el scroll nativo. `scrollToY` ya cae en `window.scrollTo`
+    // cuando no hay instancia registrada, así que la barra de marca y los
+    // anclajes siguen funcionando igual.
+    if (window.matchMedia("(pointer: coarse)").matches) {
       return;
     }
 

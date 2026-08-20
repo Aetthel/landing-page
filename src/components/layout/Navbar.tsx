@@ -17,8 +17,10 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let frame = 0;
 
-    const handleScroll = () => {
+    const read = () => {
+      frame = 0;
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > 40) {
@@ -34,8 +36,19 @@ export const Navbar: React.FC = () => {
       lastScrollY = currentScrollY;
     };
 
+    /* Un vistazo por fotograma como mucho. El scroll nativo de un móvil dispara
+       muchos más eventos que fotogramas hay, y cada uno leía `scrollY` —que
+       fuerza al navegador a resolver el layout pendiente— antes de decidir. */
+    const handleScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(read);
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const navItems = [
@@ -49,7 +62,7 @@ export const Navbar: React.FC = () => {
         "fixed top-4 sm:top-5 left-4 sm:left-6 right-4 sm:right-6 z-50 flex justify-center transition-all duration-300 pointer-events-none transform",
         visible || mobileMenuOpen
           ? "translate-y-0 opacity-100"
-          : "-translate-y-24 opacity-0"
+          : "-translate-y-24 opacity-0",
       )}
     >
       {/* DOCK BAR CON EFECTO CRISTAL ESMERILADO BLANCO DISTINTIVO */}
@@ -97,7 +110,8 @@ export const Navbar: React.FC = () => {
                   className={cn(
                     "px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium uppercase tracking-wider transition-colors",
                     "bg-transparent text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/80",
-                    isActive && "bg-white font-bold text-neutral-900 shadow-sm border border-neutral-200/80"
+                    isActive &&
+                      "bg-white font-bold text-neutral-900 shadow-sm border border-neutral-200/80",
                   )}
                 >
                   {item.label}

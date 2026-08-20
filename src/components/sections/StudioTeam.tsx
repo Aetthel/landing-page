@@ -1,108 +1,70 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
-import { team, pillars } from "@/config/studio";
+import { PortraitPlate } from "@/components/ui/photo-plate";
+import { publicAssetExists } from "@/lib/assets";
+import { team } from "@/config/studio";
 
 /* --------------------------------------------------------------------------
-   El equipo — la sección que justifica la página entera.
+   El reparto — la sección que justifica la página entera.
 
    Un estudio de dos personas no compite por catálogo ni por tamaño: compite
-   porque el cliente sabe con quién habla. Por eso las fichas dan nombre, cara
-   —el monograma, hasta que haya retratos— y de qué se ocupa cada uno, en vez de
-   un «equipo multidisciplinar» que no dice nada.
+   porque el cliente sabe exactamente con quién va a hablar. Así que el bloque
+   se juega esa carta sin timidez y pone los dos nombres a tamaño de cartel,
+   apagados y en fila, esperando a que alguien pase por encima.
 
-   Debajo, las tres promesas de trato. Van aquí y no en «valores» porque
-   describen cómo es el día a día con nosotros, no en qué creemos: es la
-   respuesta a «¿y esto cómo va a ir?».
+   Entonces se enciende uno: el nombre se corre a la derecha, en el hueco que
+   deja aparece el oficio con sus dos enlaces, y por la derecha entra el
+   retrato centrado en la fila. La coreografía es CSS puro —cada retrato
+   cuelga del centro de su propia fila—, así que esto es un componente de
+   servidor: cero JavaScript enviado al navegador.
 
-   El hover no es decorativo: cada ficha se levanta, se traza el filete lima por
-   arriba y el monograma se enciende. Sirve para que se lea como algo que se
-   puede tocar —los enlaces a GitHub y LinkedIn están dentro—.
+   Debajo, en voz baja, lo que el cartel no puede contar: qué hace cada uno y
+   con qué. Es a propósito que sea lo tranquilo después de lo ruidoso, y es
+   también donde vive el texto que no depende de que haya un ratón encima.
    -------------------------------------------------------------------------- */
 export const StudioTeam: React.FC = () => {
+  /* Se resuelve aquí, una vez, y el marcado ya solo distingue entre haber foto
+     o no haberla. Ver la nota de imágenes en `config/studio.ts`. */
+  const members = team.map((member) => ({
+    ...member,
+    photo: publicAssetExists(member.photo) ? member.photo : null,
+  }));
+
   return (
     <section id="equipo" className="w-full bg-canvas py-24 sm:py-32 lg:py-40">
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         <Reveal className="max-w-3xl">
           <span className="block type-eyebrow text-ink-muted">El equipo</span>
           <h2 className="mt-5 text-[clamp(2.25rem,5vw,4rem)] font-normal tracking-tight leading-[1.05] text-ink text-balance">
-            Somos dos, y los dos escribimos el código.
+            Las dos personas que van a tocar tu proyecto.
           </h2>
           <p className="mt-6 max-w-xl font-sans text-base sm:text-lg font-light leading-relaxed text-ink-muted">
-            No hay departamento comercial que te tome el encargo ni un equipo
-            distinto que lo ejecute después. Nos cuentas el problema a nosotros y
-            lo construimos nosotros, que es también la razón de que sepamos
-            decirte que no cuando algo no te conviene.
+            Detrás de cada entrega hay dos nombres, y son siempre los mismos. Ni
+            subcontratas, ni rotación de perfiles, ni un equipo distinto que
+            ejecute después lo que tú contaste en la primera reunión.
           </p>
         </Reveal>
 
-        {/* --- Las dos fichas (Diseño Abierto Sin Tarjetas) ------------------ */}
-        <div className="mt-14 lg:mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
-          {team.map((member, i) => (
-            <Reveal key={member.name} delay={i * 120} className="h-full">
-              <article className="group relative h-full border-t border-line/80 pt-8 flex flex-col justify-between">
-                {/* Filete lima trazándose por el canto superior al hacer hover */}
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-brand transition-transform duration-500 ease-out group-hover:scale-x-100 motion-reduce:transition-none"
-                />
+        {/* --- El cartel ------------------------------------------------------
+            Sin `Reveal`: el bloque es más alto que la pantalla en escritorio y
+            el retrato sobresale de su fila, así que animar el contenedor
+            entero desplazaría piezas que están colocadas desde su centro. */}
+        <ul className="roster-list mt-12 lg:mt-4">
+          {members.map((member) => (
+            <li key={member.name} className="roster-row">
+              <span className="roster-name">{member.name}</span>
 
-                <div>
-                  {/* Marco de foto con corte recto (rounded-none, border-0) */}
-                  <div className="relative mb-8 h-64 sm:h-72 w-full overflow-hidden rounded-none border-0 bg-neutral-200/60 dark:bg-neutral-800/60 flex flex-col items-center justify-center group/photo">
-                    {member.avatar ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
-                        src={member.avatar}
-                        alt={member.name}
-                        className="h-full w-full object-cover rounded-none transition-transform duration-700 ease-out group-hover/photo:scale-105"
-                      />
-                    ) : (
-                      <div className="flex flex-col items-center justify-center gap-3 p-6 text-center">
-                        <div className="flex h-14 w-14 items-center justify-center rounded-none border-0 bg-canvas font-display text-2xl font-medium tracking-tight text-ink shadow-sm transition-colors duration-500 group-hover:bg-brand">
-                          {member.initials}
-                        </div>
-                        <div className="space-y-1 max-w-xs">
-                          <span className="block font-sans text-xs font-semibold text-ink">
-                            Retrato profesional en alta resolución
-                          </span>
-                          <span className="block font-sans text-[11px] text-ink-muted leading-tight">
-                            Fotografía de estudio o plano medio de {member.name.split(' ')[0]} en formato vertical 4:5.
-                          </span>
-                          <code className="inline-block text-[11px] font-mono text-ink bg-canvas px-2 py-0.5 rounded-none border-0 mt-1">
-                            /public/team/{member.name.toLowerCase().split(' ')[0]}.jpg
-                          </code>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+              <div className="roster-meta">
+                <span className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] leading-relaxed text-ink-muted">
+                  {member.role}
+                </span>
 
-                  <div className="flex items-start justify-between">
-                    <div className="min-w-0 space-y-1">
-                      <h3 className="type-title text-2xl sm:text-3xl text-ink">{member.name}</h3>
-                      <span className="block font-sans text-xs font-medium uppercase tracking-[0.18em] text-brand">
-                        {member.role}
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="mt-4 font-sans text-base font-light leading-relaxed text-ink-muted">
-                    {member.bio}
-                  </p>
-
-                  <ul className="mt-6 flex flex-wrap gap-2">
-                    {member.skills.map((skill) => (
-                      <li
-                        key={skill}
-                        className="rounded-full border border-line/70 bg-canvas px-3 py-1 font-sans text-xs font-medium text-ink-muted"
-                      >
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-8 flex items-center gap-6 border-t border-line/50 pt-6">
+                {/* Los enlaces son también la vía de teclado a esta ficha: al
+                    recibir el foco encienden la fila entera (`:focus-within`),
+                    y por eso el retrato y el oficio no se esconden con
+                    `display: none` sino con opacidad. */}
+                <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
                   {[
                     { label: "GitHub", href: member.github },
                     { label: "LinkedIn", href: member.linkedin },
@@ -119,34 +81,48 @@ export const StudioTeam: React.FC = () => {
                       <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 motion-reduce:transition-none" />
                     </a>
                   ))}
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* --- Las tres promesas de trato ------------------------------------ */}
-        <div className="mt-20 lg:mt-28 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
-          {pillars.map((pillar, i) => (
-            <Reveal key={pillar.num} delay={i * 100}>
-              {/* Sin tarjeta: aire y una hairline arriba. Tres cajas más debajo
-                  de las dos fichas convertirían la sección en un muro de
-                  recuadros. */}
-              <div className="group border-t border-ink/15 pt-6">
-                <span className="block font-sans text-xs font-medium tabular-nums tracking-[0.18em] text-ink/30 transition-colors duration-300 group-hover:text-accent">
-                  {pillar.num}
                 </span>
+              </div>
 
-                <h3 className="mt-4 type-title text-ink">{pillar.title}</h3>
+              <div className="roster-portrait">
+                {member.photo ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- ruta
+                  // suelta que puede no existir todavía: el optimizador de Next
+                  // devolvería un 500 en vez de dejar hueco.
+                  <img
+                    src={member.photo}
+                    alt={`Retrato de ${member.name}`}
+                    className="block aspect-3/4 w-full object-cover"
+                    draggable={false}
+                    loading="lazy"
+                  />
+                ) : (
+                  <PortraitPlate
+                    initials={member.initials}
+                    name={member.name}
+                    className="border-0"
+                  />
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
 
-                {/* Trazo lima que se dibuja bajo el título al pasar por encima */}
-                <span
-                  aria-hidden="true"
-                  className="mt-3 block h-0.5 w-10 origin-left scale-x-0 bg-brand transition-transform duration-500 ease-out group-hover:scale-x-100 motion-reduce:transition-none"
-                />
+        {/* --- La letra pequeña, que aquí es la que informa ------------------ */}
+        <div className="mt-10 lg:mt-0 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
+          {members.map((member, i) => (
+            <Reveal key={member.name} delay={i * 100}>
+              <div className="border-t border-ink/15 pt-6">
+                <h3 className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-ink">
+                  {member.name}
+                </h3>
 
-                <p className="mt-4 font-sans text-sm sm:text-base font-light leading-relaxed text-ink-muted">
-                  {pillar.desc}
+                <p className="mt-4 max-w-md font-sans text-sm sm:text-base font-light leading-relaxed text-ink-muted">
+                  {member.bio}
+                </p>
+
+                <p className="mt-5 font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-ink-muted">
+                  {member.skills.join("  ·  ")}
                 </p>
               </div>
             </Reveal>
