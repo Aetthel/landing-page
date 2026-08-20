@@ -1,7 +1,7 @@
 import React from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { PromotionalVideo } from "@/components/sections/PromotionalVideo";
+import { HomeGallery } from "@/components/sections/HomeGallery";
 import { Services } from "@/components/sections/Services";
 import { AboutUs } from "@/components/sections/AboutUs";
 
@@ -15,7 +15,7 @@ export default function Home() {
         {/* Main Page Content */}
         <main className="flex-1 w-full">
           <Hero />
-          <PromotionalVideo />
+          <HomeGallery />
           <AboutUs />
           <Services />
         </main>

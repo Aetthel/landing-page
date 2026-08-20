@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
+import { SectionHeader } from "@/components/ui/section-header";
 
 export const Projects: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -297,9 +298,10 @@ export const Projects: React.FC = () => {
       <div className="w-full space-y-8 sm:space-y-12">
         {/* Section Top Header */}
         <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-          <Reveal className="font-sans text-base sm:text-lg uppercase tracking-wider text-ink-muted font-medium">
-            PROYECTOS DESTACADOS
-          </Reveal>
+          <SectionHeader
+            eyebrow="PROYECTOS DESTACADOS"
+            title="Selección de trabajos y soluciones a medida."
+          />
         </div>
 
         {/* Infinite Horizontal Scroll / Drag Strip (No Radius, No Shadows, Margin 0) */}

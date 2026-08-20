@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
+import { SectionHeader } from "@/components/ui/section-header";
 
 /* Único número del escalonado: cuántos píxeles queda el bloque de texto por
    encima del servicio activo. Es una distancia fija, así que los tres guardan
@@ -126,6 +127,12 @@ export const Services: React.FC = () => {
       className="w-full pt-24 pb-40 sm:pt-32 sm:pb-56 lg:pt-40 lg:pb-80 bg-transparent"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
+        <SectionHeader
+          eyebrow="SERVICIOS"
+          title="Lo que hacemos por tu negocio."
+          className="mb-12 lg:mb-16"
+        />
+
         {/* Split Layout Container */}
         <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: List with Mouse Hover */}

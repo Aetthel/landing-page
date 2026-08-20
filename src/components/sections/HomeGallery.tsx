@@ -3,6 +3,6 @@
 import React from "react";
 import { ScrollGalleryReveal } from "@/components/ui/scroll-gallery-reveal";
 
-export const PromotionalVideo: React.FC = () => {
+export const HomeGallery: React.FC = () => {
   return <ScrollGalleryReveal />;
 };
