@@ -48,23 +48,31 @@ export const StudioTeam: React.FC = () => {
                 />
 
                 <div>
-                  {/* Foto de perfil limpia o monograma */}
-                  <div className="relative mb-8 h-64 sm:h-72 w-full overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-800/40 flex flex-col items-center justify-center group/photo">
+                  {/* Marco de foto con corte recto (rounded-none, border-0) */}
+                  <div className="relative mb-8 h-64 sm:h-72 w-full overflow-hidden rounded-none border-0 bg-neutral-200/60 dark:bg-neutral-800/60 flex flex-col items-center justify-center group/photo">
                     {member.avatar ? (
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <img
                         src={member.avatar}
                         alt={member.name}
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/photo:scale-105"
+                        className="h-full w-full object-cover rounded-none transition-transform duration-700 ease-out group-hover/photo:scale-105"
                       />
                     ) : (
                       <div className="flex flex-col items-center justify-center gap-3 p-6 text-center">
-                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-line bg-canvas font-display text-2xl font-medium tracking-tight text-ink shadow-sm transition-colors duration-500 group-hover:border-brand group-hover:bg-brand">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-none border-0 bg-canvas font-display text-2xl font-medium tracking-tight text-ink shadow-sm transition-colors duration-500 group-hover:bg-brand">
                           {member.initials}
                         </div>
-                        <span className="font-sans text-xs font-medium text-ink-muted">
-                          Foto: <code className="text-[11px] font-mono text-ink bg-canvas px-2 py-0.5 rounded border border-line">/public/team/{member.name.toLowerCase().split(' ')[0]}.jpg</code>
-                        </span>
+                        <div className="space-y-1 max-w-xs">
+                          <span className="block font-sans text-xs font-semibold text-ink">
+                            Retrato profesional en alta resolución
+                          </span>
+                          <span className="block font-sans text-[11px] text-ink-muted leading-tight">
+                            Fotografía de estudio o plano medio de {member.name.split(' ')[0]} en formato vertical 4:5.
+                          </span>
+                          <code className="inline-block text-[11px] font-mono text-ink bg-canvas px-2 py-0.5 rounded-none border-0 mt-1">
+                            /public/team/{member.name.toLowerCase().split(' ')[0]}.jpg
+                          </code>
+                        </div>
                       </div>
                     )}
                   </div>

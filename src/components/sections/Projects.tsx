@@ -23,10 +23,10 @@ export const Projects: React.FC = () => {
       content: (
         <div
           data-cursor-surface="dark"
-          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white overflow-hidden group/card"
+          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white rounded-none border-0 overflow-hidden group/card"
         >
-          {/* Fondo de Imagen */}
-          <div className="absolute inset-0 z-0 bg-neutral-900">
+          {/* Fondo de Imagen con corte recto (rounded-none border-0) */}
+          <div className="absolute inset-0 z-0 bg-neutral-900 rounded-none">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/projects/copreci.jpg"
@@ -34,9 +34,9 @@ export const Projects: React.FC = () => {
               onError={(e) => {
                 (e.target as HTMLElement).style.display = "none";
               }}
-              className="absolute inset-0 w-full h-full object-cover opacity-70 transition-transform duration-700 group-hover/card:scale-105"
+              className="absolute inset-0 w-full h-full object-cover opacity-70 rounded-none transition-transform duration-700 group-hover/card:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent z-10" />
           </div>
 
           <div className="relative z-20 flex items-center justify-between font-sans font-medium text-xs text-neutral-300 uppercase tracking-widest">
@@ -44,7 +44,15 @@ export const Projects: React.FC = () => {
             <span>Copreci®</span>
           </div>
 
-          <div className="relative z-20 space-y-3 mt-auto mb-4">
+          {/* Marcador guía de contenido para imagen */}
+          <div className="relative z-20 my-auto p-4 rounded-none border-0 bg-white/10 backdrop-blur-md text-center">
+            <span className="font-mono text-[11px] text-neutral-200">
+              Captura de pantalla o mockup del Dashboard Analytics SaaS<br />
+              <code className="text-brand font-bold">/public/projects/copreci.jpg</code>
+            </span>
+          </div>
+
+          <div className="relative z-20 space-y-2 mb-2">
             <h3 className="text-4xl font-bold tracking-tight text-white font-sans">
               Copreci
             </h3>
@@ -74,10 +82,10 @@ export const Projects: React.FC = () => {
       content: (
         <div
           data-cursor-surface="dark"
-          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white overflow-hidden group/card"
+          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white rounded-none border-0 overflow-hidden group/card"
         >
-          {/* Fondo de Imagen */}
-          <div className="absolute inset-0 z-0 bg-neutral-900">
+          {/* Fondo de Imagen con corte recto (rounded-none border-0) */}
+          <div className="absolute inset-0 z-0 bg-neutral-900 rounded-none">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/projects/beldarrain.jpg"
@@ -85,9 +93,9 @@ export const Projects: React.FC = () => {
               onError={(e) => {
                 (e.target as HTMLElement).style.display = "none";
               }}
-              className="absolute inset-0 w-full h-full object-cover opacity-70 transition-transform duration-700 group-hover/card:scale-105"
+              className="absolute inset-0 w-full h-full object-cover opacity-70 rounded-none transition-transform duration-700 group-hover/card:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent z-10" />
           </div>
 
           <div className="relative z-20 flex items-center justify-between font-sans font-medium text-xs text-neutral-300 uppercase tracking-widest">
@@ -95,7 +103,15 @@ export const Projects: React.FC = () => {
             <span>Beldarrain®</span>
           </div>
 
-          <div className="relative z-20 space-y-3 mt-auto mb-4">
+          {/* Marcador guía de contenido para imagen */}
+          <div className="relative z-20 my-auto p-4 rounded-none border-0 bg-white/10 backdrop-blur-md text-center">
+            <span className="font-mono text-[11px] text-neutral-200">
+              Mockup de App Móvil / Espacio de Marca<br />
+              <code className="text-brand font-bold">/public/projects/beldarrain.jpg</code>
+            </span>
+          </div>
+
+          <div className="relative z-20 space-y-2 mb-2">
             <h3 className="text-4xl font-bold tracking-tight text-white font-sans">
               Beldarrain
             </h3>

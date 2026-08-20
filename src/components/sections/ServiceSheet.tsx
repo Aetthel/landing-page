@@ -306,6 +306,32 @@ export const ServiceSheet: React.FC<ServiceSheetProps> = ({
           >
             {service.headline}
           </p>
+
+          {/* Espacio para imagen de servicio con corte recto (rounded-none, border-0) */}
+          <div className="relative mt-8 h-48 sm:h-64 md:h-72 w-full overflow-hidden rounded-none border-0 bg-neutral-100 dark:bg-neutral-800/40 flex flex-col items-center justify-center group/serviceimg">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/images/services/${service.id}.jpg`}
+              alt={service.name}
+              onError={(e) => {
+                (e.target as HTMLElement).style.display = "none";
+              }}
+              className="absolute inset-0 w-full h-full object-cover rounded-none transition-transform duration-700 group-hover/serviceimg:scale-105"
+            />
+            <div className="relative z-10 flex flex-col items-center justify-center gap-2 p-6 text-center">
+              <span className="font-sans text-xs font-semibold uppercase tracking-wider text-ink">
+                Espacio reservado para imagen explicativa
+              </span>
+              <span className="font-sans text-xs text-ink-muted max-w-md">
+                {service.id === "desarrollo-web" && "Captura de pantalla en alta resolución de una landing page o web institucional."}
+                {service.id === "aplicaciones" && "Mockup o captura de interfaz de un panel de control / app a medida."}
+                {service.id === "automatizacion" && "Diagrama visual de integración de procesos o flujo de automatizaciones."}
+              </span>
+              <code className="text-[11px] font-mono text-ink bg-canvas px-2.5 py-1 rounded-none border-0 mt-1">
+                /public/images/services/{service.id}.jpg
+              </code>
+            </div>
+          </div>
         </Reveal>
 
         <div className="mt-16 lg:mt-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
