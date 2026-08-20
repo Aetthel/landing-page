@@ -13,28 +13,17 @@ import { Reveal } from "@/components/ui/reveal";
 export const ServicesAftercare: React.FC = () => {
   return (
     <section
-      data-cursor-surface="dark"
-      /* `overflow-clip` en vez de `hidden`: contiene igual el resplandor que se
-         sale por la esquina, pero sin hacer de esta sección un marco de scroll
-         —que dejaría clavada la columna `sticky` del titular—. */
-      className="relative isolate w-full overflow-clip bg-dark py-24 sm:py-32 lg:py-40"
+      className="relative isolate w-full overflow-clip bg-canvas py-24 sm:py-32 lg:py-40 border-t border-line/80"
     >
-      {/* El mismo resplandor lima que abre la página, ahora al otro lado: cierra
-          el bloque oscuro sin repetir la composición del encabezado. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-1/3 left-[-12%] -z-10 h-[34rem] w-[34rem] rounded-full bg-brand/10 blur-3xl"
-      />
-
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <Reveal className="lg:col-span-5 lg:sticky lg:top-32">
-            <h2 className="text-[clamp(2.25rem,5vw,4rem)] font-normal tracking-tight leading-[1.05] text-white text-balance">
+            <h2 className="text-[clamp(2.25rem,5vw,4rem)] font-normal tracking-tight leading-[1.05] text-ink text-balance">
               Y cuando ya está
               <br />
               <span className="text-brand">entregado, ¿qué?</span>
             </h2>
-            <p className="mt-6 max-w-md font-sans text-base sm:text-lg font-light leading-relaxed text-neutral-400">
+            <p className="mt-6 max-w-md font-sans text-base sm:text-lg font-light leading-relaxed text-ink-muted">
               Un proyecto no termina el día que se publica. Estas cuatro cosas
               van en todos, sin que haya que pedirlas.
             </p>
@@ -45,12 +34,12 @@ export const ServicesAftercare: React.FC = () => {
               {afterDelivery.map((item) => (
                 <div
                   key={item.title}
-                  className="grid grid-cols-1 sm:grid-cols-12 gap-x-8 gap-y-2 border-t border-white/12 py-7 first:border-t-0 first:pt-0 sm:first:pt-0"
+                  className="grid grid-cols-1 sm:grid-cols-12 gap-x-8 gap-y-2 border-t border-line/70 py-7 first:border-t-0 first:pt-0 sm:first:pt-0"
                 >
-                  <dt className="sm:col-span-5 text-lg sm:text-xl font-display font-medium tracking-tight text-white">
+                  <dt className="sm:col-span-5 text-lg sm:text-xl font-display font-medium tracking-tight text-ink">
                     {item.title}
                   </dt>
-                  <dd className="sm:col-span-7 font-sans text-sm font-light leading-relaxed text-neutral-400">
+                  <dd className="sm:col-span-7 font-sans text-sm font-light leading-relaxed text-ink-muted">
                     {item.copy}
                   </dd>
                 </div>

@@ -17,18 +17,34 @@ export const Projects: React.FC = () => {
       category: "SaaS & Web App",
       year: "2025",
       tagline: "Plataforma industrial en tiempo real",
+      image: "/projects/copreci.jpg",
       aspect: "aspect-[4/5]",
       width: "min-w-[300px] sm:min-w-[380px] lg:min-w-[440px]",
       content: (
         <div
           data-cursor-surface="dark"
-          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white"
+          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white overflow-hidden group/card"
         >
-          <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
+          {/* Fondo de Imagen */}
+          <div className="absolute inset-0 z-0 bg-neutral-900">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/projects/copreci.jpg"
+              alt="Copreci"
+              onError={(e) => {
+                (e.target as HTMLElement).style.display = "none";
+              }}
+              className="absolute inset-0 w-full h-full object-cover opacity-70 transition-transform duration-700 group-hover/card:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent z-10" />
+          </div>
+
+          <div className="relative z-20 flex items-center justify-between font-sans font-medium text-xs text-neutral-300 uppercase tracking-widest">
             <span>01 / 05</span>
             <span>Copreci®</span>
           </div>
-          <div className="space-y-3">
+
+          <div className="relative z-20 space-y-3 mt-auto mb-4">
             <h3 className="text-4xl font-bold tracking-tight text-white font-sans">
               Copreci
             </h3>
@@ -36,7 +52,8 @@ export const Projects: React.FC = () => {
               Plataforma Analytics & Control
             </p>
           </div>
-          <div className="pt-4 border-t border-white/10 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
+
+          <div className="relative z-20 pt-4 border-t border-white/10 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
             <span>SaaS Industrial</span>
             <span className="flex items-center gap-1 text-white">
               VER <ArrowUpRight className="w-3.5 h-3.5" />
@@ -51,33 +68,43 @@ export const Projects: React.FC = () => {
       category: "Brand Spaces & App",
       year: "2025",
       tagline: "Innovación y cuidado por las personas",
+      image: "/projects/beldarrain.jpg",
       aspect: "aspect-[4/5]",
       width: "min-w-[320px] sm:min-w-[420px] lg:min-w-[480px]",
       content: (
         <div
           data-cursor-surface="dark"
-          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white border border-white/10"
+          className="relative w-full h-full bg-dark flex flex-col justify-between p-8 text-white overflow-hidden group/card"
         >
-          <div className="flex items-center justify-between font-sans font-medium text-xs text-neutral-400 uppercase tracking-widest">
+          {/* Fondo de Imagen */}
+          <div className="absolute inset-0 z-0 bg-neutral-900">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/projects/beldarrain.jpg"
+              alt="Beldarrain"
+              onError={(e) => {
+                (e.target as HTMLElement).style.display = "none";
+              }}
+              className="absolute inset-0 w-full h-full object-cover opacity-70 transition-transform duration-700 group-hover/card:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent z-10" />
+          </div>
+
+          <div className="relative z-20 flex items-center justify-between font-sans font-medium text-xs text-neutral-300 uppercase tracking-widest">
             <span>02 / 05</span>
             <span>Beldarrain®</span>
           </div>
 
-          {/* Mobile Phone Visual Mockup Frame (rounded-none, shadow-none) */}
-          <div className="my-auto mx-auto w-full max-w-[240px] aspect-[9/16] bg-dark/80 border-2 border-white/10 p-5 flex flex-col justify-between">
-            <div className="w-12 h-1 bg-white/20 mx-auto mb-2" />
-            <div className="space-y-2 text-left">
-              <span className="font-bold text-lg text-white font-sans">
-                beldarrain
-              </span>
-              <p className="text-xs text-neutral-300 leading-snug font-sans">
-                Innovación y cuidado por las personas y el entorno.
-              </p>
-            </div>
-            <div className="h-2 w-16 bg-brand-soft" />
+          <div className="relative z-20 space-y-3 mt-auto mb-4">
+            <h3 className="text-4xl font-bold tracking-tight text-white font-sans">
+              Beldarrain
+            </h3>
+            <p className="text-xs text-neutral-300 font-sans font-medium uppercase tracking-wider">
+              Brand & Mobile Experience
+            </p>
           </div>
 
-          <div className="pt-4 border-t border-white/10 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
+          <div className="relative z-20 pt-4 border-t border-white/10 flex items-center justify-between font-sans font-medium text-xs text-neutral-400">
             <span>Brand & Mobile</span>
             <span className="flex items-center gap-1 text-white">
               VER <ArrowUpRight className="w-3.5 h-3.5" />

@@ -56,11 +56,11 @@ export default function ServiciosPage() {
             `sticky` de las fichas, la postventa y la FAQ dejan de pegarse al
             viewport —se quedan quietas—. `clip` no crea marco de scroll. */}
         <div className="relative z-20 rounded-t-[3.5rem] sm:rounded-t-[4.5rem] bg-canvas border-t border-line/80 overflow-clip shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <ServiceSheet
               key={service.id}
               service={service}
-              tone={index === 1 ? "dark" : "light"}
+              tone="light"
             />
           ))}
 
