@@ -38,6 +38,11 @@
   --color-ink: #1A1A1E;
   /* Subtítulos y textos secundarios */
   --color-ink-muted: #62626E;
+  /* Tinta en reposo: el tono al que espera un titular grande que todavía no
+     está activo. Es el escalón más claro que sigue pasando el 3:1 que pide un
+     texto de este tamaño sobre lienzo (3,1:1), así que un nombre apagado se
+     lee igual de bien —solo pesa menos—. No usar en texto pequeño. */
+  --color-ink-soft: #8A8A96;
 
   /* --- Tipografías ------------------------------------------------------ */
   --font-display:
@@ -1001,5 +1006,336 @@ html.lenis body {
   .kinetic-word.is-leaving {
     transform: none;
     transition: opacity 0.3s ease;
+  }
+}
+
+/* ==========================================================================
+   /estudio — el reparto y la tira del taller.
+
+   Las dos piezas de la página que no se dejan escribir con utilidades sueltas:
+   una porque su coreografía depende de cómo se relacionan padres y hermanos
+   (`:hover`, `:focus-within`, medidas compartidas), y la otra porque necesita
+   un raíl de scroll sin barra que además se pueda arrastrar.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   EL REPARTO — dos nombres a tamaño de cartel.
+
+   En móvil es una lista y ya está: nombre, oficio y enlaces, uno debajo de
+   otro y todo a la vista.
+
+   En escritorio con ratón cambia de naturaleza. Los nombres arrancan apagados
+   y pegados al margen izquierdo, y al pasar por encima de uno ocurren tres
+   cosas a la vez: el nombre se corre a la derecha y se oscurece, en el hueco
+   que deja aparece la ficha —oficio y enlaces— y por la derecha entra el
+   retrato, centrado en esa misma fila.
+
+   No hay JavaScript. Cada fila lleva su propio retrato posicionado desde su
+   propio centro, así que la altura la resuelve el flujo: nada que medir ni que
+   recolocar al hacer scroll.
+
+   Lo que mantiene el invento en pie es una desigualdad: el nombre desplazado
+   no puede alcanzar al retrato. Por eso `--roster-shift` (lo que se corre) y
+   `--roster-gutter` (lo que ocupa el retrato) escalan con la misma `vw` que el
+   cuerpo del nombre; tocar uno sin mirar los otros dos es lo que hace que se
+   monten. Ver también la nota sobre longitud de nombres en `config/studio.ts`.
+   -------------------------------------------------------------------------- */
+.roster-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* En pantalla estrecha la fila es una ficha de tres huecos con nombre puestos
+   por rejilla. Así el orden visual —retrato a la izquierda, nombre y oficio a
+   la derecha— no obliga a alterar el orden del marcado, que es el que se lee
+   en voz alta: primero de quién hablamos y luego de qué se ocupa. */
+.roster-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "portrait name"
+    "portrait meta";
+  align-items: center;
+  column-gap: 1.25rem;
+  row-gap: 0.75rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.roster-row:first-child {
+  border-top: 1px solid var(--color-line);
+}
+
+.roster-name {
+  grid-area: name;
+  align-self: end;
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 6.4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.roster-meta {
+  grid-area: meta;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* El filete lima que encabeza la ficha. Es el único sitio por el que entra el
+   color de marca en este bloque: sobre lienzo, la lima no aguanta como texto. */
+.roster-meta::before {
+  content: "";
+  display: block;
+  width: 1.75rem;
+  height: 2px;
+  background: var(--color-brand);
+}
+
+.roster-portrait {
+  grid-area: portrait;
+  width: clamp(4.75rem, 22vw, 7.5rem);
+  overflow: hidden;
+  border-radius: 1rem;
+  background: var(--color-surface);
+}
+
+@media (min-width: 64rem) and (hover: hover) {
+  .roster-list {
+    /* Ancho del retrato y, por tanto, del carril que hay que dejarle libre. */
+    --roster-gutter: clamp(190px, 19vw, 300px);
+    /* Lo que se corre el nombre; también el ancho útil de la ficha. */
+    --roster-shift: clamp(170px, 17.5vw, 270px);
+    /* Aire para que el retrato, más alto que su fila, no invada la entradilla
+       de arriba ni lo que venga debajo: la mitad de lo que sobresale. */
+    padding-block: clamp(2rem, 7.5vw, 7rem);
+    /* Sin filetes entre filas, el cartel necesita un borde de salida o se
+       queda flotando entre dos párrafos. */
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  /* La rejilla de móvil se disuelve: aquí solo hay una caja alta con el nombre
+     dentro y dos elementos colgados de sus bordes. */
+  .roster-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: clamp(6.5rem, 11vw, 11rem);
+    padding: 0;
+    border: 0;
+  }
+
+  .roster-row:first-child {
+    border: 0;
+  }
+
+  .roster-name {
+    font-size: clamp(2rem, 6vw, 5.5rem);
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+    color: var(--color-ink-soft);
+    transform: translateX(0);
+    will-change: transform;
+    transition:
+      color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* La ficha espera debajo del nombre, en el hueco que este va a dejar. Se
+     revela con opacidad y no con `display`, para que siga leyéndose en orden y
+     para que los enlaces que lleva dentro sigan siendo alcanzables con el
+     tabulador: al recibir el foco, `:focus-within` enciende la fila entera. */
+  .roster-meta {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: calc(var(--roster-shift) - 2.5rem);
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .roster-portrait {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: var(--roster-gutter);
+    border-radius: 1.25rem;
+    opacity: 0;
+    transform: translateY(-50%) scale(0.96);
+    will-change: transform, opacity;
+    box-shadow: 0 30px 70px rgba(26, 26, 30, 0.18);
+    transition:
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .roster-row:hover .roster-name,
+  .roster-row:focus-within .roster-name {
+    color: var(--color-ink);
+    transform: translateX(var(--roster-shift));
+  }
+
+  .roster-row:hover .roster-meta,
+  .roster-row:focus-within .roster-meta {
+    opacity: 1;
+  }
+
+  .roster-row:hover .roster-portrait,
+  .roster-row:focus-within .roster-portrait {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   LA TIRA DEL TALLER — un raíl de scroll que además se arrastra.
+
+   Por debajo es un `overflow-x: auto` de toda la vida, y eso es deliberado: el
+   dedo, la rueda del trackpad, las flechas del teclado y el lector de pantalla
+   funcionan sin que nadie escriba una línea. El arrastre con el ratón se monta
+   encima moviendo `scrollLeft`, que es la única parte que el navegador no
+   regala en escritorio.
+
+   Las fotos no miden todas igual a propósito: la proporción llega por `--ar` y
+   la altura es común, así que la tira avanza a un ritmo irregular en vez de
+   parecer un carrusel de casillas.
+   -------------------------------------------------------------------------- */
+.wtrack {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(0.75rem, 1.4vw, 1.5rem);
+  height: clamp(15rem, 46vh, 32rem);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.wtrack::-webkit-scrollbar {
+  display: none;
+}
+
+/* La última foto no puede morir pegada al borde de la pantalla: el hueco dice
+   que ahí se acaba la tira y no que está cortada. */
+.wtrack,
+.wtrack-rail {
+  padding-inline-end: clamp(1.5rem, 3vw, 3rem);
+}
+
+.wtrack-rail {
+  padding-inline-end: 0;
+  margin-inline-end: clamp(1.5rem, 3vw, 3rem);
+}
+
+/* --------------------------------------------------------------------------
+   Sangrado por la derecha — alineado con la retícula por la izquierda y suelto
+   hasta el borde de la pantalla por el otro lado.
+
+   Es lo que hace que la tira del taller se lea como algo que continúa fuera
+   del encuadre en vez de como una caja centrada. El `max()` mantiene el
+   margen mínimo en pantallas estrechas y engancha con la columna de 1470 en
+   cuanto hay sitio, así que la primera foto arranca justo debajo del titular.
+   -------------------------------------------------------------------------- */
+.bleed-right {
+  padding-left: max(1.5rem, calc((100vw - 1470px) / 2 + 1.5rem));
+}
+
+@media (min-width: 40rem) {
+  .bleed-right {
+    padding-left: max(2rem, calc((100vw - 1470px) / 2 + 2rem));
+  }
+}
+
+@media (min-width: 64rem) {
+  .bleed-right {
+    padding-left: max(3rem, calc((100vw - 1470px) / 2 + 3rem));
+  }
+}
+
+/* El cursor de agarre, solo donde hay ratón: en táctil no significa nada. */
+@media (hover: hover) {
+  .wtrack {
+    cursor: grab;
+  }
+
+  .wtrack[data-dragging="true"] {
+    cursor: grabbing;
+    user-select: none;
+  }
+}
+
+.wtrack-item {
+  position: relative;
+  flex: 0 0 auto;
+  height: 100%;
+  aspect-ratio: var(--ar, 1.5);
+  overflow: hidden;
+  border-radius: clamp(1rem, 1.6vw, 1.75rem);
+  background: var(--color-surface);
+}
+
+.wtrack-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Sin esto, arrastrar sobre una foto dispara el arrastre nativo del
+     navegador y el raíl se queda a medias. */
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* El recorrido, en lima, debajo de la tira. El mismo idioma que la barra de
+   scroll de marca: se sabe cuánto queda sin tener que probarlo. */
+.wtrack-rail {
+  position: relative;
+  height: 2px;
+  overflow: hidden;
+  background: var(--color-line);
+}
+
+.wtrack-rail span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--color-brand);
+  transform-origin: left center;
+  transform: scaleX(var(--progress, 0));
+  transition: transform 0.12s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* El nombre se enciende, pero no se desplaza: un barrido de 270px es justo
+     el gesto que molesta a quien ha pedido menos movimiento. */
+  .roster-name,
+  .roster-row:hover .roster-name,
+  .roster-row:focus-within .roster-name {
+    transform: none;
+    transition: color 0.2s ease;
+  }
+
+  .roster-portrait,
+  .roster-row:hover .roster-portrait,
+  .roster-row:focus-within .roster-portrait {
+    transform: translateY(-50%);
+    transition: opacity 0.2s ease;
+  }
+
+  .roster-meta {
+    transition: opacity 0.2s ease;
+  }
+
+  .wtrack-rail span {
+    transition: none;
   }
 }
