@@ -27,8 +27,8 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="relative border-r border-b border-line bg-surface/50"
         logo={{
-          src: "https://svgl.app/library/nvidia-wordmark-light.svg",
-          alt: "Nvidia Logo",
+          src: "https://svgl.app/library/n8n-wordmark-light.svg",
+          alt: "n8n Logo",
         }}
       >
         <PlusIcon
@@ -39,8 +39,8 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="border-b border-r border-line bg-canvas"
         logo={{
-          src: "https://svgl.app/library/supabase_wordmark_light.svg",
-          alt: "Supabase Logo",
+          src: "https://svgl.app/library/mongodb-wordmark-light.svg",
+          alt: "MongoDB Logo",
         }}
       />
 
@@ -70,8 +70,8 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="relative border-r border-b md:border-b-0 border-line bg-surface/50 md:bg-canvas"
         logo={{
-          src: "https://svgl.app/library/turso-wordmark-light.svg",
-          alt: "Turso Logo",
+          src: "https://svgl.app/library/tailwindcss-wordmark.svg",
+          alt: "Tailwind CSS Logo",
         }}
       >
         <PlusIcon
@@ -82,8 +82,8 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="border-b md:border-b-0 border-r border-line bg-canvas md:bg-surface/50"
         logo={{
-          src: "https://svgl.app/library/clerk-wordmark-light.svg",
-          alt: "Clerk Logo",
+          src: "https://svgl.app/library/cloudflare.svg",
+          alt: "Cloudflare Logo",
         }}
       />
 

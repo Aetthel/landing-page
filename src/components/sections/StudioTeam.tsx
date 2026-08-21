@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
-import { LogoCloud } from "@/components/ui/logo-cloud";
 import { team } from "@/config/studio";
 
 interface StudioTeamProps {
@@ -60,11 +59,6 @@ export const StudioTeam: React.FC<StudioTeamProps> = ({ hideHeader = false }) =>
           >
             <MemberCard member={members[1]} />
           </div>
-        </div>
-
-        {/* Nube de logos / Tecnologías justo debajo */}
-        <div className="pt-16 lg:pt-24 w-full">
-          <LogoCloud />
         </div>
       </div>
 

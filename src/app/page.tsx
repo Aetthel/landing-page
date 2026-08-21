@@ -5,6 +5,7 @@ import { HomeGallery } from "@/components/sections/HomeGallery";
 import { Services } from "@/components/sections/Services";
 import { AboutUs } from "@/components/sections/AboutUs";
 import { StudioTeam } from "@/components/sections/StudioTeam";
+import IntegrationsSection from "@/components/ui/integrations-3";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
           <Hero />
           <HomeGallery />
           <AboutUs />
+          <IntegrationsSection />
           <StudioTeam hideHeader />
           <Services hideHeader />
         </main>
