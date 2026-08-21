@@ -227,12 +227,16 @@ export const ContactForm: React.FC = () => {
     setStatus("sending");
 
     try {
-      // TODO: aquí va el envío real (API route, Resend, Formspree…). De momento
-      // el formulario valida y confirma en cliente; el payload ya está montado
-      // con la forma que espera el endpoint.
-      const payload = { ...values, need };
-      await new Promise((resolve) => setTimeout(resolve, 900));
-      console.info("Contacto — payload listo para enviar:", payload);
+      /* El endpoint vuelve a validar y envía el correo con Resend. Solo se da
+         por enviado con un 2xx: si la API falla, el aviso de abajo ofrece el
+         email directo en lugar de fingir que ha salido. */
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, need }),
+      });
+
+      if (!response.ok) throw new Error(`Contacto: ${response.status}`);
 
       setStatus("sent");
     } catch {

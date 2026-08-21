@@ -46,54 +46,25 @@ export const StudioTeam: React.FC = () => {
           </p>
         </Reveal>
 
-        {/* --- Las dos fichas ------------------------------------------------ */}
-        <div className="mt-14 lg:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {team.map((member, i) => (
-            <Reveal key={member.name} delay={i * 120} className="h-full">
-              <article className="group relative h-full overflow-hidden rounded-3xl border border-line bg-surface p-8 sm:p-10 transition duration-500 ease-out hover:-translate-y-1.5 hover:border-ink/25 hover:shadow-[0_24px_60px_rgba(26,26,30,0.10)] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
-                {/* Filete lima trazándose por el canto superior: el mismo gesto
-                    de izquierda a derecha del subrayado del hero y del foco de
-                    los campos del formulario. */}
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-brand transition-transform duration-500 ease-out group-hover:scale-x-100 motion-reduce:transition-none"
-                />
+        {/* --- El cartel ------------------------------------------------------
+            Sin `Reveal`: el bloque es más alto que la pantalla en escritorio y
+            el retrato sobresale de su fila, así que animar el contenedor
+            entero desplazaría piezas que están colocadas desde su centro. */}
+        <ul className="roster-list mt-12 lg:mt-4">
+          {members.map((member) => (
+            <li key={member.name} className="roster-row">
+              <span className="roster-name">{member.name}</span>
 
-                <div className="flex items-start gap-5">
-                  {/* Monograma. En reposo es lienzo con filete; al pasar por
-                      encima se enciende en lima y la tinta se mantiene, que es
-                      la única combinación de marca que aguanta el contraste. */}
-                  <span
-                    aria-hidden="true"
-                    className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-line bg-canvas font-display text-xl font-medium tracking-tight text-ink transition-colors duration-500 ease-out group-hover:border-brand group-hover:bg-brand motion-reduce:transition-none"
-                  >
-                    {member.initials}
-                  </span>
+              <div className="roster-meta">
+                <span className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] leading-relaxed text-ink-muted">
+                  {member.role}
+                </span>
 
-                  <div className="min-w-0 space-y-1">
-                    <h3 className="type-title text-ink">{member.name}</h3>
-                    <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted">
-                      {member.role}
-                    </span>
-                  </div>
-                </div>
-
-                <p className="mt-6 font-sans text-sm sm:text-base font-light leading-relaxed text-ink-muted">
-                  {member.bio}
-                </p>
-
-                <ul className="mt-7 flex flex-wrap gap-2">
-                  {member.skills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="rounded-full border border-line bg-canvas px-3 py-1 font-sans text-xs font-medium text-ink-muted transition-colors duration-300 group-hover:border-ink/20 group-hover:text-ink"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-8 flex items-center gap-6 border-t border-line/70 pt-6">
+                {/* Los enlaces son también la vía de teclado a esta ficha: al
+                    recibir el foco encienden la fila entera (`:focus-within`),
+                    y por eso el retrato y el oficio no se esconden con
+                    `display: none` sino con opacidad. */}
+                <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
                   {[
                     { label: "GitHub", href: member.github },
                     { label: "LinkedIn", href: member.linkedin },
