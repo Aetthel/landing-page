@@ -35,8 +35,7 @@ export const StudioTeam: React.FC = () => {
     <section id="equipo" className="w-full bg-canvas py-24 sm:py-32 lg:py-40">
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         <Reveal className="max-w-3xl">
-          <span className="block type-eyebrow text-ink-muted">El equipo</span>
-          <h2 className="mt-5 text-[clamp(2.25rem,5vw,4rem)] font-normal tracking-tight leading-[1.05] text-ink text-balance">
+          <h2 className="text-[clamp(2.25rem,5vw,4rem)] font-normal tracking-tight leading-[1.05] text-ink text-balance">
             Las dos personas que van a tocar tu proyecto.
           </h2>
           <p className="mt-6 max-w-xl font-sans text-base sm:text-lg font-light leading-relaxed text-ink-muted">

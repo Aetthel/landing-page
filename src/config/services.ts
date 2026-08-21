@@ -315,52 +315,50 @@ export const services: Service[] = [
    publica: contratar desarrollo da miedo por el tiempo que uno va a tener que
    poner, y nadie le sabe decir cuánto.
 
-   Cada paso dice también qué queda por escrito al terminarlo, en lugar de
-   cuánto tarda: los plazos reales dependen del nivel elegido y salen en la
-   propuesta, no en una tabla genérica de la web.
+   Ningún paso lleva plazo: los reales dependen del nivel elegido y salen en la
+   propuesta, no en una tabla genérica de la web. Cada paso llevaba también el
+   entregable que quedaba por escrito al cerrarlo (`output`); se retiró de la
+   tabla y del dato porque cargaba cada fila con un tercer titular y ninguno se
+   leía. Está en el historial si vuelve a hacer falta.
    -------------------------------------------------------------------------- */
 export const processSteps = [
   {
     step: "00",
     title: "Nos escribes",
-    output: "Respuesta con nuestras dudas",
-    us: "Leemos tu mensaje y te contestamos pronto, con las preguntas que nos hayan surgido al leerlo.",
+    us: "Leemos tu mensaje y te contestamos en menos de 24 h con el fin de agendar una primera reunión para conocernos y hablar más en detalle sobre el proyecto.",
     you: "Un párrafo contando qué quieres.",
   },
   {
     step: "01",
-    title: "Conversación de encaje",
-    output: "Un sí o un no honesto",
-    us: "Escuchamos, preguntamos, situamos tu proyecto en un nivel y te decimos con franqueza si es para nosotros.",
-    you: "Un rato y las preguntas incómodas.",
+    // El salto es intencionado: la tabla lo respeta gracias a
+    // `whitespace-pre-line` en el titular de la fila.
+    title: "Reunión\nde encaje",
+    us: "Escuchamos, preguntamos y situamos tu proyecto para calcular el tiempo de desarrollo, las tecnologías a utilizar y las dificultades que nos podamos encontrar.",
+    you: "Un rato para charlar y todas las\npreocupaciones que tengas.",
   },
   {
     step: "02",
-    title: "Presupuesto a medida",
-    output: "Alcance y precio por escrito",
-    us: "Un documento con qué entra, qué no, cómo se paga y cuánto cuesta. Cerrado, no orientativo.",
-    you: "Leerlo y decir sí o no.",
+    title: "Presupuesto\na medida",
+    us: "Creamos un documento personalizado para tu proyecto con los plazos estimados de cada entrega y el presupuesto final ajustado a las especificaciones necesarias.",
+    you: "Leerlo detenidamente y darnos tu\naprobación para comenzar a trabajar.",
   },
   {
     step: "03",
-    title: "Diseño y validación",
-    output: "El proyecto dibujado",
-    us: "Ves cómo va a quedar antes de que exista una línea de código. Cambiarlo aquí sale gratis.",
-    you: "Revisar y señalar lo que no encaja.",
+    title: "Diseño y\nvalidación",
+    us: "Diseñamos una primera versión solamente visual de tu proyecto para que puedas realizar cambios o ajustes de forma gratuita antes de ponernos a programar.",
+    you: "Revisar y señalar lo que no\nte encaja en el diseño visual.",
   },
   {
     step: "04",
     title: "Construcción por entregas",
-    output: "Un enlace privado que crece",
-    us: "Cada entrega deja algo nuevo funcionando y visible. Nada de silencios largos.",
-    you: "Un vistazo rápido a cada entrega.",
+    us: "Te mostramos cada entrega indicada en el documento personalizado realizado previamente para que veas cómo avanza el proyecto.",
+    you: "Un vistazo rápido a cada entrega y un\npequeño comentario de feedback.",
   },
   {
     step: "05",
     title: "Entrega y acompañamiento",
-    output: "Todo en marcha y a tu nombre",
-    us: "Puesta en marcha, formación, documentación y garantía sobre lo entregado.",
-    you: "Usarlo.",
+    us: "Para cerrar el flujo, puesta en marcha, formación, documentación y garantía sobre lo entregado.",
+    you: "Disfrutar, utilizar tu nueva herramienta y dejar\nuna pequeña reseña de satisfacción.",
   },
 ] as const;
 

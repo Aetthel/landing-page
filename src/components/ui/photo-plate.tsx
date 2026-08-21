@@ -4,15 +4,22 @@ import { cn } from "@/lib/utils";
 /* --------------------------------------------------------------------------
    Las láminas de reserva — lo que ocupa el sitio de una foto que no está.
 
-   /estudio se juega mucho en dos imágenes que todavía no existen: los dos
-   retratos y las fotos del taller. Lo fácil sería un rectángulo gris; lo
-   fácil también sería quitar el bloque hasta que hubiera fotos, y entonces la
-   página no tendría nada que enseñar.
+   El hueco vivo es el de los retratos del reparto (`PortraitPlate`). Lo fácil
+   sería un rectángulo gris; lo fácil también sería quitar el bloque hasta que
+   hubiera fotos, y entonces la sección no tendría nada que enseñar.
 
-   Estas láminas son la tercera vía: un objeto compuesto —marca de encuadre,
-   monograma o pie, filete lima— que se sostiene solo en el hueco de la foto y
-   que se retira sin dejar rastro en cuanto el archivo aparece en `public/`.
-   No son un error de carga: son la pieza mientras tanto.
+   `ReservePlate` —la apaisada— está ahora mismo sin usar: la ocupaba la foto
+   del equipo en /estudio, que ya existe. Se queda porque es la pieza a la que
+   recurrir el próximo bloque con imagen pendiente, no porque se haya olvidado
+   barrerla.
+
+   Estas láminas son la tercera vía: un objeto compuesto —marcas de encuadre,
+   monograma o rótulo, filete lima— que se sostiene solo en el hueco de la
+   foto y que se retira sin dejar rastro en cuanto el archivo aparece en
+   `public/`. No es un error de carga: es la pieza mientras tanto.
+
+   Y llevan rótulo a propósito. Una reserva que se ve bonita y no dice nada es
+   la que acaba publicada sin que nadie se acuerde de sustituirla.
    -------------------------------------------------------------------------- */
 
 /* Marcas de encuadre en las cuatro esquinas, al grosor de línea del sistema.
@@ -76,35 +83,35 @@ export const PortraitPlate: React.FC<PortraitPlateProps> = ({
   </div>
 );
 
-interface ShotPlateProps {
-  /** Pie de la foto que irá aquí; es lo que se lee mientras no esté. */
-  caption: string;
+
+interface ReservePlateProps {
+  /** Qué foto va aquí. Se lee mientras no esté y se va con ella. */
+  label: string;
   className?: string;
 }
 
 /**
- * Reserva de foto del taller: marco de contactos con el pie compuesto en la
- * tipografía de titulares. Hereda la proporción del contenedor, así que la
- * tira mantiene su ritmo irregular aunque no haya ni una imagen.
+ * Reserva apaisada, a la misma proporción que la lámina del laboratorio
+ * (1024×572). Sirve para que un bloque con foto pendiente ocupe ya el sitio
+ * exacto que ocupará la imagen: cuando entre el archivo, nada se mueve.
  */
-export const ShotPlate: React.FC<ShotPlateProps> = ({ caption, className }) => (
+export const ReservePlate: React.FC<ReservePlateProps> = ({
+  label,
+  className,
+}) => (
   <div
     className={cn(
-      "relative flex h-full w-full flex-col justify-end overflow-hidden border border-line bg-surface p-6 sm:p-8",
+      "relative flex aspect-[1024/572] w-full flex-col justify-end overflow-hidden border border-line bg-surface p-6 sm:p-8",
       className
     )}
   >
     <LimeWash />
     <CropMarks />
 
-    <span className="relative block font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-ink-muted">
-      Taller
-    </span>
+    <span aria-hidden="true" className="relative block h-0.5 w-7 bg-brand" />
 
-    <p className="relative mt-2 max-w-[18ch] font-display text-lg font-normal leading-tight tracking-tight text-ink text-balance sm:text-xl">
-      {caption}
+    <p className="relative mt-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted">
+      {label}
     </p>
-
-    <span aria-hidden="true" className="relative mt-4 h-0.5 w-7 bg-brand" />
   </div>
 );

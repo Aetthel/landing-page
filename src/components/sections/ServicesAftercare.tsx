@@ -21,7 +21,7 @@ export const ServicesAftercare: React.FC = () => {
             <h2 className="text-[clamp(2.25rem,5vw,4rem)] font-normal tracking-tight leading-[1.05] text-ink text-balance">
               Y cuando ya está
               <br />
-              <span className="text-brand">entregado, ¿qué?</span>
+              <span className="text-ink">entregado, ¿qué?</span>
             </h2>
             <p className="mt-6 max-w-md font-sans text-base sm:text-lg font-light leading-relaxed text-ink-muted">
               Un proyecto no termina el día que se publica. Estas cuatro cosas
