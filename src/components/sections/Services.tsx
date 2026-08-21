@@ -175,7 +175,7 @@ export const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
 
                     <div className="flex items-center justify-between gap-4">
                       <h3
-                        className={`text-4xl sm:text-6xl font-normal tracking-tight transition-colors duration-500 ease-out ${
+                        className={`font-display text-4xl sm:text-6xl font-normal tracking-tight transition-colors duration-500 ease-out ${
                           isActive ? "text-ink" : "text-ink lg:text-ink-muted/50"
                         }`}
                       >
@@ -203,10 +203,10 @@ export const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
                       visibles, y el enlace sigue llevando a su ficha en
                       /servicios. Es `lg:hidden`: en escritorio manda el panel. */}
                   <div className="lg:hidden pt-5 space-y-3">
-                    <h4 className="text-xl sm:text-2xl font-semibold tracking-tight text-ink leading-snug whitespace-pre-line">
+                    <h4 className="font-display text-xl sm:text-2xl font-normal tracking-tight text-ink leading-snug whitespace-pre-line">
                       {service.headline}
                     </h4>
-                    <p className="text-base text-ink-muted font-sans font-light leading-relaxed">
+                    <p className="type-lead text-base sm:text-lg text-ink-muted font-sans font-light leading-relaxed">
                       {service.description}
                     </p>
                     <span className="inline-flex items-center gap-1.5 font-sans text-xs font-medium uppercase tracking-[0.14em] text-ink">
@@ -232,14 +232,14 @@ export const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
             >
               <h4
                 key={`headline-${revealKey}`}
-                className={`${panelAnimation(false)} text-2xl sm:text-4xl font-semibold tracking-tight text-ink leading-snug whitespace-pre-line`}
+                className={`${panelAnimation(false)} font-display text-2xl sm:text-4xl font-normal tracking-tight text-ink leading-snug whitespace-pre-line`}
               >
                 {panelService.headline}
               </h4>
 
               <p
                 key={`description-${revealKey}`}
-                className={`${panelAnimation(true)} mx-auto max-w-xl text-balance text-base sm:text-lg text-ink-muted font-sans font-light leading-relaxed`}
+                className={`${panelAnimation(true)} type-lead mx-auto max-w-xl text-balance text-base sm:text-lg lg:text-xl text-ink-muted font-sans font-light leading-relaxed`}
               >
                 {panelService.description}
               </p>
@@ -247,8 +247,8 @@ export const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
           </div>
         </Reveal>
 
-        {/* Nube de logos / Tecnologías justo debajo de Servicios */}
-        <div className="pt-16 lg:pt-24 w-full">
+        {/* Nube de logos / Tecnologías justo debajo de Servicios con amplio margen de respiro */}
+        <div className="mt-28 sm:mt-36 lg:mt-44 pt-8 w-full">
           <LogoCloud />
         </div>
       </div>

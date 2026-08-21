@@ -32,11 +32,14 @@ export default function IntegrationsSection() {
           </div>
 
           {/* Text Column (Without Button) */}
-          <div className="lg:col-span-5 mx-auto max-w-xl space-y-6 sm:space-y-8 text-center lg:text-left">
-            <h2 className="text-balance text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-ink leading-[1.1]">
+          <div className="lg:col-span-5 mx-auto max-w-xl space-y-4 sm:space-y-6 text-center lg:text-left">
+            <span className="block type-eyebrow text-ink-muted">
+              INTEGRACIONES
+            </span>
+            <h2 className="text-balance text-3xl sm:text-5xl lg:text-6xl font-display font-normal tracking-tight text-ink leading-[1.06]">
               Integrate with your favorite tools
             </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl font-light text-ink-muted leading-relaxed">
+            <p className="type-lead font-sans font-light text-ink-muted text-base sm:text-lg lg:text-xl leading-relaxed">
               Connect seamlessly with popular platforms and services to
               enhance your workflow.
             </p>

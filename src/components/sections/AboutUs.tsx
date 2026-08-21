@@ -15,7 +15,7 @@ export const AboutUs: React.FC = () => {
           text={
             "Somos un estudio especializado en estrategia digital, desarrollo web y aplicaciones a medida. Trabajamos codo a codo contigo, con procesos claros de principio a fin para obtener tu resultado perfecto."
           }
-          className="w-full justify-center text-3xl sm:text-5xl lg:text-6xl font-sans font-normal tracking-tight leading-[1.15]"
+          className="w-full justify-center text-3xl sm:text-5xl lg:text-6xl font-display font-normal tracking-tight leading-[1.12]"
         />
       </div>
     </section>

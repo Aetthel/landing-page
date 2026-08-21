@@ -128,18 +128,18 @@ function MemberCard({
   return (
     <div className="w-full flex flex-col justify-between py-2 space-y-6 sm:space-y-8 text-ink">
       <div className="flex flex-col space-y-4 sm:space-y-6">
-        {/* Eyebrow de rol impreso más grande */}
-        <span className="font-sans text-xs sm:text-sm lg:text-base font-medium uppercase tracking-[0.22em] text-ink-muted">
+        {/* Eyebrow de rol impreso */}
+        <span className="block type-eyebrow text-ink-muted">
           {member.role}
         </span>
 
         {/* Nombre en tipografía display grande e imponente */}
-        <h3 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-sans font-normal tracking-tight text-ink leading-[1.05]">
+        <h3 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-normal tracking-tight text-ink leading-[1.05]">
           {member.name}
         </h3>
 
         {/* Descripción en tamaño editorial generoso */}
-        <p className="font-sans text-lg sm:text-xl lg:text-2xl font-light text-ink-muted leading-relaxed max-w-xl pt-2">
+        <p className="type-lead font-sans text-base sm:text-lg lg:text-xl font-light text-ink-muted leading-relaxed max-w-xl">
           {member.bio}
         </p>
       </div>
