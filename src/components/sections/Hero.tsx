@@ -7,13 +7,13 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen min-h-dvh flex flex-col justify-center pt-32 pb-24 sm:pt-40 sm:pb-32 bg-canvas text-ink border-b border-line overflow-hidden"
+      className="relative w-full min-h-screen min-h-dvh flex flex-col justify-center pt-32 pb-24 sm:pt-40 sm:pb-32 bg-canvas text-ink overflow-hidden"
     >
       {/* Degradado estático del Hero (solo visible al principio) */}
       <HeroGradient tone="light" />
       <div className="relative z-10 w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-center text-center">
         {/* Main Headline Statement */}
-        <h1 className="type-display text-ink text-center">
+        <h1 className="text-[clamp(3rem,8vw,7rem)] font-display font-normal tracking-tight text-ink text-center leading-[1.04]">
           <span className="block animate-rise-in rise-delay-1">
             El salto digital
           </span>

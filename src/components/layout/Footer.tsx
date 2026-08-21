@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
     <footer
       id="contacto"
       data-cursor-surface="dark"
-      className="w-full bg-dark text-white py-20 sm:py-28 lg:py-32 border-t border-white/10"
+      className="w-full bg-dark text-white py-20 sm:py-28 lg:py-32"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
         {/* Main Grid: Headline & Action Left / Address & Contacts Right */}

@@ -78,6 +78,14 @@ export function CustomCursor() {
     const readSurface = (target: Element | null) => {
       if (!target) return;
 
+      const isCursorHidden = Boolean(target.closest('[data-cursor="none"]'));
+      if (isCursorHidden) {
+        setIsVisible(false);
+        return;
+      }
+
+      setIsVisible(true);
+
       const isInteractive = Boolean(
         target.closest(
           'a, button, input, textarea, select, [role="button"], .cursor-pointer, [data-cursor-hover]'
@@ -96,11 +104,7 @@ export function CustomCursor() {
       mouseX = e.clientX;
       mouseY = e.clientY;
 
-      // El primer movimiento saca al cursor de su escondite. React ignora el
-      // estado que no cambia, así que repetirlo en cada píxel no cuesta nada
-      // —y evita que el efecto dependa de `isVisible` y rehaga todas las
-      // suscripciones cada vez que el puntero entra y sale de la ventana.
-      setIsVisible(true);
+      readSurface(e.target as Element);
     };
 
     const onMouseEnter = () => setIsVisible(true);

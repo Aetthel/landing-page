@@ -5,7 +5,7 @@ export const AboutUs: React.FC = () => {
   return (
     <section
       id="aetthel-lab"
-      className="w-full pt-16 pb-24 sm:pt-28 sm:pb-32 lg:pt-44 lg:pb-40 bg-transparent"
+      className="w-full py-20 sm:py-28 lg:py-36 bg-transparent"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-center text-center space-y-8 sm:space-y-10">
         {/* Large Statement Paragraph — ancho completo, igual que el reel.

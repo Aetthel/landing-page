@@ -16,7 +16,11 @@ import { SectionHeader } from "@/components/ui/section-header";
    elevaba su panel, y cada uno pedía un retoque distinto. */
 const PANEL_LIFT = 95;
 
-export const Services: React.FC = () => {
+interface ServicesProps {
+  hideHeader?: boolean;
+}
+
+export const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
   /* El primer servicio ("01") está activo por defecto. Al mover el ratón,
      cambia al servicio señalado y se queda ahí activado. */
   const [activeService, setActiveService] = useState<string>("01");
@@ -124,14 +128,16 @@ export const Services: React.FC = () => {
   return (
     <section
       id="servicios"
-      className="w-full pt-24 pb-40 sm:pt-32 sm:pb-56 lg:pt-40 lg:pb-80 bg-transparent"
+      className="w-full py-20 sm:py-28 lg:py-36 bg-transparent"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-        <SectionHeader
-          eyebrow="SERVICIOS"
-          title="Lo que hacemos por tu negocio."
-          className="mb-12 lg:mb-16"
-        />
+        {!hideHeader && (
+          <SectionHeader
+            eyebrow="SERVICIOS"
+            title="Lo que hacemos por tu negocio."
+            className="mb-12 lg:mb-16"
+          />
+        )}
 
         {/* Split Layout Container */}
         <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">

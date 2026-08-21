@@ -325,11 +325,6 @@ export const Projects: React.FC = () => {
             ))}
           </div>
         </Reveal>
-
-        {/* Container Aligned Section Divider Line */}
-        <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 pt-2">
-          <div className="border-b border-neutral-300/80" />
-        </div>
       </div>
     </section>
   );

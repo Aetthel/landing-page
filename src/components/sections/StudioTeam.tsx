@@ -1,134 +1,154 @@
-import React from "react";
-import { ArrowUpRight } from "lucide-react";
-import { Reveal } from "@/components/ui/reveal";
-import { PortraitPlate } from "@/components/ui/photo-plate";
-import { publicAssetExists } from "@/lib/assets";
+"use client";
+
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { SectionHeader } from "@/components/ui/section-header";
+import { LogoCloud } from "@/components/ui/logo-cloud";
 import { team } from "@/config/studio";
 
-/* --------------------------------------------------------------------------
-   El reparto — la sección que justifica la página entera.
+interface StudioTeamProps {
+  hideHeader?: boolean;
+}
 
-   Un estudio de dos personas no compite por catálogo ni por tamaño: compite
-   porque el cliente sabe exactamente con quién va a hablar. Así que el bloque
-   se juega esa carta sin timidez y pone los dos nombres a tamaño de cartel,
-   apagados y en fila, esperando a que alguien pase por encima.
+export const StudioTeam: React.FC<StudioTeamProps> = ({ hideHeader = false }) => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
-   Entonces se enciende uno: el nombre se corre a la derecha, en el hueco que
-   deja aparece el oficio con sus dos enlaces, y por la derecha entra el
-   retrato centrado en la fila. La coreografía es CSS puro —cada retrato
-   cuelga del centro de su propia fila—, así que esto es un componente de
-   servidor: cero JavaScript enviado al navegador.
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+  };
 
-   Debajo, en voz baja, lo que el cartel no puede contar: qué hace cada uno y
-   con qué. Es a propósito que sea lo tranquilo después de lo ruidoso, y es
-   también donde vive el texto que no depende de que haya un ratón encima.
-   -------------------------------------------------------------------------- */
-export const StudioTeam: React.FC = () => {
-  /* Se resuelve aquí, una vez, y el marcado ya solo distingue entre haber foto
-     o no haberla. Ver la nota de imágenes en `config/studio.ts`. */
-  const members = team.map((member) => ({
-    ...member,
-    photo: publicAssetExists(member.photo) ? member.photo : null,
-  }));
+  const handleMouseEnter = (index: number, e: React.MouseEvent) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+    setHoveredIndex(index);
+  };
+
+  const members = team;
 
   return (
-    <section id="equipo" className="w-full bg-canvas py-24 sm:py-32 lg:py-40">
-      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-        <Reveal className="max-w-3xl">
-          <span className="block type-eyebrow text-ink-muted">El equipo</span>
-          <h2 className="mt-5 text-[clamp(2.25rem,5vw,4rem)] font-normal tracking-tight leading-[1.05] text-ink text-balance">
-            Las dos personas que van a tocar tu proyecto.
-          </h2>
-          <p className="mt-6 max-w-xl font-sans text-base sm:text-lg font-light leading-relaxed text-ink-muted">
-            Detrás de cada entrega hay dos nombres, y son siempre los mismos. Ni
-            subcontratas, ni rotación de perfiles, ni un equipo distinto que
-            ejecute después lo que tú contaste en la primera reunión.
-          </p>
-        </Reveal>
+    <section
+      id="equipo"
+      data-cursor="none"
+      onMouseMove={handleMouseMove}
+      className="relative w-full bg-canvas py-20 sm:py-28 lg:py-36 selection:bg-brand selection:text-dark overflow-hidden"
+    >
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-16 lg:space-y-24">
+        {!hideHeader && (
+          <SectionHeader
+            eyebrow="EL EQUIPO"
+            title="Las dos personas que van a tocar tu proyecto."
+            description="Detrás de cada entrega hay dos nombres, y son siempre los mismos. Ni subcontratas, ni rotación de perfiles, ni un equipo distinto que ejecute después lo que tú contaste en la primera reunión."
+          />
+        )}
 
-        {/* --- El cartel ------------------------------------------------------
-            Sin `Reveal`: el bloque es más alto que la pantalla en escritorio y
-            el retrato sobresale de su fila, así que animar el contenedor
-            entero desplazaría piezas que están colocadas desde su centro. */}
-        <ul className="roster-list mt-12 lg:mt-4">
-          {members.map((member) => (
-            <li key={member.name} className="roster-row">
-              <span className="roster-name">{member.name}</span>
+        {/* Distribución limpia en 2 Columnas alineada con la estética general del Home */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-28 items-start w-full">
+          {/* COLUMNA 1: Martí Castaño */}
+          <div
+            className="w-full cursor-pointer"
+            onMouseEnter={(e) => handleMouseEnter(0, e)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <MemberCard member={members[0]} />
+          </div>
 
-              <div className="roster-meta">
-                <span className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] leading-relaxed text-ink-muted">
-                  {member.role}
-                </span>
+          {/* COLUMNA 2: Alex Cortell */}
+          <div
+            className="w-full cursor-pointer"
+            onMouseEnter={(e) => handleMouseEnter(1, e)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <MemberCard member={members[1]} />
+          </div>
+        </div>
 
-                {/* Los enlaces son también la vía de teclado a esta ficha: al
-                    recibir el foco encienden la fila entera (`:focus-within`),
-                    y por eso el retrato y el oficio no se esconden con
-                    `display: none` sino con opacidad. */}
-                <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                  {[
-                    { label: "GitHub", href: member.github },
-                    { label: "LinkedIn", href: member.linkedin },
-                  ].map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${link.label} de ${member.name}`}
-                      className="group/link inline-flex items-center gap-1 font-sans text-xs font-medium text-ink-muted transition-colors hover:text-ink"
-                    >
-                      {link.label}
-                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 motion-reduce:transition-none" />
-                    </a>
-                  ))}
-                </span>
-              </div>
-
-              <div className="roster-portrait">
-                {member.photo ? (
-                  // eslint-disable-next-line @next/next/no-img-element -- ruta
-                  // suelta que puede no existir todavía: el optimizador de Next
-                  // devolvería un 500 en vez de dejar hueco.
-                  <img
-                    src={member.photo}
-                    alt={`Retrato de ${member.name}`}
-                    className="block aspect-3/4 w-full object-cover"
-                    draggable={false}
-                    loading="lazy"
-                  />
-                ) : (
-                  <PortraitPlate
-                    initials={member.initials}
-                    name={member.name}
-                    className="border-0"
-                  />
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        {/* --- La letra pequeña, que aquí es la que informa ------------------ */}
-        <div className="mt-10 lg:mt-0 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
-          {members.map((member, i) => (
-            <Reveal key={member.name} delay={i * 100}>
-              <div className="border-t border-ink/15 pt-6">
-                <h3 className="font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-ink">
-                  {member.name}
-                </h3>
-
-                <p className="mt-4 max-w-md font-sans text-sm sm:text-base font-light leading-relaxed text-ink-muted">
-                  {member.bio}
-                </p>
-
-                <p className="mt-5 font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-ink-muted">
-                  {member.skills.join("  ·  ")}
-                </p>
-              </div>
-            </Reveal>
-          ))}
+        {/* Nube de logos / Tecnologías justo debajo */}
+        <div className="pt-16 lg:pt-24 w-full">
+          <LogoCloud />
         </div>
       </div>
+
+      {/* FOTO FLOTANTE CENTRADA EXACTAMENTE EN EL CURSOR DEL RATÓN */}
+      <AnimatePresence>
+        {hoveredIndex !== null && (
+          <motion.div
+            key={hoveredIndex}
+            initial={{ opacity: 0, scale: 0.85, x: mousePos.x, y: mousePos.y }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              x: mousePos.x,
+              y: mousePos.y,
+            }}
+            exit={{ opacity: 0, scale: 0.85, x: mousePos.x, y: mousePos.y }}
+            transition={{
+              type: "spring",
+              stiffness: 450,
+              damping: 30,
+              mass: 0.35,
+            }}
+            className="pointer-events-none fixed top-0 left-0 z-40 -translate-x-1/2 -translate-y-1/2 w-56 h-72 sm:w-64 sm:h-80 lg:w-72 lg:h-96 rounded-none overflow-hidden shadow-2xl bg-dark border border-white/10"
+          >
+            <MemberAvatar
+              photo={members[hoveredIndex].photo}
+              name={members[hoveredIndex].name}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
+
+function MemberAvatar({
+  photo,
+  name,
+}: {
+  photo?: string;
+  name: string;
+}) {
+  const [hasError, setHasError] = useState(!photo);
+
+  return (
+    <div className="relative w-full h-full bg-dark rounded-none overflow-hidden">
+      {photo && !hasError ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={photo}
+          alt={name}
+          onError={() => setHasError(true)}
+          className="w-full h-full object-cover rounded-none"
+        />
+      ) : (
+        <div className="w-full h-full bg-dark rounded-none" />
+      )}
+    </div>
+  );
+}
+
+function MemberCard({
+  member,
+}: {
+  member: typeof team[0];
+}) {
+  return (
+    <div className="w-full flex flex-col justify-between py-2 space-y-6 sm:space-y-8 text-ink">
+      <div className="flex flex-col space-y-4 sm:space-y-6">
+        {/* Eyebrow de rol impreso más grande */}
+        <span className="font-sans text-xs sm:text-sm lg:text-base font-medium uppercase tracking-[0.22em] text-ink-muted">
+          {member.role}
+        </span>
+
+        {/* Nombre en tipografía display grande e imponente */}
+        <h3 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-sans font-normal tracking-tight text-ink leading-[1.05]">
+          {member.name}
+        </h3>
+
+        {/* Descripción en tamaño editorial generoso */}
+        <p className="font-sans text-lg sm:text-xl lg:text-2xl font-light text-ink-muted leading-relaxed max-w-xl pt-2">
+          {member.bio}
+        </p>
+      </div>
+    </div>
+  );
+}
