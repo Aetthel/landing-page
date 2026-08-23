@@ -4,11 +4,9 @@ import path from "node:path";
 /* --------------------------------------------------------------------------
    ¿Está la foto puesta ya?
 
-   /estudio se apoya en dos carpetas de imágenes —`public/team` y
-   `public/workspace`— que todavía están vacías. En vez de dejar huecos rotos
-   hasta que se llenen, cada pieza pregunta aquí si el archivo existe y, si no,
-   dibuja su propia reserva: un panel tipográfico en el caso de los retratos,
-   una lámina de contactos en el de las fotos del taller.
+   El reparto de /estudio se apoya en `public/team`, que todavía está vacía. En
+   vez de dejar huecos rotos hasta que se llene, la pieza pregunta aquí si el
+   archivo existe y, si no, dibuja una lámina tipográfica con el monograma.
 
    La comprobación es de servidor y se resuelve al construir la página, que es
    estática: soltar un JPG en la carpeta y volver a construir es todo lo que
@@ -62,16 +60,3 @@ export function publicAssetExists(src: string | null | undefined): boolean {
   return listFolder(folder).has(file);
 }
 
-/**
- * Resuelve una lista de piezas con imagen a la misma lista con la ruta puesta
- * a `null` cuando el archivo no está. Así el componente solo tiene que mirar
- * si hay `src` o no, sin saber nada del sistema de archivos.
- */
-export function withResolvedImages<T extends { src: string }>(
-  items: readonly T[]
-): (Omit<T, "src"> & { src: string | null })[] {
-  return items.map((item) => ({
-    ...item,
-    src: publicAssetExists(item.src) ? item.src : null,
-  }));
-}
