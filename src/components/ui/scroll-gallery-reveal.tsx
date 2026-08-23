@@ -157,7 +157,7 @@ function SlideImage({ slide }: { slide: PhotoSlide }) {
 
   return (
     <div className="relative w-full h-full">
-      {/* Fondo de Imagen limpio sin textos */}
+      {/* Fondo de Imagen */}
       <div className={`absolute inset-0 z-0 bg-gradient-to-br ${slide.fallbackGradient}`}>
         {!imgError && (
           // eslint-disable-next-line @next/next/no-img-element
@@ -172,6 +172,11 @@ function SlideImage({ slide }: { slide: PhotoSlide }) {
         {imgError && (
           <div className="absolute inset-0 bg-[radial-gradient(#b8fa4e_1px,transparent_1px)] [background-size:40px_40px] opacity-15" />
         )}
+      </div>
+
+      {/* Etiqueta de aviso de evidencia / maqueta per PRODUCT.md */}
+      <div className="absolute bottom-6 left-6 z-10 px-3 py-1.5 rounded-full bg-dark/80 backdrop-blur-md border border-white/15 font-sans text-[10px] font-medium uppercase tracking-[0.14em] text-white/90 shadow-sm">
+        Maqueta ilustrativa
       </div>
     </div>
   );

@@ -24,15 +24,24 @@ type Phase = "playing" | "lifting" | "gone";
  * arranque de la web no dependen del contenido.
  */
 export const IntroSequence: React.FC = () => {
-  const [phase, setPhase] = useState<Phase>("playing");
+  const [phase, setPhase] = useState<Phase>(() => {
+    if (
+      typeof document !== "undefined" &&
+      document.documentElement.dataset.intro === "skip"
+    ) {
+      markBooted();
+      return "gone";
+    }
+    return "playing";
+  });
   const [running, setRunning] = useState(false);
 
   useEffect(() => {
     // El script de arranque del layout ya decidió si esta visita ve la entrada
-    // (primera de la sesión y sin reducción de movimiento).
-    if (document.documentElement.dataset.intro === "skip") {
-      markBooted();
-      setPhase("gone");
+    if (
+      typeof document !== "undefined" &&
+      document.documentElement.dataset.intro === "skip"
+    ) {
       return;
     }
 

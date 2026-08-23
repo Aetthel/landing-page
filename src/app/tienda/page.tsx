@@ -1,28 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { Footer } from "@/components/layout/Footer";
 import { HeroGradient } from "@/components/ui/aurora-background";
-
-/* ==========================================================================
-   /tienda — la tienda, todavía sin abrir.
-
-   POR QUÉ EXISTE UNA PÁGINA PARA ALGO QUE NO ESTÁ. «Tienda» lleva tiempo en el
-   menú apuntando a `#`, que es un enlace que no lleva a ningún sitio: se pulsa,
-   no pasa nada y el visitante no sabe si ha fallado él o la web. Una página que
-   dice «próximamente» responde la pregunta y cuesta una pantalla.
-
-   ES SOLO LA CABECERA. El mismo hero de las demás páginas —grafito a pantalla
-   completa, antetítulo lima, titular a dos líneas con la segunda en lima— y
-   directo al Footer, sin la hoja de lienzo que en las otras sostiene el
-   contenido. Aquí no hay contenido que sostener, y montar la hoja vacía dejaría
-   un cajón blanco sin nada dentro. El Footer va sobre grafito, así que la
-   cabecera enlaza con él sin costura.
-
-   SOLO EL TITULAR. Las demás páginas abren con antetítulo, titular y una
-   entradilla al lado; esta se queda con el titular a secas. No hay nada que
-   contar todavía, y un texto de relleno sobre lo que quizá se venda envejece
-   mal. El antetítulo también sobra: repetía la palabra del menú por el que se
-   acaba de llegar.
-   ========================================================================== */
 
 export const metadata: Metadata = {
   title: "Tienda | Aetthel",
@@ -41,14 +21,13 @@ export default function TiendaPage() {
         >
           <HeroGradient tone="dark" />
           <div className="relative z-10 w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-            {/* Sin entradilla: la cabecera es solo el titular. Se conserva la
-                rejilla de doce y las siete columnas del bloque para que el
-                titular caiga exactamente donde cae en las demás páginas —si se
-                soltara a todo el ancho, se rompería la única línea que tienen
-                todas en común—. */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
               <div className="lg:col-span-7">
-                <h1 className="type-display text-white">
+                <span className="block type-eyebrow text-brand animate-rise-in rise-delay-1">
+                  Tienda Aetthel
+                </span>
+
+                <h1 className="mt-6 type-display text-white">
                   <span className="block animate-rise-in rise-delay-1">
                     Nuevo espacio,
                   </span>
@@ -56,6 +35,19 @@ export default function TiendaPage() {
                     próximamente.
                   </span>
                 </h1>
+              </div>
+
+              <div className="lg:col-span-5 max-w-xl space-y-6 animate-rise-in rise-delay-3">
+                <p className="type-lead hero-lead text-neutral-400">
+                  Estamos preparando productos digitales y recursos de diseño. Mientras tanto, si necesitas una solución a medida para tu negocio, escríbenos directamente.
+                </p>
+                <Link
+                  href="/contacto"
+                  className="inline-flex items-center gap-2 font-sans text-xs font-medium uppercase tracking-[0.18em] text-brand hover:text-white transition-colors"
+                >
+                  Contactar con el estudio
+                  <ArrowUpRight className="w-4 h-4 stroke-[1.75]" />
+                </Link>
               </div>
             </div>
           </div>

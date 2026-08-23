@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { StudioAbout } from "@/components/sections/StudioAbout";
 import { StudioProcess } from "@/components/sections/StudioProcess";
 import { StudioCare } from "@/components/sections/StudioCare";
+import { CTA } from "@/components/sections/CTA";
 import { HeroGradient } from "@/components/ui/aurora-background";
 
 /* ==========================================================================
@@ -95,9 +96,11 @@ export default function EstudioPage() {
           {/* 2. Cómo va un proyecto de principio a fin. */}
           <StudioProcess />
 
-          {/* 4. Cómo es hablar con nosotros mientras dura. Y aquí acaba la
-              hoja: el trato es el último movimiento, sin cierre detrás. */}
+          {/* 4. Cómo es hablar con nosotros mientras dura. */}
           <StudioCare />
+
+          {/* 5. Cierre con llamada a la acción hacia /contacto */}
+          <CTA />
         </div>
       </main>
 

@@ -37,7 +37,15 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["Aetthel", "Arquitectura", "Estudio", "Brand Spaces", "Diseño"],
+  keywords: [
+    "Aetthel",
+    "Estudio Digital",
+    "Landing Pages",
+    "Desarrollo Web",
+    "Aplicaciones Web",
+    "Automatizaciones",
+    "Barcelona",
+  ],
   authors: [{ name: siteConfig.name }],
   openGraph: {
     type: "website",

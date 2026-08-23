@@ -87,10 +87,19 @@ export const MagicText: React.FC<MagicTextProps> = ({ text, className }) => {
      del gesto y se percibe como pesadez. Con el progreso en crudo, el rotulador
      va pegado al dedo. Se resuelve tras el montaje para que el HTML del
      servidor y el de la hidratación sigan siendo el mismo. */
-  const [isTouch, setIsTouch] = useState(false);
+  const [isTouch, setIsTouch] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(pointer: coarse)").matches;
+    }
+    return false;
+  });
 
   useEffect(() => {
-    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(pointer: coarse)");
+    const onChange = (e: MediaQueryListEvent) => setIsTouch(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
   const progress = isTouch ? scrollYProgress : smoothProgress;

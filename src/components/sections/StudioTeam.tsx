@@ -14,10 +14,12 @@ export const StudioTeam: React.FC<StudioTeamProps> = ({ hideHeader = false }) =>
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (typeof window !== "undefined" && !window.matchMedia("(pointer: fine)").matches) return;
     setMousePos({ x: e.clientX, y: e.clientY });
   };
 
   const handleMouseEnter = (index: number, e: React.MouseEvent) => {
+    if (typeof window !== "undefined" && !window.matchMedia("(pointer: fine)").matches) return;
     setMousePos({ x: e.clientX, y: e.clientY });
     setHoveredIndex(index);
   };

@@ -4,9 +4,6 @@ import React, { useRef, useState } from "react";
 import {
   ArrowUpRight,
   Check,
-  Coffee,
-  Hourglass,
-  MessageCircle,
   Plus,
 } from "lucide-react";
 import { Service } from "@/types";
@@ -88,9 +85,6 @@ const TONE = {
     ctaSurface: "light" as const,
   },
 } as const;
-
-/* Rótulo versalita: el mismo en toda la página, así que se escribe una vez. */
-const LABEL = "font-sans text-[11px] font-medium uppercase tracking-[0.18em]";
 
 /* Medidor de nivel: tres tramos, tantos encendidos como escalón ocupa el
    nivel. Es la única forma que tiene la ficha de enseñar la progresión sin

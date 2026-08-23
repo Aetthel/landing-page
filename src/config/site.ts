@@ -2,7 +2,8 @@ import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "Aetthel",
-  description: "Estudio de arquitectura, espacios de marca y proyectos creativos.",
+  description:
+    "Estudio digital especializado en landing pages, aplicaciones web a medida y automatización de procesos.",
   url: "https://aetthel.com",
   ogImage: "https://aetthel.com/og.png",
   mainNavItems: [

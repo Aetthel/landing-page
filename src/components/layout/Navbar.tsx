@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Menu, X } from "lucide-react";
-import { IsotipoIcon } from "@/components/ui/logo-isotipo";
 import { LogoWordmark } from "@/components/ui/logo-wordmark";
 import { SlideTabs } from "@/components/ui/slide-tabs";
 import { cn } from "@/lib/utils";

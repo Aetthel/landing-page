@@ -1,7 +1,7 @@
 import React from "react";
 import type { SVGProps } from "react";
 import { cn } from "@/lib/utils";
-import { IsotipoIcon } from "@/components/ui/logo-isotipo";
+
 
 /* --------------------------------------------------------------------------
    Componentes SVG Oficiales proporcionados por el cliente.

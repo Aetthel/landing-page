@@ -9,31 +9,30 @@ export const LoadingOverlay: React.FC = () => {
   const { isLoading, stopLoading } = useLoading();
   const [visible, setVisible] = useState(false);
   const [animatingOut, setAnimatingOut] = useState(false);
+  const [prevIsLoading, setPrevIsLoading] = useState(isLoading);
+
+  if (isLoading && !prevIsLoading) {
+    setPrevIsLoading(true);
+    setVisible(true);
+    setAnimatingOut(false);
+  } else if (!isLoading && prevIsLoading) {
+    setPrevIsLoading(false);
+  }
 
   useEffect(() => {
-    if (isLoading) {
-      setVisible(true);
-      setAnimatingOut(false);
+    if (!visible || !isLoading) return;
 
-      // Auto-hide after 800ms for fast transitions unless manually controlled
-      const timer = setTimeout(() => {
-        setAnimatingOut(true);
-        const hideTimer = setTimeout(() => {
-          setVisible(false);
-          stopLoading();
-        }, 400);
-        return () => clearTimeout(hideTimer);
-      }, 700);
-
-      return () => clearTimeout(timer);
-    } else if (visible) {
+    const timer = setTimeout(() => {
       setAnimatingOut(true);
       const hideTimer = setTimeout(() => {
         setVisible(false);
+        stopLoading();
       }, 400);
       return () => clearTimeout(hideTimer);
-    }
-  }, [isLoading, stopLoading]);
+    }, 700);
+
+    return () => clearTimeout(timer);
+  }, [isLoading, visible, stopLoading]);
 
   if (!visible) return null;
 
