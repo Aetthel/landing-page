@@ -58,9 +58,9 @@ const TONE = {
     meterOff: "bg-ink/15",
     tabIdle:
       "border-line bg-white/70 text-ink-muted hover:border-ink hover:text-ink",
-    tabActive: "border-brand bg-brand text-ink",
-    toggle: "border-line bg-white group-hover:border-brand group-hover:bg-brand",
-    toggleIcon: "text-ink",
+    tabActive: "border-ink bg-ink text-white",
+    toggle: "border-line bg-white group-hover:border-ink group-hover:bg-ink",
+    toggleIcon: "text-ink group-hover:text-white",
     cta: "px-7 py-3 tracking-widest",
     ctaBlob: undefined,
     ctaReveal: undefined,
@@ -72,19 +72,19 @@ const TONE = {
     lead: "text-neutral-300",
     body: "text-neutral-400",
     label: "text-neutral-400",
-    accent: "text-brand",
+    accent: "text-white",
     frame: "border-white/12 bg-white/[0.02]",
-    meterOn: "bg-brand",
+    meterOn: "bg-white",
     meterOff: "bg-white/20",
     tabIdle:
       "border-white/15 bg-white/5 text-neutral-300 hover:border-white/50 hover:text-white",
-    tabActive: "border-brand bg-brand text-ink",
+    tabActive: "border-white bg-white text-dark",
     toggle:
-      "border-white/20 bg-white/5 group-hover:border-brand group-hover:bg-brand",
-    toggleIcon: "text-white group-hover:text-ink",
-    cta: "border-brand bg-brand px-7 py-3 text-neutral-950 tracking-widest",
-    ctaBlob: "bg-white",
-    ctaReveal: "text-neutral-950",
+      "border-white/20 bg-white/5 group-hover:border-white group-hover:bg-white",
+    toggleIcon: "text-white group-hover:text-dark",
+    cta: "border-white bg-white px-7 py-3 text-neutral-950 tracking-widest",
+    ctaBlob: "bg-neutral-900",
+    ctaReveal: "text-white",
     ctaSurface: "light" as const,
   },
 } as const;
@@ -283,86 +283,60 @@ export const ServiceSheet: React.FC<ServiceSheetProps> = ({
       /* `scroll-mt` deja sitio a la Navbar flotante cuando se llega desde la
          lista de servicios de la home: sin él el titular queda debajo. */
       data-cursor-surface={tone === "dark" ? "dark" : undefined}
-      className={cn("w-full scroll-mt-24 py-24 sm:py-32 lg:py-40", t.section)}
+      className={cn("w-full scroll-mt-24 py-16 sm:py-20 lg:py-24", t.section)}
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-        <Reveal>
-          {/* Sin ordinal delante del titular: el capítulo abre directamente con
-              el nombre del servicio. */}
-          <h2
-            className={cn(
-              "text-[clamp(2.5rem,6vw,5rem)] font-normal tracking-tight leading-[1.02]",
-              t.title
-            )}
-          >
-            {service.name}
-          </h2>
-
-          <p
-            className={cn(
-              "mt-6 max-w-3xl text-balance text-xl sm:text-2xl lg:text-3xl font-light leading-snug tracking-tight",
-              t.lead
-            )}
-          >
-            {service.headline}
-          </p>
-
-          {/* Espacio para imagen de servicio con corte recto (rounded-none, border-0) */}
-          <div className="relative mt-8 h-48 sm:h-64 md:h-72 w-full overflow-hidden rounded-none border-0 bg-neutral-100 dark:bg-neutral-800/40 flex flex-col items-center justify-center group/serviceimg">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`/images/services/${service.id}.jpg`}
-              alt={service.name}
-              onError={(e) => {
-                (e.target as HTMLElement).style.display = "none";
-              }}
-              className="absolute inset-0 w-full h-full object-cover rounded-none transition-transform duration-700 group-hover/serviceimg:scale-105"
-            />
-            <div className="relative z-10 flex flex-col items-center justify-center gap-2 p-6 text-center">
-              <span className="font-sans text-xs font-semibold uppercase tracking-wider text-ink">
-                Espacio reservado para imagen explicativa
-              </span>
-              <span className="font-sans text-xs text-ink-muted max-w-md">
-                {service.id === "desarrollo-web" && "Captura de pantalla en alta resolución de una landing page o web institucional."}
-                {service.id === "aplicaciones" && "Mockup o captura de interfaz de un panel de control / app a medida."}
-                {service.id === "automatizacion" && "Diagrama visual de integración de procesos o flujo de automatizaciones."}
-              </span>
-              <code className="text-[11px] font-mono text-ink bg-canvas px-2.5 py-1 rounded-none border-0 mt-1">
-                /public/images/services/{service.id}.jpg
-              </code>
-            </div>
-          </div>
-        </Reveal>
-
-        <div className="mt-16 lg:mt-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* ----------------------------------------------------------------
-              Columna de datos: para quién es, cómo se contrata y con qué se
-              construye. Se queda fija en escritorio para acompañar a la lectura
-              del detalle, y termina en el botón: la decisión de escribir puede
-              llegar en cualquier punto del capítulo.
-
-              Sin precio: las tarifas todavía no están cerradas y publicar una
-              cifra provisional sería la única mentira de la página. Lo que sí
-              está cerrado —el modelo de contratación— se dice aquí con todas
-              las letras.
-              ---------------------------------------------------------------- */}
-          <Reveal className="lg:col-span-4 lg:sticky lg:top-32 space-y-10">
-            {/* Un solo dato, sin filetes: con una fila sola las hairlines
-                dibujaban una tabla de una línea, que es un marco sin nada que
-                enmarcar. */}
-            <div className="space-y-2">
-              <h3 className={cn(LABEL, t.label)}>Cómo se contrata</h3>
-              <p
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* ------------------------------------------------------------------
+              COLUMNA IZQUIERDA (5 COLS STICKY): Presentación del servicio con
+              tamaño de tipografía imponente y escala amplia.
+              ------------------------------------------------------------------ */}
+          <Reveal className="lg:col-span-5 lg:sticky lg:top-32 space-y-8">
+            <div className="space-y-5">
+              <h2
                 className={cn(
-                  "font-display text-lg font-medium tracking-tight text-balance",
+                  "text-5xl sm:text-6xl lg:text-7xl font-display font-normal tracking-tight leading-[1.03]",
                   t.title
                 )}
               >
-                {service.billing}
+                {service.name}
+              </h2>
+
+              <p
+                className={cn(
+                  "text-xl sm:text-2xl lg:text-3xl font-sans font-light leading-snug tracking-tight text-balance",
+                  t.lead
+                )}
+              >
+                {service.headline}
               </p>
             </div>
 
-            <div className="space-y-8">
+            <p
+              className={cn(
+                "font-sans text-lg sm:text-xl font-light leading-relaxed",
+                t.body
+              )}
+            >
+              {service.summary}
+            </p>
+
+            {/* Stack Tecnológico del Servicio (sin mini título ni línea divisoria) */}
+            {service.stack && service.stack.length > 0 && (
+              <div className="flex flex-wrap gap-2.5">
+                {service.stack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3.5 py-1.5 rounded-full border border-line bg-surface font-sans text-sm font-medium text-ink"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Botón CTA directo */}
+            <div className="pt-4">
               <InteractiveHoverLink
                 href="/contacto"
                 text={service.cta}
@@ -372,106 +346,19 @@ export const ServiceSheet: React.FC<ServiceSheetProps> = ({
                 blobClassName={t.ctaBlob}
                 revealClassName={t.ctaReveal}
               />
-              <p
-                className={cn(
-                  "font-sans text-sm font-light leading-relaxed",
-                  t.body
-                )}
-              >
-                Cada proyecto se presupuesta a medida después de la primera
-                reunión. Puedes escribirnos si lo prefieres directamente a{" "}
-                <a
-                  href="mailto:aetthel@gmail.com"
-                  className={cn(
-                    "underline underline-offset-2 decoration-brand decoration-2 transition-colors",
-                    t.title,
-                    tone === "dark" ? "hover:text-brand" : "hover:text-accent"
-                  )}
-                >
-                  aetthel@gmail.com
-                </a>
-                .
-              </p>
-
-              {/* Últimos elementos de la columna, a propósito: son lo último
-                  que se lee antes de decidir. Cada icono ya dice de qué va la
-                  línea, sin necesidad de rótulo. */}
-              <div className="space-y-5">
-                <div className="flex items-center gap-2.5">
-                  <Hourglass
-                    aria-hidden="true"
-                    className={cn("h-4 w-4 shrink-0", t.accent)}
-                  />
-                  <p
-                    className={cn(
-                      "font-display text-base font-medium tracking-tight",
-                      t.title
-                    )}
-                  >
-                    Respondemos en 24h
-                  </p>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <MessageCircle
-                    aria-hidden="true"
-                    className={cn("h-4 w-4 shrink-0", t.accent)}
-                  />
-                  <p
-                    className={cn(
-                      "font-display text-base font-medium tracking-tight",
-                      t.title
-                    )}
-                  >
-                    Asesoría desde el primer momento
-                  </p>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Coffee
-                    aria-hidden="true"
-                    className={cn("h-4 w-4 shrink-0", t.accent)}
-                  />
-                  <p
-                    className={cn(
-                      "font-display text-base font-medium tracking-tight",
-                      t.title
-                    )}
-                  >
-                    Primera reunión sin ningún compromiso
-                  </p>
-                </div>
-              </div>
             </div>
           </Reveal>
 
-          {/* ----------------------------------------------------------------
-              Columna de contenido: qué es, cómo se ve, en qué niveles se
-              contrata y la letra pequeña, plegada.
-              ---------------------------------------------------------------- */}
-          <div className="lg:col-span-8 space-y-16 lg:space-y-20">
-            <Reveal>
-              <p
-                className={cn(
-                  "max-w-2xl font-sans text-base sm:text-lg font-light leading-relaxed",
-                  t.body
-                )}
-              >
-                {service.summary}
-              </p>
-            </Reveal>
-
-            {/* Lámina ilustrativa, en su marco y con su etiqueta. */}
-            <Reveal delay={80}>
-              <figure className={cn("rounded-2xl border", t.frame)}>
-                {/* El rótulo se queda —el croquis no puede pasar por un
-                    trabajo real— pero sin filete: la lámina y su etiqueta son
-                    una sola pieza y la línea las partía en dos. */}
-                <figcaption className={cn("px-5 pt-4 sm:px-8", LABEL, t.label)}>
-                  Ejemplo ilustrativo
-                </figcaption>
-                <div className="px-5 pt-4 pb-7 sm:px-10 sm:pb-10">
-                  <ServiceDiagram kind={service.diagram} tone={tone} />
-                </div>
-              </figure>
+          {/* ------------------------------------------------------------------
+              COLUMNA DERECHA (7 COLS): Ejemplo ilustrativo, paquetes/niveles,
+              desglose de lo que incluye y acordeones.
+              ------------------------------------------------------------------ */}
+          <div className="lg:col-span-7 space-y-12 lg:space-y-16">
+            {/* Lámina ilustrativa integrada directamente en la página con margen cero y sin recuadro */}
+            <Reveal delay={80} className="w-full">
+              <div className="w-full m-0 p-0">
+                <ServiceDiagram kind={service.diagram} tone={tone} />
+              </div>
             </Reveal>
 
             {/* --------------------------------------------------------------
@@ -614,17 +501,17 @@ export const ServiceSheet: React.FC<ServiceSheetProps> = ({
                 si el servicio sirve.
                 -------------------------------------------------------------- */}
             <Reveal>
-              <div className="space-y-1">
+              <div className="border-t border-line/70 w-full mt-8">
                 {details.map((block) => {
                   const isOpen = detail === block.id;
                   return (
-                    <div key={block.id}>
+                    <div key={block.id} className="border-b border-line">
                       <button
                         type="button"
                         onClick={() => setDetail(isOpen ? null : block.id)}
                         aria-expanded={isOpen}
                         aria-controls={`${service.id}-${block.id}`}
-                        className="group flex w-full items-center justify-between gap-6 py-5 text-left"
+                        className="group flex w-full items-center justify-between gap-6 py-6 text-left"
                       >
                         <span
                           className={cn(

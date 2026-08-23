@@ -999,13 +999,11 @@ html.lenis body {
 }
 
 .intro__mark--wordmark {
-  width: clamp(15rem, 34vw, 28rem);
-  /* El encuadre real del SVG: `viewBox="240 140 900 360"`, o sea 5/2. Tiene que
-     coincidir: `mask-size: contain` encaja el logotipo dentro de la caja sin
-     deformarlo, así que con una caja más ancha de la cuenta el logotipo se
-     queda pequeño y centrado, con aire muerto a los lados —y el cursor, que
-     recorre la caja entera, deja de ir pegado al trazo. */
-  aspect-ratio: 5 / 2;
+  width: clamp(18rem, 42vw, 36rem);
+  /* El encuadre real del SVG: `viewBox="0 0 1000 280"`, o sea 1000/280 (25/7). Tiene que
+     coincidir exactamente para que mask-size no deje aire muerto a los lados y
+     el cursor termine exactamente donde acaba el trazo de la marca. */
+  aspect-ratio: 1000 / 280;
   background: var(--color-brand);
   -webkit-mask-image: url("/logos/aetthel-logo.svg");
   mask-image: url("/logos/aetthel-logo.svg");
@@ -1035,13 +1033,9 @@ html.lenis body {
    en vez de con `left`, que recalcularía layout en cada fotograma. */
 .intro__cursor {
   position: absolute;
-  /* Los insets son proporción de la caja del logotipo, y esa caja ahora es
-     bastante más alta que antes (5/2 en vez de 790/165): con el 4% de antes el
-     cursor sería un pilar. Sangrado para que quede a la altura de la palabra,
-     no del recuadro. */
-  top: 14%;
+  top: 6%;
   right: 0;
-  bottom: 14%;
+  bottom: 6%;
   left: 0;
   opacity: 0;
   will-change: transform;
@@ -1387,7 +1381,6 @@ html.lenis body {
     opacity: 0;
     transform: translateY(-50%) scale(0.96);
     will-change: transform, opacity;
-    box-shadow: 0 30px 70px rgba(26, 26, 30, 0.18);
     transition:
       opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);

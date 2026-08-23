@@ -38,46 +38,59 @@ export const Footer: React.FC = () => {
                 text="Iniciar tu proyecto"
                 data-cursor-surface="light"
                 icon={<ArrowUpRight className="h-4 w-4" />}
-                className="border-brand bg-brand px-7 py-3 text-neutral-950 tracking-widest"
-                blobClassName="bg-white"
-                revealClassName="text-neutral-950"
+                className="border-white bg-white px-7 py-3 text-neutral-950 tracking-widest"
+                blobClassName="bg-neutral-900"
+                revealClassName="text-white"
               />
             </div>
           </div>
 
           {/* Right Column: Address & Direct Phone/Email Info */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-12 lg:text-right">
-            {/* Location & Contact Info */}
-            {/* Mismo tratamiento de siempre —versalitas, tracking ancho, gris—
-                solo que un punto más grande. El espaciado sube en proporción
-                para que al crecer la letra el bloque no se apelmace. */}
-            <div className="space-y-5 font-sans font-medium text-sm sm:text-base text-neutral-400 uppercase tracking-widest leading-relaxed">
-              <div>
-                BARCELONA, CATALUNYA
+          <div className="lg:col-span-4 flex flex-col justify-between space-y-8">
+            {/* Ubicación */}
+            <div className="space-y-2.5">
+              <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-neutral-400">
+                Ubicación
+              </span>
+              <p className="font-sans text-base font-normal text-white leading-relaxed">
+                Barcelona, Catalunya
                 <br />
-                ESPAÑA
-              </div>
+                España
+              </p>
+            </div>
 
-              <div className="pt-2 space-y-1.5">
+            {/* Teléfonos y Contacto Directo */}
+            <div className="space-y-2.5 pt-6 border-t border-white/10">
+              <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-neutral-400">
+                Contacto Directo
+              </span>
+              <div className="space-y-1.5 font-sans text-base font-normal text-neutral-300">
                 <a
                   href="tel:+34696352940"
-                  className="hover:text-white transition-colors block"
+                  className="block hover:text-white transition-colors"
                 >
                   +34 696 35 29 40
                 </a>
                 <a
                   href="tel:+34639971393"
-                  className="hover:text-white transition-colors block"
+                  className="block hover:text-white transition-colors"
                 >
                   +34 639 97 13 93
                 </a>
-                <a
-                  href="mailto:aetthel@gmail.com"
-                  className="hover:text-white transition-colors block text-neutral-300 font-semibold"
-                >
-                  aetthel@gmail.com
-                </a>
               </div>
+            </div>
+
+            {/* Email */}
+            <div className="space-y-2.5 pt-6 border-t border-white/10">
+              <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-neutral-400">
+                Email
+              </span>
+              <a
+                href="mailto:aetthel@gmail.com"
+                className="block font-sans text-base sm:text-lg font-medium text-white underline underline-offset-4 decoration-brand decoration-2 hover:text-brand transition-colors lowercase"
+              >
+                aetthel@gmail.com
+              </a>
             </div>
           </div>
         </div>
@@ -120,10 +133,10 @@ export const Footer: React.FC = () => {
 
           {/* Right Legal Links & Copyright */}
           <div className="flex flex-wrap items-center gap-6 text-neutral-500">
-            <Link href="#" className="hover:text-neutral-400 transition-colors">
+            <Link href="#" className="underline underline-offset-4 decoration-brand/60 decoration-1 hover:decoration-brand hover:text-white transition-colors">
               Términos y Condiciones
             </Link>
-            <Link href="#" className="hover:text-neutral-400 transition-colors">
+            <Link href="#" className="underline underline-offset-4 decoration-brand/60 decoration-1 hover:decoration-brand hover:text-white transition-colors">
               Política de Privacidad
             </Link>
             <Link href="#" className="hover:text-neutral-400 transition-colors">

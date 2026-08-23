@@ -68,6 +68,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { LoadingProvider } from "@/context/LoadingContext";
+import { LoadingOverlay } from "@/components/ui/loading-overlay";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -82,25 +85,30 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-canvas text-ink relative">
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
 
-        {/* Fondo animado de rejilla + partículas en toda la landing */}
-        <AnimatedGridBackground />
+        <LoadingProvider>
+          {/* Fondo animado de rejilla + partículas en toda la landing */}
+          <AnimatedGridBackground />
 
-        {/* Entrada de marca */}
-        <IntroSequence />
+          {/* Entrada de marca */}
+          <IntroSequence />
 
-        {/* Cursor personalizado */}
-        <CustomCursor />
+          {/* Carga dinámica bajo demanda */}
+          <LoadingOverlay />
 
-        {/* Barra de scroll de marca */}
-        <ScrollRail />
+          {/* Cursor personalizado */}
+          <CustomCursor />
 
-        {/* La Navbar vive aquí y no dentro de cada página a propósito: montada
-            por página, React la destruiría en cada navegación y el selector
-            deslizante no llegaría a recorrer nada —se vería un salto—. Montada
-            una sola vez, sobrevive al cambio de ruta y la pastilla viaja. */}
-        <Navbar />
+          {/* Barra de scroll de marca */}
+          <ScrollRail />
 
-        <SmoothScroll>{children}</SmoothScroll>
+          {/* La Navbar vive aquí y no dentro de cada página a propósito: montada
+              por página, React la destruiría en cada navegación y el selector
+              deslizante no llegaría a recorrer nada —se vería un salto—. Montada
+              una sola vez, sobrevive al cambio de ruta y la pastilla viaja. */}
+          <Navbar />
+
+          <SmoothScroll>{children}</SmoothScroll>
+        </LoadingProvider>
       </body>
     </html>
   );

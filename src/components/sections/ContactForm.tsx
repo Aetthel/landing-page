@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, Hourglass, MessageCircle, Coffee } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { useLoading } from "@/context/LoadingContext";
 import { cn } from "@/lib/utils";
 
 /* Los mismos tres servicios que la home, en el mismo orden. Si allí cambian,
@@ -190,6 +191,7 @@ const Field: React.FC<FieldProps> = ({
 };
 
 export const ContactForm: React.FC = () => {
+  const { startLoading, stopLoading } = useLoading();
   const [values, setValues] = useState<FormValues>(EMPTY_FORM);
   const [need, setNeed] = useState<string | null>(null);
   const [consent, setConsent] = useState(false);
@@ -225,6 +227,7 @@ export const ContactForm: React.FC = () => {
     }
 
     setStatus("sending");
+    startLoading("quick");
 
     try {
       /* El endpoint vuelve a validar y envía el correo con Resend. Solo se da
@@ -241,6 +244,8 @@ export const ContactForm: React.FC = () => {
       setStatus("sent");
     } catch {
       setStatus("error");
+    } finally {
+      stopLoading();
     }
   };
 
@@ -250,7 +255,7 @@ export const ContactForm: React.FC = () => {
      esquinas redondeadas, pero sin convertirla en marco de scroll —que es lo que
      dejaría clavada la columna `sticky` de la izquierda—. */
   return (
-    <section className="relative z-20 w-full bg-canvas rounded-t-[3.5rem] sm:rounded-t-[4.5rem] overflow-clip border-t border-line/80 pt-20 pb-32 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-56 shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
+    <section className="relative z-20 w-full bg-canvas rounded-t-[3.5rem] sm:rounded-t-[4.5rem] overflow-clip border-t border-line/80 pt-20 pb-32 sm:pt-28 sm:pb-40 lg:pt-32 lg:pb-56">
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-start">
           {/* ------------------------------------------------------------------
@@ -287,6 +292,38 @@ export const ContactForm: React.FC = () => {
                   >
                     +34 639 97 13 93
                   </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-10 border-t border-line space-y-5">
+              <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted">
+                Cómo se contrata
+              </span>
+              <p className="font-display text-lg font-medium tracking-tight text-ink">
+                Pago único con soporte mensual opcional.
+              </p>
+              <p className="font-sans text-xs font-light leading-relaxed text-ink-muted">
+                Cada proyecto se presupuesta a medida después de la primera reunión. Alcance y precio cerrado por escrito antes de empezar.
+              </p>
+              <div className="space-y-3.5 pt-2">
+                <div className="flex items-center gap-2.5">
+                  <Hourglass className="h-4 w-4 shrink-0 text-brand" />
+                  <p className="font-sans text-xs font-medium text-ink">
+                    Respondemos en 24h
+                  </p>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <MessageCircle className="h-4 w-4 shrink-0 text-brand" />
+                  <p className="font-sans text-xs font-medium text-ink">
+                    Asesoría desde el primer momento
+                  </p>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Coffee className="h-4 w-4 shrink-0 text-brand" />
+                  <p className="font-sans text-xs font-medium text-ink">
+                    Primera reunión sin ningún compromiso
+                  </p>
                 </div>
               </div>
             </div>
@@ -339,7 +376,7 @@ export const ContactForm: React.FC = () => {
             delay={120}
             className="lg:col-span-8 lg:col-start-5 w-full"
           >
-            <div className="surface-card rounded-3xl px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14 shadow-[0_1px_2px_rgba(26,26,30,0.04),0_24px_60px_-40px_rgba(26,26,30,0.35)]">
+            <div className="surface-card rounded-3xl px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14 border border-line">
               {status === "sent" ? (
                 /* Confirmación — ocupa el sitio del formulario en lugar de
                    aparecer como aviso encima: el trabajo ya está hecho y no
@@ -521,7 +558,7 @@ export const ContactForm: React.FC = () => {
                           He leído y acepto la{" "}
                           <Link
                             href="#"
-                            className="text-ink underline underline-offset-2 hover:text-accent transition-colors"
+                            className="text-ink underline underline-offset-4 decoration-brand decoration-2 hover:text-accent transition-colors font-medium"
                           >
                             política de privacidad
                           </Link>
@@ -546,8 +583,8 @@ export const ContactForm: React.FC = () => {
                         disabled={sending}
                         text={sending ? "Enviando…" : "Enviar mensaje"}
                         icon={<ArrowUpRight className="h-4 w-4" />}
-                        className="border-brand bg-brand px-7 py-3.5 text-neutral-950 tracking-widest disabled:opacity-60"
-                        blobClassName="bg-ink"
+                        className="border-ink bg-ink px-7 py-3.5 text-white tracking-widest disabled:opacity-60"
+                        blobClassName="bg-neutral-800"
                         revealClassName="text-white"
                       />
                     </div>

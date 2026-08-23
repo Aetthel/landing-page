@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { StudioAbout } from "@/components/sections/StudioAbout";
-import { StudioTeamIntro } from "@/components/sections/StudioTeamIntro";
 import { StudioProcess } from "@/components/sections/StudioProcess";
 import { StudioCare } from "@/components/sections/StudioCare";
 import { HeroGradient } from "@/components/ui/aurora-background";
@@ -89,15 +88,11 @@ export default function EstudioPage() {
         </section>
 
         {/* La hoja de lienzo monta sobre el grafito, igual que en /servicios */}
-        <div className="relative z-20 rounded-t-[3.5rem] sm:rounded-t-[4.5rem] bg-canvas border-t border-line/80 overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
+        <div className="relative z-20 rounded-t-[3.5rem] sm:rounded-t-[4.5rem] bg-canvas border-t border-line/80 overflow-hidden">
           {/* 1. Qué es el estudio. */}
           <StudioAbout />
 
-          {/* 2. Quiénes lo hacemos. Repite el reparto de la anterior: las dos
-              forman un díptico —el sitio y la gente—. */}
-          <StudioTeamIntro />
-
-          {/* 3. Cómo va un proyecto de principio a fin. */}
+          {/* 2. Cómo va un proyecto de principio a fin. */}
           <StudioProcess />
 
           {/* 4. Cómo es hablar con nosotros mientras dura. Y aquí acaba la

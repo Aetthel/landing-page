@@ -13,40 +13,36 @@ import { Reveal } from "@/components/ui/reveal";
 export const ServicesAftercare: React.FC = () => {
   return (
     <section
-      className="relative isolate w-full overflow-clip bg-canvas py-24 sm:py-32 lg:py-40 border-t border-line/80"
+      className="relative isolate w-full overflow-clip bg-canvas py-20 sm:py-28 lg:py-36 border-t border-line/80"
     >
-      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <Reveal className="lg:col-span-5 lg:sticky lg:top-32">
-            <h2 className="text-[clamp(2.25rem,5vw,4rem)] font-normal tracking-tight leading-[1.05] text-ink text-balance">
-              Y cuando ya está
-              <br />
-              <span className="text-ink">entregado, ¿qué?</span>
-            </h2>
-            <p className="mt-6 max-w-md font-sans text-base sm:text-lg font-light leading-relaxed text-ink-muted">
-              Un proyecto no termina el día que se publica. Estas cuatro cosas
-              van en todos, sin que haya que pedirlas.
-            </p>
-          </Reveal>
+      <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-12 sm:space-y-16">
+        <Reveal className="w-full max-w-4xl space-y-4">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-display font-normal tracking-tight leading-[1.04] text-ink">
+            Y cuando ya está entregado,{" "}
+            <span className="underline underline-offset-8 decoration-brand decoration-[3px]">¿qué?</span>
+          </h2>
+          <p className="font-sans text-lg sm:text-xl font-light leading-relaxed text-ink-muted">
+            Un proyecto no termina el día que se publica. Estas cuatro cosas van en todos, sin que haya que pedirlas.
+          </p>
+        </Reveal>
 
-          <Reveal delay={120} className="lg:col-span-7 lg:col-start-6">
-            <dl>
-              {afterDelivery.map((item) => (
-                <div
-                  key={item.title}
-                  className="grid grid-cols-1 sm:grid-cols-12 gap-x-8 gap-y-2 border-t border-line/70 py-7 first:border-t-0 first:pt-0 sm:first:pt-0"
-                >
-                  <dt className="sm:col-span-5 text-lg sm:text-xl font-display font-medium tracking-tight text-ink">
-                    {item.title}
-                  </dt>
-                  <dd className="sm:col-span-7 font-sans text-sm font-light leading-relaxed text-ink-muted">
-                    {item.copy}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-        </div>
+        <Reveal delay={120} className="w-full">
+          <dl className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
+            {afterDelivery.map((item) => (
+              <div
+                key={item.title}
+                className="border-t border-line/70 pt-6 space-y-3"
+              >
+                <dt className="text-xl sm:text-2xl font-display font-medium tracking-tight text-ink">
+                  {item.title}
+                </dt>
+                <dd className="font-sans text-base font-light leading-relaxed text-ink-muted">
+                  {item.copy}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
     </section>
   );

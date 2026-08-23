@@ -13,12 +13,12 @@ const labelStyles =
   "relative z-20 inline-block transition-all duration-300 group-hover:translate-x-8 group-hover:opacity-0";
 
 const revealStyles =
-  "absolute inset-0 z-20 flex translate-x-8 items-center justify-center gap-1.5 text-ink opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100";
+  "absolute inset-0 z-20 flex translate-x-8 items-center justify-center gap-1.5 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100";
 
 /* El punto arranca oculto en el centro (para no pisar el texto en reposo) y
    crece hasta cubrir la píldora al hacer hover. */
 const blobStyles =
-  "absolute left-1/2 top-1/2 z-10 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-brand opacity-0 transition-all duration-300 group-hover:left-0 group-hover:top-0 group-hover:h-full group-hover:w-full group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-150 group-hover:opacity-100";
+  "absolute left-1/2 top-1/2 z-10 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-ink opacity-0 transition-all duration-300 group-hover:left-0 group-hover:top-0 group-hover:h-full group-hover:w-full group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-150 group-hover:opacity-100";
 
 interface InteractiveHoverContentProps {
   text: string;

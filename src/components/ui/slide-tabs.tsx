@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { animate, motion, useMotionValue } from "framer-motion";
+import { useLoading } from "@/context/LoadingContext";
 import { cn } from "@/lib/utils";
 
 /* --------------------------------------------------------------------------
@@ -60,6 +61,7 @@ const SPRING = { type: "spring", stiffness: 400, damping: 34, mass: 0.85 } as co
 
 export const SlideTabs: React.FC<SlideTabsProps> = ({ items, className }) => {
   const pathname = usePathname();
+  const { startLoading } = useLoading();
   /* Las refs van al <li>, no al <a> de dentro. `offsetLeft` se mide contra el
      ancestro posicionado más cercano, así que midiendo el enlace —envuelto en
      un <li> con `relative`— todas las pestañas devolverían 0 y la pastilla se
@@ -166,6 +168,11 @@ export const SlideTabs: React.FC<SlideTabsProps> = ({ items, className }) => {
             <Link
               href={item.href}
               aria-current={isSelected ? "page" : undefined}
+              onClick={() => {
+                if (item.href !== pathname) {
+                  startLoading("quick");
+                }
+              }}
               className={cn(
                 "block cursor-pointer rounded-xl px-4 py-2 text-xs sm:text-sm uppercase tracking-wider transition-[colors,font-weight] duration-200",
                 isSelected

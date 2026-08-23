@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
-import { LogoCloud } from "@/components/ui/logo-cloud";
 
 /* Único número del escalonado: cuántos píxeles queda el bloque de texto por
    encima del servicio activo. Es una distancia fija, así que los tres guardan
@@ -246,11 +245,6 @@ export const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
             </div>
           </div>
         </Reveal>
-
-        {/* Nube de logos / Tecnologías justo debajo de Servicios con amplio margen de respiro */}
-        <div className="mt-28 sm:mt-36 lg:mt-44 pt-8 w-full">
-          <LogoCloud />
-        </div>
       </div>
     </section>
   );

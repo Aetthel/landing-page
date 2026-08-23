@@ -58,8 +58,9 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
+      suppressHydrationWarning
       className={cn(
-        "fixed top-4 sm:top-5 left-4 sm:left-6 right-4 sm:right-6 z-50 flex justify-center transition-all duration-300 pointer-events-none transform",
+        "fixed top-4 sm:top-5 left-4 sm:left-6 right-4 sm:right-6 z-[1000] flex justify-center transition-all duration-300 pointer-events-none transform",
         visible || mobileMenuOpen
           ? "translate-y-0 opacity-100"
           : "-translate-y-24 opacity-0",

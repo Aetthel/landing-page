@@ -81,7 +81,7 @@ export const StudioTeam: React.FC<StudioTeamProps> = ({ hideHeader = false }) =>
               damping: 30,
               mass: 0.35,
             }}
-            className="pointer-events-none fixed top-0 left-0 z-40 -translate-x-1/2 -translate-y-1/2 w-56 h-72 sm:w-64 sm:h-80 lg:w-72 lg:h-96 rounded-none overflow-hidden shadow-2xl bg-dark border border-white/10"
+            className="pointer-events-none fixed top-0 left-0 z-40 -translate-x-1/2 -translate-y-1/2 w-56 h-72 sm:w-64 sm:h-80 lg:w-72 lg:h-96 rounded-none overflow-hidden bg-dark border border-white/10"
           >
             <MemberAvatar
               photo={members[hoveredIndex].photo}

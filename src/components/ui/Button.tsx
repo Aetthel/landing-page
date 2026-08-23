@@ -24,7 +24,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 cursor-pointer";
 
     const variantStyles = {
-      default: "bg-brand text-dark hover:bg-brand/90",
+      default: "bg-ink text-white hover:bg-neutral-800",
       outline: "border border-ink/20 bg-transparent hover:bg-surface/50 text-ink",
       ghost: "hover:bg-surface/50 text-ink",
       link: "text-brand underline-offset-4 hover:underline",
