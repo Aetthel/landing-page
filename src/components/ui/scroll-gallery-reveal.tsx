@@ -30,19 +30,19 @@ export function ScrollGalleryReveal() {
   const slides: PhotoSlide[] = [
     {
       id: "photo-1",
-      imageSrc: "/images/aetthellab/laboratorio.jpg",
+      imageSrc: "/images/laboratorio.jpg",
       alt: "Laboratorio Aetthel - Foto 1",
       fallbackGradient: "from-neutral-900 via-neutral-950 to-dark",
     },
     {
       id: "photo-2",
-      imageSrc: "/images/aetthellab/desktop-a.jpg",
+      imageSrc: "/images/desktop-a.jpg",
       alt: "Laboratorio Aetthel - Foto 2",
       fallbackGradient: "from-neutral-950 via-dark to-neutral-900",
     },
     {
       id: "photo-3",
-      imageSrc: "/images/aetthellab/desktop2.jpg",
+      imageSrc: "/images/desktop2.jpg",
       alt: "Laboratorio Aetthel - Foto 3",
       fallbackGradient: "from-dark via-neutral-900 to-black",
     },

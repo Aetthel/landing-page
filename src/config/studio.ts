@@ -68,7 +68,7 @@ export const team: TeamMember[] = [
     bio: "Construye la estructura técnica de cada proyecto. Se asegura de que tu plataforma sea rápida, estable y preparada para crecer sin problemas.",
     skills: [],
     photo: "/team/marti-castano.jpg",
-    links: { linkedin: "", instagram: "", portfolio: "" },
+    links: { linkedin: "", instagram: "", portfolio: "https://portfolio.kore29.com" },
   },
   {
     name: "Alex Cortell",
@@ -76,7 +76,7 @@ export const team: TeamMember[] = [
     role: "Diseño y Producto",
     bio: "Diseña la experiencia visual e interactiva. Transforma las necesidades de tu negocio en una interfaz limpia, intuitiva y atractiva.",
     skills: [],
-    photo: "/images/home/alex.jpg",
+    photo: "/team/alex-cortell.jpg",
     links: {
       linkedin: "https://www.linkedin.com/in/alexcortell/",
       instagram: "https://www.instagram.com/alxdevstudio/",

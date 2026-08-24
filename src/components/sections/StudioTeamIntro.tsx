@@ -90,7 +90,7 @@ export const StudioTeamIntro: React.FC = () => {
           <Reveal delay={120} className="lg:col-span-7 lg:mt-3">
             <figure className="relative aspect-[3/2] lg:aspect-auto lg:h-full w-full overflow-hidden border border-line bg-surface">
               <Image
-                src="/images/aetthellab/equipo.png"
+                src="/images/equipo.png"
                 alt="El equipo de Aetthel: Martí Castaño y Alex Cortell, de brazos cruzados sobre un fondo blanco."
                 fill
                 sizes="(min-width: 1024px) 57vw, 100vw"

@@ -16,8 +16,7 @@ export const siteConfig: SiteConfig = {
   ],
   socials: [
     { platform: "Instagram", href: "https://www.instagram.com/aetthellab/" },
-    // TODO: sustituir por la URL exacta de la página de empresa cuando esté.
-    { platform: "LinkedIn", href: "https://www.linkedin.com/" },
+    { platform: "LinkedIn", href: "https://www.linkedin.com/company/www.linkedin.com-in-aetthel/" },
     { platform: "X", href: "https://x.com" },
   ],
 };

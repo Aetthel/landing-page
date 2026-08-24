@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Reveal } from "@/components/ui/reveal";
 import { team } from "@/config/studio";
@@ -11,29 +15,16 @@ interface StudioTeamProps {
   hideHeader?: boolean;
 }
 
-export const StudioTeam: React.FC<StudioTeamProps> = ({ hideHeader = false }) => {
+export const StudioTeam: React.FC<StudioTeamProps> = ({
+  hideHeader = false,
+}) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (typeof window !== "undefined" && !window.matchMedia("(pointer: fine)").matches) return;
-    setMousePos({ x: e.clientX, y: e.clientY });
-  };
-
-  const handleMouseEnter = (index: number, e: React.MouseEvent) => {
-    if (typeof window !== "undefined" && !window.matchMedia("(pointer: fine)").matches) return;
-    setMousePos({ x: e.clientX, y: e.clientY });
-    setHoveredIndex(index);
-  };
-
   const members = team;
 
   return (
     <section
       id="equipo"
-      data-cursor="none"
-      onMouseMove={handleMouseMove}
-      className="relative w-full bg-canvas py-20 sm:py-28 lg:py-36 selection:bg-brand selection:text-dark overflow-hidden"
+      className="relative w-full bg-canvas py-20 sm:py-28 lg:py-36 selection:bg-brand selection:text-dark overflow-visible"
     >
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12 space-y-16 lg:space-y-24">
         {!hideHeader && (
@@ -67,94 +58,58 @@ export const StudioTeam: React.FC<StudioTeamProps> = ({ hideHeader = false }) =>
               className="w-full cursor-pointer"
               onMouseEnter={(e) => handleMouseEnter(index, e)}
               onMouseLeave={() => setHoveredIndex(null)}
+              aria-label={`Ver portafolio de ${member.name}`}
             >
-              <MemberCard
-                member={member}
-                onLinksEnter={() => setHoveredIndex(null)}
-                onLinksLeave={() => setHoveredIndex(index)}
-              />
+              <MemberCard member={member} isHovered={hoveredIndex === index} />
             </Reveal>
           ))}
         </div>
       </div>
-
-      {/* FOTO FLOTANTE CENTRADA EXACTAMENTE EN EL CURSOR DEL RATÓN */}
-      <AnimatePresence>
-        {hoveredIndex !== null && (
-          <motion.div
-            key={hoveredIndex}
-            initial={{ opacity: 0, scale: 0.85, x: mousePos.x, y: mousePos.y }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              x: mousePos.x,
-              y: mousePos.y,
-            }}
-            exit={{ opacity: 0, scale: 0.85, x: mousePos.x, y: mousePos.y }}
-            transition={{
-              type: "spring",
-              stiffness: 450,
-              damping: 30,
-              mass: 0.35,
-            }}
-            className="pointer-events-none fixed top-0 left-0 z-40 -translate-x-1/2 -translate-y-1/2 w-56 h-72 sm:w-64 sm:h-80 lg:w-72 lg:h-96 rounded-none overflow-hidden bg-dark border border-white/10"
-          >
-            <MemberAvatar
-              photo={members[hoveredIndex].photo}
-              name={members[hoveredIndex].name}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
 
-function MemberAvatar({
-  photo,
-  name,
-}: {
-  photo?: string;
-  name: string;
-}) {
-  const [hasError, setHasError] = useState(!photo);
-
-  return (
-    <div className="relative w-full h-full bg-dark rounded-none overflow-hidden">
-      {photo && !hasError ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={photo}
-          alt={name}
-          onError={() => setHasError(true)}
-          className="w-full h-full object-cover rounded-none"
-        />
-      ) : (
-        <div className="w-full h-full bg-dark rounded-none" />
-      )}
-    </div>
-  );
-}
-
 function MemberCard({
   member,
-  onLinksEnter,
-  onLinksLeave,
+  isHovered,
 }: {
-  member: typeof team[0];
-  onLinksEnter: () => void;
-  onLinksLeave: () => void;
+  member: (typeof team)[0];
+  isHovered: boolean;
 }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Muelle con inercia suave para el desplazamiento sutil de la imagen
+  const springX = useSpring(mouseX, { stiffness: 180, damping: 22 });
+  const springY = useSpring(mouseY, { stiffness: 180, damping: 22 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const relX = e.clientX - (rect.left + rect.width / 2);
+    const relY = e.clientY - (rect.top + rect.height / 2);
+    // Desplazamiento elástico suave (+/- 14px)
+    mouseX.set(relX * 0.07);
+    mouseY.set(relY * 0.07);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
-    <div className="w-full flex flex-col justify-between py-2 space-y-6 sm:space-y-8 text-ink">
+    <div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative w-full flex flex-col justify-start py-2 space-y-6 sm:space-y-8 text-ink min-h-[280px] sm:min-h-[340px] lg:min-h-[380px]"
+    >
+      {/* Texto visible por defecto */}
       <div className="flex flex-col space-y-4 sm:space-y-6">
         {/* Eyebrow de rol impreso */}
-        <span className="block type-eyebrow text-ink-muted">
-          {member.role}
-        </span>
+        <span className="block type-eyebrow text-ink-muted">{member.role}</span>
 
         {/* Nombre en tipografía display grande e imponente */}
-        <h3 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-normal tracking-tight text-ink leading-[1.05]">
+        <h3 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-normal tracking-tight text-ink leading-[1.05] transition-colors group-hover:text-ink/80">
           {member.name}
         </h3>
 
@@ -162,75 +117,28 @@ function MemberCard({
         <p className="type-lead font-sans text-base sm:text-lg lg:text-xl font-light text-ink-muted leading-relaxed max-w-xl">
           {member.bio}
         </p>
-
-        <MemberLinks
-          member={member}
-          onEnter={onLinksEnter}
-          onLeave={onLinksLeave}
-        />
       </div>
-    </div>
-  );
-}
 
-/* --------------------------------------------------------------------------
-   Los perfiles de cada persona, debajo de su descripción.
-
-   SE FILTRAN LOS VACÍOS. Un `href=""` no es un enlace roto que se vea: es un
-   enlace que recarga la página actual, y el visitante que lo pulsa cree que
-   ha fallado la web. Mientras no haya URL, el perfil sencillamente no aparece;
-   en cuanto se rellene en `config/studio.ts`, entra solo.
-
-   Si una persona no tiene ninguno de los tres, no se pinta ni la fila: sin este
-   corte quedaría el hueco del `space-y` del padre, un espacio en blanco bajo la
-   biografía que no se explica.
-
-   LA FILA SE PONE POR ENCIMA DE LA FOTO FLOTANTE (`z-50` contra su `z-40`).
-   Retirarla al entrar aquí ya la quita de en medio, pero su desaparición es una
-   animación de salida y dura unas décimas: sin este escalón, durante ese rato la
-   imagen seguiría pasando por delante de los rótulos justo cuando el visitante
-   va a pulsarlos.
-   -------------------------------------------------------------------------- */
-function MemberLinks({
-  member,
-  onEnter,
-  onLeave,
-}: {
-  member: typeof team[0];
-  onEnter: () => void;
-  onLeave: () => void;
-}) {
-  const profiles = [
-    { label: "LinkedIn", href: member.links.linkedin },
-    { label: "Instagram", href: member.links.instagram },
-    { label: "Portafolio", href: member.links.portfolio },
-  ].filter((profile) => profile.href);
-
-  if (profiles.length === 0) return null;
-
-  return (
-    <ul
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      className="relative z-50 flex flex-wrap items-center gap-x-6 gap-y-2 pt-1"
-    >
-      {profiles.map((profile) => (
-        <li key={profile.label}>
-          <a
-            href={profile.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            /* El nombre va en la etiqueta accesible porque en la página hay dos
-               «LinkedIn»: sin él, quien navegue por lista de enlaces oye el
-               mismo rótulo dos veces y no sabe cuál es cuál. */
-            aria-label={`${profile.label} de ${member.name}`}
-            className="group/link inline-flex items-center gap-1.5 font-sans text-xs font-medium uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-ink"
+      {/* Imagen con formato original y pequeña animación inercial con el ratón */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            style={{ x: springX, y: springY }}
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.92 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-56 h-72 sm:w-64 sm:h-80 lg:w-72 lg:h-96 rounded-none overflow-hidden bg-dark border border-white/15 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.45)] will-change-transform"
           >
-            {profile.label}
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 motion-reduce:transition-none" />
-          </a>
-        </li>
-      ))}
-    </ul>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={member.photo}
+              alt={member.name}
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

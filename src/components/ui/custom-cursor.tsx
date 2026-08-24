@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 /**
  * CustomCursor - Cursor de círculo único interactivo con física inercial (lerp).
  * Un único círculo minimalista y elegante que sigue suavemente al puntero del ratón
- * y se expande al posarse sobre elementos interactivos.
+ * y se expande al posarse sobre elementos interactivos o con data-cursor-text.
  *
  * Sobre fondos oscuros se invierte a blanco: la tinta del cursor es del color
  * del texto, así que sin invertir desaparecería en el footer, el reel y las
@@ -55,6 +56,7 @@ export function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [onDarkSurface, setOnDarkSurface] = useState(false);
+  const [cursorText, setCursorText] = useState<string | null>(null);
 
   useEffect(() => {
     // Si el dispositivo es táctil (móvil/tablet), el cursor personalizado no se dibuja
@@ -67,14 +69,8 @@ export function CustomCursor() {
     let currentX = -100;
     let currentY = -100;
     let rafId: number;
-    // Al hacer scroll cambia el suelo bajo un puntero inmóvil, y ahí no hay
-    // `mouseover` que valga. Se marca y se resuelve en el siguiente frame.
     let surfaceIsStale = false;
 
-    /* Resuelve de una vez las dos preguntas que le hacemos al elemento que hay
-       bajo el cursor: si es clicable y si su superficie es oscura. React
-       descarta por su cuenta los estados que no cambian, así que puede
-       llamarse tan a menudo como haga falta. */
     const readSurface = (target: Element | null) => {
       if (!target) return;
 
@@ -85,6 +81,9 @@ export function CustomCursor() {
       }
 
       setIsVisible(true);
+
+      const textTarget = target.closest<HTMLElement>("[data-cursor-text]");
+      setCursorText(textTarget?.dataset.cursorText || null);
 
       const isInteractive = Boolean(
         target.closest(
@@ -112,7 +111,6 @@ export function CustomCursor() {
 
     // Bucle de renderizado inercial a 60/120 FPS
     const render = () => {
-      // Lerp suavizado: 0.25 proporciona una respuesta ágil pero fluida
       currentX += (mouseX - currentX) * 0.25;
       currentY += (mouseY - currentY) * 0.25;
 
@@ -120,9 +118,6 @@ export function CustomCursor() {
         circleRef.current.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
       }
 
-      // Un único sondeo por frame como mucho, por muchos eventos de scroll
-      // que hayan llegado: `elementFromPoint` obliga al navegador a calcular
-      // posiciones y no conviene abusar.
       if (surfaceIsStale) {
         surfaceIsStale = false;
         readSurface(document.elementFromPoint(mouseX, mouseY));
@@ -137,11 +132,7 @@ export function CustomCursor() {
     document.body.addEventListener("mouseenter", onMouseEnter);
     document.body.addEventListener("mouseleave", onMouseLeave);
 
-    // Delegación de eventos para el caso normal: el puntero se mueve y el
-    // navegador nos dice sobre qué ha entrado.
     const handleMouseOver = (e: MouseEvent) => readSurface(e.target as Element);
-
-    // Y el caso contrario: el puntero quieto y la página moviéndose debajo.
     const handleScroll = () => {
       surfaceIsStale = true;
     };
@@ -159,27 +150,62 @@ export function CustomCursor() {
     };
   }, []);
 
+  const hasText = Boolean(cursorText);
   const skin = CURSOR_SKIN[onDarkSurface ? "dark" : "light"];
   const tone = isHovered ? skin.hover : skin.idle;
-  const size = `${isHovered ? SIZE_HOVER : SIZE_IDLE}px`;
+
+  const width = hasText ? "130px" : `${isHovered ? SIZE_HOVER : SIZE_IDLE}px`;
+  const height = hasText ? "46px" : `${isHovered ? SIZE_HOVER : SIZE_IDLE}px`;
+
+  // Mismo tono del cursor pero con más opacidad y cristal esmerilado
+  const backgroundColor = hasText
+    ? onDarkSurface
+      ? "rgba(255, 255, 255, 0.88)"
+      : "rgba(26, 26, 30, 0.82)"
+    : tone.background;
+
+  const borderColor = hasText
+    ? onDarkSurface
+      ? "rgba(255, 255, 255, 0.95)"
+      : "rgba(26, 26, 30, 0.9)"
+    : tone.border;
+
+  const textColor = onDarkSurface ? "text-ink" : "text-white";
+
+  const boxShadow = hasText
+    ? "0 12px 32px -4px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2)"
+    : tone.ring;
 
   return (
     <div
       ref={circleRef}
       aria-hidden="true"
-      className={`fixed top-0 left-0 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-300 ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      className={`fixed top-0 left-0 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-300 flex items-center justify-center overflow-hidden ${
+        hasText ? "backdrop-blur-md" : ""
+      } ${isVisible ? "opacity-100" : "opacity-0"}`}
       style={{
-        width: size,
-        height: size,
-        backgroundColor: tone.background,
-        border: tone.border,
-        boxShadow: tone.ring,
+        width,
+        height,
+        backgroundColor,
+        border: `1.5px solid ${borderColor}`,
+        boxShadow,
         transition:
-          "width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.3s ease",
+          "width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.3s ease",
         willChange: "transform",
       }}
-    />
+    >
+      <div
+        className={`flex items-center justify-center gap-1.5 px-3 ${textColor} transition-all duration-200 ${
+          hasText
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-75 pointer-events-none"
+        }`}
+      >
+        <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.14em] whitespace-nowrap">
+          {cursorText}
+        </span>
+        <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-brand" />
+      </div>
+    </div>
   );
 }

@@ -134,13 +134,13 @@ export const Footer: React.FC = () => {
 
           {/* Right Legal Links & Copyright */}
           <div className="flex flex-wrap items-center gap-6 text-neutral-500">
-            <Link href="#" className="underline underline-offset-4 decoration-brand/60 decoration-1 hover:decoration-brand hover:text-white transition-colors">
+            <Link href="/terminos" className="underline underline-offset-4 decoration-brand/60 decoration-1 hover:decoration-brand hover:text-white transition-colors">
               Términos y Condiciones
             </Link>
-            <Link href="#" className="underline underline-offset-4 decoration-brand/60 decoration-1 hover:decoration-brand hover:text-white transition-colors">
+            <Link href="/privacidad" className="underline underline-offset-4 decoration-brand/60 decoration-1 hover:decoration-brand hover:text-white transition-colors">
               Política de Privacidad
             </Link>
-            <Link href="#" className="hover:text-neutral-400 transition-colors">
+            <Link href="/cookies" className="underline underline-offset-4 decoration-brand/60 decoration-1 hover:decoration-brand hover:text-white transition-colors">
               Política de Cookies
             </Link>
             <span>©2026 Aetthel Lab S.L.</span>

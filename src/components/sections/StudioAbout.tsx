@@ -61,7 +61,7 @@ export const StudioAbout: React.FC = () => {
           <Reveal delay={120} className="lg:col-span-7 lg:mt-3">
             <figure className="overflow-hidden border border-line bg-surface">
               <Image
-                src="/images/aetthellab/laboratorio.jpg"
+                src="/images/laboratorio.jpg"
                 alt="El espacio de trabajo de Aetthel Lab: dos puestos enfrentados con las pantallas encendidas y el logotipo de Aetthel en la pared del fondo."
                 width={1024}
                 height={572}
