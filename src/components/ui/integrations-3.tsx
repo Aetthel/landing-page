@@ -1,6 +1,7 @@
 import React from "react";
 import type { SVGProps } from "react";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/ui/reveal";
 
 
 /* --------------------------------------------------------------------------
@@ -364,8 +365,10 @@ export default function IntegrationsSection() {
     <section className="w-full bg-canvas text-ink py-20 sm:py-28 lg:py-36">
       <div className="w-full max-w-[1470px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid items-center grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          {/* Cards Grid Container (Honey-comb con 7 iconos exactos) */}
-          <div className="lg:col-span-7 relative mx-auto w-fit">
+          {/* Cards Grid Container (Honey-comb con 7 iconos exactos).
+              Entra con <Reveal>: es un div normal con el revelado por scroll
+              encima, así que las clases de rejilla no se mueven de sitio. */}
+          <Reveal className="lg:col-span-7 relative mx-auto w-fit">
             <div
               aria-hidden
               className="bg-radial to-canvas absolute inset-0 z-10 from-transparent to-75% pointer-events-none"
@@ -409,17 +412,21 @@ export default function IntegrationsSection() {
                 <Supabase className="size-10 sm:size-12 lg:size-14" />
               </IntegrationCard>
             </div>
-          </div>
+          </Reveal>
 
-          {/* Columna de Texto con Titular Display */}
-          <div className="lg:col-span-5 mx-auto max-w-xl space-y-4 sm:space-y-6">
+          {/* Columna de Texto con Titular Display. Entra detrás del panal para
+              que se lea en orden: primero los logos, luego el titular. */}
+          <Reveal
+            delay={120}
+            className="lg:col-span-5 mx-auto max-w-xl space-y-4 sm:space-y-6"
+          >
             <h2 className="text-4xl sm:text-6xl font-display font-normal tracking-tight text-ink leading-[1.05]">
               Integración total con tu ecosistema digital.
             </h2>
             <p className="type-lead font-sans font-light text-ink-muted text-base sm:text-lg lg:text-xl leading-relaxed">
               Conectamos tu plataforma con Stripe, OpenAI, Google Workspace, WhatsApp, Slack, n8n y Supabase para automatizar y optimizar cada flujo de trabajo.
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
