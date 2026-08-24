@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { IntroSequence } from "@/components/ui/intro-sequence";
@@ -91,7 +92,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink relative">
-        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+        <Script id="boot-script" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: bootScript }} />
 
         <LoadingProvider>
           {/* Fondo animado de rejilla + partículas en toda la landing */}

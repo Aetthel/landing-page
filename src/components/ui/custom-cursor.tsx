@@ -159,10 +159,6 @@ export function CustomCursor() {
     };
   }, []);
 
-  if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
-    return null;
-  }
-
   const skin = CURSOR_SKIN[onDarkSurface ? "dark" : "light"];
   const tone = isHovered ? skin.hover : skin.idle;
   const size = `${isHovered ? SIZE_HOVER : SIZE_IDLE}px`;

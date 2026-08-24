@@ -24,16 +24,7 @@ type Phase = "playing" | "lifting" | "gone";
  * arranque de la web no dependen del contenido.
  */
 export const IntroSequence: React.FC = () => {
-  const [phase, setPhase] = useState<Phase>(() => {
-    if (
-      typeof document !== "undefined" &&
-      document.documentElement.dataset.intro === "skip"
-    ) {
-      markBooted();
-      return "gone";
-    }
-    return "playing";
-  });
+  const [phase, setPhase] = useState<Phase>("playing");
   const [running, setRunning] = useState(false);
 
   useEffect(() => {
@@ -42,6 +33,8 @@ export const IntroSequence: React.FC = () => {
       typeof document !== "undefined" &&
       document.documentElement.dataset.intro === "skip"
     ) {
+      markBooted();
+      setPhase("gone");
       return;
     }
 
