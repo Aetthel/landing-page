@@ -1,7 +1,6 @@
 import React from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { HomeGallery } from "@/components/sections/HomeGallery";
 import { Services } from "@/components/sections/Services";
 import { AboutUs } from "@/components/sections/AboutUs";
 import { StudioTeam } from "@/components/sections/StudioTeam";
@@ -17,7 +16,6 @@ export default function Home() {
         {/* Main Page Content */}
         <main className="flex-1 w-full">
           <Hero />
-          <HomeGallery />
           <AboutUs />
           <IntegrationsSection />
           <StudioTeam hideHeader />

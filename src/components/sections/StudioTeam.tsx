@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
+import { Reveal } from "@/components/ui/reveal";
 import { team } from "@/config/studio";
 
 interface StudioTeamProps {
@@ -54,8 +55,15 @@ export const StudioTeam: React.FC<StudioTeamProps> = ({ hideHeader = false }) =>
 
                Hace falta devolverla a mano porque `onMouseEnter` de la columna
                ya se disparó al entrar y no se repite al moverse por dentro. */
-            <div
+            /* <Reveal> es un div con el revelado por scroll encima y reparte
+               el resto de props, así que entra en el sitio exacto del div que
+               había aquí, con sus manejadores intactos. Hace falta montarlo por
+               ficha y no en la sección: en la home esta sección va con
+               `hideHeader`, y con la cabecera se iba el único revelado que
+               tenía. El escalonado hace que las dos fichas no entren a la vez. */
+            <Reveal
               key={member.name}
+              delay={index * 120}
               className="w-full cursor-pointer"
               onMouseEnter={(e) => handleMouseEnter(index, e)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -65,7 +73,7 @@ export const StudioTeam: React.FC<StudioTeamProps> = ({ hideHeader = false }) =>
                 onLinksEnter={() => setHoveredIndex(null)}
                 onLinksLeave={() => setHoveredIndex(index)}
               />
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
