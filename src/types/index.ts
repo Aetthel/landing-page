@@ -72,6 +72,8 @@ export interface Service {
   extra?: { title: string; copy: string };
   /** Lo que queda fuera. Se imprime igual de grande que lo que entra. */
   excludes: string[];
+  /** Tecnologías del servicio. Ya no se pinta en la ficha —se quitaron las
+      píldoras del lateral—, pero el dato se conserva por si vuelve. */
   stack: string[];
   /** Texto del botón de la ficha. */
   cta: string;

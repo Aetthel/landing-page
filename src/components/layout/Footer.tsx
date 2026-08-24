@@ -113,22 +113,23 @@ export const Footer: React.FC = () => {
                 {item.label}
               </Link>
             ))}
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              Instagram
-            </a>
+            {/* Los perfiles también salen de `siteConfig`, por lo mismo que las
+                rutas de arriba: estaban escritos a mano aquí y apuntando a la
+                portada de cada red, así que cambiar la cuenta obligaba a
+                acordarse de este archivo además del de configuración. */}
+            {siteConfig.socials
+              .filter((social) => social.platform !== "X")
+              .map((social) => (
+                <a
+                  key={social.platform}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  {social.platform}
+                </a>
+              ))}
           </div>
 
           {/* Right Legal Links & Copyright */}

@@ -315,20 +315,6 @@ export const ServiceSheet: React.FC<ServiceSheetProps> = ({
               {service.summary}
             </p>
 
-            {/* Stack Tecnológico del Servicio (sin mini título ni línea divisoria) */}
-            {service.stack && service.stack.length > 0 && (
-              <div className="flex flex-wrap gap-2.5">
-                {service.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3.5 py-1.5 rounded-full border border-line bg-surface font-sans text-sm font-medium text-ink"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            )}
-
             {/* Botón CTA directo */}
             <div className="pt-4">
               <InteractiveHoverLink

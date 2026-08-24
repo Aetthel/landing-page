@@ -413,9 +413,6 @@ export default function IntegrationsSection() {
 
           {/* Columna de Texto con Titular Display */}
           <div className="lg:col-span-5 mx-auto max-w-xl space-y-4 sm:space-y-6">
-            <span className="block type-eyebrow text-ink-muted">
-              INTEGRACIONES
-            </span>
             <h2 className="text-4xl sm:text-6xl font-display font-normal tracking-tight text-ink leading-[1.05]">
               Integración total con tu ecosistema digital.
             </h2>
