@@ -16,18 +16,26 @@ export const CTA: React.FC = () => {
             Al final, esto va de entenderse. Concretemos tu idea sin compromiso.
           </h2>
 
+          {/* El corte es parte del texto: la frase está pensada en dos golpes,
+              con la coma cerrando el primero. */}
           <p className="type-lead font-sans text-base sm:text-lg lg:text-xl font-light text-ink-muted leading-relaxed max-w-2xl">
-            Respondemos en menos de 24 horas con una primera lectura, propuesta de reunión y alcance claro.
+            Respondemos en menos de 24 horas con una primera lectura,
+            <br />
+            propuesta de reunión y alcance claro.
           </p>
 
           <div className="pt-4">
+            {/* Píldora en tinta sobre lienzo claro, así que el hover invierte:
+                el punto que crece es blanco y el texto en negativo baja a
+                tinta. Con el blob oscuro que había antes el efecto era
+                invisible —oscuro sobre oscuro y texto blanco a ambos lados. */}
             <InteractiveHoverLink
               href="/contacto"
               text="Agendar primera reunión"
               icon={<ArrowUpRight className="h-4 w-4" />}
               className="border-ink bg-ink px-8 py-4 text-white tracking-widest"
-              blobClassName="bg-neutral-800"
-              revealClassName="text-white"
+              blobClassName="bg-white"
+              revealClassName="text-ink"
             />
           </div>
         </Reveal>

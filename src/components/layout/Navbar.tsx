@@ -59,7 +59,10 @@ export const Navbar: React.FC = () => {
     <header
       suppressHydrationWarning
       className={cn(
-        "fixed top-4 sm:top-5 left-4 sm:left-6 right-4 sm:right-6 z-[1000] flex justify-center transition-all duration-300 pointer-events-none transform",
+        // `site-nav` no pinta nada: es el asidero con el que globals.css
+        // mantiene la barra fuera de la pantalla mientras dura la cortina de
+        // entrada. Ver la regla junto a `.intro`.
+        "site-nav fixed top-4 sm:top-5 left-4 sm:left-6 right-4 sm:right-6 z-[1000] flex justify-center transition-all duration-300 pointer-events-none transform",
         visible || mobileMenuOpen
           ? "translate-y-0 opacity-100"
           : "-translate-y-24 opacity-0",

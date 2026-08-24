@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { team } from "@/config/studio";
 
@@ -44,23 +45,28 @@ export const StudioTeam: React.FC<StudioTeamProps> = ({ hideHeader = false }) =>
 
         {/* Distribución limpia en 2 Columnas alineada con la estética general del Home */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-28 items-start w-full">
-          {/* COLUMNA 1: Martí Castaño */}
-          <div
-            className="w-full cursor-pointer"
-            onMouseEnter={(e) => handleMouseEnter(0, e)}
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            <MemberCard member={members[0]} />
-          </div>
+          {members.map((member, index) => (
+            /* La foto flotante va centrada en el puntero, así que tapa
+               exactamente aquello a lo que apuntas: sobre la fila de perfiles
+               dejaba los enlaces debajo de la imagen, invisibles e imposibles de
+               acertar. Al entrar en esa fila se retira la foto, y al salir de
+               ella —sin salir de la columna— vuelve.
 
-          {/* COLUMNA 2: Alex Cortell */}
-          <div
-            className="w-full cursor-pointer"
-            onMouseEnter={(e) => handleMouseEnter(1, e)}
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            <MemberCard member={members[1]} />
-          </div>
+               Hace falta devolverla a mano porque `onMouseEnter` de la columna
+               ya se disparó al entrar y no se repite al moverse por dentro. */
+            <div
+              key={member.name}
+              className="w-full cursor-pointer"
+              onMouseEnter={(e) => handleMouseEnter(index, e)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              <MemberCard
+                member={member}
+                onLinksEnter={() => setHoveredIndex(null)}
+                onLinksLeave={() => setHoveredIndex(index)}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -124,8 +130,12 @@ function MemberAvatar({
 
 function MemberCard({
   member,
+  onLinksEnter,
+  onLinksLeave,
 }: {
   member: typeof team[0];
+  onLinksEnter: () => void;
+  onLinksLeave: () => void;
 }) {
   return (
     <div className="w-full flex flex-col justify-between py-2 space-y-6 sm:space-y-8 text-ink">
@@ -144,7 +154,75 @@ function MemberCard({
         <p className="type-lead font-sans text-base sm:text-lg lg:text-xl font-light text-ink-muted leading-relaxed max-w-xl">
           {member.bio}
         </p>
+
+        <MemberLinks
+          member={member}
+          onEnter={onLinksEnter}
+          onLeave={onLinksLeave}
+        />
       </div>
     </div>
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Los perfiles de cada persona, debajo de su descripción.
+
+   SE FILTRAN LOS VACÍOS. Un `href=""` no es un enlace roto que se vea: es un
+   enlace que recarga la página actual, y el visitante que lo pulsa cree que
+   ha fallado la web. Mientras no haya URL, el perfil sencillamente no aparece;
+   en cuanto se rellene en `config/studio.ts`, entra solo.
+
+   Si una persona no tiene ninguno de los tres, no se pinta ni la fila: sin este
+   corte quedaría el hueco del `space-y` del padre, un espacio en blanco bajo la
+   biografía que no se explica.
+
+   LA FILA SE PONE POR ENCIMA DE LA FOTO FLOTANTE (`z-50` contra su `z-40`).
+   Retirarla al entrar aquí ya la quita de en medio, pero su desaparición es una
+   animación de salida y dura unas décimas: sin este escalón, durante ese rato la
+   imagen seguiría pasando por delante de los rótulos justo cuando el visitante
+   va a pulsarlos.
+   -------------------------------------------------------------------------- */
+function MemberLinks({
+  member,
+  onEnter,
+  onLeave,
+}: {
+  member: typeof team[0];
+  onEnter: () => void;
+  onLeave: () => void;
+}) {
+  const profiles = [
+    { label: "LinkedIn", href: member.links.linkedin },
+    { label: "Instagram", href: member.links.instagram },
+    { label: "Portafolio", href: member.links.portfolio },
+  ].filter((profile) => profile.href);
+
+  if (profiles.length === 0) return null;
+
+  return (
+    <ul
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      className="relative z-50 flex flex-wrap items-center gap-x-6 gap-y-2 pt-1"
+    >
+      {profiles.map((profile) => (
+        <li key={profile.label}>
+          <a
+            href={profile.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            /* El nombre va en la etiqueta accesible porque en la página hay dos
+               «LinkedIn»: sin él, quien navegue por lista de enlaces oye el
+               mismo rótulo dos veces y no sabe cuál es cuál. */
+            aria-label={`${profile.label} de ${member.name}`}
+            className="group/link inline-flex items-center gap-1.5 font-sans text-xs font-medium uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-ink"
+          >
+            {profile.label}
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 motion-reduce:transition-none" />
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }

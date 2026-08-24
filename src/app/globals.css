@@ -958,6 +958,29 @@ html.lenis body {
   transform: translateY(-101%);
 }
 
+/* --------------------------------------------------------------------------
+   La barra de navegación no sale en la entrada.
+
+   La cortina es `z-index: 100` y la barra `z-1000`, así que se pintaba encima
+   del logotipo escribiéndose: la entrada de marca aparecía con un menú flotando
+   por delante. Mientras la cortina esté montada, la barra se retira por arriba.
+
+   VA POR `:has(.intro)` Y NO POR `.is-booting`. Parecen lo mismo pero no lo
+   son: `is-booting` se quita cuando la cortina EMPIEZA a subir —para que las
+   animaciones de la web arranquen solapadas con ella—, así que atándola a eso
+   la barra reaparecería a media subida, encima de una cortina todavía visible.
+   `.intro` sigue en el DOM hasta que la cortina ha terminado y se desmonta, que
+   es justo cuando la barra debe entrar.
+
+   Es solo un `opacity`/`transform`, no un `display: none`: la barra ya lleva su
+   propia transición de 300 ms para esos dos, así que al desmontarse la cortina
+   baja sola en vez de aparecer de golpe. */
+body:has(.intro) .site-nav {
+  opacity: 0;
+  transform: translateY(-6rem);
+  pointer-events: none;
+}
+
 /* El canto de la cortina lleva la lima del logotipo: al subir, barre la
    pantalla de abajo arriba y deja la web ya en movimiento detrás. */
 .intro::after {

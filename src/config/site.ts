@@ -15,8 +15,9 @@ export const siteConfig: SiteConfig = {
     { label: "Contacto", href: "/contacto" },
   ],
   socials: [
-    { platform: "Instagram", href: "https://instagram.com" },
-    { platform: "LinkedIn", href: "https://linkedin.com" },
+    { platform: "Instagram", href: "https://www.instagram.com/aetthellab/" },
+    // TODO: sustituir por la URL exacta de la página de empresa cuando esté.
+    { platform: "LinkedIn", href: "https://www.linkedin.com/" },
     { platform: "X", href: "https://x.com" },
   ],
 };

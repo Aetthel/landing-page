@@ -11,11 +11,14 @@
    que no alimenten a una de esas cuatro es la forma de que vuelva a crecer
    sola.
 
-   IMÁGENES. Las rutas de `team[].photo` apuntan a archivos que todavía no
-   existen. No hay que comentar nada ni borrar rutas: la pieza comprueba al
-   construir si el archivo está (`lib/assets.ts`) y, si no, dibuja una lámina
-   de reserva. Suelta los JPG con esos nombres exactos en `public/team/` y
-   aparecen solos.
+   IMÁGENES. `team[].photo` es una ruta pública cualquiera, no una convención de
+   nombres: `lib/assets.ts` comprueba al construir si el archivo está y, si no,
+   dibuja una lámina con el monograma. Por eso conviven hoy un retrato en
+   `/images/home/` y otro pendiente en `/team/` sin que haya que tocar marcado
+   —basta con apuntar la ruta a donde de verdad esté el JPG—.
+
+   Falta el de Martí. En cuanto exista, se cambia su ruta igual que la de Alex y
+   su lámina de reserva desaparece sola.
    ========================================================================== */
 
 export interface TeamMember {
@@ -34,8 +37,20 @@ export interface TeamMember {
    * máximo en `.roster-name` (globals.css) o el nombre se saldrá de la caja.
    */
   photo: string;
-  github: string;
-  linkedin: string;
+  /**
+   * Los perfiles que cuelgan de cada persona en el reparto.
+   *
+   * DEJAR EN CADENA VACÍA LO QUE NO EXISTA, nunca inventarse una URL ni apuntar
+   * a la cuenta del estudio: el enlace se rotula con el nombre de la persona y
+   * llevar a otro sitio es mentir al que lo pulsa. `MemberCard` se salta los
+   * vacíos, así que una persona sin Instagram simplemente no lo enseña y no
+   * queda ningún enlace muerto.
+   */
+  links: {
+    linkedin: string;
+    instagram: string;
+    portfolio: string;
+  };
 }
 
 /** Cómo es trabajar con nosotros. Tres, no diez: son promesas, no una lista. */
@@ -53,8 +68,7 @@ export const team: TeamMember[] = [
     bio: "Construye la estructura técnica de cada proyecto. Se asegura de que tu plataforma sea rápida, estable y preparada para crecer sin problemas.",
     skills: [],
     photo: "/team/marti-castano.jpg",
-    github: "",
-    linkedin: "",
+    links: { linkedin: "", instagram: "", portfolio: "" },
   },
   {
     name: "Alex Cortell",
@@ -62,9 +76,12 @@ export const team: TeamMember[] = [
     role: "Diseño y Producto",
     bio: "Diseña la experiencia visual e interactiva. Transforma las necesidades de tu negocio en una interfaz limpia, intuitiva y atractiva.",
     skills: [],
-    photo: "/team/alex-cortell.jpg",
-    github: "",
-    linkedin: "",
+    photo: "/images/home/alex.jpg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/alexcortell/",
+      instagram: "https://www.instagram.com/alxdevstudio/",
+      portfolio: "https://cv-sigma-flax.vercel.app/",
+    },
   },
 ];
 
