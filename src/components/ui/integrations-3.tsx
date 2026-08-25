@@ -374,19 +374,19 @@ export default function IntegrationsSection() {
               className="bg-radial to-canvas absolute inset-0 z-10 from-transparent to-75% pointer-events-none"
             />
             {/* Fila 1: Google Workspace & WhatsApp Business */}
-            <div className="mx-auto mb-3 sm:mb-4 flex w-fit justify-center gap-3 sm:gap-4 lg:gap-5">
+            <div className="mx-auto mb-2 min-[400px]:mb-3 sm:mb-4 flex w-fit justify-center gap-2 min-[400px]:gap-3 sm:gap-4 lg:gap-5">
               <IntegrationCard label="Google Workspace">
-                <Google className="size-10 sm:size-12 lg:size-14" />
+                <Google className="size-8 min-[400px]:size-10 sm:size-12 lg:size-14" />
               </IntegrationCard>
               <IntegrationCard label="WhatsApp Business">
-                <WhatsApp className="size-10 sm:size-12 lg:size-14" />
+                <WhatsApp className="size-8 min-[400px]:size-10 sm:size-12 lg:size-14" />
               </IntegrationCard>
             </div>
 
             {/* Fila 2: OpenAI, Stripe (Tarjeta Central), Slack */}
-            <div className="mx-auto my-3 sm:my-4 flex w-fit justify-center gap-3 sm:gap-4 lg:gap-5">
+            <div className="mx-auto my-2 min-[400px]:my-3 sm:my-4 flex w-fit justify-center gap-2 min-[400px]:gap-3 sm:gap-4 lg:gap-5">
               <IntegrationCard label="OpenAI">
-                <OpenAI className="size-10 sm:size-12 lg:size-14" />
+                <OpenAI className="size-8 min-[400px]:size-10 sm:size-12 lg:size-14" />
               </IntegrationCard>
 
               {/* Tarjeta Central Destacada: Stripe */}
@@ -395,21 +395,21 @@ export default function IntegrationsSection() {
                 borderClassName="border-brand/40 shadow-lg shadow-brand/5"
                 className="bg-surface scale-105"
               >
-                <Stripe className="size-12 sm:size-14 lg:size-16" />
+                <Stripe className="size-10 min-[400px]:size-12 sm:size-14 lg:size-16" />
               </IntegrationCard>
 
               <IntegrationCard label="Slack">
-                <Slack className="size-10 sm:size-12 lg:size-14" />
+                <Slack className="size-8 min-[400px]:size-10 sm:size-12 lg:size-14" />
               </IntegrationCard>
             </div>
 
             {/* Fila 3: n8n & Supabase */}
-            <div className="mx-auto flex w-fit justify-center gap-3 sm:gap-4 lg:gap-5">
+            <div className="mx-auto flex w-fit justify-center gap-2 min-[400px]:gap-3 sm:gap-4 lg:gap-5">
               <IntegrationCard label="n8n Automation">
-                <N8n className="size-10 sm:size-12 lg:size-14" />
+                <N8n className="size-8 min-[400px]:size-10 sm:size-12 lg:size-14" />
               </IntegrationCard>
               <IntegrationCard label="Supabase">
-                <Supabase className="size-10 sm:size-12 lg:size-14" />
+                <Supabase className="size-8 min-[400px]:size-10 sm:size-12 lg:size-14" />
               </IntegrationCard>
             </div>
           </Reveal>
@@ -448,8 +448,17 @@ const IntegrationCard = ({
     <div
       title={label}
       aria-label={label}
+      /* EL TAMAÑO DE LA TARJETA MANDA SOBRE EL ANCHO DEL PANAL, y la fila
+         central lleva tres: cualquier medida de aquí se multiplica por tres y
+         se le suman dos huecos. A `size-28` eso daban 360 px, más de lo que
+         deja un móvil de 375 con `px-6` (327 útiles), así que el panal se salía
+         y el `overflow-hidden` de la página lo recortaba.
+
+         Con `size-20` la fila mide 256 px y entra hasta en 320. El escalón de
+         `min-[400px]` la devuelve a 96 px en cuanto hay sitio, para no
+         castigar a los móviles grandes con un panal de pantalla pequeña. */
       className={cn(
-        "bg-surface relative flex size-28 sm:size-32 lg:size-36 rounded-2xl",
+        "bg-surface relative flex size-20 min-[400px]:size-24 sm:size-32 lg:size-36 rounded-2xl",
         className
       )}
     >

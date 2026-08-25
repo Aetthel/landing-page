@@ -287,9 +287,24 @@ export const ServiceSheet: React.FC<ServiceSheetProps> = ({
               ------------------------------------------------------------------ */}
           <Reveal className="lg:col-span-5 lg:sticky lg:top-32 space-y-8">
             <div className="space-y-5">
+              {/* «AUTOMATIZACIONES» ES UNA SOLA PALABRA, y ahí está el
+                  problema: los nombres con espacio («Landing pages», «Web apps
+                  a medida») parten solos cuando no caben, pero una palabra
+                  suelta no se rompe por defecto —se sale de la caja—. A los 48
+                  px de `text-5xl` pedía ~380 px contra los 327 de un móvil de
+                  375, y se desbordaba en horizontal.
+
+                  Dos medidas, una de forma y otra de fondo:
+                  - Escalones por debajo de `sm`, que no había: el móvil
+                    heredaba el cuerpo de escritorio.
+                  - `hyphens-auto` + `break-words` como red de seguridad. El
+                    <html> va en `lang="es"`, así que el navegador corta por
+                    sílabas donde toca en vez de tajar a mitad de letra. Esto
+                    cubre también la columna estrecha de `lg` y cualquier
+                    servicio que se llame mañana algo largo de una pieza. */}
               <h2
                 className={cn(
-                  "text-5xl sm:text-6xl lg:text-7xl font-display font-normal tracking-tight leading-[1.03]",
+                  "text-4xl min-[480px]:text-5xl sm:text-6xl lg:text-7xl font-display font-normal tracking-tight leading-[1.03] hyphens-auto wrap-break-word",
                   t.title
                 )}
               >
