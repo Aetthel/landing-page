@@ -56,7 +56,7 @@ export const StudioTeam: React.FC<StudioTeamProps> = ({
               key={member.name}
               delay={index * 120}
               className="w-full cursor-pointer"
-              onMouseEnter={(e) => handleMouseEnter(index, e)}
+              onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               aria-label={`Ver portafolio de ${member.name}`}
             >

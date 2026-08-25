@@ -34,6 +34,7 @@ export const IntroSequence: React.FC = () => {
       document.documentElement.dataset.intro === "skip"
     ) {
       markBooted();
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPhase("gone");
       return;
     }

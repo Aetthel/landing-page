@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useSyncExternalStore } from "react";
 import {
   easeInOut,
   motion,
@@ -85,18 +85,17 @@ export const MagicText: React.FC<MagicTextProps> = ({ text, className }) => {
      —no los saltos discretos de la rueda que el muelle venía a limar—, así que
      lo único que aporta es un retardo: el trazo llega siempre un poco después
      del gesto y se percibe como pesadez. Con el progreso en crudo, el rotulador
-     va pegado al dedo. Se resuelve tras el montaje para que el HTML del
-     servidor y el de la hidratación sigan siendo el mismo. */
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(pointer: coarse)");
-    setIsTouch(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setIsTouch(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+     va pegado al dedo. */
+  const isTouch = useSyncExternalStore(
+    (callback) => {
+      if (typeof window === "undefined") return () => {};
+      const mq = window.matchMedia("(pointer: coarse)");
+      mq.addEventListener("change", callback);
+      return () => mq.removeEventListener("change", callback);
+    },
+    () => (typeof window !== "undefined" ? window.matchMedia("(pointer: coarse)").matches : false),
+    () => false
+  );
 
   const progress = isTouch ? scrollYProgress : smoothProgress;
 
