@@ -11,6 +11,36 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
+/* --------------------------------------------------------------------------
+   ¿Se está leyendo esto con el dedo?
+
+   El tipo de puntero es un dato del navegador, no de React, así que se consulta
+   con `useSyncExternalStore` en vez de copiarlo al estado desde un efecto. Eso
+   evita el render de más al montar y, sobre todo, la discrepancia al hidratar:
+   en el servidor no hay `matchMedia`, y la respuesta de servidor —«no es
+   táctil»— es la que React usa mientras hidrata, saltando a la real justo
+   después.
+
+   Se mantiene la suscripción porque esto sí cambia en caliente: un portátil
+   con pantalla táctil y ratón alterna según con qué se toque.
+   -------------------------------------------------------------------------- */
+const COARSE_POINTER = "(pointer: coarse)";
+
+function subscribeCoarsePointer(onStoreChange: () => void) {
+  const mq = window.matchMedia(COARSE_POINTER);
+  mq.addEventListener("change", onStoreChange);
+  return () => mq.removeEventListener("change", onStoreChange);
+}
+
+function readCoarsePointer() {
+  return window.matchMedia(COARSE_POINTER).matches;
+}
+
+/** En el servidor se asume ratón: es lo que ya se asumía con el estado inicial. */
+function serverCoarsePointer() {
+  return false;
+}
+
 export interface MagicTextProps {
   text: string;
   /** Tipografía y alineación las pone quien lo usa, no el componente. */
@@ -85,16 +115,12 @@ export const MagicText: React.FC<MagicTextProps> = ({ text, className }) => {
      —no los saltos discretos de la rueda que el muelle venía a limar—, así que
      lo único que aporta es un retardo: el trazo llega siempre un poco después
      del gesto y se percibe como pesadez. Con el progreso en crudo, el rotulador
-     va pegado al dedo. */
+     va pegado al dedo. Se resuelve tras el montaje para que el HTML del
+     servidor y el de la hidratación sigan siendo el mismo. */
   const isTouch = useSyncExternalStore(
-    (callback) => {
-      if (typeof window === "undefined") return () => {};
-      const mq = window.matchMedia("(pointer: coarse)");
-      mq.addEventListener("change", callback);
-      return () => mq.removeEventListener("change", callback);
-    },
-    () => (typeof window !== "undefined" ? window.matchMedia("(pointer: coarse)").matches : false),
-    () => false
+    subscribeCoarsePointer,
+    readCoarsePointer,
+    serverCoarsePointer
   );
 
   const progress = isTouch ? scrollYProgress : smoothProgress;

@@ -13,8 +13,12 @@ export default function Home() {
         {/* La Navbar la monta el layout, para que sobreviva a los cambios de
             ruta y su selector pueda desplazarse */}
 
-        {/* Main Page Content */}
-        <main className="flex-1 w-full">
+        {/* Main Page Content.
+            El `pb` es el respiro entre la última sección y el pie. Va aquí y no
+            en `Services` a propósito: es una cuestión de esta página —dónde
+            acaba el contenido y empieza el bloque oscuro—, no del ritmo interno
+            de la sección, que se usaría igual en cualquier otro sitio. */}
+        <main className="flex-1 w-full pb-12 sm:pb-16 lg:pb-24">
           <Hero />
           <AboutUs />
           <IntegrationsSection />
