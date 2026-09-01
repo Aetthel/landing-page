@@ -5,9 +5,18 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { HeroGradient } from "@/components/ui/aurora-background";
 
 export const metadata: Metadata = {
-  title: "Contacto | Aetthel",
+  title: "Contacto | Solicita Presupuesto para tu Proyecto Digital",
   description:
-    "Cuéntanos qué quieres construir. Respondemos en menos de 24 horas con una primera lectura del proyecto, presupuesto y plazos.",
+    "Cuéntanos tu proyecto web o automatización. Respondemos en menos de 24 horas con una primera valoración técnica, plazos y presupuesto cerrado.",
+  alternates: {
+    canonical: "/contacto",
+  },
+  openGraph: {
+    title: "Contacto | Solicita Presupuesto | Aetthel",
+    description:
+      "Contacta con nuestro equipo en Barcelona. Respondemos en menos de 24 horas.",
+    url: "https://aetthel.com/contacto",
+  },
 };
 
 export default function ContactoPage() {

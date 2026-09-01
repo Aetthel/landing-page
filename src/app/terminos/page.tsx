@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Términos y Condiciones | Aetthel",
   description:
     "Condiciones de uso, contratación y términos legales aplicables a los servicios y productos de Aetthel Lab S.L.",
+  alternates: {
+    canonical: "/terminos",
+  },
 };
 
 export default function TerminosPage() {

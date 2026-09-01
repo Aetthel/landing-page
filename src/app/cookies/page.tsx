@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Política de Cookies | Aetthel",
   description:
     "Información sobre el uso de cookies y tecnologías de almacenamiento local en el sitio web de Aetthel Lab.",
+  alternates: {
+    canonical: "/cookies",
+  },
 };
 
 export default function CookiesPage() {

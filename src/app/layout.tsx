@@ -32,27 +32,53 @@ const bodyFont = Inter({
   display: "swap",
 });
 
+import { LoadingProvider } from "@/context/LoadingContext";
+import { LoadingOverlay } from "@/components/ui/loading-overlay";
+import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} - Estudio`,
+    default: `${siteConfig.name} | Estudio de Desarrollo Web y Automatización en Barcelona`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
     "Aetthel",
-    "Estudio Digital",
-    "Landing Pages",
-    "Desarrollo Web",
-    "Aplicaciones Web",
-    "Automatizaciones",
-    "Barcelona",
+    "Aetthel Digital",
+    "Estudio digital Barcelona",
+    "Desarrollo web Barcelona",
+    "Diseño de landing pages Barcelona",
+    "Landing pages de alta conversión",
+    "Desarrollo de aplicaciones web a medida",
+    "Software a medida pymes",
+    "Automatización de procesos",
+    "Automatización con IA para empresas",
+    "Agencia desarrollo web Barcelona",
+    "Aetthel Lab",
   ],
-  authors: [{ name: siteConfig.name }],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  alternates: {
+    canonical: "./",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",
     url: siteConfig.url,
-    title: siteConfig.name,
+    title: `${siteConfig.name} | Estudio de Desarrollo Web y Automatización en Barcelona`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -60,13 +86,13 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: siteConfig.name,
+        alt: `${siteConfig.name} - Estudio Digital en Barcelona`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
+    title: `${siteConfig.name} | Estudio de Desarrollo Web y Automatización en Barcelona`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
@@ -75,10 +101,8 @@ export const metadata: Metadata = {
     shortcut: "/icon.svg",
     apple: "/icon.svg",
   },
+  category: "technology",
 };
-
-import { LoadingProvider } from "@/context/LoadingContext";
-import { LoadingOverlay } from "@/components/ui/loading-overlay";
 
 export default function RootLayout({
   children,
@@ -93,6 +117,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink relative">
         <Script id="boot-script" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: bootScript }} />
+        <OrganizationJsonLd />
 
         <LoadingProvider>
           {/* Fondo animado de rejilla + partículas en toda la landing */}

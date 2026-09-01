@@ -44,9 +44,18 @@ import { HeroGradient } from "@/components/ui/aurora-background";
    ========================================================================== */
 
 export const metadata: Metadata = {
-  title: "Aetthel Lab | Aetthel",
+  title: "Aetthel Lab | Sobre Nosotros y Metodología de Trabajo",
   description:
-    "Quiénes somos y cómo trabajamos: un estudio de dos ingenieros, trato directo sin intermediarios, todo a tu nombre y presupuesto cerrado antes de empezar.",
+    "Conoce Aetthel: estudio digital en Barcelona fundado por Martí Castaño y Alex Cortell. Trato directo, desarrollo web a medida y precio cerrado.",
+  alternates: {
+    canonical: "/estudio",
+  },
+  openGraph: {
+    title: "Aetthel Lab | Sobre Nosotros y Metodología",
+    description:
+      "Quiénes somos y cómo trabajamos en Aetthel: estudio de ingeniería y diseño digital en Barcelona.",
+    url: "https://aetthel.com/estudio",
+  },
 };
 
 export default function EstudioPage() {

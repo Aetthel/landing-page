@@ -6,16 +6,27 @@ import { ServicesAftercare } from "@/components/sections/ServicesAftercare";
 import { ServicesFaq } from "@/components/sections/ServicesFaq";
 import { services } from "@/config/services";
 import { HeroGradient } from "@/components/ui/aurora-background";
+import { FaqJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Servicios | Aetthel",
+  title: "Servicios de Desarrollo Web, Landing Pages y Automatización",
   description:
-    "Landing pages, web apps a medida y automatización de procesos. Los niveles de cada servicio, qué incluye, qué no entra y cómo trabajamos, explicado antes de empezar. Presupuesto a medida.",
+    "Landing pages de alta conversión, aplicaciones web a medida y automatización de procesos para pymes en Barcelona. Qué incluye cada servicio, niveles y presupuesto cerrado.",
+  alternates: {
+    canonical: "/servicios",
+  },
+  openGraph: {
+    title: "Servicios de Desarrollo Web y Automatización | Aetthel",
+    description:
+      "Landing pages, aplicaciones web a medida y automatizaciones de procesos para pymes y negocios.",
+    url: "https://aetthel.com/servicios",
+  },
 };
 
 export default function ServiciosPage() {
   return (
     <div className="relative min-h-screen flex flex-col bg-dark text-white font-sans selection:bg-dark selection:text-white">
+      <FaqJsonLd />
       <main className="flex-1 w-full">
         {/* HERO CABECERA EN NEGRO */}
         <section

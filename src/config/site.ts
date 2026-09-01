@@ -3,9 +3,9 @@ import { SiteConfig } from "@/types";
 export const siteConfig: SiteConfig = {
   name: "Aetthel",
   description:
-    "Estudio digital especializado en landing pages, aplicaciones web a medida y automatización de procesos.",
+    "Estudio digital en Barcelona especializado en desarrollo de landing pages de alta conversión, aplicaciones web a medida y automatizaciones de procesos para pymes.",
   url: "https://aetthel.com",
-  ogImage: "https://aetthel.com/og.png",
+  ogImage: "https://aetthel.com/opengraph-image",
   mainNavItems: [
     { label: "Aetthel Lab", href: "/estudio" },
     { label: "Servicios", href: "/servicios" },

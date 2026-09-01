@@ -5,9 +5,12 @@ import { Footer } from "@/components/layout/Footer";
 import { HeroGradient } from "@/components/ui/aurora-background";
 
 export const metadata: Metadata = {
-  title: "Tienda | Aetthel",
+  title: "Tienda | Soluciones y Plantillas Digitales",
   description:
-    "Nuestra tienda todavía no está abierta. Estamos preparándola; mientras tanto, cuéntanos qué necesitas y lo vemos.",
+    "Tienda Aetthel: recursos, plantillas y componentes digitales optimizados. Próximamente disponible.",
+  alternates: {
+    canonical: "/tienda",
+  },
 };
 
 export default function TiendaPage() {

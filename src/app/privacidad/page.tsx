@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Política de Privacidad | Aetthel",
   description:
     "Información sobre el tratamiento de datos personales y ejercicio de derechos conforme al RGPD y la LOPDGDD en Aetthel Lab.",
+  alternates: {
+    canonical: "/privacidad",
+  },
 };
 
 export default function PrivacidadPage() {
