@@ -80,7 +80,7 @@ export const team: TeamMember[] = [
     links: {
       linkedin: "https://www.linkedin.com/in/alexcortell/",
       instagram: "https://www.instagram.com/alxdevstudio/",
-      portfolio: "https://cv-sigma-flax.vercel.app/",
+      portfolio: "https://alex-cortell.vercel.app/",
     },
   },
 ];
